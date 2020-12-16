@@ -36,7 +36,8 @@ def security_tests(ctx):
 
   path_manager.project_root()
   process_manager.spawn([
-      'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit', 'safety check'
+      'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit',
+      'safety check',
   ])
 
   if process_manager.exit_code != 0:
