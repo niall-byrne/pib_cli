@@ -8,5 +8,5 @@ class ProcessManager:
     self.exit_code = None
 
   def spawn(self, command):
-    result = os.system(command)
+    result = os.system(command)  # nosec
     self.exit_code = int(result / 256)
