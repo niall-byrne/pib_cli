@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  pib_cli:
+    build:
+      context: .
+      dockerfile: assets/Dockerfile
+      target: development
+    env_file:
+      - development.env
+    volumes:
+      - ${HOME}/.ssh:/home/user/.ssh
+      - ${HOME}/.gitconfig:/home/user/.gitconfig
+      - ${HOME}/.gitconfig_global:/home/user/.gitconfig_global
+      - ./:/app

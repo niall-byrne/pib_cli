@@ -1,0 +1,111 @@
+name: pib_cli Automation
+
+# Workflow Secrets:
+# SLACK_WEBHOOK              (Required, for slack notifications...)
+
+on:
+  push:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v1
+
+    - name: Setup Environment
+      run: |
+        BRANCH_OR_TAG="$(echo "${GITHUB_REF}" | sed 's/refs\/heads\///g' | sed 's/refs\/tags\///g')"
+        echo "BRANCH_OR_TAG=${BRANCH_OR_TAG}" >> $GITHUB_ENV
+        echo "WEBHOOK_URL=${WEBHOOK_URL}" >> $GITHUB_ENV
+        echo "PROJECT_NAME=pib_cli" >> $GITHUB_ENV
+        echo "USERNAME=niall-byrne" >> $GITHUB_ENV
+        echo "VALID_RELEASE=not_a_validated_release" >> $GITHUB_ENV
+
+      env:
+        WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+    - name: Create Docker Mounted Content
+      run: |
+        echo | ssh-keygen
+        touch ${HOME}/.gitconfig
+        touch ${HOME}/.gitconfig_global
+
+    - name: Ensure File System is Writable by the Container
+      run: |
+        sudo chmod -R 777 .
+
+    - name: Build Container
+      run: |
+        docker-compose build
+        docker-compose up -d
+
+    - name: Run Linter
+      run: |
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'scripts/commander.sh lint-validate'
+
+    - name: Run Sec Test
+      run: |
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'scripts/commander.sh sectest'
+
+    - name: Run Unit Tests
+      run: |
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'scripts/commander.sh test coverage'
+
+    - name: Report Build Failures
+      if: failure() == true
+      run: |
+        ./scripts/ci/slack.sh "${PROJECT_NAME}" "build has failed!"
+
+    - name: Report Build Successes
+      run: |
+        ./scripts/ci/slack.sh "${PROJECT_NAME}" "build succeeded for ${BRANCH_OR_TAG}!"
+
+    - name: Releases -- Detect A Release Tag
+      if: contains(github.ref, '/tags/v') == true
+      run: |
+        git checkout .  # Reset file modes
+        VALID_RELEASE="$(git diff origin/master)"
+        echo "VALID_RELEASE=${VALID_RELEASE}" >> $GITHUB_ENV
+
+    - name: Releases -- Prepare Release Content
+      if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      run: |
+        echo "{}" > package.json
+
+    - name: Production -- Generate Changelog
+      if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      uses: scottbrenner/generate-changelog-action@master
+      id: Changelog
+      env:
+       REPO: ${{ github.repository }}
+
+    - name: Production -- Create Release
+      if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.BRANCH_OR_TAG }}
+        release_name: Release ${{ env.BRANCH_OR_TAG }}
+        body: |
+          ${{ steps.Changelog.outputs.changelog }}
+          ## Deployment Checklist
+          - [ ] Ensure unnecessary alerts are ignored/disabled
+        draft: true
+        prerelease: false
+
+    - name: Production -- Report Success
+      if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      run: |
+        ./scripts/ci/slack.sh "${PROJECT_NAME}" "automated release has been created for ${BRANCH_OR_TAG}:\n  https://github.com/${USERNAME}/${PROJECT_NAME}/releases"
+
+    - name: Production -- Report Failure
+      if: failure() == true && contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      run: |
+        ./scripts/ci/slack.sh "${PROJECT_NAME}" "automated release has failed for ${BRANCH_OR_TAG}!"
+
