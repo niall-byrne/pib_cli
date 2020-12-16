@@ -51,10 +51,6 @@ class CommandTestHarness(TestCase):
     self.runner.invoke(cli, self.invocation_command)
     self.mock_utils.process_manager.spawn.assert_called_once_with(
         self.expected_system_calls)
-    self.assertEqual(
-        self.mock_utils.process_manager.spawn.call_count,
-        len(self.expected_system_calls),
-    )
 
   @patch("pib_cli.commander.Utilities")
   def test_successful_results(self, mock_utils):
@@ -74,7 +70,6 @@ class CommandTestHarness(TestCase):
     self.runner.invoke(cli, self.invocation_command)
     self.mock_utils.process_manager.spawn.assert_called_once_with(
         self.expected_system_calls)
-    self.assertEqual(self.mock_utils.process_manager.spawn.call_count, 1)
 
   @patch("pib_cli.commander.Utilities")
   def test_unsuccessful_results(self, mock_utils):
