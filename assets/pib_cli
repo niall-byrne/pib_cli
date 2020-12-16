@@ -1,0 +1,5 @@
+#!/usr/local/bin/python
+
+from pib_cli import commander
+
+commander.cli()

@@ -13,7 +13,7 @@ source "$( dirname "${BASH_SOURCE[0]}" )/common/documentation.sh"
 
 # Optional For Libraries
 # shellcheck source=scripts/common/wheel.sh
-# source "$( dirname "${BASH_SOURCE[0]}" )/common/wheel.sh"
+source "$( dirname "${BASH_SOURCE[0]}" )/common/wheel.sh"
 
 # Add Additional Functionality Via Imports Here
 
@@ -22,6 +22,11 @@ case $1 in
     shift
     source_environment
     build_documentation "$@"
+    ;;
+  'build-wheel')
+    shift
+    source_environment
+    build_wheel "$@"
     ;;
   'lint')
     shift
@@ -49,7 +54,7 @@ case $1 in
     setup_python "$@"
     ;;
   'shortlist')
-    echo "build-docs lint lint-validate reinstall-requirements sectest setup test test-coverage update"
+    echo "build-docs build-wheel lint lint-validate reinstall-requirements sectest setup test test-coverage update"
     ;;
   'test')
     shift

@@ -36,4 +36,9 @@ build_wheel() {
 
   popd  > /dev/null
 
+  set +e
+    pip uninstall -y pib_cli-0.0.1-py3-none-any.whl;
+    pip install pib_cli-0.0.1-py3-none-any.whl
+  set -e
+
 }

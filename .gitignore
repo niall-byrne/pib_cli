@@ -137,3 +137,8 @@ override.env
 # Archives
 .archive
 
+# Wheels
+*.whl
+
+# Macs
+.DS_Store
