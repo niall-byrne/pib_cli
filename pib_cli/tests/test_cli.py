@@ -1,37 +1,51 @@
 """Test the CLI"""
 
-from pib_cli.tests.fixtures import CommandTestHarness
+from unittest import TestCase
+from unittest.mock import Mock, patch
+
+from pib_cli.cli import execute
+from pib_cli.tests.fixtures import CLITestHarness
 
 
-class TestBuildDocs(CommandTestHarness):
+class TestExecute(TestCase):
+
+  def setUp(self):
+    self.mock_response = "Ready to Test"
+    self.test_command = "Test Command"
+    self.test_exit_code = 99
+    self.mock_invoke = Mock()
+    self.mock_invoke.return_value = self.mock_response
+
+    self.mock_command_manager = Mock()
+    self.mock_command_manager.invoke = self.mock_invoke
+    self.mock_command_manager.process_manager.exit_code = self.test_exit_code
+
+  @patch("pib_cli.cli.Commands")
+  @patch("pib_cli.cli.click.echo")
+  @patch("pib_cli.cli.sys.exit")
+  def test_command_call(self, mock_exit, mock_echo, mock_commands):
+    mock_commands.return_value = self.mock_command_manager
+
+    execute(self.test_command)
+
+    self.mock_invoke.assert_called_once_with(self.test_command)
+    mock_echo.assert_called_once_with(self.mock_response)
+    mock_exit.assert_called_once_with(self.test_exit_code)
+
+
+class TestBuildDocs(CLITestHarness):
   __test__ = True
   invocation_command = ['build-docs']
-  expected_system_calls = ["make html"]
-  success_message = "Documentation Built"
-  failure_message = "Error Building Documentation"
-  command_path_method = "project_docs"
+  internal_command = 'build-docs'
 
 
-class TestSecTest(CommandTestHarness):
+class TestSecTest(CLITestHarness):
   __test__ = True
   invocation_command = ['sectest']
-  expected_system_calls = [
-      'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit',
-      'safety check',
-  ]
-  success_message = "Security Test Passes!"
-  failure_message = "Security Test Failed!"
-  command_path_method = "project_root"
+  internal_command = 'sectest'
 
 
-class TestLint(CommandTestHarness):
+class TestLint(CLITestHarness):
   __test__ = True
   invocation_command = ['lint']
-  expected_system_calls = [
-      'isort -c "${PROJECT_NAME}"',
-      ('pytest --pylint --pylint-rcfile=.pylint.rc '
-       '--pylint-jobs=2 "${PROJECT_NAME}"'),
-  ]
-  success_message = "Lint Test Passes!"
-  failure_message = "Lint Test Failed!"
-  command_path_method = "project_root"
+  internal_command = 'lint'

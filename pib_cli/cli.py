@@ -6,60 +6,28 @@ import click
 from .support.commands import Commands
 
 
+def execute(command):
+  command_manager = Commands()
+  response = command_manager.invoke(command)
+  click.echo(response)
+  sys.exit(command_manager.process_manager.exit_code)
+
+
 @click.group()
-@click.pass_context
-def cli(ctx):
-  ctx.ensure_object(dict)
-  ctx.obj['cmd'] = Commands()
+def cli():
+  pass
 
 
 @cli.command("build-docs")
-@click.pass_context
-def build_docs(ctx):
-  process_manager = ctx.obj['cmd'].process_manager
-  path_manager = ctx.obj['cmd'].path_manager
-
-  path_manager.project_docs()
-  process_manager.spawn(["make html"])
-
-  if process_manager.exit_code != 0:
-    click.echo('Error Building Documentation')
-    sys.exit(process_manager.exit_code)
-  click.echo('Documentation Built')
+def build_docs():
+  execute('build-docs')
 
 
 @cli.command("sectest")
-@click.pass_context
-def security_tests(ctx):
-  process_manager = ctx.obj['cmd'].process_manager
-  path_manager = ctx.obj['cmd'].path_manager
-
-  path_manager.project_root()
-  process_manager.spawn([
-      'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit',
-      'safety check',
-  ])
-
-  if process_manager.exit_code != 0:
-    click.echo('Security Test Failed!')
-    sys.exit(process_manager.exit_code)
-  click.echo('Security Test Passes!')
+def security_tests():
+  execute('sectest')
 
 
 @cli.command("lint")
-@click.pass_context
-def linter_tests(ctx):
-  process_manager = ctx.obj['cmd'].process_manager
-  path_manager = ctx.obj['cmd'].path_manager
-
-  path_manager.project_root()
-  process_manager.spawn([
-      'isort -c "${PROJECT_NAME}"',
-      ('pytest --pylint --pylint-rcfile=.pylint.rc '
-       '--pylint-jobs=2 "${PROJECT_NAME}"'),
-  ])
-
-  if process_manager.exit_code != 0:
-    click.echo('Lint Test Failed!')
-    sys.exit(process_manager.exit_code)
-  click.echo("Lint Test Passes!")
+def linter_tests():
+  execute('lint')
