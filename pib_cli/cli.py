@@ -61,6 +61,12 @@ def linter_tests():
   execute('lint')
 
 
+@cli.command("reinstall-requirements")
+def reinstall_requirements():
+  """Reinstall Requirements"""
+  execute('reinstall-requirements')
+
+
 @cli.command("sectest")
 def security_tests():
   """Run Security Tests"""

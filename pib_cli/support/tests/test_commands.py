@@ -80,3 +80,8 @@ class TestCoverageWithOptions(CommandTestHarness):
   __test__ = True
   command = 'coverage'
   overload = ('/specific/file/to/test.py',)
+
+
+class TestReinstallRequirements(CommandTestHarness):
+  __test__ = True
+  command = 'reinstall-requirements'

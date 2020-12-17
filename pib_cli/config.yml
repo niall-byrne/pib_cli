@@ -34,6 +34,13 @@
     - 'pytest --pylint --pylint-rcfile=.pylint.rc --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"
   failure: "Linter Test Failed!"
+- name: "reinstall-requirements"
+  path_method: "project_root"
+  commands:
+    - "pip install -r assets/requirements.txt --no-warn-script-location"
+    - "pip install -r assets/requirements-dev.txt --no-warn-script-location"
+  success: "Reinstall Succeeded!"
+  failure: "Reinstall Failed!"
 - name: "sectest"
   path_method: "project_root"
   commands:

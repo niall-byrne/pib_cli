@@ -102,3 +102,9 @@ class TestCoverageOverload(CLITestHarness):
   invocation_command = ['coverage']
   internal_command = 'coverage'
   overload = ('/specific/file.py',)
+
+
+class TestReinstallRequirements(CLITestHarness):
+  __test__ = True
+  invocation_command = ['reinstall-requirements']
+  internal_command = 'reinstall-requirements'
