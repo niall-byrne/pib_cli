@@ -21,6 +21,8 @@ setup(
   long_description_content_type="text/markdown",
   url="https://github.com/niall-byrne/pib_cli",
   packages=packages,
+  package_data={'pib_cli': ['*.yml', os.path.join('pib_cli', 'config.yml')]},
+  include_package_data=True,
   install_requires=assets,
   license="License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
   classifiers=[
