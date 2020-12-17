@@ -1,0 +1,21 @@
+---
+- name: "build-docs"
+  path_method: "project_docs"
+  commands:
+    - "make html"
+  success: "Documentation Built"
+  failure: "Error Building Documentation"
+- name: "sectest"
+  path_method: "project_root"
+  commands:
+    - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
+    - 'safety check'
+  success: "Security Test Passed!'"
+  failure: "Security Test Failed!'"
+- name: "lint"
+  path_method: "project_root"
+  commands:
+    - 'isort -c "${PROJECT_NAME}"'
+    - 'pytest --pylint --pylint-rcfile=.pylint.rc --pylint-jobs=2 "${PROJECT_NAME}"'
+  success: "Linter Test Passed!'"
+  failure: "Linter Test Failed!'"
