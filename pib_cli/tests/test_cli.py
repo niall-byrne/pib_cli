@@ -28,7 +28,20 @@ class TestExecute(TestCase):
 
     execute(self.test_command)
 
-    self.mock_invoke.assert_called_once_with(self.test_command)
+    self.mock_invoke.assert_called_once_with(self.test_command, None)
+    mock_echo.assert_called_once_with(self.mock_response)
+    mock_exit.assert_called_once_with(self.test_exit_code)
+
+  @patch("pib_cli.cli.Commands")
+  @patch("pib_cli.cli.click.echo")
+  @patch("pib_cli.cli.sys.exit")
+  def test_command_call_with_options(self, mock_exit, mock_echo, mock_commands):
+    mock_commands.return_value = self.mock_command_manager
+    options = ('one', 'two', 'three')
+
+    execute(self.test_command, overload=options)
+
+    self.mock_invoke.assert_called_once_with(self.test_command, options)
     mock_echo.assert_called_once_with(self.mock_response)
     mock_exit.assert_called_once_with(self.test_exit_code)
 
@@ -61,3 +74,17 @@ class TestSecTest(CLITestHarness):
   __test__ = True
   invocation_command = ['sectest']
   internal_command = 'sectest'
+
+
+class TestUnittests(CLITestHarness):
+  __test__ = True
+  invocation_command = ['test']
+  internal_command = 'test'
+  overload = ()
+
+
+class TestUnittestsOverload(CLITestHarness):
+  __test__ = True
+  invocation_command = ['test']
+  internal_command = 'test'
+  overload = ('-s',)

@@ -6,9 +6,15 @@ import click
 from .support.commands import Commands
 
 
-def execute(command):
+def execute(command, overload=None):
+  """Execute the specified command.
+
+  command: A string representing the command
+  overload: Additional parameters which will be inserted into the environment
+  """
+
   command_manager = Commands()
-  response = command_manager.invoke(command)
+  response = command_manager.invoke(command, overload)
   click.echo(response)
   sys.exit(command_manager.process_manager.exit_code)
 
@@ -46,3 +52,16 @@ def linter_tests():
 def security_tests():
   """Run Security Tests"""
   execute('sectest')
+
+
+@cli.command(
+    "test",
+    context_settings=dict(
+        ignore_unknown_options=True,
+        help_option_names=[],
+    ),
+)
+@click.argument('options', nargs=-1)
+def unittests(options):
+  """Run Unittests"""
+  execute('test', overload=options)

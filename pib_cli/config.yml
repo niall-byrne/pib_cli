@@ -35,3 +35,9 @@
     - 'safety check'
   success: "Security Test Passed!"
   failure: "Security Test Failed!"
+- name: "test"
+  path_method: "project_root"
+  commands:
+    - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
+  success: "Unittests Passed!"
+  failure: "Unittests Failed!"

@@ -27,6 +27,10 @@ class TestPathManager(TestCase):
     with self.assertRaises(KeyError):
       self.commands.invoke("non-existent-command")
 
+  def test_invoke_non_existent_command_with_options(self):
+    with self.assertRaises(KeyError):
+      self.commands.invoke("non-existent-command", overload=('option1',))
+
 
 class TestBuildDocs(CommandTestHarness):
   __test__ = True
@@ -51,3 +55,17 @@ class TestLinter(CommandTestHarness):
 class TestSecTest(CommandTestHarness):
   __test__ = True
   command = 'sectest'
+
+
+class TestTest(CommandTestHarness):
+  __test__ = True
+  command = 'test'
+
+
+class TestTestWithOptions(CommandTestHarness):
+  __test__ = True
+  command = 'test'
+  overload = (
+      '-x',
+      '/specific/file/to/test.py',
+  )
