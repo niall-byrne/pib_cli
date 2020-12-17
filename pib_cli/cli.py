@@ -24,6 +24,12 @@ def build_docs():
   execute('build-docs')
 
 
+@cli.command("build-wheel")
+def build_wheel():
+  """Build Distribution Wheel"""
+  execute('build-wheel')
+
+
 @cli.command("sectest")
 def security_tests():
   """Run Security Tests"""

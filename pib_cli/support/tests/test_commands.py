@@ -33,6 +33,11 @@ class TestBuildDocs(CommandTestHarness):
   command = 'build-docs'
 
 
+class TestBuildWheel(CommandTestHarness):
+  __test__ = True
+  command = 'build-wheel'
+
+
 class TestSecTest(CommandTestHarness):
   __test__ = True
   command = 'sectest'

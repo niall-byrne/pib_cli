@@ -5,6 +5,15 @@
     - "make html"
   success: "Documentation Built"
   failure: "Error Building Documentation"
+- name: "build-wheel"
+  path_method: "project_root"
+  commands:
+    - "rm -rf dist ./*.egg-info build"
+    - "python setup.py bdist_wheel"
+    - "mv dist/*.whl ."
+    - "rm -rf dist ./*.egg-info build"
+  success: "Wheel Built"
+  failure: "Error Building Wheel"
 - name: "sectest"
   path_method: "project_root"
   commands:

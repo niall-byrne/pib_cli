@@ -39,6 +39,12 @@ class TestBuildDocs(CLITestHarness):
   internal_command = 'build-docs'
 
 
+class TestBuildWheel(CLITestHarness):
+  __test__ = True
+  invocation_command = ['build-wheel']
+  internal_command = 'build-wheel'
+
+
 class TestSecTest(CLITestHarness):
   __test__ = True
   invocation_command = ['sectest']
