@@ -88,3 +88,17 @@ class TestUnittestsOverload(CLITestHarness):
   invocation_command = ['test']
   internal_command = 'test'
   overload = ('-s',)
+
+
+class TestCoverage(CLITestHarness):
+  __test__ = True
+  invocation_command = ['coverage']
+  internal_command = 'coverage'
+  overload = ()
+
+
+class TestCoverageOverload(CLITestHarness):
+  __test__ = True
+  invocation_command = ['coverage']
+  internal_command = 'coverage'
+  overload = ('/specific/file.py',)

@@ -69,3 +69,14 @@ class TestTestWithOptions(CommandTestHarness):
       '-x',
       '/specific/file/to/test.py',
   )
+
+
+class TestCoverage(CommandTestHarness):
+  __test__ = True
+  command = 'coverage'
+
+
+class TestCoverageWithOptions(CommandTestHarness):
+  __test__ = True
+  command = 'coverage'
+  overload = ('/specific/file/to/test.py',)

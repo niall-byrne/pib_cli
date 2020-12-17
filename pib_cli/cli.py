@@ -36,6 +36,19 @@ def build_wheel():
   execute('build-wheel')
 
 
+@cli.command(
+    "coverage",
+    context_settings=dict(
+        ignore_unknown_options=True,
+        help_option_names=[],
+    ),
+)
+@click.argument('options', nargs=-1)
+def coverage(options):
+  """Run Unittests"""
+  execute('coverage', overload=options)
+
+
 @cli.command("fmt")
 def formatter():
   """Run Code Formatters"""
