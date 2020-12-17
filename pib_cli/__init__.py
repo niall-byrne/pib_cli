@@ -3,5 +3,16 @@
 import os
 import pathlib
 
+CONFIG_LOCATION_ENV_OVERRIDE = "PIB_CONFIG_FILE_LOCATION"
+
 project_root = pathlib.Path(__file__).parent.absolute()
-config_filename = os.path.join(project_root, "config.yml")
+
+
+def get_config_file_name():
+  override = os.getenv(CONFIG_LOCATION_ENV_OVERRIDE, None)
+  if override:
+    return override
+  return os.path.join(project_root, "config.yml")
+
+
+config_filename = get_config_file_name()
