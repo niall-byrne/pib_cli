@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
 
-from pib_cli import commander
+from pib_cli.cli import cli
 
-commander.cli()
+cli()
