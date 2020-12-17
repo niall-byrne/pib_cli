@@ -15,19 +15,22 @@ def execute(command):
 
 @click.group()
 def cli():
-  pass
+  """Development Environment CLI"""
 
 
 @cli.command("build-docs")
 def build_docs():
+  """Build Documentation"""
   execute('build-docs')
 
 
 @cli.command("sectest")
 def security_tests():
+  """Run Security Tests"""
   execute('sectest')
 
 
 @cli.command("lint")
 def linter_tests():
+  """Run Linters"""
   execute('lint')
