@@ -30,13 +30,19 @@ def build_wheel():
   execute('build-wheel')
 
 
-@cli.command("sectest")
-def security_tests():
-  """Run Security Tests"""
-  execute('sectest')
+@cli.command("fmt")
+def formatter():
+  """Run Code Formatters"""
+  execute('fmt')
 
 
 @cli.command("lint")
 def linter_tests():
   """Run Linters"""
   execute('lint')
+
+
+@cli.command("sectest")
+def security_tests():
+  """Run Security Tests"""
+  execute('sectest')

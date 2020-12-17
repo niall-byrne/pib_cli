@@ -38,11 +38,16 @@ class TestBuildWheel(CommandTestHarness):
   command = 'build-wheel'
 
 
-class TestSecTest(CommandTestHarness):
+class TestFormatter(CommandTestHarness):
   __test__ = True
-  command = 'sectest'
+  command = 'fmt'
 
 
 class TestLinter(CommandTestHarness):
   __test__ = True
   command = 'lint'
+
+
+class TestSecTest(CommandTestHarness):
+  __test__ = True
+  command = 'sectest'

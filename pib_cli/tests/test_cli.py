@@ -45,13 +45,19 @@ class TestBuildWheel(CLITestHarness):
   internal_command = 'build-wheel'
 
 
-class TestSecTest(CLITestHarness):
+class TestFormat(CLITestHarness):
   __test__ = True
-  invocation_command = ['sectest']
-  internal_command = 'sectest'
+  invocation_command = ['fmt']
+  internal_command = 'fmt'
 
 
 class TestLint(CLITestHarness):
   __test__ = True
   invocation_command = ['lint']
   internal_command = 'lint'
+
+
+class TestSecTest(CLITestHarness):
+  __test__ = True
+  invocation_command = ['sectest']
+  internal_command = 'sectest'
