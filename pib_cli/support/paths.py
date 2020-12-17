@@ -1,4 +1,5 @@
 """Paths Manager"""
+
 import os
 
 

@@ -1,4 +1,5 @@
 """Test the Path Manager"""
+
 import os
 from unittest import TestCase
 from unittest.mock import patch
