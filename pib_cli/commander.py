@@ -44,3 +44,22 @@ def security_tests(ctx):
     click.echo('Security Test Failed!')
     sys.exit(process_manager.exit_code)
   click.echo('Security Test Passes!')
+
+
+@cli.command("lint")
+@click.pass_context
+def linter_tests(ctx):
+  process_manager = ctx.obj['util'].process_manager
+  path_manager = ctx.obj['util'].path_manager
+
+  path_manager.project_root()
+  process_manager.spawn([
+      'isort -c "${PROJECT_NAME}"',
+      ('pytest --pylint --pylint-rcfile=.pylint.rc '
+       '--pylint-jobs=2 "${PROJECT_NAME}"'),
+  ])
+
+  if process_manager.exit_code != 0:
+    click.echo('Lint Test Failed!')
+    sys.exit(process_manager.exit_code)
+  click.echo("Lint Test Passes!")
