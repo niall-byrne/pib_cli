@@ -44,7 +44,3 @@ def security_tests(ctx):
     click.echo('Security Test Failed!')
     sys.exit(process_manager.exit_code)
   click.echo('Security Test Passes!')
-
-
-if __name__ == '__main__':  # nocover
-  cli()  # nocover, #pylint: disable=no-value-for-parameter
