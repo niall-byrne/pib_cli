@@ -37,7 +37,7 @@ class CommandTestHarness(TestCase):
   @classmethod
   def setUpClass(cls):
     with open(config_filename) as file_handle:
-      cls.yaml = yaml.load(file_handle, Loader=yaml.SafeLoader)
+      cls.yaml = yaml.safe_load(file_handle)
 
   @patch("pib_cli.support.commands.PathManager")
   @patch("pib_cli.support.commands.ProcessManager")

@@ -12,7 +12,7 @@ class Commands:
     self.process_manager = ProcessManager()
     self.path_manager = PathManager()
     with open(config_filename) as file_handle:
-      self.config = yaml.load(file_handle, Loader=yaml.FullLoader)
+      self.config = yaml.safe_load(file_handle)
 
   def __find_config_entry(self, name):
     for entry in self.config:

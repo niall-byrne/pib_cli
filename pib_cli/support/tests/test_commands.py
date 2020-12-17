@@ -15,7 +15,7 @@ class TestPathManager(TestCase):
   def setUp(self):
     self.commands = Commands()
     with open(config_filename) as file_handle:
-      self.config = yaml.load(file_handle, Loader=yaml.FullLoader)
+      self.config = yaml.safe_load(file_handle)
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
