@@ -19,19 +19,19 @@
   commands:
     - 'yapf -i --recursive --exclude "**/*_pb2.py" --style="{based_on_style: google, INDENT_WIDTH: 2, ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT: false, DEDENT_CLOSING_BRACKETS: false}" "${PROJECT_NAME}/"'
     - 'isort "${PROJECT_NAME}"'
-  success: "Formatting Finished!'"
-  failure: "Formatting Error!'"
+  success: "Formatting Finished!"
+  failure: "Formatting Error!"
 - name: "lint"
   path_method: "project_root"
   commands:
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-rcfile=.pylint.rc --pylint-jobs=2 "${PROJECT_NAME}"'
-  success: "Linter Test Passed!'"
-  failure: "Linter Test Failed!'"
+  success: "Linter Test Passed!"
+  failure: "Linter Test Failed!"
 - name: "sectest"
   path_method: "project_root"
   commands:
     - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
     - 'safety check'
-  success: "Security Test Passed!'"
-  failure: "Security Test Failed!'"
+  success: "Security Test Passed!"
+  failure: "Security Test Failed!"
