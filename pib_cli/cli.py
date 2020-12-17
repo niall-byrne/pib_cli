@@ -45,7 +45,7 @@ def build_wheel():
 )
 @click.argument('options', nargs=-1)
 def coverage(options):
-  """Run Unittests"""
+  """Run Code Coverage"""
   execute('coverage', overload=options)
 
 
@@ -57,7 +57,7 @@ def formatter():
 
 @cli.command("lint")
 def linter_tests():
-  """Run Linters"""
+  """Run Code Linters"""
   execute('lint')
 
 
