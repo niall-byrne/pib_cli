@@ -1,4 +1,4 @@
-"""Test the Commander CLI"""
+"""Test the CLI"""
 
 from pib_cli.tests.fixtures import CommandTestHarness
 

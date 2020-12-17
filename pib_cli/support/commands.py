@@ -4,7 +4,7 @@ from .paths import PathManager
 from .processes import ProcessManager
 
 
-class Utilities:
+class Commands:
 
   def __init__(self):
     self.process_manager = ProcessManager()

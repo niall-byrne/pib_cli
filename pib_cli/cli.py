@@ -3,21 +3,21 @@
 import sys
 
 import click
-from .support.cli_utilities import Utilities
+from .support.commands import Commands
 
 
 @click.group()
 @click.pass_context
 def cli(ctx):
   ctx.ensure_object(dict)
-  ctx.obj['util'] = Utilities()
+  ctx.obj['cmd'] = Commands()
 
 
 @cli.command("build-docs")
 @click.pass_context
 def build_docs(ctx):
-  process_manager = ctx.obj['util'].process_manager
-  path_manager = ctx.obj['util'].path_manager
+  process_manager = ctx.obj['cmd'].process_manager
+  path_manager = ctx.obj['cmd'].path_manager
 
   path_manager.project_docs()
   process_manager.spawn(["make html"])
@@ -31,8 +31,8 @@ def build_docs(ctx):
 @cli.command("sectest")
 @click.pass_context
 def security_tests(ctx):
-  process_manager = ctx.obj['util'].process_manager
-  path_manager = ctx.obj['util'].path_manager
+  process_manager = ctx.obj['cmd'].process_manager
+  path_manager = ctx.obj['cmd'].path_manager
 
   path_manager.project_root()
   process_manager.spawn([
@@ -49,8 +49,8 @@ def security_tests(ctx):
 @cli.command("lint")
 @click.pass_context
 def linter_tests(ctx):
-  process_manager = ctx.obj['util'].process_manager
-  path_manager = ctx.obj['util'].path_manager
+  process_manager = ctx.obj['cmd'].process_manager
+  path_manager = ctx.obj['cmd'].path_manager
 
   path_manager.project_root()
   process_manager.spawn([
