@@ -82,13 +82,17 @@ def security_tests():
 @cli.command("setup-bash")
 def setup_bash():
   """Setup Bash Environment"""
-  execute(['setup-bash'])
+  command_manager = Commands()
+  result = command_manager.setup_bash()
+  click.echo(result)
 
 
 @cli.command("setup")
-def setup_environment():
+@click.pass_context
+def setup_environment(ctx):
   """Setup Environment"""
-  execute(['setup-bash', 'reinstall-requirements'])
+  ctx.invoke(setup_bash)
+  execute(['reinstall-requirements'])
 
 
 @cli.command(

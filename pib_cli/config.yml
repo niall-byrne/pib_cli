@@ -51,16 +51,6 @@
     - 'safety check'
   success: "Security Test Passed!"
   failure: "Security Test Failed!"
-- name: "setup-bash"
-  container_only: true
-  path_method: "project_root"
-  commands: |
-    for filename in /app/assets/bash/.bash*; do
-      echo "Symlinking ${filename} ..."
-      ln -sf "${filename}" "/home/user/$(basename "${filename}")"
-    done
-  success: "Setup Succeeded!"
-  failure: "Setup Succeeded!"
 - name: "test"
   path_method: "project_root"
   commands:

@@ -4,7 +4,7 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from pib_cli.cli import execute
-from pib_cli.tests.fixtures import CLITestHarness
+from pib_cli.tests.fixtures import CommandTestHarness
 
 
 class TestExecute(TestCase):
@@ -64,77 +64,78 @@ class TestExecute(TestCase):
     mock_exit.assert_called_once_with(self.test_exit_code)
 
 
-class TestBuildDocs(CLITestHarness):
+class TestBuildDocs(CommandTestHarness):
   __test__ = True
   invocation_command = ['build-docs']
-  internal_commands = ['build-docs']
+  external_commands = ['build-docs']
 
 
-class TestBuildWheel(CLITestHarness):
+class TestBuildWheel(CommandTestHarness):
   __test__ = True
   invocation_command = ['build-wheel']
-  internal_commands = ['build-wheel']
+  external_commands = ['build-wheel']
 
 
-class TestFormat(CLITestHarness):
+class TestFormat(CommandTestHarness):
   __test__ = True
   invocation_command = ['fmt']
-  internal_commands = ['fmt']
+  external_commands = ['fmt']
 
 
-class TestLint(CLITestHarness):
+class TestLint(CommandTestHarness):
   __test__ = True
   invocation_command = ['lint']
-  internal_commands = ['lint']
+  external_commands = ['lint']
 
 
-class TestSecTest(CLITestHarness):
+class TestSecTest(CommandTestHarness):
   __test__ = True
   invocation_command = ['sectest']
-  internal_commands = ['sectest']
+  external_commands = ['sectest']
 
 
-class TestUnittests(CLITestHarness):
+class TestUnittests(CommandTestHarness):
   __test__ = True
   invocation_command = ['test']
-  internal_commands = ['test']
+  external_commands = ['test']
   overload = ()
 
 
-class TestUnittestsOverload(CLITestHarness):
+class TestUnittestsOverload(CommandTestHarness):
   __test__ = True
   invocation_command = ['test']
-  internal_commands = ['test']
+  external_commands = ['test']
   overload = ('-s',)
 
 
-class TestCoverage(CLITestHarness):
+class TestCoverage(CommandTestHarness):
   __test__ = True
   invocation_command = ['coverage']
-  internal_commands = ['coverage']
+  external_commands = ['coverage']
   overload = ()
 
 
-class TestCoverageOverload(CLITestHarness):
+class TestCoverageOverload(CommandTestHarness):
   __test__ = True
   invocation_command = ['coverage']
-  internal_commands = ['coverage']
+  external_commands = ['coverage']
   overload = ('/specific/file.py',)
 
 
-class TestReinstallRequirements(CLITestHarness):
+class TestReinstallRequirements(CommandTestHarness):
   __test__ = True
   invocation_command = ['reinstall-requirements']
-  internal_commands = ['reinstall-requirements']
+  external_commands = ['reinstall-requirements']
 
 
-class TestSetupBash(CLITestHarness):
+class TestSetupBash(CommandTestHarness):
   __test__ = True
   invocation_command = ['setup-bash']
-  internal_commands = ['setup-bash']
+  python_commands = ['setup-bash']
 
 
-class TestSetup(CLITestHarness):
+class TestSetup(CommandTestHarness):
   __test__ = True
   invocation_command = ['setup']
-  internal_commands = ['setup-bash', 'reinstall-requirements']
+  python_commands = ['setup-bash']
+  external_commands = ['reinstall-requirements']
