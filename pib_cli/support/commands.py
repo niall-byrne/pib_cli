@@ -1,9 +1,12 @@
 """CLI Utilities"""
 
+import glob
 import os
+import shutil
+from pathlib import Path
 
 import yaml
-from pib_cli import config_filename
+from pib_cli import config_filename, project_root
 from . import yaml_keys
 from .paths import PathManager
 from .processes import ProcessManager
@@ -12,6 +15,8 @@ from .processes import ProcessManager
 class Commands:
   overload_env_name = 'PIB_OVERLOAD_ARGUMENTS'
   container_only_error = "This command can only be run inside a PIB container."
+  setup_bash_success = "Setup Succeeded!"
+  container_marker = os.path.join("/", "etc", "container_release")
 
   def __init__(self):
     self.process_manager = ProcessManager()
@@ -36,7 +41,7 @@ class Commands:
     return yaml_keys.FAILURE
 
   def __cannot_execute(self, config):
-    if not self.path_manager.is_container():
+    if not Commands.is_container():
       container_only_flag = config.get(yaml_keys.CONTAINER_ONLY, None)
       if container_only_flag is True:
         return True
@@ -47,6 +52,23 @@ class Commands:
     if isinstance(command, str):
       return [command]
     return command
+
+  @staticmethod
+  def is_container():
+    return os.path.exists(Commands.container_marker)
+
+  @staticmethod
+  def setup_bash():
+    if not Commands.is_container():
+      return Commands.container_only_error
+    results = []
+    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
+    home_dir = str(Path.home())
+    for file_name in bash_files:
+      shutil.copy(file_name, home_dir)
+      results.append(f"Copied: {file_name} -> {home_dir} ")
+    results.append(Commands.setup_bash_success)
+    return "\n".join(results)
 
   def invoke(self, command, overload=None):
     config = self.__find_config_entry(command)

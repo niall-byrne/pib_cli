@@ -1,10 +1,13 @@
 """Tests for Command Invocations"""
 
+import glob
+import os
+from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
 import yaml
-from pib_cli import config_filename
+from pib_cli import config_filename, project_root
 from pib_cli.support.commands import Commands
 from pib_cli.support.paths import PathManager
 from pib_cli.support.processes import ProcessManager
@@ -54,7 +57,7 @@ class TestCommandClass(TestCase):
         test_value,
     )
 
-  @patch('pib_cli.support.commands.PathManager.is_container')
+  @patch('pib_cli.support.commands.Commands.is_container')
   def test_outside_container_flag_true(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -66,7 +69,7 @@ class TestCommandClass(TestCase):
     self.assertEqual(response, self.commands.container_only_error)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
-  @patch('pib_cli.support.commands.PathManager.is_container')
+  @patch('pib_cli.support.commands.Commands.is_container')
   def test_outside_container_flag_false(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -84,7 +87,7 @@ class TestCommandClass(TestCase):
     )
     self.assertIsNone(self.commands.process_manager.exit_code)
 
-  @patch('pib_cli.support.commands.PathManager.is_container')
+  @patch('pib_cli.support.commands.Commands.is_container')
   def test_outside_container_flag_missing(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -99,6 +102,51 @@ class TestCommandClass(TestCase):
         "'PathManager' object has no attribute '%s'" % path_method,
     )
     self.assertIsNone(self.commands.process_manager.exit_code)
+
+  @patch("pib_cli.support.commands.os.path.exists")
+  def test_is_container_true(self, mock_exists):
+    mock_exists.return_value = True
+    result = self.commands.is_container()
+    mock_exists.assert_called_once_with(self.commands.container_marker)
+    self.assertTrue(result)
+
+  @patch("pib_cli.support.commands.os.path.exists")
+  def test_is_container_false(self, mock_exists):
+    mock_exists.return_value = False
+    result = self.commands.is_container()
+    mock_exists.assert_called_once_with(self.commands.container_marker)
+    self.assertFalse(result)
+
+  @patch('pib_cli.support.commands.shutil.copy')
+  @patch("pib_cli.support.commands.os.path.exists")
+  def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
+    mock_exists.return_value = True
+    self.commands.setup_bash()
+    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
+    for file_name in bash_files:
+      mock_copy.assert_any_call(file_name, str(Path.home()))
+    self.assertEqual(len(bash_files), mock_copy.call_count)
+
+  @patch('pib_cli.support.commands.shutil.copy')
+  @patch("pib_cli.support.commands.os.path.exists")
+  def test_setup_bash_output(self, mock_exists, _):
+    mock_exists.return_value = True
+    result = self.commands.setup_bash()
+    home_dir = str(Path.home())
+    expected_results = []
+    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
+    for file_name in bash_files:
+      expected_results.append(f"Copied: {file_name} -> {home_dir} ")
+    expected_results.append(Commands.setup_bash_success)
+    self.assertEqual(result, "\n".join(expected_results))
+
+  @patch('pib_cli.support.commands.shutil.copy')
+  @patch("pib_cli.support.commands.os.path.exists")
+  def test_setup_bash_outside_container(self, mock_exists, mock_copy):
+    mock_exists.return_value = False
+    results = self.commands.setup_bash()
+    mock_copy.assert_not_called()
+    self.assertEqual(results, Commands.container_only_error)
 
 
 class TestBuildDocs(CommandTestHarness):
@@ -154,8 +202,3 @@ class TestCoverageWithOptions(CommandTestHarness):
 class TestReinstallRequirements(CommandTestHarness):
   __test__ = True
   command = 'reinstall-requirements'
-
-
-class TestSetupPython(CommandTestHarness):
-  __test__ = True
-  command = 'setup-bash'
