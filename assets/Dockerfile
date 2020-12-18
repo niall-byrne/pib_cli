@@ -1,6 +1,7 @@
 FROM python:3.7-slim AS base
 MAINTAINER niall@niallbyrne.ca
 ENV PYTHONUNBUFFERED 1
+ENV PROJECT_NAME "pib_cli"
 LABEL PROJECT=pib_cli
 
 # Mark Container
@@ -51,7 +52,8 @@ RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER user
 
 # Setup The Dev CLI, and Install all Packages
-RUN scripts/commander.sh setup
+RUN python setup.py install --user   && \
+    /home/user/.local/bin/dev setup-bash
 
 CMD ["./pib_cli/container_init.sh"]
 

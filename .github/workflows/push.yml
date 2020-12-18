@@ -46,15 +46,15 @@ jobs:
 
     - name: Run Linter
       run: |
-        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'scripts/commander.sh lint-validate'
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'dev lint'
 
     - name: Run Sec Test
       run: |
-        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'scripts/commander.sh sectest'
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'dev sectest'
 
     - name: Run Unit Tests
       run: |
-        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'scripts/commander.sh test coverage'
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'dev coverage'
 
     - name: Report Build Failures
       if: failure() == true
