@@ -14,6 +14,8 @@ class MockPathManager:
   def __init__(self):
     self.project_root = Mock()
     self.project_docs = Mock()
+    self.is_container = Mock()
+    self.is_container.return_value = True
 
 
 class MockProcessManager:

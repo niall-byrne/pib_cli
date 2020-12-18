@@ -10,6 +10,7 @@ from .processes import ProcessManager
 
 class Commands:
   overload_env_name = 'PIB_OVERLOAD_ARGUMENTS'
+  container_only_error = "This command can only be run inside a PIB container."
 
   def __init__(self):
     self.process_manager = ProcessManager()
@@ -33,6 +34,13 @@ class Commands:
       return 'success'
     return 'failure'
 
+  def __cannot_execute(self, config):
+    if not self.path_manager.is_container():
+      if 'container_only' in config:
+        if config['container_only'] is True:
+          return True
+    return False
+
   @staticmethod
   def coerce_from_string_to_list(command):
     if isinstance(command, str):
@@ -41,6 +49,9 @@ class Commands:
 
   def invoke(self, command, overload=None):
     config = self.__find_config_entry(command)
+    if self.__cannot_execute(config):
+      return self.__class__.container_only_error
+
     goto_path = getattr(self.path_manager, config['path_method'])
     goto_path()
 

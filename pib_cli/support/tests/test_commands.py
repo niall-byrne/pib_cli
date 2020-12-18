@@ -10,7 +10,7 @@ from pib_cli.support.processes import ProcessManager
 from .fixtures import CommandTestHarness
 
 
-class TestPathManager(TestCase):
+class TestCommandClass(TestCase):
 
   def setUp(self):
     self.commands = Commands()
@@ -31,19 +31,39 @@ class TestPathManager(TestCase):
     with self.assertRaises(KeyError):
       self.commands.invoke("non-existent-command", overload=('option1',))
 
-
-class TestCommandClass(TestCase):
-
-  def setUp(self):
-    self.command = Commands()
-
   def test_coerce_from_string_with_string(self):
     test_value = "Hello"
-    assert self.command.coerce_from_string_to_list(test_value) == [test_value]
+    assert self.commands.coerce_from_string_to_list(test_value) == [test_value]
 
   def test_coerce_from_string_with_iterable(self):
     test_value = ["Hello"]
-    assert self.command.coerce_from_string_to_list(test_value) == test_value
+    assert self.commands.coerce_from_string_to_list(test_value) == test_value
+
+  def test_container_only_flag_true(self):
+    path_method = 'non_existent'
+    test_command = 'test_command'
+    self.config.append({
+        'name': test_command,
+        'container_only': True,
+        'path_method': path_method
+    })
+    self.commands.config = self.config
+
+    response = self.commands.invoke(test_command)
+    assert response == self.commands.container_only_error
+
+  def test_container_only_flag_false(self):
+    path_method = 'non_existent'
+    test_command = 'test_command'
+    self.config.append({'name': test_command, 'path_method': path_method})
+    self.commands.config = self.config
+
+    with self.assertRaises(AttributeError) as asserted_exception:
+      self.commands.invoke(test_command)
+    self.assertEqual(
+        asserted_exception.exception.args[0],
+        "'PathManager' object has no attribute '%s'" % path_method,
+    )
 
 
 class TestBuildDocs(CommandTestHarness):
