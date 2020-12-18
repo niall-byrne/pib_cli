@@ -51,6 +51,7 @@ class Commands:
   def invoke(self, command, overload=None):
     config = self.__find_config_entry(command)
     if self.__cannot_execute(config):
+      self.process_manager.exit_code = 0
       return self.__class__.container_only_error
 
     goto_path = getattr(self.path_manager, config[yaml_keys.PATH_METHOD])

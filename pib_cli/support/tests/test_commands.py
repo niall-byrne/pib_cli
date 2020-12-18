@@ -49,7 +49,7 @@ class TestCommandClass(TestCase):
     assert self.commands.coerce_from_string_to_list(test_value) == test_value
 
   @patch('pib_cli.support.commands.PathManager.is_container')
-  def test_container_only_flag_true(self, mock_container):
+  def test_outside_container_flag_true(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
     test_command = 'test_command'
@@ -57,10 +57,11 @@ class TestCommandClass(TestCase):
     self.commands.config = self.config
 
     response = self.commands.invoke(test_command)
-    assert response == self.commands.container_only_error
+    self.assertEqual(response, self.commands.container_only_error)
+    self.assertEqual(0, self.commands.process_manager.exit_code)
 
   @patch('pib_cli.support.commands.PathManager.is_container')
-  def test_container_only_flag_false(self, mock_container):
+  def test_outside_container_flag_false(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
     test_command = 'test_command'
@@ -75,9 +76,10 @@ class TestCommandClass(TestCase):
         asserted_exception.exception.args[0],
         "'PathManager' object has no attribute '%s'" % path_method,
     )
+    self.assertIsNone(self.commands.process_manager.exit_code)
 
   @patch('pib_cli.support.commands.PathManager.is_container')
-  def test_container_only_flag_missing(self, mock_container):
+  def test_outside_container_flag_missing(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
     test_command = 'test_command'
@@ -90,6 +92,7 @@ class TestCommandClass(TestCase):
         asserted_exception.exception.args[0],
         "'PathManager' object has no attribute '%s'" % path_method,
     )
+    self.assertIsNone(self.commands.process_manager.exit_code)
 
 
 class TestBuildDocs(CommandTestHarness):
