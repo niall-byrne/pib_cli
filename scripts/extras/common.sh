@@ -25,7 +25,7 @@ lint_check() {
     isort -c "${PROJECT_NAME}"
     pytest --pylint --pylint-rcfile=.pylint.rc --pylint-jobs=2 "${PROJECT_NAME}"
     shellcheck -x scripts/*.sh
-    shellcheck -x scripts/common/*.sh
+    shellcheck -x scripts/extras/*.sh
   popd  > /dev/null
 
 }
@@ -150,9 +150,9 @@ update_cli() {
   updates=("/scripts/common/documentation.sh" "/scripts/common/wheel.sh" "/scripts/common/upload.sh" "/scripts/common/common.sh" "/assets/bash/.bash_git" "/assets/bash/.bash_profile" "/assets/bash/.bashrc")
 
   pushd "${PROJECT_HOME}"  > /dev/null
-    mkdir -p scripts/common/.archive
+    mkdir -p scripts/extras/.archive
     mkdir -p assets/bash/.archive
-    cp scripts/common/*.sh scripts/common/.archive
+    cp scripts/extras/*.sh scripts/extras/.archive
     cp assets/bash/.bash* assets/bash/.archive
     for filename in "${updates[@]}"; do
       echo "Downloading: .${filename}"

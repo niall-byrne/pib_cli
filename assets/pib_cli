@@ -1,5 +1,0 @@
-#!/usr/local/bin/python
-
-from pib_cli.cli import cli
-
-cli()

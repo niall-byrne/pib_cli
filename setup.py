@@ -16,12 +16,18 @@ setup(
   author="Niall Byrne",
   author_email="niall@niallbyrne.ca",
   description="CLI for Python in a Box",
-  scripts=[os.path.join('assets', 'pib_cli')],
+  entry_points='''
+    [console_scripts]
+    pib_cli=pib_cli.cli:cli
+    dev=pib_cli.cli:cli
+  ''',
   long_description=long_description,
   long_description_content_type="text/markdown",
   url="https://github.com/niall-byrne/pib_cli",
   packages=packages,
-  package_data={'pib_cli': ['*.yml', os.path.join('pib_cli', 'config.yml')]},
+  package_data={
+    'pib_cli': ['*.yml', 'bash/.*'],
+  },
   include_package_data=True,
   install_requires=assets,
   license="License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
