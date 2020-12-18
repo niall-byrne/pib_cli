@@ -108,3 +108,9 @@ class TestReinstallRequirements(CLITestHarness):
   __test__ = True
   invocation_command = ['reinstall-requirements']
   internal_command = 'reinstall-requirements'
+
+
+class TestSetupBash(CLITestHarness):
+  __test__ = True
+  invocation_command = ['setup-bash']
+  internal_command = 'setup-bash'

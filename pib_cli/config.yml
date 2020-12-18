@@ -16,8 +16,11 @@
   failure: "Error Building Wheel"
 - name: "coverage"
   path_method: "project_root"
-  commands:
-    - 'pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}; EXIT_CODE="$?"; coverage html; exit "${EXIT_CODE}"'
+  commands: |
+    pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}
+    EXIT_CODE="$?"
+    coverage html
+    exit "${EXIT_CODE}"
   success: "Coverage Passed!"
   failure: "Coverage Failed!"
 - name: "fmt"
@@ -48,6 +51,15 @@
     - 'safety check'
   success: "Security Test Passed!"
   failure: "Security Test Failed!"
+- name: "setup-bash"
+  path_method: "project_root"
+  commands: |
+    for filename in /app/assets/bash/.bash*; do
+      echo "Symlinking ${filename} ..."
+      ln -sf "${filename}" "/home/user/$(basename "${filename}")"
+    done
+  success: "Setup Succeeded!"
+  failure: "Setup Succeeded!"
 - name: "test"
   path_method: "project_root"
   commands:

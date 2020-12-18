@@ -99,3 +99,8 @@ class TestCoverageWithOptions(CommandTestHarness):
 class TestReinstallRequirements(CommandTestHarness):
   __test__ = True
   command = 'reinstall-requirements'
+
+
+class TestSetupPython(CommandTestHarness):
+  __test__ = True
+  command = 'setup-bash'
