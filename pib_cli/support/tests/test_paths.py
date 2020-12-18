@@ -19,7 +19,7 @@ class TestPathManager(TestCase):
     assert self.path_manager.docs == os.path.join(self.path_manager.root,
                                                   "documentation")
     assert self.path_manager.container_marker == os.path.join(
-        "etc", "container_release")
+        "/", "etc", "container_release")
 
   @patch("pib_cli.support.paths.os.chdir")
   def test_project_root(self, mock_chdir):
