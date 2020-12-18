@@ -4,6 +4,7 @@ import os
 
 import yaml
 from pib_cli import config_filename
+from . import yaml_keys
 from .paths import PathManager
 from .processes import ProcessManager
 
@@ -20,7 +21,7 @@ class Commands:
 
   def __find_config_entry(self, name):
     for entry in self.config:
-      if entry['name'] == name:
+      if entry[yaml_keys.COMMAND_NAME] == name:
         return entry
     raise KeyError("Could not find yaml key name: %s" % name)
 
@@ -31,14 +32,14 @@ class Commands:
 
   def __translate_response(self):
     if self.process_manager.exit_code == 0:
-      return 'success'
-    return 'failure'
+      return yaml_keys.SUCCESS
+    return yaml_keys.FAILURE
 
   def __cannot_execute(self, config):
     if not self.path_manager.is_container():
-      if 'container_only' in config:
-        if config['container_only'] is True:
-          return True
+      container_only_flag = config.get(yaml_keys.CONTAINER_ONLY, None)
+      if container_only_flag is True:
+        return True
     return False
 
   @staticmethod
@@ -52,12 +53,13 @@ class Commands:
     if self.__cannot_execute(config):
       return self.__class__.container_only_error
 
-    goto_path = getattr(self.path_manager, config['path_method'])
+    goto_path = getattr(self.path_manager, config[yaml_keys.PATH_METHOD])
     goto_path()
 
     self.__add_overload(overload)
 
-    prepared_command = self.coerce_from_string_to_list(config['commands'])
+    prepared_command = self.coerce_from_string_to_list(
+        config[yaml_keys.COMMANDS])
     self.process_manager.spawn(prepared_command)
 
     return config[self.__translate_response()]

@@ -1,16 +1,25 @@
 """Tests for Command Invocations"""
 
 from unittest import TestCase
+from unittest.mock import patch
 
 import yaml
 from pib_cli import config_filename
 from pib_cli.support.commands import Commands
 from pib_cli.support.paths import PathManager
 from pib_cli.support.processes import ProcessManager
+from .. import yaml_keys
 from .fixtures import CommandTestHarness
 
 
 class TestCommandClass(TestCase):
+
+  def yaml_test_data(self, path_method, test_command, container_only):
+    return {
+        yaml_keys.COMMAND_NAME: test_command,
+        yaml_keys.CONTAINER_ONLY: container_only,
+        yaml_keys.PATH_METHOD: path_method
+    }
 
   def setUp(self):
     self.commands = Commands()
@@ -39,14 +48,12 @@ class TestCommandClass(TestCase):
     test_value = ["Hello"]
     assert self.commands.coerce_from_string_to_list(test_value) == test_value
 
-  def test_container_only_flag_true(self):
+  @patch('pib_cli.support.commands.PathManager.is_container')
+  def test_container_only_flag_true(self, mock_container):
+    mock_container.return_value = False
     path_method = 'non_existent'
     test_command = 'test_command'
-    self.config.append({
-        'name': test_command,
-        'container_only': True,
-        'path_method': path_method
-    })
+    self.config.append(self.yaml_test_data(path_method, test_command, True))
     self.commands.config = self.config
 
     response = self.commands.invoke(test_command)
@@ -55,7 +62,22 @@ class TestCommandClass(TestCase):
   def test_container_only_flag_false(self):
     path_method = 'non_existent'
     test_command = 'test_command'
-    self.config.append({'name': test_command, 'path_method': path_method})
+    test_config = self.yaml_test_data(path_method, test_command, True)
+    del test_config[yaml_keys.CONTAINER_ONLY]
+    self.config.append(test_config)
+    self.commands.config = self.config
+
+    with self.assertRaises(AttributeError) as asserted_exception:
+      self.commands.invoke(test_command)
+    self.assertEqual(
+        asserted_exception.exception.args[0],
+        "'PathManager' object has no attribute '%s'" % path_method,
+    )
+
+  def test_container_only_flag_missing(self):
+    path_method = 'non_existent'
+    test_command = 'test_command'
+    self.config.append(self.yaml_test_data(path_method, test_command, False))
     self.commands.config = self.config
 
     with self.assertRaises(AttributeError) as asserted_exception:

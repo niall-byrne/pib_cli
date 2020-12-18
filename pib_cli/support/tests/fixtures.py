@@ -7,6 +7,7 @@ from unittest.mock import Mock, patch
 import yaml
 from pib_cli import config_filename
 from pib_cli.support.commands import Commands
+from .. import yaml_keys
 
 
 class MockPathManager:
@@ -33,7 +34,7 @@ class CommandTestHarness(TestCase):
 
   def get_yaml_entry(self, name):
     for entry in self.yaml:
-      if entry['name'] == name:
+      if entry[yaml_keys.COMMAND_NAME] == name:
         self.config = entry
         return
     raise KeyError("Could not find yaml key name: %s" % name)
@@ -59,7 +60,7 @@ class CommandTestHarness(TestCase):
 
   def test_invoke_uses_correct_path(self):
     self.cmd_mgr.invoke(self.command)
-    method = getattr(self.path_manager, self.config['path_method'])
+    method = getattr(self.path_manager, self.config[yaml_keys.PATH_METHOD])
     method.assert_called_once_with()
 
   def test_successful_system_calls(self):
@@ -67,7 +68,7 @@ class CommandTestHarness(TestCase):
     self.cmd_mgr.invoke(self.command, overload=self.overload)
 
     expected_commands = self.cmd_mgr.coerce_from_string_to_list(
-        self.config['commands'])
+        self.config[yaml_keys.COMMANDS])
     self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
   @patch('pib_cli.support.commands.os.environ')
@@ -92,13 +93,13 @@ class CommandTestHarness(TestCase):
     result = self.cmd_mgr.invoke(self.command)
     self.assertEqual(self.cmd_mgr.process_manager.exit_code,
                      self.proc_manager.exit_code)
-    self.assertEqual(result, self.config['success'])
+    self.assertEqual(result, self.config[yaml_keys.SUCCESS])
 
   def test_unsuccessful_system_calls(self):
     self.proc_manager.exit_code = 1
     self.cmd_mgr.invoke(self.command)
     expected_commands = self.cmd_mgr.coerce_from_string_to_list(
-        self.config['commands'])
+        self.config[yaml_keys.COMMANDS])
     self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
   def test_unsuccessful_results(self):
@@ -106,4 +107,4 @@ class CommandTestHarness(TestCase):
     result = self.cmd_mgr.invoke(self.command)
     self.assertEqual(self.cmd_mgr.process_manager.exit_code,
                      self.proc_manager.exit_code)
-    self.assertEqual(result, self.config['failure'])
+    self.assertEqual(result, self.config[yaml_keys.FAILURE])
