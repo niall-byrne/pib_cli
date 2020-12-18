@@ -64,7 +64,9 @@ class CommandTestHarness(TestCase):
     self.proc_manager.exit_code = 0
     self.cmd_mgr.invoke(self.command, overload=self.overload)
 
-    self.proc_manager.spawn.assert_called_once_with(self.config['commands'])
+    expected_commands = self.cmd_mgr.coerce_from_string_to_list(
+        self.config['commands'])
+    self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
   @patch('pib_cli.support.commands.os.environ')
   def test_successful_overload(self, mock_environ):
@@ -93,7 +95,9 @@ class CommandTestHarness(TestCase):
   def test_unsuccessful_system_calls(self):
     self.proc_manager.exit_code = 1
     self.cmd_mgr.invoke(self.command)
-    self.proc_manager.spawn.assert_called_once_with(self.config['commands'])
+    expected_commands = self.cmd_mgr.coerce_from_string_to_list(
+        self.config['commands'])
+    self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
   def test_unsuccessful_results(self):
     self.proc_manager.exit_code = 1

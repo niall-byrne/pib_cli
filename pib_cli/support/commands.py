@@ -33,12 +33,20 @@ class Commands:
       return 'success'
     return 'failure'
 
+  @staticmethod
+  def coerce_from_string_to_list(command):
+    if isinstance(command, str):
+      return [command]
+    return command
+
   def invoke(self, command, overload=None):
     config = self.__find_config_entry(command)
     goto_path = getattr(self.path_manager, config['path_method'])
     goto_path()
 
     self.__add_overload(overload)
-    self.process_manager.spawn(config['commands'])
+
+    prepared_command = self.coerce_from_string_to_list(config['commands'])
+    self.process_manager.spawn(prepared_command)
 
     return config[self.__translate_response()]

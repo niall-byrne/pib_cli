@@ -32,6 +32,20 @@ class TestPathManager(TestCase):
       self.commands.invoke("non-existent-command", overload=('option1',))
 
 
+class TestCommandClass(TestCase):
+
+  def setUp(self):
+    self.command = Commands()
+
+  def test_coerce_from_string_with_string(self):
+    test_value = "Hello"
+    assert self.command.coerce_from_string_to_list(test_value) == [test_value]
+
+  def test_coerce_from_string_with_iterable(self):
+    test_value = ["Hello"]
+    assert self.command.coerce_from_string_to_list(test_value) == test_value
+
+
 class TestBuildDocs(CommandTestHarness):
   __test__ = True
   command = 'build-docs'
