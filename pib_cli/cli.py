@@ -73,10 +73,10 @@ def security_tests():
   execute('sectest')
 
 
-@cli.command("setup")
+@cli.command("setup-bash")
 def setup_environment():
   """Setup Bash Environment"""
-  execute('setup')
+  execute('setup-bash')
 
 
 @cli.command(
