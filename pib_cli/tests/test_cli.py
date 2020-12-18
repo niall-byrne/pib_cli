@@ -26,8 +26,8 @@ class TestExecute(TestCase):
       mock_echo.assert_any_call(self.mock_response)
     mock_exit.assert_called_once_with(exit_code)
 
-    assert len(self.test_commands) == self.mock_invoke.call_count
-    assert len(self.test_commands) == mock_echo.call_count
+    self.assertEqual(len(self.test_commands), self.mock_invoke.call_count)
+    self.assertEqual(len(self.test_commands), mock_echo.call_count)
 
   @patch("pib_cli.cli.Commands")
   @patch("pib_cli.cli.click.echo")

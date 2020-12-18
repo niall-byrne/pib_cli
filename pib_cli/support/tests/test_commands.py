@@ -42,11 +42,17 @@ class TestCommandClass(TestCase):
 
   def test_coerce_from_string_with_string(self):
     test_value = "Hello"
-    assert self.commands.coerce_from_string_to_list(test_value) == [test_value]
+    self.assertEqual(
+        self.commands.coerce_from_string_to_list(test_value),
+        [test_value],
+    )
 
   def test_coerce_from_string_with_iterable(self):
     test_value = ["Hello"]
-    assert self.commands.coerce_from_string_to_list(test_value) == test_value
+    self.assertEqual(
+        self.commands.coerce_from_string_to_list(test_value),
+        test_value,
+    )
 
   @patch('pib_cli.support.commands.PathManager.is_container')
   def test_outside_container_flag_true(self, mock_container):

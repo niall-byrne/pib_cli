@@ -41,11 +41,11 @@ class TestPathManager(TestCase):
     mock_exists.return_value = True
     result = self.path_manager.is_container()
     mock_exists.assert_called_once_with(self.path_manager.container_marker)
-    assert result is True
+    self.assertTrue(result)
 
   @patch("pib_cli.support.paths.os.path.exists")
   def test_is_container_false(self, mock_exists):
     mock_exists.return_value = False
     result = self.path_manager.is_container()
     mock_exists.assert_called_once_with(self.path_manager.container_marker)
-    assert result is False
+    self.assertFalse(result)
