@@ -59,7 +59,9 @@ class TestCommandClass(TestCase):
     response = self.commands.invoke(test_command)
     assert response == self.commands.container_only_error
 
-  def test_container_only_flag_false(self):
+  @patch('pib_cli.support.commands.PathManager.is_container')
+  def test_container_only_flag_false(self, mock_container):
+    mock_container.return_value = False
     path_method = 'non_existent'
     test_command = 'test_command'
     test_config = self.yaml_test_data(path_method, test_command, True)
@@ -74,7 +76,9 @@ class TestCommandClass(TestCase):
         "'PathManager' object has no attribute '%s'" % path_method,
     )
 
-  def test_container_only_flag_missing(self):
+  @patch('pib_cli.support.commands.PathManager.is_container')
+  def test_container_only_flag_missing(self, mock_container):
+    mock_container.return_value = False
     path_method = 'non_existent'
     test_command = 'test_command'
     self.config.append(self.yaml_test_data(path_method, test_command, False))
