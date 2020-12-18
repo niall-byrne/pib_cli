@@ -23,18 +23,22 @@ class Commands:
         return entry
     raise KeyError("Could not find yaml key name: %s" % name)
 
-  def invoke(self, command, overload=None):
-    config = self.__find_config_entry(command)
-    goto_path = getattr(self.path_manager, config['path_method'])
-
-    goto_path()
-
+  def __add_overload(self, overload):
     if overload:
       overload_string = " ".join(overload)
       os.environ[self.__class__.overload_env_name] = overload_string
 
+  def __translate_response(self):
+    if self.process_manager.exit_code == 0:
+      return 'success'
+    return 'failure'
+
+  def invoke(self, command, overload=None):
+    config = self.__find_config_entry(command)
+    goto_path = getattr(self.path_manager, config['path_method'])
+    goto_path()
+
+    self.__add_overload(overload)
     self.process_manager.spawn(config['commands'])
 
-    if self.process_manager.exit_code == 0:
-      return config['success']
-    return config['failure']
+    return config[self.__translate_response()]
