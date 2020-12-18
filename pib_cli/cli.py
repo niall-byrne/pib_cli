@@ -6,16 +6,22 @@ import click
 from .support.commands import Commands
 
 
-def execute(command, overload=None):
-  """Execute the specified command.
+def execute(commands, overload=None):
+  """Executes a batch of commands.
 
-  command: A string representing the command
+  commands: A list of commands to be executed
   overload: Additional parameters which will be inserted into the environment
   """
 
   command_manager = Commands()
-  response = command_manager.invoke(command, overload)
-  click.echo(response)
+
+  for command in commands:
+    response = command_manager.invoke(command, overload)
+    click.echo(response)
+
+    if command_manager.process_manager.exit_code != 0:
+      break
+
   sys.exit(command_manager.process_manager.exit_code)
 
 
@@ -27,13 +33,13 @@ def cli():
 @cli.command("build-docs")
 def build_docs():
   """Build Documentation"""
-  execute('build-docs')
+  execute(['build-docs'])
 
 
 @cli.command("build-wheel")
 def build_wheel():
   """Build Distribution Wheel"""
-  execute('build-wheel')
+  execute(['build-wheel'])
 
 
 @cli.command(
@@ -46,37 +52,43 @@ def build_wheel():
 @click.argument('options', nargs=-1)
 def coverage(options):
   """Run Code Coverage"""
-  execute('coverage', overload=options)
+  execute(['coverage'], overload=options)
 
 
 @cli.command("fmt")
 def formatter():
   """Run Code Formatters"""
-  execute('fmt')
+  execute(['fmt'])
 
 
 @cli.command("lint")
 def linter_tests():
   """Run Code Linters"""
-  execute('lint')
+  execute(['lint'])
 
 
 @cli.command("reinstall-requirements")
 def reinstall_requirements():
   """Reinstall Requirements"""
-  execute('reinstall-requirements')
+  execute(['reinstall-requirements'])
 
 
 @cli.command("sectest")
 def security_tests():
   """Run Security Tests"""
-  execute('sectest')
+  execute(['sectest'])
 
 
 @cli.command("setup-bash")
-def setup_environment():
+def setup_bash():
   """Setup Bash Environment"""
-  execute('setup-bash')
+  execute(['setup-bash'])
+
+
+@cli.command("setup")
+def setup_environment():
+  """Setup Environment"""
+  execute(['setup-bash', 'reinstall-requirements'])
 
 
 @cli.command(
@@ -89,4 +101,4 @@ def setup_environment():
 @click.argument('options', nargs=-1)
 def unittests(options):
   """Run Unittests"""
-  execute('test', overload=options)
+  execute(['test'], overload=options)
