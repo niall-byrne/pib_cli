@@ -6,6 +6,8 @@ from unittest.mock import Mock, patch
 from pib_cli.cli import execute
 from pib_cli.tests.fixtures import CommandTestHarness
 
+from . import patchbay
+
 
 class TestExecute(TestCase):
 
@@ -29,9 +31,9 @@ class TestExecute(TestCase):
     self.assertEqual(len(self.test_commands), self.mock_invoke.call_count)
     self.assertEqual(len(self.test_commands), mock_echo.call_count)
 
-  @patch("pib_cli.cli.Commands")
-  @patch("pib_cli.cli.click.echo")
-  @patch("pib_cli.cli.sys.exit")
+  @patch(patchbay.commands_class)
+  @patch(patchbay.click_echo)
+  @patch(patchbay.sys_exit)
   def test_command_call_single(self, mock_exit, mock_echo, mock_commands):
     self.mock_command_manager.process_manager.exit_code = 0
     mock_commands.return_value = self.mock_command_manager
@@ -39,9 +41,9 @@ class TestExecute(TestCase):
     execute(self.test_commands)
     self.validate_calls(None, mock_echo, mock_exit, 0)
 
-  @patch("pib_cli.cli.Commands")
-  @patch("pib_cli.cli.click.echo")
-  @patch("pib_cli.cli.sys.exit")
+  @patch(patchbay.commands_class)
+  @patch(patchbay.click_echo)
+  @patch(patchbay.sys_exit)
   def test_command_call_with_options(self, mock_exit, mock_echo, mock_commands):
     self.mock_command_manager.process_manager.exit_code = 0
     mock_commands.return_value = self.mock_command_manager
@@ -50,9 +52,9 @@ class TestExecute(TestCase):
     execute(self.test_commands, overload=options)
     self.validate_calls(options, mock_echo, mock_exit, 0)
 
-  @patch("pib_cli.cli.Commands")
-  @patch("pib_cli.cli.click.echo")
-  @patch("pib_cli.cli.sys.exit")
+  @patch(patchbay.commands_class)
+  @patch(patchbay.click_echo)
+  @patch(patchbay.sys_exit)
   def test_command_call_fails(self, mock_exit, mock_echo, mock_commands):
     mock_commands.return_value = self.mock_command_manager
     options = ('one', 'two', 'three')
