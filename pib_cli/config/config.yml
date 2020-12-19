@@ -26,7 +26,7 @@
 - name: "fmt"
   path_method: "project_root"
   commands:
-    - 'yapf -i --recursive --exclude "**/*_pb2.py" --style="{based_on_style: google, INDENT_WIDTH: 2, ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT: false, DEDENT_CLOSING_BRACKETS: false}" "${PROJECT_NAME}/"'
+    - 'yapf -i --recursive --exclude "**/*_pb2.py" --style="{based_on_style: google, INDENT_WIDTH: 2, ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT: false, DEDENT_CLOSING_BRACKETS: true}" "${PROJECT_NAME}/"'
     - 'isort "${PROJECT_NAME}"'
   success: "Formatting Finished!"
   failure: "Formatting Error!"

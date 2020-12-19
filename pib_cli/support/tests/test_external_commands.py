@@ -29,8 +29,9 @@ class TestCommandClass(TestCase):
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
     self.assertIsInstance(self.commands.path_manager, PathManager)
-    self.assertIsInstance(self.commands.configuration_manager,
-                          ConfigurationManager)
+    self.assertIsInstance(
+        self.commands.configuration_manager, ConfigurationManager
+    )
 
   def test_invoke_non_existent_command(self):
     with self.assertRaises(KeyError):

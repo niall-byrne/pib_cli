@@ -13,12 +13,14 @@ from ..configuration import ConfigurationManager
 class TestConfigurationManager(TestCase):
 
   def yaml_test_data(self, path_method, command_name, commands, container_only):
-    self.configuration_manager.config.append({
-        yaml_keys.COMMAND_NAME: command_name,
-        yaml_keys.CONTAINER_ONLY: container_only,
-        yaml_keys.PATH_METHOD: path_method,
-        yaml_keys.COMMANDS: commands,
-    })
+    self.configuration_manager.config.append(
+        {
+            yaml_keys.COMMAND_NAME: command_name,
+            yaml_keys.CONTAINER_ONLY: container_only,
+            yaml_keys.PATH_METHOD: path_method,
+            yaml_keys.COMMANDS: commands,
+        }
+    )
 
   def setUp(self):
     self.configuration_manager = ConfigurationManager()
@@ -52,7 +54,8 @@ class TestConfigurationManager(TestCase):
         commands,
     )
     self.assertTrue(
-        self.configuration_manager.config_entry[yaml_keys.CONTAINER_ONLY],)
+        self.configuration_manager.config_entry[yaml_keys.CONTAINER_ONLY],
+    )
 
   def test_find_config_entry_coerced_from_string(self):
     path_method = 'non_existent'
@@ -74,7 +77,8 @@ class TestConfigurationManager(TestCase):
         [commands],
     )
     self.assertTrue(
-        self.configuration_manager.config_entry[yaml_keys.CONTAINER_ONLY],)
+        self.configuration_manager.config_entry[yaml_keys.CONTAINER_ONLY],
+    )
 
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   def test_outside_container_is_config_executable_false(self, mock_container):
@@ -106,11 +110,13 @@ class TestConfigurationManager(TestCase):
     path_method = 'non_existent'
     command_name = 'test_command'
     commands = ["Some Commands"]
-    self.configuration_manager.config.append({
-        yaml_keys.COMMAND_NAME: command_name,
-        yaml_keys.PATH_METHOD: path_method,
-        yaml_keys.COMMANDS: commands,
-    })
+    self.configuration_manager.config.append(
+        {
+            yaml_keys.COMMAND_NAME: command_name,
+            yaml_keys.PATH_METHOD: path_method,
+            yaml_keys.COMMANDS: commands,
+        }
+    )
 
     self.configuration_manager.find_config_entry(command_name)
     self.assertTrue(self.configuration_manager.is_config_executable())
@@ -142,12 +148,14 @@ class TestConfigurationManager(TestCase):
     command_name = 'test_command'
     commands = "Some Command"
     success = "Successful"
-    self.configuration_manager.config.append({
-        yaml_keys.COMMAND_NAME: command_name,
-        yaml_keys.PATH_METHOD: path_method,
-        yaml_keys.COMMANDS: commands,
-        yaml_keys.SUCCESS: success
-    })
+    self.configuration_manager.config.append(
+        {
+            yaml_keys.COMMAND_NAME: command_name,
+            yaml_keys.PATH_METHOD: path_method,
+            yaml_keys.COMMANDS: commands,
+            yaml_keys.SUCCESS: success
+        }
+    )
 
     self.configuration_manager.find_config_entry(command_name)
     self.assertEqual(
@@ -160,12 +168,14 @@ class TestConfigurationManager(TestCase):
     command_name = 'test_command'
     commands = "Some Command"
     failure = "Unsuccessful"
-    self.configuration_manager.config.append({
-        yaml_keys.COMMAND_NAME: command_name,
-        yaml_keys.PATH_METHOD: path_method,
-        yaml_keys.COMMANDS: commands,
-        yaml_keys.FAILURE: failure
-    })
+    self.configuration_manager.config.append(
+        {
+            yaml_keys.COMMAND_NAME: command_name,
+            yaml_keys.PATH_METHOD: path_method,
+            yaml_keys.COMMANDS: commands,
+            yaml_keys.FAILURE: failure
+        }
+    )
 
     self.configuration_manager.find_config_entry(command_name)
     self.assertEqual(

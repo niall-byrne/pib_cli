@@ -16,9 +16,11 @@ class TestPathManager(TestCase):
   def test_initial_instance_variables(self):
     assert self.path_manager.root == os.environ.get("PROJECT_ROOT")
     assert self.path_manager.home == os.path.join(
-        self.path_manager.root, os.environ.get("PROJECT_NAME"))
-    assert self.path_manager.docs == os.path.join(self.path_manager.root,
-                                                  "documentation")
+        self.path_manager.root, os.environ.get("PROJECT_NAME")
+    )
+    assert self.path_manager.docs == os.path.join(
+        self.path_manager.root, "documentation"
+    )
 
   @patch(patchbay.PATH_MANAGER_OS_CHDIR)
   def test_project_root(self, mock_chdir):

@@ -96,8 +96,9 @@ class CommandTestHarness(TestCase):
   def test_successful_results(self):
     self.proc_manager.exit_code = 0
     result = self.cmd_mgr.invoke(self.command)
-    self.assertEqual(self.cmd_mgr.process_manager.exit_code,
-                     self.proc_manager.exit_code)
+    self.assertEqual(
+        self.cmd_mgr.process_manager.exit_code, self.proc_manager.exit_code
+    )
     self.assertEqual(result, self.config[yaml_keys.SUCCESS])
 
   def test_unsuccessful_system_calls(self):
@@ -109,6 +110,7 @@ class CommandTestHarness(TestCase):
   def test_unsuccessful_results(self):
     self.proc_manager.exit_code = 1
     result = self.cmd_mgr.invoke(self.command)
-    self.assertEqual(self.cmd_mgr.process_manager.exit_code,
-                     self.proc_manager.exit_code)
+    self.assertEqual(
+        self.cmd_mgr.process_manager.exit_code, self.proc_manager.exit_code
+    )
     self.assertEqual(result, self.config[yaml_keys.FAILURE])
