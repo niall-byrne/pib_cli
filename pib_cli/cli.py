@@ -1,30 +1,9 @@
 """The Python In a Box Command Line Interface"""
 
-import sys
-
 import click
 
 from .support import internal_commands
-from .support.external_commands import ExternalCommands
-
-
-def execute_external_command(commands, overload=None):
-  """Executes a batch of external commands.
-
-  commands: A list of commands to be executed
-  overload: Additional parameters which will be inserted into the environment
-  """
-
-  command_manager = ExternalCommands()
-
-  for command in commands:
-    response = command_manager.invoke(command, overload)
-    click.echo(response)
-
-    if command_manager.process_manager.exit_code != 0:
-      break
-
-  sys.exit(command_manager.process_manager.exit_code)
+from .support.external_commands import execute_external_command
 
 
 @click.group()

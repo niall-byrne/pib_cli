@@ -1,16 +1,72 @@
 """Tests for External Command Invocations"""
 
 from unittest import TestCase
-from unittest.mock import patch
-
-from config import yaml_keys
+from unittest.mock import Mock, patch
 
 from ... import config, patchbay
+from ...config import yaml_keys
 from ..configuration import ConfigurationManager
-from ..external_commands import ExternalCommands
+from ..external_commands import ExternalCommands, execute_external_command
 from ..paths import PathManager
 from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
+
+
+class TestExecuteExternalCommandFunction(TestCase):
+
+  def setUp(self):
+    self.mock_response = "Ready to Test"
+    self.test_commands = ["Test Command1", "Test Command2"]
+    self.test_exit_code = 99
+    self.mock_invoke = Mock()
+    self.mock_invoke.return_value = self.mock_response
+
+    self.mock_command_manager = Mock()
+    self.mock_command_manager.invoke = self.mock_invoke
+    self.mock_command_manager.process_manager.exit_code = self.test_exit_code
+
+  def validate_calls(self, options, mock_echo, mock_exit, exit_code):
+    for command in self.test_commands:
+      self.mock_invoke.assert_any_call(command, options)
+      mock_echo.assert_any_call(self.mock_response)
+    mock_exit.assert_called_once_with(exit_code)
+
+    self.assertEqual(len(self.test_commands), self.mock_invoke.call_count)
+    self.assertEqual(len(self.test_commands), mock_echo.call_count)
+
+  @patch(patchbay.EXTERNAL_COMMANDS)
+  @patch(patchbay.CLI_CLICK_ECHO)
+  @patch(patchbay.EXTERNAL_COMMANDS_SYS_EXIT)
+  def test_command_call_single(self, mock_exit, mock_echo, mock_commands):
+    self.mock_command_manager.process_manager.exit_code = 0
+    mock_commands.return_value = self.mock_command_manager
+
+    execute_external_command(self.test_commands)
+    self.validate_calls(None, mock_echo, mock_exit, 0)
+
+  @patch(patchbay.EXTERNAL_COMMANDS)
+  @patch(patchbay.CLI_CLICK_ECHO)
+  @patch(patchbay.EXTERNAL_COMMANDS_SYS_EXIT)
+  def test_command_call_with_options(self, mock_exit, mock_echo, mock_commands):
+    self.mock_command_manager.process_manager.exit_code = 0
+    mock_commands.return_value = self.mock_command_manager
+    options = ('one', 'two', 'three')
+
+    execute_external_command(self.test_commands, overload=options)
+    self.validate_calls(options, mock_echo, mock_exit, 0)
+
+  @patch(patchbay.EXTERNAL_COMMANDS)
+  @patch(patchbay.CLI_CLICK_ECHO)
+  @patch(patchbay.EXTERNAL_COMMANDS_SYS_EXIT)
+  def test_command_call_fails(self, mock_exit, mock_echo, mock_commands):
+    mock_commands.return_value = self.mock_command_manager
+    options = ('one', 'two', 'three')
+
+    execute_external_command(self.test_commands, overload=options)
+
+    self.mock_invoke.assert_called_once_with(self.test_commands[0], options)
+    mock_echo.assert_called_once_with(self.mock_response)
+    mock_exit.assert_called_once_with(self.test_exit_code)
 
 
 class TestCommandClass(TestCase):

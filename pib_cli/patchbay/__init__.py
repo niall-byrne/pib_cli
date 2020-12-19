@@ -2,8 +2,6 @@
 
 CLI_CLICK_ECHO = 'pib_cli.cli.click.echo'
 CLI_EXECUTE_EXTERNAL_COMMAND = 'pib_cli.cli.execute_external_command'
-CLI_EXTERNAL_COMMANDS = 'pib_cli.cli.ExternalCommands'
-CLI_SYS_EXIT = 'pib_cli.cli.sys.exit'
 
 CONTAINER_MANAGER_IS_CONTAINER = (
     'pib_cli.support.container.ContainerManager.is_container'
@@ -27,6 +25,8 @@ EXTERNAL_COMMANDS_PATH_MANAGER = (
 EXTERNAL_COMMANDS_PROCESS_MANAGER = (
     'pib_cli.support.external_commands.ProcessManager'
 )
+EXTERNAL_COMMANDS_SYS_EXIT = 'pib_cli.support.external_commands.sys.exit'
+EXTERNAL_COMMANDS = 'pib_cli.support.external_commands.ExternalCommands'
 
 INTERNAL_COMMANDS_OS_PATH_EXISTS = (
     'pib_cli.support.internal_commands.os.path.exists'
