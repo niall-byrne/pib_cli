@@ -9,4 +9,4 @@ class ContainerManager:
 
   @staticmethod
   def is_container():
-    return os.path.exists(config.CONTAINER_MARKER)
+    return os.path.exists(config.SETTING_CONTAINER_MARKER)

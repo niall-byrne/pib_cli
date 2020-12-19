@@ -4,7 +4,7 @@ import os
 from unittest import TestCase
 from unittest.mock import patch
 
-from .. import CONFIG_LOCATION_ENV_OVERRIDE, get_config_file_name, project_root
+from .. import config, get_config_file_name, project_root
 
 
 class TestGetConfigFileName(TestCase):
@@ -15,7 +15,7 @@ class TestGetConfigFileName(TestCase):
 
   @patch.dict(
       os.environ,
-      {CONFIG_LOCATION_ENV_OVERRIDE: "/app/somefile.yml"},
+      {config.ENV_OVERRIDE_CONFIG_LOCATION: "/app/somefile.yml"},
       clear=True,
   )
   def test_with_override(self):

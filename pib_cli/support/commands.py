@@ -13,8 +13,6 @@ from .processes import ProcessManager
 
 
 class Commands:
-  overload_env_name = 'PIB_OVERLOAD_ARGUMENTS'
-  setup_bash_success = "Setup Succeeded!"
 
   def __init__(self):
     self.process_manager = ProcessManager()
@@ -24,7 +22,7 @@ class Commands:
   def __add_overload(self, overload):
     if overload:
       overload_string = " ".join(overload)
-      os.environ[self.__class__.overload_env_name] = overload_string
+      os.environ[config.ENV_OVERLOAD_ARGUMENTS] = overload_string
 
   def __change_directory(self):
     yaml_path_method = self.configuration_manager.get_config_path_method()
@@ -39,14 +37,14 @@ class Commands:
   @staticmethod
   def setup_bash():
     if not ContainerManager.is_container():
-      return config.CONTAINER_ONLY_ERROR
+      return config.ERROR_CONTAINER_ONLY
     results = []
     bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
     home_dir = str(Path.home())
     for file_name in bash_files:
       shutil.copy(file_name, home_dir)
       results.append(f"Copied: {file_name} -> {home_dir} ")
-    results.append(Commands.setup_bash_success)
+    results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     return "\n".join(results)
 
   def invoke(self, command, overload=None):
@@ -54,7 +52,7 @@ class Commands:
 
     if not self.configuration_manager.is_config_executable():
       self.process_manager.exit_code = 0
-      return config.CONTAINER_ONLY_ERROR
+      return config.ERROR_CONTAINER_ONLY
 
     self.__change_directory()
     self.__add_overload(overload)

@@ -50,7 +50,7 @@ class TestCommandClass(TestCase):
     mock_exec.return_value = False
 
     response = self.commands.invoke("test_command")
-    self.assertEqual(response, config.CONTAINER_ONLY_ERROR)
+    self.assertEqual(response, config.ERROR_CONTAINER_ONLY)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
   @patch(patchbay.CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE)
@@ -94,7 +94,7 @@ class TestCommandClass(TestCase):
     bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
     for file_name in bash_files:
       expected_results.append(f"Copied: {file_name} -> {home_dir} ")
-    expected_results.append(Commands.setup_bash_success)
+    expected_results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     self.assertEqual(result, "\n".join(expected_results))
 
   @patch(patchbay.COMMANDS_SHUTIL_COPY)
@@ -103,7 +103,7 @@ class TestCommandClass(TestCase):
     mock_exists.return_value = False
     results = self.commands.setup_bash()
     mock_copy.assert_not_called()
-    self.assertEqual(results, config.CONTAINER_ONLY_ERROR)
+    self.assertEqual(results, config.ERROR_CONTAINER_ONLY)
 
 
 class TestBuildDocs(CommandTestHarness):

@@ -5,9 +5,9 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 import yaml
-from config import yaml_keys
 
-from ... import config_filename, patchbay
+from ... import config, config_filename, patchbay
+from ...config import yaml_keys
 from ..commands import Commands
 
 
@@ -89,7 +89,7 @@ class CommandTestHarness(TestCase):
       self.proc_manager.exit_code = 0
       self.cmd_mgr.invoke(self.command, overload=self.overload)
       mock_setter.called_once_with(
-          self.cmd_mgr.overload_env_name,
+          config.ENV_OVERLOAD_ARGUMENTS,
           overload_string,
       )
 
