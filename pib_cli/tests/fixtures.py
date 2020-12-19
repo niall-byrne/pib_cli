@@ -26,9 +26,10 @@ class CommandTestHarness(TestCase):
       else:
         mock_execute.assert_called_once_with(self.external_commands)
 
-  def check_internal_commands(self, mock_setup_bash):
+  def check_internal_commands(self, mock_click, mock_setup_bash):
     if 'setup_bash' in self.python_methods:
       mock_setup_bash.assert_called_once_with()
+      mock_click.assert_called_once_with(mock_setup_bash.return_value)
 
   def setUp(self,):
     self.runner = CliRunner()
@@ -40,31 +41,37 @@ class CommandTestHarness(TestCase):
   @patch(patchbay.CLI_EXECUTE_EXTERNAL_COMMAND)
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   @patch(patchbay.INTERNAL_COMMANDS_SETUP_BASH)
+  @patch(patchbay.CLI_CLICK_ECHO)
   def test_command_invocation_no_overload(
       self,
+      mock_click,
       mock_setup_bash,
       mock_container,
       mock_execute,
   ):
     if self.overload is None:
       mock_container.return_value = True
+      mock_setup_bash.return_value = "Success Message"
       self.runner.invoke(cli, self.invocation_command)
 
       self.check_yaml_commands(mock_execute)
-      self.check_internal_commands(mock_setup_bash)
+      self.check_internal_commands(mock_click, mock_setup_bash)
 
   @patch(patchbay.CLI_EXECUTE_EXTERNAL_COMMAND)
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   @patch(patchbay.INTERNAL_COMMANDS_SETUP_BASH)
+  @patch(patchbay.CLI_CLICK_ECHO)
   def test_command_invocation_with_overload(
       self,
+      mock_click,
       mock_setup_bash,
       mock_container,
       mock_execute,
   ):
     if self.overload is not None:
       mock_container.return_value = True
+      mock_setup_bash.return_value = "Success Message"
       self.runner.invoke(cli, self.invocation_command + list(self.overload))
 
       self.check_yaml_commands(mock_execute)
-      self.check_internal_commands(mock_setup_bash)
+      self.check_internal_commands(mock_click, mock_setup_bash)
