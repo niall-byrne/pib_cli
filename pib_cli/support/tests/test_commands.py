@@ -6,11 +6,11 @@ from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
-import yaml
 from config import yaml_keys
 
-from ... import config, config_filename, patchbay, project_root
+from ... import config, patchbay, project_root
 from ..commands import Commands
+from ..configuration import ConfigurationManager
 from ..paths import PathManager
 from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
@@ -22,19 +22,18 @@ class TestCommandClass(TestCase):
     return {
         yaml_keys.COMMAND_NAME: test_command,
         yaml_keys.CONTAINER_ONLY: container_only,
-        yaml_keys.PATH_METHOD: path_method
+        yaml_keys.PATH_METHOD: path_method,
+        yaml_keys.COMMANDS: "Some Command"
     }
 
   def setUp(self):
     self.commands = Commands()
-    with open(config_filename) as file_handle:
-      self.config = yaml.safe_load(file_handle)
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
     self.assertIsInstance(self.commands.path_manager, PathManager)
-    self.assertIsInstance(self.commands.config, list)
-    self.assertListEqual(self.config, self.commands.config)
+    self.assertIsInstance(self.commands.configuration_manager,
+                          ConfigurationManager)
 
   def test_invoke_non_existent_command(self):
     with self.assertRaises(KeyError):
@@ -44,65 +43,36 @@ class TestCommandClass(TestCase):
     with self.assertRaises(KeyError):
       self.commands.invoke("non-existent-command", overload=('option1',))
 
-  def test_coerce_from_string_with_string(self):
-    test_value = "Hello"
-    self.assertEqual(
-        self.commands.coerce_from_string_to_list(test_value),
-        [test_value],
-    )
+  @patch(patchbay.CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE)
+  @patch(patchbay.CONFIGURATION_MANAGER_FIND_CONFIG)
+  def test_outside_container_flag_fails(self, mock_config, mock_exec):
+    mock_config.return_value = None
+    mock_exec.return_value = False
 
-  def test_coerce_from_string_with_iterable(self):
-    test_value = ["Hello"]
-    self.assertEqual(
-        self.commands.coerce_from_string_to_list(test_value),
-        test_value,
-    )
-
-  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  def test_outside_container_flag_true(self, mock_container):
-    mock_container.return_value = False
-    path_method = 'non_existent'
-    test_command = 'test_command'
-    self.config.append(self.yaml_test_data(path_method, test_command, True))
-    self.commands.config = self.config
-
-    response = self.commands.invoke(test_command)
+    response = self.commands.invoke("test_command")
     self.assertEqual(response, config.CONTAINER_ONLY_ERROR)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
-  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  def test_outside_container_flag_false(self, mock_container):
-    mock_container.return_value = False
-    path_method = 'non_existent'
-    test_command = 'test_command'
-    test_config = self.yaml_test_data(path_method, test_command, True)
-    del test_config[yaml_keys.CONTAINER_ONLY]
-    self.config.append(test_config)
-    self.commands.config = self.config
+  @patch(patchbay.CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE)
+  @patch(patchbay.CONFIGURATION_MANAGER_FIND_CONFIG)
+  @patch(patchbay.CONFIGURATION_MANAGER_GET_CONFIG_PATH_METHOD)
+  def test_outside_container_flag_succeeds(
+      self,
+      mock_path,
+      mock_config,
+      mock_exec,
+  ):
+    expected_exception = "Expected Exception!"
+    mock_config.return_value = None
+    mock_exec.return_value = True
+    mock_path.side_effect = Exception(expected_exception)
 
-    with self.assertRaises(AttributeError) as asserted_exception:
-      self.commands.invoke(test_command)
+    with self.assertRaises(Exception) as raised_error:
+      self.commands.invoke("test_command")
     self.assertEqual(
-        asserted_exception.exception.args[0],
-        "'PathManager' object has no attribute '%s'" % path_method,
+        raised_error.exception.args[0],
+        expected_exception,
     )
-    self.assertIsNone(self.commands.process_manager.exit_code)
-
-  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  def test_outside_container_flag_missing(self, mock_container):
-    mock_container.return_value = False
-    path_method = 'non_existent'
-    test_command = 'test_command'
-    self.config.append(self.yaml_test_data(path_method, test_command, False))
-    self.commands.config = self.config
-
-    with self.assertRaises(AttributeError) as asserted_exception:
-      self.commands.invoke(test_command)
-    self.assertEqual(
-        asserted_exception.exception.args[0],
-        "'PathManager' object has no attribute '%s'" % path_method,
-    )
-    self.assertIsNone(self.commands.process_manager.exit_code)
 
   @patch(patchbay.COMMANDS_SHUTIL_COPY)
   @patch(patchbay.COMMANDS_OS_PATH_EXISTS)

@@ -40,6 +40,11 @@ class CommandTestHarness(TestCase):
         return
     raise KeyError("Could not find yaml key name: %s" % name)
 
+  def get_coerced_from_string_commands(self):
+    if isinstance(self.config[yaml_keys.COMMANDS], str):
+      return [self.config[yaml_keys.COMMANDS]]
+    return self.config[yaml_keys.COMMANDS]
+
   @classmethod
   def setUpClass(cls):
     with open(config_filename) as file_handle:
@@ -68,8 +73,7 @@ class CommandTestHarness(TestCase):
     self.proc_manager.exit_code = 0
     self.cmd_mgr.invoke(self.command, overload=self.overload)
 
-    expected_commands = self.cmd_mgr.coerce_from_string_to_list(
-        self.config[yaml_keys.COMMANDS])
+    expected_commands = self.get_coerced_from_string_commands()
     self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
   @patch(patchbay.COMMANDS_OS_ENVIRON)
@@ -99,8 +103,7 @@ class CommandTestHarness(TestCase):
   def test_unsuccessful_system_calls(self):
     self.proc_manager.exit_code = 1
     self.cmd_mgr.invoke(self.command)
-    expected_commands = self.cmd_mgr.coerce_from_string_to_list(
-        self.config[yaml_keys.COMMANDS])
+    expected_commands = self.get_coerced_from_string_commands()
     self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
   def test_unsuccessful_results(self):
