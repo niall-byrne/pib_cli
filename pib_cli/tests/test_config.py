@@ -11,7 +11,7 @@ class TestGetConfigFileName(TestCase):
 
   def test_no_override(self):
     result = get_config_file_name()
-    assert result == os.path.join(project_root, "config.yml")
+    assert result == os.path.join(project_root, "config", "config.yml")
 
   @patch.dict(
       os.environ,

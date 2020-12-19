@@ -26,7 +26,10 @@ setup(
   url="https://github.com/niall-byrne/pib_cli",
   packages=packages,
   package_data={
-    'pib_cli': ['*.yml', 'bash/.*'],
+    'pib_cli': [
+      os.path.join("config", "config.yml"),
+      os.path.join('bash', '.*'),
+    ],
   },
   include_package_data=True,
   install_requires=assets,
