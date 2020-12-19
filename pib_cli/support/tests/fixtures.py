@@ -8,7 +8,7 @@ import yaml
 
 from ... import config, config_filename, patchbay
 from ...config import yaml_keys
-from ..commands import Commands
+from ..external_commands import ExternalCommands
 
 
 class MockPathManager:
@@ -50,8 +50,8 @@ class CommandTestHarness(TestCase):
     with open(config_filename) as file_handle:
       cls.yaml = yaml.safe_load(file_handle)
 
-  @patch(patchbay.COMMANDS_PATH_MANAGER)
-  @patch(patchbay.COMMANDS_PROCESS_MANAGER)
+  @patch(patchbay.EXTERNAL_COMMANDS_PATH_MANAGER)
+  @patch(patchbay.EXTERNAL_COMMANDS_PROCESS_MANAGER)
   def setUp(self, mock_proc, mock_path):  # pylint: disable=arguments-differ
     self.command = self.__class__.command
     self.overload = self.__class__.overload
@@ -61,7 +61,7 @@ class CommandTestHarness(TestCase):
     mock_path.return_value = self.path_manager
     mock_proc.return_value = self.proc_manager
 
-    self.cmd_mgr = Commands()
+    self.cmd_mgr = ExternalCommands()
     self.get_yaml_entry(self.command)
 
   def test_invoke_uses_correct_path(self):
@@ -76,7 +76,7 @@ class CommandTestHarness(TestCase):
     expected_commands = self.get_coerced_from_string_commands()
     self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
-  @patch(patchbay.COMMANDS_OS_ENVIRON)
+  @patch(patchbay.EXTERNAL_COMMANDS_OS_ENVIRON)
   def test_successful_overload(self, mock_environ):
     mock_setter = Mock()
     mock_environ.return_value = os.environ

@@ -1,9 +1,9 @@
 """Patch Endpoints For Tests"""
 
-CLI_COMMANDS = 'pib_cli.cli.Commands'
+CLI_EXTERNAL_COMMANDS = 'pib_cli.cli.ExternalCommands'
 CLI_SYS_EXIT = 'pib_cli.cli.sys.exit'
 CLI_CLICK_ECHO = 'pib_cli.cli.click.echo'
-CLI_PIB_CLI_EXECUTE = 'pib_cli.cli.execute'
+CLI_PIB_CLI_EXECUTE = 'pib_cli.cli.execute_external_command'
 
 PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
 
@@ -22,9 +22,14 @@ CONFIGURATION_MANAGER_FIND_CONFIG = (
 CONFIGURATION_MANAGER_GET_CONFIG_PATH_METHOD = (
     'pib_cli.support.configuration.ConfigurationManager.get_config_path_method')
 
-COMMANDS_OS_ENVIRON = 'pib_cli.support.commands.os.environ'
-COMMANDS_OS_PATH_EXISTS = 'pib_cli.support.commands.os.path.exists'
-COMMANDS_PATH_MANAGER = 'pib_cli.support.commands.PathManager'
-COMMANDS_PROCESS_MANAGER = 'pib_cli.support.commands.ProcessManager'
-COMMANDS_SETUP_BASH = 'pib_cli.support.commands.Commands.setup_bash'
-COMMANDS_SHUTIL_COPY = 'pib_cli.support.commands.shutil.copy'
+EXTERNAL_COMMANDS_OS_ENVIRON = 'pib_cli.support.external_commands.os.environ'
+EXTERNAL_COMMANDS_OS_PATH_EXISTS = (
+    'pib_cli.support.external_commands.os.path.exists')
+EXTERNAL_COMMANDS_PATH_MANAGER = (
+    'pib_cli.support.external_commands.PathManager')
+EXTERNAL_COMMANDS_PROCESS_MANAGER = (
+    'pib_cli.support.external_commands.ProcessManager')
+EXTERNAL_COMMANDS_SETUP_BASH = (
+    'pib_cli.support.external_commands.ExternalCommands.setup_bash')
+EXTERNAL_COMMANDS_SHUTIL_COPY = (
+    'pib_cli.support.external_commands.shutil.copy')

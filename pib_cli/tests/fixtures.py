@@ -39,7 +39,7 @@ class CommandTestHarness(TestCase):
 
   @patch(patchbay.CLI_PIB_CLI_EXECUTE)
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  @patch(patchbay.COMMANDS_SETUP_BASH)
+  @patch(patchbay.EXTERNAL_COMMANDS_SETUP_BASH)
   def test_command_invocation_no_overload(
       self,
       mock_setup_bash,
@@ -55,7 +55,7 @@ class CommandTestHarness(TestCase):
 
   @patch(patchbay.CLI_PIB_CLI_EXECUTE)
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  @patch(patchbay.COMMANDS_SETUP_BASH)
+  @patch(patchbay.EXTERNAL_COMMANDS_SETUP_BASH)
   def test_command_invocation_with_overload(
       self,
       mock_setup_bash,

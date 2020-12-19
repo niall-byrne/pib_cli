@@ -4,7 +4,7 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from .. import patchbay
-from ..cli import execute
+from ..cli import execute_external_command
 from .fixtures import CommandTestHarness
 
 
@@ -30,17 +30,17 @@ class TestExecute(TestCase):
     self.assertEqual(len(self.test_commands), self.mock_invoke.call_count)
     self.assertEqual(len(self.test_commands), mock_echo.call_count)
 
-  @patch(patchbay.CLI_COMMANDS)
+  @patch(patchbay.CLI_EXTERNAL_COMMANDS)
   @patch(patchbay.CLI_CLICK_ECHO)
   @patch(patchbay.CLI_SYS_EXIT)
   def test_command_call_single(self, mock_exit, mock_echo, mock_commands):
     self.mock_command_manager.process_manager.exit_code = 0
     mock_commands.return_value = self.mock_command_manager
 
-    execute(self.test_commands)
+    execute_external_command(self.test_commands)
     self.validate_calls(None, mock_echo, mock_exit, 0)
 
-  @patch(patchbay.CLI_COMMANDS)
+  @patch(patchbay.CLI_EXTERNAL_COMMANDS)
   @patch(patchbay.CLI_CLICK_ECHO)
   @patch(patchbay.CLI_SYS_EXIT)
   def test_command_call_with_options(self, mock_exit, mock_echo, mock_commands):
@@ -48,17 +48,17 @@ class TestExecute(TestCase):
     mock_commands.return_value = self.mock_command_manager
     options = ('one', 'two', 'three')
 
-    execute(self.test_commands, overload=options)
+    execute_external_command(self.test_commands, overload=options)
     self.validate_calls(options, mock_echo, mock_exit, 0)
 
-  @patch(patchbay.CLI_COMMANDS)
+  @patch(patchbay.CLI_EXTERNAL_COMMANDS)
   @patch(patchbay.CLI_CLICK_ECHO)
   @patch(patchbay.CLI_SYS_EXIT)
   def test_command_call_fails(self, mock_exit, mock_echo, mock_commands):
     mock_commands.return_value = self.mock_command_manager
     options = ('one', 'two', 'three')
 
-    execute(self.test_commands, overload=options)
+    execute_external_command(self.test_commands, overload=options)
 
     self.mock_invoke.assert_called_once_with(self.test_commands[0], options)
     mock_echo.assert_called_once_with(self.mock_response)

@@ -1,4 +1,4 @@
-"""Tests for Command Invocations"""
+"""Tests for External Command Invocations"""
 
 import glob
 import os
@@ -9,8 +9,8 @@ from unittest.mock import patch
 from config import yaml_keys
 
 from ... import config, patchbay, project_root
-from ..commands import Commands
 from ..configuration import ConfigurationManager
+from ..external_commands import ExternalCommands
 from ..paths import PathManager
 from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
@@ -27,7 +27,7 @@ class TestCommandClass(TestCase):
     }
 
   def setUp(self):
-    self.commands = Commands()
+    self.commands = ExternalCommands()
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
@@ -74,8 +74,8 @@ class TestCommandClass(TestCase):
         expected_exception,
     )
 
-  @patch(patchbay.COMMANDS_SHUTIL_COPY)
-  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
+  @patch(patchbay.EXTERNAL_COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.EXTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
     mock_exists.return_value = True
     self.commands.setup_bash()
@@ -84,8 +84,8 @@ class TestCommandClass(TestCase):
       mock_copy.assert_any_call(file_name, str(Path.home()))
     self.assertEqual(len(bash_files), mock_copy.call_count)
 
-  @patch(patchbay.COMMANDS_SHUTIL_COPY)
-  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
+  @patch(patchbay.EXTERNAL_COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.EXTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_output(self, mock_exists, _):
     mock_exists.return_value = True
     result = self.commands.setup_bash()
@@ -97,8 +97,8 @@ class TestCommandClass(TestCase):
     expected_results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     self.assertEqual(result, "\n".join(expected_results))
 
-  @patch(patchbay.COMMANDS_SHUTIL_COPY)
-  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
+  @patch(patchbay.EXTERNAL_COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.EXTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_outside_container(self, mock_exists, mock_copy):
     mock_exists.return_value = False
     results = self.commands.setup_bash()

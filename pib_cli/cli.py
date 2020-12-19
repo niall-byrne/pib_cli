@@ -4,17 +4,17 @@ import sys
 
 import click
 
-from .support.commands import Commands
+from .support.external_commands import ExternalCommands
 
 
-def execute(commands, overload=None):
-  """Executes a batch of commands.
+def execute_external_command(commands, overload=None):
+  """Executes a batch of external commands.
 
   commands: A list of commands to be executed
   overload: Additional parameters which will be inserted into the environment
   """
 
-  command_manager = Commands()
+  command_manager = ExternalCommands()
 
   for command in commands:
     response = command_manager.invoke(command, overload)
@@ -34,13 +34,13 @@ def cli():
 @cli.command("build-docs")
 def build_docs():
   """Build Documentation"""
-  execute(['build-docs'])
+  execute_external_command(['build-docs'])
 
 
 @cli.command("build-wheel")
 def build_wheel():
   """Build Distribution Wheel"""
-  execute(['build-wheel'])
+  execute_external_command(['build-wheel'])
 
 
 @cli.command(
@@ -53,37 +53,37 @@ def build_wheel():
 @click.argument('options', nargs=-1)
 def coverage(options):
   """Run Code Coverage"""
-  execute(['coverage'], overload=options)
+  execute_external_command(['coverage'], overload=options)
 
 
 @cli.command("fmt")
 def formatter():
   """Run Code Formatters"""
-  execute(['fmt'])
+  execute_external_command(['fmt'])
 
 
 @cli.command("lint")
 def linter_tests():
   """Run Code Linters"""
-  execute(['lint'])
+  execute_external_command(['lint'])
 
 
 @cli.command("reinstall-requirements")
 def reinstall_requirements():
   """Reinstall Requirements"""
-  execute(['reinstall-requirements'])
+  execute_external_command(['reinstall-requirements'])
 
 
 @cli.command("sectest")
 def security_tests():
   """Run Security Tests"""
-  execute(['sectest'])
+  execute_external_command(['sectest'])
 
 
 @cli.command("setup-bash")
 def setup_bash():
   """Setup Bash Environment"""
-  command_manager = Commands()
+  command_manager = ExternalCommands()
   result = command_manager.setup_bash()
   click.echo(result)
 
@@ -93,7 +93,7 @@ def setup_bash():
 def setup_environment(ctx):
   """Setup Environment"""
   ctx.invoke(setup_bash)
-  execute(['reinstall-requirements'])
+  execute_external_command(['reinstall-requirements'])
 
 
 @cli.command(
@@ -106,4 +106,4 @@ def setup_environment(ctx):
 @click.argument('options', nargs=-1)
 def unittests(options):
   """Run Unittests"""
-  execute(['test'], overload=options)
+  execute_external_command(['test'], overload=options)

@@ -1,4 +1,4 @@
-"""CLI Command Management Class"""
+"""CLI External Command Management Class"""
 
 import glob
 import os
@@ -12,7 +12,7 @@ from .paths import PathManager
 from .processes import ProcessManager
 
 
-class Commands:
+class ExternalCommands:
 
   def __init__(self):
     self.process_manager = ProcessManager()
