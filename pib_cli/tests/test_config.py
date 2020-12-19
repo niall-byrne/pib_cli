@@ -4,11 +4,7 @@ import os
 from unittest import TestCase
 from unittest.mock import patch
 
-from pib_cli import (
-    CONFIG_LOCATION_ENV_OVERRIDE,
-    get_config_file_name,
-    project_root,
-)
+from .. import CONFIG_LOCATION_ENV_OVERRIDE, get_config_file_name, project_root
 
 
 class TestGetConfigFileName(TestCase):

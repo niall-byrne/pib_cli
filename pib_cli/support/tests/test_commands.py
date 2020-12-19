@@ -6,15 +6,13 @@ from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
-import config
-import patchbay
 import yaml
-from pib_cli import config_filename, project_root
-from pib_cli.support.commands import Commands
-from pib_cli.support.container import ContainerManager
-from pib_cli.support.paths import PathManager
-from pib_cli.support.processes import ProcessManager
+
+from ... import config, config_filename, patchbay, project_root
 from .. import yaml_keys
+from ..commands import Commands
+from ..paths import PathManager
+from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
 
 

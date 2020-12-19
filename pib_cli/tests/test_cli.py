@@ -3,9 +3,9 @@
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
-import patchbay
-from pib_cli.cli import execute
-from pib_cli.tests.fixtures import CommandTestHarness
+from .. import patchbay
+from ..cli import execute
+from .fixtures import CommandTestHarness
 
 
 class TestExecute(TestCase):

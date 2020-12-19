@@ -4,11 +4,11 @@ import os
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
-import patchbay
 import yaml
-from pib_cli import config_filename
-from pib_cli.support.commands import Commands
+
+from ... import config_filename, patchbay
 from .. import yaml_keys
+from ..commands import Commands
 
 
 class MockPathManager:

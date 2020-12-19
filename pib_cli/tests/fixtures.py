@@ -3,9 +3,10 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-import patchbay
 from click.testing import CliRunner
-from pib_cli.cli import cli
+
+from .. import patchbay
+from ..cli import cli
 
 
 class CommandTestHarness(TestCase):

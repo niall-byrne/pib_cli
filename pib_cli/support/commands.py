@@ -5,9 +5,9 @@ import os
 import shutil
 from pathlib import Path
 
-import config
 import yaml
-from pib_cli import config_filename, project_root
+
+from .. import config, config_filename, project_root
 from . import yaml_keys
 from .container import ContainerManager
 from .paths import PathManager

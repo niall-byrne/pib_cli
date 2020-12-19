@@ -3,8 +3,8 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-import patchbay
-from pib_cli.support.processes import ProcessManager
+from ... import patchbay
+from ..processes import ProcessManager
 
 
 class TestProcessManager(TestCase):

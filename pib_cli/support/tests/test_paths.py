@@ -4,8 +4,8 @@ import os
 from unittest import TestCase
 from unittest.mock import patch
 
-import patchbay
-from pib_cli.support.paths import PathManager
+from ... import patchbay
+from ..paths import PathManager
 
 
 class TestPathManager(TestCase):

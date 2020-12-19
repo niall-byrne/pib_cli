@@ -3,8 +3,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-import config
-import patchbay
+from ... import config, patchbay
 from ..container import ContainerManager
 
 
