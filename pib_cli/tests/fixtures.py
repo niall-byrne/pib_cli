@@ -3,10 +3,9 @@
 from unittest import TestCase
 from unittest.mock import patch
 
+import patchbay
 from click.testing import CliRunner
 from pib_cli.cli import cli
-
-from . import patchbay
 
 
 class CommandTestHarness(TestCase):
@@ -37,9 +36,9 @@ class CommandTestHarness(TestCase):
     self.external_commands = self.__class__.external_commands
     self.overload = self.__class__.overload
 
-  @patch(patchbay.pib_cli_execute)
-  @patch(patchbay.commands_is_container)
-  @patch(patchbay.commands_setup_bash)
+  @patch(patchbay.CLI_PIB_CLI_EXECUTE)
+  @patch(patchbay.COMMANDS_IS_CONTAINER)
+  @patch(patchbay.COMMANDS_SETUP_BASH)
   def test_command_invocation_no_overload(
       self,
       mock_setup_bash,
@@ -53,9 +52,9 @@ class CommandTestHarness(TestCase):
       self.check_yaml_commands(mock_execute)
       self.check_internal_commands(mock_setup_bash)
 
-  @patch(patchbay.pib_cli_execute)
-  @patch(patchbay.commands_is_container)
-  @patch(patchbay.commands_setup_bash)
+  @patch(patchbay.CLI_PIB_CLI_EXECUTE)
+  @patch(patchbay.COMMANDS_IS_CONTAINER)
+  @patch(patchbay.COMMANDS_SETUP_BASH)
   def test_command_invocation_with_overload(
       self,
       mock_setup_bash,

@@ -4,6 +4,7 @@ import os
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
+import patchbay
 import yaml
 from pib_cli import config_filename
 from pib_cli.support.commands import Commands
@@ -44,8 +45,8 @@ class CommandTestHarness(TestCase):
     with open(config_filename) as file_handle:
       cls.yaml = yaml.safe_load(file_handle)
 
-  @patch("pib_cli.support.commands.PathManager")
-  @patch("pib_cli.support.commands.ProcessManager")
+  @patch(patchbay.COMMANDS_PATH_MANAGER)
+  @patch(patchbay.COMMANDS_PROCESS_MANAGER)
   def setUp(self, mock_proc, mock_path):  # pylint: disable=arguments-differ
     self.command = self.__class__.command
     self.overload = self.__class__.overload
@@ -71,7 +72,7 @@ class CommandTestHarness(TestCase):
         self.config[yaml_keys.COMMANDS])
     self.proc_manager.spawn.assert_called_once_with(expected_commands)
 
-  @patch('pib_cli.support.commands.os.environ')
+  @patch(patchbay.COMMANDS_OS_ENVIRON)
   def test_successful_overload(self, mock_environ):
     mock_setter = Mock()
     mock_environ.return_value = os.environ

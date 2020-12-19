@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
+import patchbay
 import yaml
 from pib_cli import config_filename, project_root
 from pib_cli.support.commands import Commands
@@ -57,7 +58,7 @@ class TestCommandClass(TestCase):
         test_value,
     )
 
-  @patch('pib_cli.support.commands.Commands.is_container')
+  @patch(patchbay.COMMANDS_IS_CONTAINER)
   def test_outside_container_flag_true(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -69,7 +70,7 @@ class TestCommandClass(TestCase):
     self.assertEqual(response, self.commands.container_only_error)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
-  @patch('pib_cli.support.commands.Commands.is_container')
+  @patch(patchbay.COMMANDS_IS_CONTAINER)
   def test_outside_container_flag_false(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -87,7 +88,7 @@ class TestCommandClass(TestCase):
     )
     self.assertIsNone(self.commands.process_manager.exit_code)
 
-  @patch('pib_cli.support.commands.Commands.is_container')
+  @patch(patchbay.COMMANDS_IS_CONTAINER)
   def test_outside_container_flag_missing(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -103,22 +104,22 @@ class TestCommandClass(TestCase):
     )
     self.assertIsNone(self.commands.process_manager.exit_code)
 
-  @patch("pib_cli.support.commands.os.path.exists")
+  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
   def test_is_container_true(self, mock_exists):
     mock_exists.return_value = True
     result = self.commands.is_container()
     mock_exists.assert_called_once_with(self.commands.container_marker)
     self.assertTrue(result)
 
-  @patch("pib_cli.support.commands.os.path.exists")
+  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
   def test_is_container_false(self, mock_exists):
     mock_exists.return_value = False
     result = self.commands.is_container()
     mock_exists.assert_called_once_with(self.commands.container_marker)
     self.assertFalse(result)
 
-  @patch('pib_cli.support.commands.shutil.copy')
-  @patch("pib_cli.support.commands.os.path.exists")
+  @patch(patchbay.COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
     mock_exists.return_value = True
     self.commands.setup_bash()
@@ -127,8 +128,8 @@ class TestCommandClass(TestCase):
       mock_copy.assert_any_call(file_name, str(Path.home()))
     self.assertEqual(len(bash_files), mock_copy.call_count)
 
-  @patch('pib_cli.support.commands.shutil.copy')
-  @patch("pib_cli.support.commands.os.path.exists")
+  @patch(patchbay.COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_output(self, mock_exists, _):
     mock_exists.return_value = True
     result = self.commands.setup_bash()
@@ -140,8 +141,8 @@ class TestCommandClass(TestCase):
     expected_results.append(Commands.setup_bash_success)
     self.assertEqual(result, "\n".join(expected_results))
 
-  @patch('pib_cli.support.commands.shutil.copy')
-  @patch("pib_cli.support.commands.os.path.exists")
+  @patch(patchbay.COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_outside_container(self, mock_exists, mock_copy):
     mock_exists.return_value = False
     results = self.commands.setup_bash()

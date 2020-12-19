@@ -4,6 +4,7 @@ import os
 from unittest import TestCase
 from unittest.mock import patch
 
+import patchbay
 from pib_cli.support.paths import PathManager
 
 
@@ -19,17 +20,17 @@ class TestPathManager(TestCase):
     assert self.path_manager.docs == os.path.join(self.path_manager.root,
                                                   "documentation")
 
-  @patch("pib_cli.support.paths.os.chdir")
+  @patch(patchbay.PATH_MANAGER_OS_CHDIR)
   def test_project_root(self, mock_chdir):
     self.path_manager.project_root()
     mock_chdir.assert_called_once_with(self.path_manager.root)
 
-  @patch("pib_cli.support.paths.os.chdir")
+  @patch(patchbay.PATH_MANAGER_OS_CHDIR)
   def test_project_home(self, mock_chdir):
     self.path_manager.project_home()
     mock_chdir.assert_called_once_with(self.path_manager.home)
 
-  @patch("pib_cli.support.paths.os.chdir")
+  @patch(patchbay.PATH_MANAGER_OS_CHDIR)
   def test_project_docs(self, mock_chdir):
     self.path_manager.project_docs()
     mock_chdir.assert_called_once_with(self.path_manager.docs)
