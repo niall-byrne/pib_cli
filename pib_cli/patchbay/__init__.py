@@ -11,7 +11,10 @@ PROCESS_MANAGER_OS_SYSTEM = 'pib_cli.support.processes.os.system'
 PROCESS_MANAGER_SPAWN_SINGLE = (
     'pib_cli.support.processes.ProcessManager.spawn_single')
 
-COMMANDS_IS_CONTAINER = 'pib_cli.support.commands.Commands.is_container'
+CONTAINER_MANAGER_IS_CONTAINER = (
+    'pib_cli.support.container.ContainerManager.is_container')
+CONTAINER_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.container.os.path.exists'
+
 COMMANDS_OS_ENVIRON = 'pib_cli.support.commands.os.environ'
 COMMANDS_OS_PATH_EXISTS = 'pib_cli.support.commands.os.path.exists'
 COMMANDS_PATH_MANAGER = 'pib_cli.support.commands.PathManager'

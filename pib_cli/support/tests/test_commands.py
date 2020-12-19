@@ -6,10 +6,12 @@ from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
+import config
 import patchbay
 import yaml
 from pib_cli import config_filename, project_root
 from pib_cli.support.commands import Commands
+from pib_cli.support.container import ContainerManager
 from pib_cli.support.paths import PathManager
 from pib_cli.support.processes import ProcessManager
 from .. import yaml_keys
@@ -58,7 +60,7 @@ class TestCommandClass(TestCase):
         test_value,
     )
 
-  @patch(patchbay.COMMANDS_IS_CONTAINER)
+  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   def test_outside_container_flag_true(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -67,10 +69,10 @@ class TestCommandClass(TestCase):
     self.commands.config = self.config
 
     response = self.commands.invoke(test_command)
-    self.assertEqual(response, self.commands.container_only_error)
+    self.assertEqual(response, config.CONTAINER_ONLY_ERROR)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
-  @patch(patchbay.COMMANDS_IS_CONTAINER)
+  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   def test_outside_container_flag_false(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -88,7 +90,7 @@ class TestCommandClass(TestCase):
     )
     self.assertIsNone(self.commands.process_manager.exit_code)
 
-  @patch(patchbay.COMMANDS_IS_CONTAINER)
+  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   def test_outside_container_flag_missing(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'
@@ -103,20 +105,6 @@ class TestCommandClass(TestCase):
         "'PathManager' object has no attribute '%s'" % path_method,
     )
     self.assertIsNone(self.commands.process_manager.exit_code)
-
-  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
-  def test_is_container_true(self, mock_exists):
-    mock_exists.return_value = True
-    result = self.commands.is_container()
-    mock_exists.assert_called_once_with(self.commands.container_marker)
-    self.assertTrue(result)
-
-  @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
-  def test_is_container_false(self, mock_exists):
-    mock_exists.return_value = False
-    result = self.commands.is_container()
-    mock_exists.assert_called_once_with(self.commands.container_marker)
-    self.assertFalse(result)
 
   @patch(patchbay.COMMANDS_SHUTIL_COPY)
   @patch(patchbay.COMMANDS_OS_PATH_EXISTS)
@@ -147,7 +135,7 @@ class TestCommandClass(TestCase):
     mock_exists.return_value = False
     results = self.commands.setup_bash()
     mock_copy.assert_not_called()
-    self.assertEqual(results, Commands.container_only_error)
+    self.assertEqual(results, config.CONTAINER_ONLY_ERROR)
 
 
 class TestBuildDocs(CommandTestHarness):
