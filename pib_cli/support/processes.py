@@ -1,4 +1,4 @@
-"""CLI Process Management"""
+"""Process Management Class"""
 
 import os
 

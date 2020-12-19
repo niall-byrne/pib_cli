@@ -1,4 +1,4 @@
-"""CLI Container Management"""
+"""Container Management Class"""
 
 import os
 

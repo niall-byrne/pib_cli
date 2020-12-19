@@ -1,4 +1,4 @@
-"""Paths Manager"""
+"""Path Management Class"""
 
 import os
 

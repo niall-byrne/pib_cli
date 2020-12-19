@@ -1,4 +1,4 @@
-"""CLI Utilities"""
+"""CLI Command Management Class"""
 
 import glob
 import os
