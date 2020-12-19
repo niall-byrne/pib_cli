@@ -1,9 +1,9 @@
 """Configuration Management Class"""
 
 import yaml
-from config import yaml_keys
 
 from .. import config_filename
+from ..config import yaml_keys
 from .container import ContainerManager
 
 
