@@ -91,11 +91,11 @@ class TestCommandClass(TestCase):
 
   def test_invoke_non_existent_command(self):
     with self.assertRaises(KeyError):
-      self.commands.invoke("non-existent-command")
+      self.commands.invoke("non-existent-command", None)
 
   def test_invoke_non_existent_command_with_options(self):
     with self.assertRaises(KeyError):
-      self.commands.invoke("non-existent-command", overload=('option1',))
+      self.commands.invoke("non-existent-command", ('option1',))
 
   @patch(patchbay.CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE)
   @patch(patchbay.CONFIGURATION_MANAGER_FIND_CONFIG)
@@ -103,7 +103,7 @@ class TestCommandClass(TestCase):
     mock_config.return_value = None
     mock_exec.return_value = False
 
-    response = self.commands.invoke("test_command")
+    response = self.commands.invoke("test_command", None)
     self.assertEqual(response, config.ERROR_CONTAINER_ONLY)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
@@ -122,7 +122,7 @@ class TestCommandClass(TestCase):
     mock_path.side_effect = Exception(expected_exception)
 
     with self.assertRaises(Exception) as raised_error:
-      self.commands.invoke("test_command")
+      self.commands.invoke("test_command", None)
     self.assertEqual(
         raised_error.exception.args[0],
         expected_exception,

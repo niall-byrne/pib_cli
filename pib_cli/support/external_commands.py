@@ -1,6 +1,5 @@
 """CLI External Command Management Class"""
 
-import os
 import sys
 
 import click
@@ -18,22 +17,17 @@ class ExternalCommands:
     self.path_manager = PathManager()
     self.configuration_manager = ConfigurationManager()
 
-  def __add_overload(self, overload):
-    if overload:
-      overload_string = " ".join(overload)
-      os.environ[config.ENV_OVERLOAD_ARGUMENTS] = overload_string
-
   def __change_directory(self):
     yaml_path_method = self.configuration_manager.get_config_path_method()
     goto_path = getattr(self.path_manager, yaml_path_method)
     goto_path()
 
-  def __spawn_commands(self):
+  def __spawn_commands(self, overload):
     yaml_commands = self.configuration_manager.get_config_commands()
-    self.process_manager.spawn(yaml_commands)
+    self.process_manager.spawn(yaml_commands, overload)
     return self.process_manager.exit_code
 
-  def invoke(self, command, overload=None):
+  def invoke(self, command, overload):
     self.configuration_manager.find_config_entry(command)
 
     if not self.configuration_manager.is_config_executable():
@@ -41,8 +35,7 @@ class ExternalCommands:
       return config.ERROR_CONTAINER_ONLY
 
     self.__change_directory()
-    self.__add_overload(overload)
-    exit_code = self.__spawn_commands()
+    exit_code = self.__spawn_commands(overload)
 
     return self.configuration_manager.get_config_response(exit_code)
 

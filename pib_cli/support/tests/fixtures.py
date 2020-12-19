@@ -1,12 +1,11 @@
 """Tests for the CLI Utilities"""
 
-import os
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
 import yaml
 
-from ... import config, config_filename, patchbay
+from ... import config_filename, patchbay
 from ...config import yaml_keys
 from ..external_commands import ExternalCommands
 
@@ -65,37 +64,22 @@ class CommandTestHarness(TestCase):
     self.get_yaml_entry(self.command)
 
   def test_invoke_uses_correct_path(self):
-    self.cmd_mgr.invoke(self.command)
+    self.cmd_mgr.invoke(self.command, self.overload)
     method = getattr(self.path_manager, self.config[yaml_keys.PATH_METHOD])
     method.assert_called_once_with()
 
   def test_successful_system_calls(self):
     self.proc_manager.exit_code = 0
-    self.cmd_mgr.invoke(self.command, overload=self.overload)
+    self.cmd_mgr.invoke(self.command, self.overload)
 
     expected_commands = self.get_coerced_from_string_commands()
-    self.proc_manager.spawn.assert_called_once_with(expected_commands)
-
-  @patch(patchbay.EXTERNAL_COMMANDS_OS_ENVIRON)
-  def test_successful_overload(self, mock_environ):
-    mock_setter = Mock()
-    mock_environ.return_value = os.environ
-    mock_environ.__getitem__.side_effect = os.environ.__getitem__
-    mock_environ.__setitem__ = mock_setter
-
-    if self.overload:
-
-      overload_string = " ".join(self.overload)
-      self.proc_manager.exit_code = 0
-      self.cmd_mgr.invoke(self.command, overload=self.overload)
-      mock_setter.called_once_with(
-          config.ENV_OVERLOAD_ARGUMENTS,
-          overload_string,
-      )
+    self.proc_manager.spawn.assert_called_once_with(
+        expected_commands, self.overload
+    )
 
   def test_successful_results(self):
     self.proc_manager.exit_code = 0
-    result = self.cmd_mgr.invoke(self.command)
+    result = self.cmd_mgr.invoke(self.command, self.overload)
     self.assertEqual(
         self.cmd_mgr.process_manager.exit_code, self.proc_manager.exit_code
     )
@@ -103,13 +87,15 @@ class CommandTestHarness(TestCase):
 
   def test_unsuccessful_system_calls(self):
     self.proc_manager.exit_code = 1
-    self.cmd_mgr.invoke(self.command)
+    self.cmd_mgr.invoke(self.command, self.overload)
     expected_commands = self.get_coerced_from_string_commands()
-    self.proc_manager.spawn.assert_called_once_with(expected_commands)
+    self.proc_manager.spawn.assert_called_once_with(
+        expected_commands, self.overload
+    )
 
   def test_unsuccessful_results(self):
     self.proc_manager.exit_code = 1
-    result = self.cmd_mgr.invoke(self.command)
+    result = self.cmd_mgr.invoke(self.command, self.overload)
     self.assertEqual(
         self.cmd_mgr.process_manager.exit_code, self.proc_manager.exit_code
     )
