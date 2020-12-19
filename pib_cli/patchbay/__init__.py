@@ -23,13 +23,13 @@ CONFIGURATION_MANAGER_GET_CONFIG_PATH_METHOD = (
     'pib_cli.support.configuration.ConfigurationManager.get_config_path_method')
 
 EXTERNAL_COMMANDS_OS_ENVIRON = 'pib_cli.support.external_commands.os.environ'
-EXTERNAL_COMMANDS_OS_PATH_EXISTS = (
-    'pib_cli.support.external_commands.os.path.exists')
 EXTERNAL_COMMANDS_PATH_MANAGER = (
     'pib_cli.support.external_commands.PathManager')
 EXTERNAL_COMMANDS_PROCESS_MANAGER = (
     'pib_cli.support.external_commands.ProcessManager')
-EXTERNAL_COMMANDS_SETUP_BASH = (
-    'pib_cli.support.external_commands.ExternalCommands.setup_bash')
-EXTERNAL_COMMANDS_SHUTIL_COPY = (
-    'pib_cli.support.external_commands.shutil.copy')
+
+INTERNAL_COMMANDS_OS_PATH_EXISTS = (
+    'pib_cli.support.internal_commands.os.path.exists')
+INTERNAL_COMMANDS_SHUTIL_COPY = (
+    'pib_cli.support.internal_commands.shutil.copy')
+INTERNAL_COMMANDS_SETUP_BASH = ('pib_cli.support.internal_commands.setup_bash')

@@ -4,6 +4,7 @@ import sys
 
 import click
 
+from .support import internal_commands
 from .support.external_commands import ExternalCommands
 
 
@@ -83,8 +84,7 @@ def security_tests():
 @cli.command("setup-bash")
 def setup_bash():
   """Setup Bash Environment"""
-  command_manager = ExternalCommands()
-  result = command_manager.setup_bash()
+  result = internal_commands.setup_bash()
   click.echo(result)
 
 

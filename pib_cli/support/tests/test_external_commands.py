@@ -1,14 +1,11 @@
 """Tests for External Command Invocations"""
 
-import glob
-import os
-from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
 from config import yaml_keys
 
-from ... import config, patchbay, project_root
+from ... import config, patchbay
 from ..configuration import ConfigurationManager
 from ..external_commands import ExternalCommands
 from ..paths import PathManager
@@ -73,37 +70,6 @@ class TestCommandClass(TestCase):
         raised_error.exception.args[0],
         expected_exception,
     )
-
-  @patch(patchbay.EXTERNAL_COMMANDS_SHUTIL_COPY)
-  @patch(patchbay.EXTERNAL_COMMANDS_OS_PATH_EXISTS)
-  def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
-    mock_exists.return_value = True
-    self.commands.setup_bash()
-    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
-    for file_name in bash_files:
-      mock_copy.assert_any_call(file_name, str(Path.home()))
-    self.assertEqual(len(bash_files), mock_copy.call_count)
-
-  @patch(patchbay.EXTERNAL_COMMANDS_SHUTIL_COPY)
-  @patch(patchbay.EXTERNAL_COMMANDS_OS_PATH_EXISTS)
-  def test_setup_bash_output(self, mock_exists, _):
-    mock_exists.return_value = True
-    result = self.commands.setup_bash()
-    home_dir = str(Path.home())
-    expected_results = []
-    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
-    for file_name in bash_files:
-      expected_results.append(f"Copied: {file_name} -> {home_dir} ")
-    expected_results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
-    self.assertEqual(result, "\n".join(expected_results))
-
-  @patch(patchbay.EXTERNAL_COMMANDS_SHUTIL_COPY)
-  @patch(patchbay.EXTERNAL_COMMANDS_OS_PATH_EXISTS)
-  def test_setup_bash_outside_container(self, mock_exists, mock_copy):
-    mock_exists.return_value = False
-    results = self.commands.setup_bash()
-    mock_copy.assert_not_called()
-    self.assertEqual(results, config.ERROR_CONTAINER_ONLY)
 
 
 class TestBuildDocs(CommandTestHarness):
