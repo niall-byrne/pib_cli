@@ -5,9 +5,9 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 import yaml
+from config import yaml_keys
 
 from ... import config_filename, patchbay
-from .. import yaml_keys
 from ..commands import Commands
 
 

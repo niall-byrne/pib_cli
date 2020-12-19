@@ -7,9 +7,9 @@ from unittest import TestCase
 from unittest.mock import patch
 
 import yaml
+from config import yaml_keys
 
 from ... import config, config_filename, patchbay, project_root
-from .. import yaml_keys
 from ..commands import Commands
 from ..paths import PathManager
 from ..processes import ProcessManager

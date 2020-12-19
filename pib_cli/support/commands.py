@@ -6,9 +6,9 @@ import shutil
 from pathlib import Path
 
 import yaml
+from config import yaml_keys
 
 from .. import config, config_filename, project_root
-from . import yaml_keys
 from .container import ContainerManager
 from .paths import PathManager
 from .processes import ProcessManager
