@@ -11,6 +11,7 @@ from .processes import ProcessManager
 
 
 class ExternalCommands:
+  """Methods for managing external yaml configured commands."""
 
   def __init__(self):
     self.process_manager = ProcessManager()
@@ -18,16 +19,37 @@ class ExternalCommands:
     self.configuration_manager = ConfigurationManager()
 
   def __change_directory(self):
+    """Extracts the correct :class:`pib_cli.support.paths.PathManager` method
+    from the yaml configuration and calls it.
+    """
     yaml_path_method = self.configuration_manager.get_config_path_method()
     goto_path = getattr(self.path_manager, yaml_path_method)
     goto_path()
 
   def __spawn_commands(self, overload):
+    """Extracts the correct series of commands from the yaml configuration.
+
+    (calls :func:`pib_cli.support.processes.ProcessManager.spawn`)
+
+    :param overload: Extra overloaded arguments specified at the CLI
+    :type overload: tuple[basestring]
+    :returns: The resulting exit code of the process
+    :rtype: int
+    """
     yaml_commands = self.configuration_manager.get_config_commands()
     self.process_manager.spawn(yaml_commands, overload)
     return self.process_manager.exit_code
 
   def invoke(self, command, overload):
+    """Reads the yaml configuration of the given command, and executes it.
+
+    :param command: The name of the yaml configured command to execute
+    :type command: basestring
+    :param overload: Extra overloaded arguments specified at the CLI
+    :type overload: tuple[basestring]
+    :returns: The response message from the yaml configuration
+    :rtype: basestring
+    """
     self.configuration_manager.find_config_entry(command)
 
     if not self.configuration_manager.is_config_executable():
@@ -41,10 +63,12 @@ class ExternalCommands:
 
 
 def execute_external_command(commands, overload=None):
-  """Executes a batch of external commands.
+  """Executes a batch of yaml configured commands.
 
-  commands: A list of commands to be executed
-  overload: Additional parameters which will be inserted into the environment
+  :param commands: A list of commands to be executed
+  :type commands: list[basestring]
+  :param overload: Extra overloaded arguments specified at the CLI
+  :type overload: tuple[basestring]
   """
 
   command_manager = ExternalCommands()

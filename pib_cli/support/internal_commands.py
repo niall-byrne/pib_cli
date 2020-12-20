@@ -10,8 +10,15 @@ from .container import ContainerManager
 
 
 def setup_bash():
+  """Configures the BASH environment for a development container.
+
+  :returns: A success message, if the command completes sucessfully.
+  :rtype: basestring
+  """
+
   if not ContainerManager.is_container():
     return config.ERROR_CONTAINER_ONLY
+
   results = []
   bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
   home_dir = str(Path.home())

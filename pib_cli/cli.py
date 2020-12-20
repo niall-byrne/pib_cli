@@ -30,10 +30,10 @@ def build_wheel():
         help_option_names=[],
     ),
 )
-@click.argument('options', nargs=-1)
-def coverage(options):
+@click.argument('extra_options', nargs=-1)
+def coverage(extra_options):
   """Run Code Coverage"""
-  execute_external_command(['coverage'], overload=options)
+  execute_external_command(['coverage'], overload=extra_options)
 
 
 @cli.command("fmt")
@@ -82,7 +82,7 @@ def setup_environment(ctx):
         help_option_names=[],
     ),
 )
-@click.argument('options', nargs=-1)
-def unittests(options):
+@click.argument('extra_options', nargs=-1)
+def unittests(extra_options):
   """Run Unittests"""
-  execute_external_command(['test'], overload=options)
+  execute_external_command(['test'], overload=extra_options)
