@@ -4,6 +4,8 @@
 
 CLI for Python in a Box
 
+[Project Documentation](https://python-in-a-box-cli.readthedocs.io/en/latest/)
+
 ### Develop Branch
 [![pib_cli-automation](https://github.com/niall-byrne/python-in-a-box-cli/workflows/pib_cli%20Automation/badge.svg?branch=develop)](https://github.com/niall-byrne/python-in-a-box-cli/actions)
 
