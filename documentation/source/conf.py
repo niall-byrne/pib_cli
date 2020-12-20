@@ -9,10 +9,6 @@
 import os
 import sys
 
-from m2r import MdInclude
-from recommonmark.parser import CommonMarkParser
-from recommonmark.transform import AutoStructify
-
 if os.path.exists('/app'):
     sys.path.insert(0, os.path.abspath('/app'))
 if os.path.exists('../../pib_cli'):
@@ -36,13 +32,11 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
     'sphinx_click.ext',
-    'recommonmark',
+    'm2r2',
 ]
 
 source_suffix = {
     '.rst': 'restructuredtext',
-    '.txt': 'markdown',
-    ".md": CommonMarkParser
 }
 
 # Add any paths that contain templates here, relative to this directory.
@@ -66,20 +60,3 @@ html_theme = 'haiku'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_theme_options = {'body_max_width': '100%'}
-
-
-def setup(app):
-    config = {
-        # 'url_resolver': lambda url: github_doc_root + url,
-        'auto_toc_tree_section': 'Contents',
-        'enable_eval_rst': True,
-    }
-    app.add_config_value('recommonmark_config', config, True)
-    app.add_transform(AutoStructify)
-
-    # from m2r to make `mdinclude` work
-    app.add_config_value('no_underscore_emphasis', False, 'env')
-    app.add_config_value('m2r_parse_relative_links', False, 'env')
-    app.add_config_value('m2r_anonymous_references', False, 'env')
-    app.add_config_value('m2r_disable_inline_math', False, 'env')
-    app.add_directive('mdinclude', MdInclude)
