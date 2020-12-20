@@ -31,10 +31,11 @@ author = 'Niall Byrne'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'sphinx.ext.autodoc',
+    'sphinx_click.ext',
     'recommonmark',
 ]
 
@@ -65,6 +66,7 @@ html_theme = 'haiku'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_theme_options = {'body_max_width': '100%'}
+
 
 def setup(app):
     config = {
