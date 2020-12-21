@@ -51,23 +51,10 @@ RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 # Set the runtime user
 USER user
 
-# Setup The Dev CLI, and Install all Packages
-RUN python setup.py install --user   && \
-    /home/user/.local/bin/dev setup-bash
+# Setup The Dev CLI
+RUN python setup.py install --user                    && \
+    /home/user/.local/bin/dev setup-bash              && \
+    /home/user/.local/bin/dev reinstall-requirements
 
-CMD ["./pib_cli/container_init.sh"]
-
-# ======================================================
-
-# Production Environment
-FROM base as production
-LABEL ENVIRONMENT=PRODUCTION
-ENV ENVIRONMENT=PRODUCTION
-
-# Install Production Packages Only
-RUN pip install -r /app/assets/requirements.txt
-
-# Set the runtime user
-USER user
 
 CMD ["./pib_cli/container_init.sh"]
