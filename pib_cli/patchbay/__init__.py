@@ -34,6 +34,7 @@ INTERNAL_COMMANDS_SETUP_BASH = 'pib_cli.support.internal_commands.setup_bash'
 INTERNAL_COMMANDS_SHUTIL_COPY = (
     'pib_cli.support.internal_commands.shutil.copy'
 )
+INTERNAL_COMMANDS_MODULE = 'pib_cli.support.internal_commands.globals'
 
 PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
 

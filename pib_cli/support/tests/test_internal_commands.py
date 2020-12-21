@@ -4,10 +4,39 @@ import glob
 import os
 from pathlib import Path
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import MagicMock, Mock, patch
 
 from ... import config, patchbay, project_root
-from ..internal_commands import setup_bash
+from ..internal_commands import execute_internal_command, setup_bash
+
+
+class TestExecuteInternalCommandFunction(TestCase):
+
+  def setUp(self):
+    self.mock_response = "Ready to Test"
+    self.test_commands = ["Test Command1", "Test Command2"]
+
+  def validate_calls(self, mock_click, mock_module):
+    for command in self.test_commands:
+      mock_module.__getitem__.assert_any_call(command)
+      mock_click.assert_any_call("Expected Response: " + command)
+
+  @patch(patchbay.INTERNAL_COMMANDS_MODULE)
+  @patch(patchbay.CLI_CLICK_ECHO)
+  def test_command_call_single(self, mock_click, mock_globals):
+    mock_module_dictionary = MagicMock()
+    mock_globals.return_value = mock_module_dictionary
+    mock_commands = Mock()
+
+    mock_module_dictionary.__getitem__.return_value = mock_commands
+
+    responses = []
+    for command in self.test_commands:
+      responses.append("Expected Response: " + command)
+    mock_commands.side_effect = responses
+
+    execute_internal_command(self.test_commands)
+    self.validate_calls(mock_click, mock_module_dictionary)
 
 
 class TestSetupBash(TestCase):
