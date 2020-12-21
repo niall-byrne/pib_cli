@@ -56,3 +56,12 @@ where `location_string` is one of:
 - `project_root` (`/app`)
 - `project_docs` (`/app/documentation`)
 - `project_home` (`/app/${PROJECT_HOME}`)
+
+## Installing a virtual environment on your host machine
+
+A script `hostmachine.sh` is located in the `scripts` folder that does this for you.
+
+It will use `pipenv` to create a virtual environment and install both requirements files in the assets folder.  
+This is useful if you want to make your local IDE aware of what's installed.
+
+(`pip install pipenv` or `brew install pipenv`, may be necessary on your system.)
