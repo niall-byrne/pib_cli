@@ -86,6 +86,7 @@ jobs:
 
     - name: Production -- Create Release
       if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -98,6 +99,27 @@ jobs:
           - [ ] Ensure unnecessary alerts are ignored/disabled
         draft: true
         prerelease: false
+
+    - name: Production -- Build Wheel
+      if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      run: |
+        docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'dev build-wheel'
+        cd dist
+          WHEEL_NAME=$(ls *.whl)
+        cd ..
+        echo "WHEEL_NAME=${WHEEL_NAME}" >> $GITHUB_ENV
+
+    - name: Production -- Upload Release Asset
+      if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/${{ env.WHEEL_NAME }}
+        asset_name: ${{ env.WHEEL_NAME }}
+        asset_content_type: application/zip
 
     - name: Production -- Report Success
       if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
