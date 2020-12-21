@@ -70,11 +70,11 @@ class TestReinstallRequirements(CommandTestHarness):
 class TestSetupBash(CommandTestHarness):
   __test__ = True
   invocation_command = ['setup-bash']
-  python_commands = ['setup-bash']
+  internal_commands = ['setup_bash']
 
 
 class TestSetup(CommandTestHarness):
   __test__ = True
   invocation_command = ['setup']
-  python_commands = ['setup-bash']
+  internal_commands = ['setup_bash']
   external_commands = ['reinstall-requirements']

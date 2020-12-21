@@ -2,8 +2,8 @@
 
 import click
 
-from .support import internal_commands
 from .support.external_commands import execute_external_command
+from .support.internal_commands import execute_internal_command
 
 
 @click.group()
@@ -63,8 +63,7 @@ def security_tests():
 @cli.command("setup-bash")
 def setup_bash():
   """Setup Bash Environment"""
-  result = internal_commands.setup_bash()
-  click.echo(result)
+  execute_internal_command(["setup_bash"])
 
 
 @cli.command("setup")

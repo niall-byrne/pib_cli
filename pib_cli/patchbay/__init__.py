@@ -2,6 +2,7 @@
 
 CLI_CLICK_ECHO = 'pib_cli.cli.click.echo'
 CLI_EXECUTE_EXTERNAL_COMMAND = 'pib_cli.cli.execute_external_command'
+CLI_EXECUTE_INTERNAL_COMMAND = 'pib_cli.cli.execute_internal_command'
 
 CONTAINER_MANAGER_IS_CONTAINER = (
     'pib_cli.support.container.ContainerManager.is_container'
@@ -30,7 +31,6 @@ EXTERNAL_COMMANDS = 'pib_cli.support.external_commands.ExternalCommands'
 INTERNAL_COMMANDS_OS_PATH_EXISTS = (
     'pib_cli.support.internal_commands.os.path.exists'
 )
-INTERNAL_COMMANDS_SETUP_BASH = 'pib_cli.support.internal_commands.setup_bash'
 INTERNAL_COMMANDS_SHUTIL_COPY = (
     'pib_cli.support.internal_commands.shutil.copy'
 )
