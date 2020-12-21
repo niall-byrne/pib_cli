@@ -95,8 +95,6 @@ jobs:
         release_name: Release ${{ env.BRANCH_OR_TAG }}
         body: |
           ${{ steps.Changelog.outputs.changelog }}
-          ## Deployment Checklist
-          - [ ] Ensure unnecessary alerts are ignored/disabled
         draft: true
         prerelease: false
 
