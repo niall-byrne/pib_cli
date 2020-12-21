@@ -34,7 +34,13 @@ INTERNAL_COMMANDS_OS_PATH_EXISTS = (
 INTERNAL_COMMANDS_SHUTIL_COPY = (
     'pib_cli.support.internal_commands.shutil.copy'
 )
-INTERNAL_COMMANDS_MODULE = 'pib_cli.support.internal_commands.globals'
+INTERNAL_COMMANDS_CLASS = 'pib_cli.support.internal_commands.InternalCommands'
+INTERNAL_COMMANDS_EXTERNAL_COMMAND_EXECUTOR = (
+    'pib_cli.support.internal_commands.execute_external_command'
+)
+INTERNAL_COMMANDS_SPAWN = (
+    'pib_cli.support.internal_commands.ProcessManager.spawn'
+)
 
 PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
 

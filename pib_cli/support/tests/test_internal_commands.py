@@ -4,48 +4,58 @@ import glob
 import os
 from pathlib import Path
 from unittest import TestCase
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 from ... import config, patchbay, project_root
-from ..internal_commands import execute_internal_command, setup_bash
+from ..internal_commands import InternalCommands, execute_internal_command
+from ..paths import PathManager
+from ..processes import ProcessManager
 
 
 class TestExecuteInternalCommandFunction(TestCase):
 
   def setUp(self):
     self.mock_response = "Ready to Test"
-    self.test_commands = ["Test Command1", "Test Command2"]
+    self.test_commands = ["Test_Command1", "Test_Command2"]
 
-  def validate_calls(self, mock_click, mock_module):
+  def validate_calls(self, mock_click, mock_commands):
     for command in self.test_commands:
-      mock_module.__getitem__.assert_any_call(command)
+      mock_command = getattr(mock_commands.return_value, command)
+      mock_command.assert_called_once_with()
       mock_click.assert_any_call("Expected Response: " + command)
 
-  @patch(patchbay.INTERNAL_COMMANDS_MODULE)
+  @patch(patchbay.INTERNAL_COMMANDS_CLASS)
   @patch(patchbay.CLI_CLICK_ECHO)
-  def test_command_call_single(self, mock_click, mock_globals):
-    mock_module_dictionary = MagicMock()
-    mock_globals.return_value = mock_module_dictionary
-    mock_commands = Mock()
+  def test_command_call_single(self, mock_click, mock_commands):
 
-    mock_module_dictionary.__getitem__.return_value = mock_commands
+    mock_internal_command_class = Mock()
 
-    responses = []
     for command in self.test_commands:
-      responses.append("Expected Response: " + command)
-    mock_commands.side_effect = responses
+      command_mock = Mock()
+      command_mock.return_value = "Expected Response: " + command
+      setattr(mock_internal_command_class, command, command_mock)
 
+    mock_commands.return_value = mock_internal_command_class
     execute_internal_command(self.test_commands)
-    self.validate_calls(mock_click, mock_module_dictionary)
+    self.validate_calls(mock_click, mock_commands)
 
 
-class TestSetupBash(TestCase):
+class TestInternalCommands(TestCase):
+
+  def setUp(self):
+    self.internal_commands = InternalCommands()
+
+  def test_initial_instance_variables(self):
+    self.assertIsInstance(
+        self.internal_commands.process_manager, ProcessManager
+    )
+    self.assertIsInstance(self.internal_commands.path_manager, PathManager)
 
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
     mock_exists.return_value = True
-    setup_bash()
+    self.internal_commands.setup_bash()
     bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
     for file_name in bash_files:
       mock_copy.assert_any_call(file_name, str(Path.home()))
@@ -55,7 +65,7 @@ class TestSetupBash(TestCase):
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_output(self, mock_exists, _):
     mock_exists.return_value = True
-    result = setup_bash()
+    result = self.internal_commands.setup_bash()
     home_dir = str(Path.home())
     expected_results = []
     bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
@@ -68,6 +78,6 @@ class TestSetupBash(TestCase):
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_outside_container(self, mock_exists, mock_copy):
     mock_exists.return_value = False
-    results = setup_bash()
+    results = self.internal_commands.setup_bash()
     mock_copy.assert_not_called()
     self.assertEqual(results, config.ERROR_CONTAINER_ONLY)
