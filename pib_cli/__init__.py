@@ -20,4 +20,10 @@ def get_config_file_name():
   return os.path.join(project_root, "config/config.yml")
 
 
+def check_project_name():
+  if config.ENV_PROJECT_NAME not in os.environ:
+    raise KeyError(config.ERROR_PROJECT_NAME_NOT_SET)
+
+
+check_project_name()
 config_filename = get_config_file_name()
