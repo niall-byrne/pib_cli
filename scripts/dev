@@ -3,7 +3,7 @@
 
 autocomplete() {
 
-  if command -v pib_cli 2>&1 >/dev/null; then
+  if command -v pib_cli >/dev/null 2>&1; then
     eval "$(_PIB_CLI_COMPLETE=source_bash pib_cli)"
     eval "$(_DEV_COMPLETE=source_bash dev)"
   fi
