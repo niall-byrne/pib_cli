@@ -18,6 +18,7 @@ setup_python() {
     source_environment
       pip install -r assets/requirements.txt
       pip install -r assets/requirements-dev.txt
+      pip install pib_cli
     unvirtualize
   popd  > /dev/null
 
