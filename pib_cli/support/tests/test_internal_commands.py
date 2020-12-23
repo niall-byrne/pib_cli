@@ -8,7 +8,7 @@ from unittest.mock import Mock, patch
 
 from ... import config, patchbay, project_root
 from ..internal_commands import InternalCommands, execute_internal_command
-from ..paths import PathManager
+from ..paths import ContainerPathManager
 from ..processes import ProcessManager
 
 
@@ -43,13 +43,16 @@ class TestExecuteInternalCommandFunction(TestCase):
 class TestInternalCommands(TestCase):
 
   def setUp(self):
-    self.internal_commands = InternalCommands()
+    with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
+      self.internal_commands = InternalCommands()
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(
         self.internal_commands.process_manager, ProcessManager
     )
-    self.assertIsInstance(self.internal_commands.path_manager, PathManager)
+    self.assertIsInstance(
+        self.internal_commands.path_manager, ContainerPathManager
+    )
 
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)

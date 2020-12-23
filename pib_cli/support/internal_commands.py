@@ -9,7 +9,7 @@ import click
 
 from .. import config, project_root
 from .container import ContainerManager
-from .paths import PathManager
+from .paths import get_path_manager
 from .processes import ProcessManager
 
 
@@ -17,7 +17,7 @@ class InternalCommands:
 
   def __init__(self):
     self.process_manager = ProcessManager()
-    self.path_manager = PathManager()
+    self.path_manager = get_path_manager()
 
   def setup_bash(self):
     """Configures the BASH environment for a development container.

@@ -49,7 +49,7 @@ class CommandTestHarness(TestCase):
     with open(config_filename) as file_handle:
       cls.yaml = yaml.safe_load(file_handle)
 
-  @patch(patchbay.EXTERNAL_COMMANDS_PATH_MANAGER)
+  @patch(patchbay.PATH_MANAGER_CONTAINER_PATH_MANAGER)
   @patch(patchbay.EXTERNAL_COMMANDS_PROCESS_MANAGER)
   def setUp(self, mock_proc, mock_path):  # pylint: disable=arguments-differ
     self.command = self.__class__.command
@@ -60,7 +60,9 @@ class CommandTestHarness(TestCase):
     mock_path.return_value = self.path_manager
     mock_proc.return_value = self.proc_manager
 
-    self.cmd_mgr = ExternalCommands()
+    with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
+      self.cmd_mgr = ExternalCommands()
+
     self.get_yaml_entry(self.command)
 
   def test_invoke_uses_correct_path(self):

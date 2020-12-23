@@ -81,6 +81,18 @@ class TestConfigurationManager(TestCase):
     )
 
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
+  def test_inside_container_is_config_executable(self, mock_container):
+    mock_container.return_value = True
+    path_method = 'non_existent'
+    command_name = 'test_command'
+    commands = ["Some Commands"]
+    container_only = True
+    self.yaml_test_data(path_method, command_name, commands, container_only)
+
+    self.configuration_manager.find_config_entry(command_name)
+    self.assertTrue(self.configuration_manager.is_config_executable())
+
+  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
   def test_outside_container_is_config_executable_false(self, mock_container):
     mock_container.return_value = False
     path_method = 'non_existent'

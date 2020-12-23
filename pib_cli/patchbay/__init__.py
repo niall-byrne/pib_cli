@@ -19,9 +19,6 @@ CONFIGURATION_MANAGER_GET_CONFIG_PATH_METHOD = (
     'pib_cli.support.configuration.ConfigurationManager.get_config_path_method'
 )
 
-EXTERNAL_COMMANDS_PATH_MANAGER = (
-    'pib_cli.support.external_commands.PathManager'
-)
 EXTERNAL_COMMANDS_PROCESS_MANAGER = (
     'pib_cli.support.external_commands.ProcessManager'
 )
@@ -43,6 +40,10 @@ INTERNAL_COMMANDS_SPAWN = (
 )
 
 PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
+PATH_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.paths.os.path.exists'
+PATH_MANAGER_CONTAINER_PATH_MANAGER = (
+    'pib_cli.support.paths.ContainerPathManager'
+)
 
 PROCESS_MANAGER_OS_ENVIRON = 'pib_cli.support.processes.os.environ'
 PROCESS_MANAGER_OS_SYSTEM = 'pib_cli.support.processes.os.system'

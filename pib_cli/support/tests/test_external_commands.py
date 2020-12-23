@@ -7,7 +7,7 @@ from ... import config, patchbay
 from ...config import yaml_keys
 from ..configuration import ConfigurationManager
 from ..external_commands import ExternalCommands, execute_external_command
-from ..paths import PathManager
+from ..paths import ContainerPathManager
 from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
 
@@ -80,11 +80,12 @@ class TestCommandClass(TestCase):
     }
 
   def setUp(self):
-    self.commands = ExternalCommands()
+    with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
+      self.commands = ExternalCommands()
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
-    self.assertIsInstance(self.commands.path_manager, PathManager)
+    self.assertIsInstance(self.commands.path_manager, ContainerPathManager)
     self.assertIsInstance(
         self.commands.configuration_manager, ConfigurationManager
     )
