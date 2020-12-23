@@ -10,6 +10,8 @@ CLI for Python in a Box
 ### Master Branch
 [![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
 
+----
+
 ## Installation
 
 This CLI is designed to be installed inside a project created by the [Cookie Cutter](https://github.com/cookiecutter/cookiecutter) template:
