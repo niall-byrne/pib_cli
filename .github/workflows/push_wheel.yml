@@ -69,8 +69,10 @@ jobs:
       if: contains(github.ref, '/tags/v') == true
       run: |
         git checkout .  # Reset file modes
-        VALID_RELEASE="$(git diff origin/master)"
-        echo "VALID_RELEASE=${VALID_RELEASE}" >> $GITHUB_ENV
+        VALID_RELEASE=$(git diff origin/master)
+        echo 'VALID_RELEASE<<EOF' >> $GITHUB_ENV
+        echo "${VALID_RELEASE}" >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
 
     - name: Releases -- Prepare Release Content
       if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
