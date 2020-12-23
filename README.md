@@ -1,6 +1,4 @@
-# Project Documentation
-
-## PIB CLI
+# PIB CLI
 
 CLI for Python in a Box
 
@@ -23,13 +21,33 @@ To install, simply use: `pip install pib_cli`
 
 - use the `dev` command for details once inside the container
 
+## Container
+
+[python:3.7-slim](https://github.com/docker-library/python/tree/master/3.7/buster/slim)
+
+## License
+
+[MPL-2](LICENSE)
+
+## Installed Packages:
+| package | Description                                                 |
+|---------|-------------------------------------------------------------|
+| bandit  | Finds common security issues                                |
+| commitizen | Standardizes commit messages                             |
+| isort   | Sorts imports                                               |               
+| pylint  | Static Code Analysis                                        |
+| pytest  | Test suite                                                  |
+| pytest-cov | Coverage support for pytest                              |
+| sphinx  | Generating documentation                                    |
+| safety  | Dependency vulnerability scanning                           |
+| wheel   | Package distribution tools                                  |
+| yapf    | Customizable Code Formatting                                |
+
 ## Customizing the Command Line Interface
 
-Configuring the CLI:
-
 The CLI has some defaults built in, but is customizable by setting the `PIB_CONFIG_FILE_LOCATION` environment variable.
+The default config file can be found [here](pib_cli/config/config.yml).
 
-The config file itself is yaml.  
 Each command is described by a yaml key in this format :
 ```yaml
 - name: "command-name"
@@ -49,7 +67,7 @@ where `location_string` is one of:
 
 ## Installing a virtual environment on your host machine
 
-The `scripts/hostmachine.sh` script does this for you.
+The [scripts/hostmachine.sh](scripts/hostmachine.sh) script does this for you.
 
 It will use `pipenv` to create a virtual environment and install both requirements files in the assets folder.  
 This is useful if you want to make your local IDE aware of what's installed.
