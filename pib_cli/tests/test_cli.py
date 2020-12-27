@@ -1,4 +1,4 @@
-"""Test the CLI"""
+"""Test the CLI Invocation"""
 
 from .fixtures import CommandTestHarness
 

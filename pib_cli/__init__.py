@@ -1,4 +1,4 @@
-"""Find and Load Configuration"""
+"""Initial Environment Setup and Discovery"""
 
 import os
 import pathlib

@@ -1,4 +1,4 @@
-"""Test the Process Manager"""
+"""Tests for the Process Manager"""
 
 import os
 from unittest import TestCase

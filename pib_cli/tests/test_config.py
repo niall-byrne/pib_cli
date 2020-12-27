@@ -1,4 +1,4 @@
-"""Test the Configuration File"""
+"""Test the Intial Environment and Discovery Functions"""
 
 import os
 from unittest import TestCase

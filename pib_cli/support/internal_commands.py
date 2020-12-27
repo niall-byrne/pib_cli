@@ -1,4 +1,4 @@
-"""CLI External Command Management Class"""
+"""CLI Internal Command Management Class"""
 
 import glob
 import os
@@ -14,6 +14,7 @@ from .processes import ProcessManager
 
 
 class InternalCommands:
+  """Methods for implementing internal Python-based commands."""
 
   def __init__(self):
     self.process_manager = ProcessManager()

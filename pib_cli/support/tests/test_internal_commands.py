@@ -1,4 +1,4 @@
-"""Tests for External Command Invocations"""
+"""Tests for Internal Commands"""
 
 import glob
 import os

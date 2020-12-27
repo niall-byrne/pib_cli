@@ -1,4 +1,4 @@
-"""Test the Container Manager Class"""
+"""Tests for the Container Manager Class"""
 
 from unittest import TestCase
 from unittest.mock import patch

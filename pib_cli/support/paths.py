@@ -14,6 +14,7 @@ def get_path_manager():
 
 
 class BasePathManager(abc.ABC):
+  """The Path Manager Interface"""
 
   @abc.abstractmethod
   def project_root(self):

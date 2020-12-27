@@ -1,4 +1,4 @@
-"""Test Fixtures"""
+"""Test Fixtures for the CLI Commands"""
 
 from unittest import TestCase
 from unittest.mock import patch

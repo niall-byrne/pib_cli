@@ -1,4 +1,4 @@
-"""Test the Path Manager"""
+"""Tests for the Path Manager"""
 
 import os
 from unittest import TestCase

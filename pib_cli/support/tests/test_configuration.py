@@ -1,4 +1,4 @@
-"""Tests for Configuration Manager"""
+"""Tests for the Configuration Manager"""
 
 from unittest import TestCase
 from unittest.mock import patch

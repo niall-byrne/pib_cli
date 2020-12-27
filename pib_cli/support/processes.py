@@ -6,7 +6,7 @@ from .. import config
 
 
 class ProcessManager:
-  """Manages system calls to execute commands."""
+  """Manages system calls."""
 
   def __init__(self):
     self.exit_code = None
