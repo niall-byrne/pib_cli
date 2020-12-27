@@ -4,13 +4,11 @@ CLI for Python in a Box
 
 [Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
 
-### Develop Branch
+## Develop Branch
 [![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=develop)](https://github.com/niall-byrne/pib_cli/actions)
 
-### Master Branch
+## Master Branch
 [![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
-
-----
 
 ## Installation
 
