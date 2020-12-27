@@ -1,4 +1,4 @@
-"""Path Management Class"""
+"""Path Management Classes"""
 
 import abc
 import os
@@ -30,7 +30,7 @@ class BasePathManager(abc.ABC):
 
 
 class ContainerPathManager(BasePathManager):
-  """Manages changing location on the local file-system."""
+  """Manages changing location inside a dev container."""
 
   def __init__(self):
     self.root = os.path.join("/", config.SETTING_PROJECT_ROOT_NAME)
@@ -57,6 +57,7 @@ class ContainerPathManager(BasePathManager):
 
 
 class ExternalPathManager(BasePathManager):
+  """Manages changing location on the local file-system."""
 
   def __init__(self):
 
