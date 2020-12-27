@@ -21,7 +21,7 @@ setup_python() {
       pip install pib_cli
     unvirtualize
   popd  > /dev/null
-
+  echo "Pipenv Environment Location: $(pipenv --venv)"
 }
 
 source_environment() {
@@ -51,18 +51,24 @@ unvirtualize() {
     toggle=1
 
     if [[ -n "${-//[^e]/}" ]]; then set +e; else toggle=0; fi
-    if python -c 'import sys; sys.exit(0 if hasattr(sys, "real_prefix") else 1)'; then
-    deactivate_present=$(LC_ALL=C type deactivate 2>/dev/null)
-    if [[ -n ${deactivate_present} ]]; then
-      deactivate
-    else
-      exit
-    fi
-    fi
+      deactivate_present=$(LC_ALL=C type deactivate 2>/dev/null)
+      if [[ -n ${deactivate_present} ]]; then
+        deactivate
+      fi
     if [[ "${toggle}" == "1" ]]; then set -e; fi
 
   fi
 
 }
 
-setup_python
+conditional_source() {
+  if pipenv --venv >/dev/null 2>&1; then
+    pipenv shell 
+  else
+    setup_python
+    pipenv shell 
+  fi
+}
+
+export PROJECT_NAME="pib_cli"
+conditional_source
