@@ -1,6 +1,6 @@
 # PIB CLI
 
-CLI for Python in a Box
+A development environment CLI, complete with tooling.
 
 [Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
 
@@ -14,7 +14,9 @@ CLI for Python in a Box
 
 ## Installation
 
-This CLI is designed to be installed inside a project created by the [Cookie Cutter](https://github.com/cookiecutter/cookiecutter) template:
+This is a development environment CLI, with a customizable yaml config.
+
+It's built into this [Cookie Cutter](https://github.com/cookiecutter/cookiecutter) template:
 
 - [Python In A Box](https://github.com/shared-vision-solutions/python-in-a-box)
 
@@ -79,6 +81,12 @@ It will use `pipenv` to create a virtual environment and install both requiremen
 This is useful if you want to make your local IDE aware of what's installed.
 
 (`pip install pipenv` or `brew install pipenv` may be necessary on your system.)
+
+Executing the script will install (or re-install) a complete pipenv environment, with the following dependency files installed automatically:
+- [assets/requirements.txt](./assets/requirements.txt)
+- [assets/requirements-dev.txt](./assets/requirements-dev.txt)
+
+Running the script the `shell` argument, is a convenience wrapper around `pipenv shell`.
 
 ## Development Dependencies
 
