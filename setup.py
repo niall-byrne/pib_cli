@@ -23,7 +23,7 @@ setup(
   ''',
   long_description=long_description,
   long_description_content_type="text/markdown",
-  url="https://github.com/niall-byrne/pib_cli",
+  url="https://github.com/shared-vision-solutions/pib_cli",
   packages=packages,
   package_data={
     'pib_cli': [

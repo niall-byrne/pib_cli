@@ -3,6 +3,14 @@
 set -e
 
 ROOT="$(git rev-parse --show-toplevel)"
+ARG="${1}"
+
+conditional_source() {
+  if ! pipenv --venv >/dev/null 2>&1; then
+    setup_python
+  fi
+  spawn_shell
+}
 
 setup_python() {
 
@@ -44,6 +52,14 @@ source_environment() {
 
 }
 
+spawn_shell() {
+  if [[ "${ARG}" == "shell" ]]; then
+    pipenv shell
+  else
+    echo "Run this script with the *shell* argument to spawn a shell within the virtual environment."
+  fi
+}
+
 unvirtualize() {
 
   if [[ ! -f /etc/container_release ]]; then
@@ -59,15 +75,6 @@ unvirtualize() {
 
   fi
 
-}
-
-conditional_source() {
-  if pipenv --venv >/dev/null 2>&1; then
-    pipenv shell 
-  else
-    setup_python
-    pipenv shell 
-  fi
 }
 
 export PROJECT_NAME="pib_cli"
