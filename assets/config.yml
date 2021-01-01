@@ -1,0 +1,57 @@
+---
+- name: "build-docs"
+  path_method: "project_docs"
+  commands:
+    - "make html"
+  success: "Documentation Built"
+  failure: "Error Building Documentation"
+- name: "build-wheel"
+  path_method: "project_root"
+  commands:
+    - "python setup.py bdist_wheel"
+  success: "Wheel Built"
+  failure: "Error Building Wheel"
+- name: "coverage"
+  path_method: "project_root"
+  commands: |
+    pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}
+    EXIT_CODE="$?"
+    coverage html
+    exit "${EXIT_CODE}"
+  success: "Coverage Passed!"
+  failure: "Coverage Failed!"
+- name: "fmt"
+  path_method: "project_root"
+  commands:
+    - 'yapf -i --recursive --exclude "**/*_pb2.py" --style="{based_on_style: google, INDENT_WIDTH: 2, ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT: false, DEDENT_CLOSING_BRACKETS: true}" "${PROJECT_NAME}/"'
+    - 'isort "${PROJECT_NAME}"'
+  success: "Formatting Finished!"
+  failure: "Formatting Error!"
+- name: "lint"
+  path_method: "project_root"
+  commands:
+    - 'yamllint ${PROJECT_NAME}/config/ assets/ .github/workflows/'
+    - 'isort -c "${PROJECT_NAME}"'
+    - 'pytest --pylint --pylint-rcfile=.pylint.rc --pylint-jobs=2 "${PROJECT_NAME}"'
+  success: "Linter Test Passed!"
+  failure: "Linter Test Failed!"
+- name: "reinstall-requirements"
+  path_method: "project_root"
+  commands:
+    - "pip install -r assets/requirements.txt --no-warn-script-location"
+    - "pip install -r assets/requirements-dev.txt --no-warn-script-location"
+  success: "Reinstall Succeeded!"
+  failure: "Reinstall Failed!"
+- name: "sectest"
+  path_method: "project_root"
+  commands:
+    - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
+    - 'safety check'
+  success: "Security Test Passed!"
+  failure: "Security Test Failed!"
+- name: "test"
+  path_method: "project_root"
+  commands:
+    - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
+  success: "Unittests Passed!"
+  failure: "Unittests Failed!"

@@ -7,7 +7,7 @@ services:
       dockerfile: assets/Dockerfile
       target: development
     env_file:
-      - development.env
+      - assets/local.env
     volumes:
       - ${HOME}/.ssh:/home/user/.ssh
       - ${HOME}/.gitconfig:/home/user/.gitconfig
