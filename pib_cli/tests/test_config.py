@@ -9,6 +9,11 @@ from .. import check_project_name, config, get_config_file_name, project_root
 
 class TestGetConfigFileName(TestCase):
 
+  @patch.dict(
+      os.environ,
+      {},
+      clear=True,
+  )
   def test_no_override(self):
     result = get_config_file_name()
     assert result == os.path.join(project_root, "config", "config.yml")
