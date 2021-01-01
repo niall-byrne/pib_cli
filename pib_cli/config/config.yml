@@ -30,7 +30,7 @@
 - name: "lint"
   path_method: "project_root"
   commands:
-    - 'yamllint assets/ .github/workflows/'
+    - 'yamllint {*,.*}.yml assets/ .github/workflows/'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-rcfile=.pylint.rc --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"
