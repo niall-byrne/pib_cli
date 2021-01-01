@@ -12,7 +12,7 @@ packages.remove('pib_cli.tests')
 
 setup(
   name="pib_cli",
-  version="0.0.3",
+  version="0.0.4",
   author="Niall Byrne",
   author_email="niall@niallbyrne.ca",
   description="CLI for Python in a Box",
