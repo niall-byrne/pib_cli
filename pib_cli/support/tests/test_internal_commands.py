@@ -59,9 +59,11 @@ class TestInternalCommands(TestCase):
   def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
     mock_exists.return_value = True
     self.internal_commands.setup_bash()
-    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
+    bash_files = glob.glob(os.path.join(project_root, "bash", "*"))
+    home_dir = str(Path.home())
     for file_name in bash_files:
-      mock_copy.assert_any_call(file_name, str(Path.home()))
+      dotted_name = "." + os.path.basename(file_name)
+      mock_copy.assert_any_call(file_name, os.path.join(home_dir, dotted_name))
     self.assertEqual(len(bash_files), mock_copy.call_count)
 
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
@@ -71,9 +73,11 @@ class TestInternalCommands(TestCase):
     result = self.internal_commands.setup_bash()
     home_dir = str(Path.home())
     expected_results = []
-    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
+    bash_files = glob.glob(os.path.join(project_root, "bash", "*"))
     for file_name in bash_files:
-      expected_results.append(f"Copied: {file_name} -> {home_dir} ")
+      dotted_name = "." + os.path.basename(file_name)
+      destination = os.path.join(home_dir, dotted_name)
+      expected_results.append(f"Copied: {file_name} -> {destination} ")
     expected_results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     self.assertEqual(result, "\n".join(expected_results))
 

@@ -31,11 +31,13 @@ class InternalCommands:
       return config.ERROR_CONTAINER_ONLY
 
     results = []
-    bash_files = glob.glob(os.path.join(project_root, "bash", ".*"))
+    bash_files = glob.glob(os.path.join(project_root, "bash", "*"))
     home_dir = str(Path.home())
     for file_name in bash_files:
-      shutil.copy(file_name, home_dir)
-      results.append(f"Copied: {file_name} -> {home_dir} ")
+      dotted_name = "." + os.path.basename(file_name)
+      destination = os.path.join(home_dir, dotted_name)
+      shutil.copy(file_name, destination)
+      results.append(f"Copied: {file_name} -> {destination} ")
     results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     return "\n".join(results)
 
