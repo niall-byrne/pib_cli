@@ -38,15 +38,16 @@
 - name: "reinstall-requirements"
   path_method: "project_root"
   commands:
-    - "pip install -r assets/requirements.txt --no-warn-script-location"
-    - "pip install -r assets/requirements-dev.txt --no-warn-script-location"
+    - "poetry lock"
+    - "poetry export --without-hashes --dev -f requirements.txt | pip install -r /dev/stdin"
   success: "Reinstall Succeeded!"
   failure: "Reinstall Failed!"
 - name: "sectest"
   path_method: "project_root"
   commands:
     - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
-    - 'safety check'
+    - 'echo "\nPoetry is exporting the lockfile standby..."'
+    - 'poetry export --without-hashes --dev -f requirements.txt | safety check --stdin'
   success: "Security Test Passed!"
   failure: "Security Test Failed!"
 - name: "test"
