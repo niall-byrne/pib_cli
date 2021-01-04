@@ -142,3 +142,6 @@ override.env
 
 # Macs
 .DS_Store
+
+# Poetry
+poetry.lock
