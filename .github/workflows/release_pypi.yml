@@ -43,7 +43,7 @@ jobs:
 
       - name: Run Build Wheel
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'dev build-wheel'
+          docker-compose exec -T "${PROJECT_NAME}" dev build-wheel
 
       # START Continuous Deployment -- Customize this Section Depending on your strategy
 
