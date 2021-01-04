@@ -35,12 +35,12 @@ To install, simply use: `pip install pib_cli`
 [MPL-2](LICENSE)
 
 ## Installed Packages:
-
 | package    | Description                       |
 | ---------- | --------------------------------- |
 | bandit     | Finds common security issues      |
 | commitizen | Standardizes commit messages      |
 | isort      | Sorts imports                     |
+| poetry     | Python Package Manager            |
 | pylint     | Static Code Analysis              |
 | pytest     | Test suite                        |
 | pytest-cov | Coverage support for pytest       |
@@ -74,20 +74,20 @@ where `location_string` is one of:
 - `project_docs` (`/app/documentation`)
 - `project_home` (`/app/${PROJECT_HOME}`)
 
-## Installing a virtual environment on your host machine
+## Installing a virtual environment, and the CLI on your host machine
 
 The [scripts/hostmachine.sh](scripts/hostmachine.sh) script does this for you.
 
-It will use `pipenv` to create a virtual environment and install both requirements files in the assets folder.  
-This is useful if you want to make your local IDE aware of what's installed.
+First install [poetry](https://python-poetry.org/) on your host machine:
+- `pip install poetry`
 
-(`pip install pipenv` or `brew install pipenv` may be necessary on your system.)
+Then source this script, setup the hostmachine, and you can use the `dev` command on your host:
+- `source scripts/hostmachine.sh`
+- `pib_setup_hostmachine` (to install the poetry dependencies)  
+- `dev --help` (to run the cli outside the container)
 
-Executing the script will install (or re-install) a complete pipenv environment, with the following dependency files installed automatically:
-- [assets/requirements.txt](./assets/requirements.txt)
-- [assets/requirements-dev.txt](./assets/requirements-dev.txt)
-
-Running the script the `shell` argument, is a convenience wrapper around `pipenv shell`.
+It is still recommended to work inside the container, as you'll have access to the full managed python environment, 
+as well as any additional services you are running in containers.
 
 ## Development Dependencies
 
