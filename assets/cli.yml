@@ -8,7 +8,7 @@
 - name: "build-wheel"
   path_method: "project_root"
   commands:
-    - "python setup.py bdist_wheel"
+    - "poetry build"
   success: "Wheel Built"
   failure: "Error Building Wheel"
 - name: "coverage"
