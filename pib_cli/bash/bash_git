@@ -69,10 +69,7 @@ find_git_branch() {
       branch='detached*'
     fi
 
-    repository_name=$(git rev-parse --show-toplevel)
-    repository_name=$(basename "${repository_name}")
-
-    git_branch="[r:${Yellow}${repository_name}${NC}/b:${Cyan}${branch}${NC}]\n"
+    git_branch="[r:${Yellow}${PROJECT_NAME}${NC}/b:${Cyan}${branch}${NC}]\n"
   else
     git_branch=""
   fi
@@ -83,5 +80,3 @@ git_status() {
   find_git_dirty
   find_git_branch
 }
-
-PROMPT_COMMAND="git_status; $PROMPT_COMMAND"

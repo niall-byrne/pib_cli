@@ -1,23 +1,7 @@
 #!/bin/bash
 
-# Do Not Modify This File, It's Intended To Be Updated From Time to TIme
+# Do Not Modify This File, It's Intended To Be Updated From Time to Time
 # INSTEAD: add additional functionality though the .bash_customize file.
-
-PS1='${git_branch}\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# Terminal Colors
-if [[ -x /usr/bin/dircolors ]]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-set -e
-  source /home/user/.bash_customize
-  source /home/user/.bash_git
-set +e
 
 autocomplete() {
 
@@ -34,13 +18,21 @@ shellcheck_scripts() {
   find scripts -type f -exec shellcheck -x "{}" \;
 }
 
-dev_identifier() {
-  Cyan='\033[36m'         # Cyan
-  BRed='\033[31m'         # Red
-  BGreen='\033[32m'       # Green
-  NC="\\033[0m"            # Color Reset
-  echo -en "(${BGreen}pib_cli${NC})"
-}
+# Terminal Colors
+if [[ -x /usr/bin/dircolors ]]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+set -e
+  [[ -f /home/user/.bash_customize ]] && source /home/user/.bash_customize
+  [[ -f /home/user/.bash_git ]] && source /home/user/.bash_git
+set +e
 
 autocomplete
-PROMPT_COMMAND="dev_identifier; $PROMPT_COMMAND"
+
+PROMPT_COMMAND="git_status; $PROMPT_COMMAND"
+PS1='${git_branch}${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
