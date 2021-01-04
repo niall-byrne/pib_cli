@@ -41,18 +41,13 @@ jobs:
           docker-compose build
           docker-compose up -d
 
-      - name: Run Build Wheel
-        run: |
-          docker-compose exec -T "${PROJECT_NAME}" dev build-wheel
-
       # START Continuous Deployment -- Customize this Section Depending on your strategy
 
-      - name: Publish a Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          verbose: true
+      - name: Build and Publish
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" poetry publish --build --username __token__ --password "${PYPI_API_TOKEN}"
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
       # END Continuous Deployment -- Customize this Section Depending on your strategy
 
