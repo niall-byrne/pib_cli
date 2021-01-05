@@ -76,13 +76,13 @@ where `location_string` is one of:
 
 ## Installing a virtual environment, and the CLI on your host machine
 
-The [scripts/hostmachine.sh](scripts/hostmachine.sh) script does this for you.
+The [scripts/extras.sh](scripts/extras.sh) script does this for you.
 
 First install [poetry](https://python-poetry.org/) on your host machine:
 - `pip install poetry`
 
 Then source this script, setup the hostmachine, and you can use the `dev` command on your host:
-- `source scripts/hostmachine.sh`
+- `source scripts/extras.sh`
 - `pib_setup_hostmachine` (to install the poetry dependencies)  
 - `dev --help` (to run the cli outside the container)
 

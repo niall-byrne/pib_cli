@@ -71,7 +71,6 @@ build-backend = "poetry.core.masonry.api"
     [tool.poetry.scripts]
       pib_cli = 'pib_cli.cli:cli'
       dev = 'pib_cli.cli:cli'
-      pib_setup_hostmachine = 'pib_cli.cli.embedded:host_machine'
 
   [tool.pylint]
 
