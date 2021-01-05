@@ -10,17 +10,16 @@ import os
 import sys
 
 if os.path.exists('/app'):
-    sys.path.insert(0, os.path.abspath('/app'))
+  sys.path.insert(0, os.path.abspath('/app'))
 if os.path.exists('../../pib_cli'):
-    sys.path.insert(0, os.path.abspath('../..'))
-    sys.path.insert(0, os.path.abspath('../../pib_cli'))
+  sys.path.insert(0, os.path.abspath('../..'))
+  sys.path.insert(0, os.path.abspath('../../pib_cli'))
 
 # -- Project information -----------------------------------------------------
 project = 'pib_cli'
 copyright = '2020, Niall Byrne'
 author = 'Niall Byrne'
 os.environ['PROJECT_NAME'] = project
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -48,7 +47,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -60,4 +58,6 @@ html_theme = 'haiku'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_theme_options = {'body_max_width': '100%'}
+html_theme_options = {
+    'body_max_width': '100%'
+}
