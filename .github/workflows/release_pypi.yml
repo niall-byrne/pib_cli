@@ -22,6 +22,7 @@ jobs:
           echo "WEBHOOK_URL=${WEBHOOK_URL}" >> $GITHUB_ENV
           echo "PROJECT_NAME=pib_cli" >> $GITHUB_ENV
           echo "USERNAME=niall-byrne" >> $GITHUB_ENV
+          echo "CD_ENABLED=false" >> $GITHUB_ENV
 
         env:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
@@ -34,7 +35,7 @@ jobs:
 
       - name: Ensure File System is Writable by the Container
         run: |
-          sudo chmod -R 777 .
+          sudo chmod -R o+w .
 
       - name: Build Container
         run: |
@@ -50,7 +51,7 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
-      - name: Build and Publish
+      - name: Build and Publish a Python Package to PyPI
         if: env.CD_ENABLED == 'true'
         run: |
           docker-compose exec -T "${PROJECT_NAME}" poetry publish --build --username __token__ --password "${PYPI_API_TOKEN}"
