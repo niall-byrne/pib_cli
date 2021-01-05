@@ -8,6 +8,6 @@ formats: []
 python:
   version: 3.7
   install:
-    - requirements: ./assets/requirements.txt
-    - requirements: ./assets/requirements-dev.txt
+    - method: pip
+      path: .
   system_packages: false
