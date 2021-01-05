@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2034
 
 # Do Not Modify This File, It's Intended To Be Updated From Time to TIme
 # INSTEAD: add additional functionality though the .bash_customize file.
@@ -38,7 +39,7 @@ env_colors() {
     On_Cyan='\033[46m'        # Cyan
     On_White='\033[47m'       # White
 
-    NC="\033[0m"               # Color Reset
+    NC="\\033[0m"               # Color Reset
 }
 
 find_git_dirty() {
@@ -69,7 +70,7 @@ find_git_branch() {
       branch='detached*'
     fi
 
-    git_branch="[r:${Yellow}${PROJECT_NAME}${NC}/b:${Cyan}${branch}${NC}]\n"
+    git_branch="[r:${Yellow}${PROJECT_NAME}${NC}/b:${Cyan}${branch}${NC}]\\n"
   else
     git_branch=""
   fi
