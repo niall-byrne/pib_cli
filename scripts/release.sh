@@ -20,8 +20,9 @@ DIFF=$(git diff)
 echo "Checking Config ... "
 DIFF=$(diff assets/cli.yml pib_cli/config/config.yml)
 EXPECTED=$(cat << EOF
-34,35c34
-<     - 'shellcheck pib_cli/bash/* -x'
+34,36c34
+<     - 'shellcheck \${PROJECT_NAME}/bash/* -x'
+<     - 'shellcheck \${PROJECT_NAME}/container_init.sh'
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'

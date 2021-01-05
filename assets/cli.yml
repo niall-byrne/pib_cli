@@ -31,7 +31,8 @@
 - name: "lint"
   path_method: "project_root"
   commands:
-    - 'shellcheck pib_cli/bash/* -x'
+    - 'shellcheck ${PROJECT_NAME}/bash/* -x'
+    - 'shellcheck ${PROJECT_NAME}/container_init.sh'
     - 'yamllint *.yml .*.yml ${PROJECT_NAME}/config/ assets/ .github/workflows/'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
