@@ -104,7 +104,7 @@ jobs:
       - name: Production -- Build Wheel
         if: contains(github.ref, '/tags/v') == true && env.VALID_RELEASE == ''
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" bash -l -c 'dev build-wheel'
+          docker-compose exec -T "${PROJECT_NAME}" dev build-wheel
           cd dist
             WHEEL_NAME=$(ls *.whl)
           cd ..

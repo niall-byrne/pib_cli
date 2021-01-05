@@ -43,7 +43,15 @@ jobs:
 
       # START Continuous Deployment -- Customize this Section Depending on your strategy
 
+      - name: Is CD enabled?
+        if: env.PYPI_TOKEN != ''
+        run: |
+          echo "CD_ENABLED=true" >> $GITHUB_ENV
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+
       - name: Build and Publish
+        if: env.CD_ENABLED == 'true'
         run: |
           docker-compose exec -T "${PROJECT_NAME}" poetry publish --build --username __token__ --password "${PYPI_API_TOKEN}"
         env:
@@ -52,8 +60,14 @@ jobs:
       # END Continuous Deployment -- Customize this Section Depending on your strategy
 
       - name: Production -- Report Success
+        if: env.CD_ENABLED == 'true'
         run: |
           ./scripts/ci/slack.sh "${PROJECT_NAME}:${GITHUB_REF#refs/tags/}" "new release has been pushed to PyPi!"
+
+      - name: Production -- Report Success
+        if: env.CD_ENABLED != 'true'
+        run: |
+          ./scripts/ci/slack.sh "${PROJECT_NAME}:${GITHUB_REF#refs/tags/}" "new release wheel has been built, but CD is disabled for this repository!"
 
       - name: Production -- Report Failure
         if: failure() == true
