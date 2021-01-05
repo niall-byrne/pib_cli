@@ -31,16 +31,16 @@ build-backend = "poetry.core.masonry.api"
   [tool.poetry]
     authors = ["Niall Byrne <niall@niallbyrne.ca>"]
     description = "Python Development CLI"
-    documentation = "https://github.com/niall-byrne/pib_cli/README.md"
+    documentation = "https://github.com/shared-vision-solutions/pib_cli/blob/develop/README.md"
     exclude = ["**/tests/*", "**/*.sh"]
-    homepage = "https://github.com/niall-byrne/pib_cli"
+    homepage = "https://github.com/shared-vision-solutions/pib_cli"
     include = []
     keywords = []
     license = "MPL-2.0"
     name = "pib_cli"
     readme = "README.md"
-    repository = "https://github.com/niall-byrne/pib_cli"
-    version = "0.0.5"
+    repository = "https://github.com/shared-vision-solutions/pib_cli"
+    version = "0.0.6"
 
     [tool.poetry.dependencies]
       python = ">=3.7.0,<3.8.0"
