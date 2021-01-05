@@ -74,8 +74,8 @@ ENV ENVIRONMENT=PRODUCTION
 COPY . /app
 
 # Install Production Packages Only
-RUN pip install poetry
-RUN poetry install --no-dev --no-root
+RUN pip install poetry                                && \
+    poetry install --no-dev --no-root
 
 # Set the runtime user
 USER user
