@@ -38,7 +38,7 @@ jobs:
 
       - name: Ensure File System is Writable by the Container
         run: |
-          sudo chmod -R 777 .
+          sudo chmod -R o+w .
 
       - name: Build Container
         run: |
@@ -57,6 +57,10 @@ jobs:
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev coverage
 
+      - name: Run Release Validation
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" ./scripts/release.sh
+
       - name: Report Build Failures
         if: failure() == true
         run: |
@@ -69,7 +73,6 @@ jobs:
       - name: Releases -- Detect A Release Tag
         if: contains(github.ref, '/tags/v') == true
         run: |
-          git checkout .  # Reset file modes
           VALID_RELEASE=$(git diff origin/master)
           echo 'VALID_RELEASE<<EOF' >> $GITHUB_ENV
           echo "${VALID_RELEASE}" >> $GITHUB_ENV
@@ -98,6 +101,11 @@ jobs:
           release_name: Release ${{ env.BRANCH_OR_TAG }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
+            ## Release Checklist
+            - [ ] Has the wheel been tested inside PIB ?
+            - [ ] Does the host machine install function as expected ?
+            - [ ] Does the bash environment work correctly ?
+            - [ ] Does the documentation look correct ?
           draft: true
           prerelease: false
 
