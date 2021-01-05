@@ -9,7 +9,8 @@ autocomplete() {
     eval "$(_PIB_CLI_COMPLETE=source_bash pib_cli)"
     eval "$(_DEV_COMPLETE=source_bash dev)"
   fi
-  
+
+  # shellcheck source=/dev/null
   [[ -f /usr/share/bash-completion/completions/git ]] && source /usr/share/bash-completion/completions/git
 
 }
@@ -31,7 +32,7 @@ fi
 set -e
   # shellcheck source=/dev/null
   [[ -f /home/user/.bash_customize ]] && source /home/user/.bash_customize
-  # shellcheck source=pib_cli/bash/bashrc
+  # shellcheck source=/dev/null
   [[ -f /home/user/.bash_git ]] && source /home/user/.bash_git
 set +e
 
