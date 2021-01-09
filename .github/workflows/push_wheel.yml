@@ -113,7 +113,7 @@ jobs:
             ${{ steps.Changelog.outputs.changelog }}
             ## Release Checklist
             - [ ] Ensure the new wheel works inside PIB
-            - [ ] Esnure the host machine install works as expected
+            - [ ] Ensure the host machine install works as expected
             - [ ] Ensure documentation is accurate
             - [ ] Ensure pyproject.toml links are accurate
             - [ ] Ensure readthedocs integration is working
