@@ -15,13 +15,6 @@ if os.path.exists('../../pib_cli'):
   sys.path.insert(0, os.path.abspath('../..'))
   sys.path.insert(0, os.path.abspath('../../pib_cli'))
 
-if 'READTHEDOCS' in os.environ:
-  # Workaround to support dev dependencies in readthedocs
-  os.system("poetry lock")
-  os.system(
-      "poetry export --without-hashes --dev -f requirements.txt | pip install -r /dev/stdin"
-  )
-
 # -- Project information -----------------------------------------------------
 project = 'pib_cli'
 copyright = '2020, Niall Byrne'
