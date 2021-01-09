@@ -27,6 +27,9 @@ RUN useradd user -d /home/user        \
  && chown -R user:user /home/user     \
  && chown -R user:user /app
 
+# Install Latest Poetry
+RUN pip install poetry
+
 ENV PATH "/home/user/.local/bin/:${PATH}"
 
 # ======================================================
@@ -37,13 +40,14 @@ LABEL ENVIRONMENT=DEVELOPMENT
 ENV ENVIRONMENT=DEVELOPMENT
 
 # Install Dev Dependencies
-RUN apt-get install -y     \
-    curl                   \
-    jq                     \
-    openssh-client         \
-    shellcheck             \
-    sudo                   \
-    tig                    \
+RUN apt-get install -y              \
+    curl                            \
+    jq                              \
+    golang-github-pelletier-go-toml \
+    openssh-client                  \
+    shellcheck                      \
+    sudo                            \
+    tig                             \
     vim
 
 # Add user to sudoers, and make the default user
@@ -56,8 +60,7 @@ COPY . /app
 USER user
 
 # Setup The Dev CLI, bootstrapping the current version of pib_cli
-RUN pip install poetry                                && \
-    poetry install                                    && \
+RUN poetry install                                    && \
     dev setup-bash                                    && \
     dev reinstall-requirements
 
@@ -74,8 +77,7 @@ ENV ENVIRONMENT=PRODUCTION
 COPY . /app
 
 # Install Production Packages Only
-RUN pip install poetry                                && \
-    poetry install --no-dev --no-root
+RUN poetry install --no-dev --no-root
 
 # Set the runtime user
 USER user

@@ -45,6 +45,10 @@ jobs:
           docker-compose build
           docker-compose up -d
 
+      - name: Run TOML Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
+
       - name: Run Linter
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev lint
@@ -60,6 +64,12 @@ jobs:
       - name: Run Release Validation
         run: |
           docker-compose exec -T "${PROJECT_NAME}" ./scripts/release.sh
+
+      - name: Documentation Validation
+        uses: gaurav-nelson/github-action-markdown-link-check@1.0.11
+        with:
+          use-quiet-mode: 'no'
+          use-verbose-mode: 'yes'
 
       - name: Report Build Failures
         if: failure() == true
@@ -102,10 +112,12 @@ jobs:
           body: |
             ${{ steps.Changelog.outputs.changelog }}
             ## Release Checklist
-            - [ ] Has the wheel been tested inside PIB ?
-            - [ ] Does the host machine install function as expected ?
-            - [ ] Does the bash environment work correctly ?
-            - [ ] Does the documentation look correct ?
+            - [ ] Ensure the new wheel works inside PIB
+            - [ ] Esnure the host machine install works as expected
+            - [ ] Ensure documentation is accurate
+            - [ ] Ensure pyproject.toml links are accurate
+            - [ ] Ensure readthedocs integration is working
+            - [ ] Ensure version is correct
           draft: true
           prerelease: false
 
