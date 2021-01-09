@@ -24,6 +24,7 @@
 - name: "fmt"
   path_method: "project_root"
   commands:
+    - 'tomll pyproject.toml'
     - 'yapf -i --recursive .'
     - 'isort "${PROJECT_NAME}"'
   success: "Formatting Finished!"
@@ -48,6 +49,7 @@
 - name: "sectest"
   path_method: "project_root"
   commands:
+    - 'gitleaks --path=. -v'
     - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
     - 'echo "\nPoetry is exporting the lockfile standby..."'
     - 'poetry export --without-hashes --dev -f requirements.txt | safety check --stdin'

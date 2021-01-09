@@ -81,13 +81,17 @@ The [scripts/extras.sh](scripts/extras.sh) script does this for you.
 First install [poetry](https://python-poetry.org/) on your host machine:
 - `pip install poetry`
 
-Then source this script, setup the hostmachine, and you can use the `dev` command on your host:
+Then source this script, setup the extras, and you can use the `dev` command on your host:
 - `source scripts/extras.sh`
 - `pib_setup_hostmachine` (to install the poetry dependencies)  
 - `dev --help` (to run the cli outside the container)
 
-It is still recommended to work inside the container, as you'll have access to the full managed python environment, 
-as well as any additional services you are running in containers.
+This is most useful for making an IDE like pycharm aware of what's installed in your project.
+
+> It is still recommended to work inside the container, as you'll have access to the full managed python environment, 
+> as well as any additional services you are running in containers.  
+
+If you wish to use the cli outside the container for all tasks, [tomll](https://github.com/pelletier/go-toml) and [gitleaks](https://github.com/zricethezav/gitleaks) will also need to be installed, or the [cli.yml](./assets/cli.yml) configuration will need to be customized to remove these commands. (Not recommended.)
 
 ## Development Dependencies
 

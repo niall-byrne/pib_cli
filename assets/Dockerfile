@@ -38,6 +38,7 @@ ENV PATH "/home/user/.local/bin/:${PATH}"
 FROM base AS development
 LABEL ENVIRONMENT=DEVELOPMENT
 ENV ENVIRONMENT=DEVELOPMENT
+ENV GITLEAKSVERSION="v7.2.0"
 
 # Install Dev Dependencies
 RUN apt-get install -y              \
@@ -49,6 +50,11 @@ RUN apt-get install -y              \
     sudo                            \
     tig                             \
     vim
+
+# Install Git Leaks
+RUN curl -sL "https://github.com/zricethezav/gitleaks/releases/download/${GITLEAKSVERSION}/gitleaks-linux-amd64"    \
+    -o /usr/bin/gitleaks                                                                                         && \
+    chmod +x /usr/bin/gitleaks
 
 # Add user to sudoers, and make the default user
 RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
