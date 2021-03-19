@@ -70,6 +70,8 @@ jobs:
         with:
           use-quiet-mode: 'no'
           use-verbose-mode: 'yes'
+          folder-path: '.github'
+          file-path: './README.md'
 
       - name: Report Build Failures
         if: failure() == true
