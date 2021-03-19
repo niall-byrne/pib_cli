@@ -71,6 +71,6 @@ jobs:
           ./scripts/ci/slack.sh "${PROJECT_NAME}:${GITHUB_REF#refs/tags/}" "new release wheel has been built, but CD is disabled for this repository!"
 
       - name: Production -- Report Failure
-        if: failure() == true
+        if: failure()
         run: |
           ./scripts/ci/slack.sh "${PROJECT_NAME}:${GITHUB_REF#refs/tags/}" "automated PyPi release has failed!"
