@@ -43,7 +43,7 @@
   path_method: "project_root"
   commands:
     - "poetry lock"
-    - "poetry export --without-hashes --dev -f requirements.txt | pip install -r /dev/stdin"
+    - "poetry install"
   success: "Reinstall Succeeded!"
   failure: "Reinstall Failed!"
 - name: "sectest"
