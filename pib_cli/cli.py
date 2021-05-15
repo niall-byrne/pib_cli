@@ -42,6 +42,12 @@ def formatter():
   execute_external_command(['fmt'])
 
 
+@cli.command("leaks")
+def leaks():
+  """Run Credential Leak Scan"""
+  execute_external_command(['leaks'])
+
+
 @cli.command("lint")
 def linter_tests():
   """Run Code Linters"""

@@ -28,6 +28,13 @@
     - 'isort "${PROJECT_NAME}"'
   success: "Formatting Finished!"
   failure: "Formatting Error!"
+- name: "leaks"
+  container_only: true
+  path_method: "project_root"
+  commands:
+    - 'gitleaks --path=. -v'
+  success: "Credential leaks Test Passed!"
+  failure: "Credential leaks Test Failed!"
 - name: "lint"
   path_method: "project_root"
   commands:

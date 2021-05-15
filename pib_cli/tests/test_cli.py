@@ -21,6 +21,12 @@ class TestFormat(CommandTestHarness):
   external_commands = ['fmt']
 
 
+class TestLeaks(CommandTestHarness):
+  __test__ = True
+  invocation_command = ['leaks']
+  external_commands = ['leaks']
+
+
 class TestLint(CommandTestHarness):
   __test__ = True
   invocation_command = ['lint']

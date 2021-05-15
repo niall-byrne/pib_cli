@@ -29,6 +29,13 @@
     - 'isort "${PROJECT_NAME}"'
   success: "Formatting Finished!"
   failure: "Formatting Error!"
+- name: "leaks"
+  container_only: true
+  path_method: "project_root"
+  commands:
+    - 'gitleaks --path=. -v'
+  success: "Credential leaks Test Passed!"
+  failure: "Credential leaks Test Failed!"
 - name: "lint"
   path_method: "project_root"
   commands:
@@ -49,7 +56,6 @@
 - name: "sectest"
   path_method: "project_root"
   commands:
-    - 'gitleaks --path=. -v'
     - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
     - 'echo "\nPoetry is exporting the lockfile standby..."'
     - 'poetry export --without-hashes --dev -f requirements.txt | safety check --stdin'

@@ -22,14 +22,12 @@ DIFF=$(diff assets/cli.yml pib_cli/config/config.yml)
 EXPECTED=$(cat << EOF
 27d26
 <     - 'tomll pyproject.toml'
-35,37c34
+42,44c41
 <     - 'shellcheck \${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck \${PROJECT_NAME}/container_init.sh'
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
-52d48
-<     - 'gitleaks --path=. -v'
 EOF
 )
 [[ "${DIFF}" != "${EXPECTED}" ]] && halt "Assets and Onboard CLI configuration does not appear to match."
