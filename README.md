@@ -4,13 +4,13 @@ A development environment CLI, complete with tooling.
 
 [Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
 
-## Develop Branch
-
-[![pib_cli-automation](https://github.com/shared-vision-solutions/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=develop)](https://github.com/shared-vision-solutions/pib_cli/actions)
-
 ## Master Branch
 
 [![pib_cli-automation](https://github.com/shared-vision-solutions/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/shared-vision-solutions/pib_cli/actions)
+
+## Production Branch
+
+[![pib_cli-automation](https://github.com/shared-vision-solutions/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/shared-vision-solutions/pib_cli/actions)
 
 ## Installation
 
