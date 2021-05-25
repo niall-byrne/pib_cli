@@ -1,0 +1,346 @@
+---
+name: pib_cli Automation
+
+# Workflow Secrets:
+# SLACK_WEBHOOK              (Required, for slack notifications...)
+
+on:
+  push:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+
+  build_37:
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Build 3.7 -- Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Build 3.7 -- Setup Environment
+        run: |
+          source ./.github/scripts/setup.sh "3.7"
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Build 3.7 -- Create Docker Mounted Content
+        run: |
+          echo | ssh-keygen
+          touch ${HOME}/.gitconfig
+          touch ${HOME}/.gitconfig_global
+
+      - name: Build 3.7 -- Ensure File System is Writable by the Container
+        run: |
+          sudo chmod -R o+w .
+
+      - name: Build 3.7 -- Build Container
+        run: |
+          docker-compose build --build-arg PYTHON_VERSION=${PYTHON_VERSION}
+          docker-compose up -d
+
+      - name: Build 3.7 -- Run TOML Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
+
+      - name: Build 3.7 -- Run Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev lint
+
+      - name: Build 3.7 -- Run Sec Test
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev sectest
+
+      - name: Build 3.7 -- Run Unit Tests
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev coverage
+
+      - name: Build 3.7 -- Run Release Validation
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" ./scripts/release.sh
+
+      - name: Build 3.7 -- Report Job Status (Success)
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: build for python ${PYTHON_VERSION} succeeded for ${BRANCH_OR_TAG}!"
+
+      - name: Build 3.7 -- Report Job Status (Failure)
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: build for python ${PYTHON_VERSION} has failed!"
+
+  build_38:
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Build 3.8 -- Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Build 3.8 -- Setup Environment
+        run: |
+          source ./.github/scripts/setup.sh "3.8"
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Build 3.8 -- Create Docker Mounted Content
+        run: |
+          echo | ssh-keygen
+          touch ${HOME}/.gitconfig
+          touch ${HOME}/.gitconfig_global
+
+      - name: Build 3.8 -- Ensure File System is Writable by the Container
+        run: |
+          sudo chmod -R o+w .
+
+      - name: Build 3.8 -- Build Container
+        run: |
+          docker-compose build --build-arg PYTHON_VERSION=${PYTHON_VERSION}
+          docker-compose up -d
+
+      - name: Build 3.8 -- Run TOML Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
+
+      - name: Build 3.8 -- Run Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev lint
+
+      - name: Build 3.8 -- Run Sec Test
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev sectest
+
+      - name: Build 3.8 -- Run Unit Tests
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev coverage
+
+      - name: Build 3.8 -- Run Release Validation
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" ./scripts/release.sh
+
+      - name: Build 3.8 -- Report Job Status (Success)
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: build for python ${PYTHON_VERSION} succeeded for ${BRANCH_OR_TAG}!"
+
+      - name: Build 3.8 -- Report Job Status (Failure)
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: build for python ${PYTHON_VERSION} has failed!"
+
+  build_39:
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Build 3.9 -- Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Build 3.9 -- Setup Environment
+        run: |
+          source ./.github/scripts/setup.sh "3.9"
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Build 3.9 -- Create Docker Mounted Content
+        run: |
+          echo | ssh-keygen
+          touch ${HOME}/.gitconfig
+          touch ${HOME}/.gitconfig_global
+
+      - name: Build 3.9 -- Ensure File System is Writable by the Container
+        run: |
+          sudo chmod -R o+w .
+
+      - name: Build 3.9 -- Build Container
+        run: |
+          docker-compose build --build-arg PYTHON_VERSION=${PYTHON_VERSION}
+          docker-compose up -d
+
+      - name: Build 3.9 -- Run TOML Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
+
+      - name: Build 3.9 -- Run Linter
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev lint
+
+      - name: Build 3.9 -- Run Sec Test
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev sectest
+
+      - name: Build 3.9 -- Run Unit Tests
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev coverage
+
+      - name: Build 3.9 -- Run Release Validation
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" ./scripts/release.sh
+
+      - name: Build 3.9 -- Documentation Validation
+        uses: gaurav-nelson/github-action-markdown-link-check@1.0.11
+        with:
+          use-quiet-mode: 'no'
+          use-verbose-mode: 'yes'
+          folder-path: '.github'
+          file-path: './README.md'
+
+      - name: Build 3.9 -- Report Job Status (Success)
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: build for python ${PYTHON_VERSION} succeeded for ${BRANCH_OR_TAG}!"
+
+      - name: Build 3.9 -- Report Job Status (Failure)
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: build for python ${PYTHON_VERSION} has failed!"
+
+  documentation_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Documentation Test -- Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Documentation Test -- Setup Environment
+        run: |
+          source ./.github/scripts/setup.sh
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Documentation Test -- Documentation Validation
+        uses: gaurav-nelson/github-action-markdown-link-check@1.0.11
+        with:
+          use-quiet-mode: 'no'
+          use-verbose-mode: 'yes'
+          folder-path: '.github'
+          file-path: './README.md'
+
+      - name: Documentation Test -- Report Success
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: documentation test was successful!"
+      - name: Documentation Test -- Report Failure
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: documentation test has failed!"
+
+  release:
+    needs: [build_37, build_38, build_39, documentation_test, workflow_lint]
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Release -- Checkout Repository
+        if: contains(github.ref, '/tags/v')
+        uses: actions/checkout@v1
+
+      - name: Release -- Setup Environment
+        if: contains(github.ref, '/tags/v')
+        run: |
+          source ./.github/scripts/setup.sh
+          NEWTAG=${BRANCH_OR_TAG}
+          echo "NEWTAG=${NEWTAG}" >> $GITHUB_ENV
+          echo "{}" > package.json
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Release -- Generate Changelog
+        if: contains(github.ref, '/tags/v')
+        uses: scottbrenner/generate-changelog-action@1.0.3
+        id: Changelog
+        env:
+          REPO: ${{ github.repository }}
+
+      - name: Release -- Create Release
+        if: contains(github.ref, '/tags/v')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.BRANCH_OR_TAG }}
+          release_name: Release ${{ env.BRANCH_OR_TAG }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
+            ## Release Checklist
+            - [ ] Ensure the new wheel works inside PIB
+            - [ ] Ensure the host machine install works as expected
+            - [ ] Ensure documentation is accurate
+            - [ ] Ensure pyproject.toml links are accurate
+            - [ ] Ensure readthedocs integration is working
+            - [ ] Ensure version is correct
+          draft: true
+          prerelease: false
+
+      - name: Release -- Build Wheel
+        if: contains(github.ref, '/tags/v')
+        run: |
+          pip install poetry
+          poetry install --no-dev
+          poetry build
+          cd dist
+            WHEEL_NAME=$(ls *.whl)
+          cd ..
+          echo "WHEEL_NAME=${WHEEL_NAME}" >> $GITHUB_ENV
+
+      - name: Release -- Upload Release Asset
+        if: contains(github.ref, '/tags/v')
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/${{ env.WHEEL_NAME }}
+          asset_name: ${{ env.WHEEL_NAME }}
+          asset_content_type: application/zip
+
+      - name: Release -- Report Job Status (Success)
+        if: contains(github.ref, '/tags/v')
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: automated release has been created:\nhttps://github.com/${USERNAME}/${PROJECT_NAME}/releases"
+
+      - name: Release -- Report Job Status (Failure)
+        if: failure() && contains(github.ref, '/tags/v')
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: automated release generation failed!"
+
+  workflow_lint:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7]
+
+    steps:
+
+      - name: Workflow Lint -- Checkout Repository
+        uses: actions/checkout@v1
+      - name: Workflow Lint -- Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Workflow Lint -- Setup Environment
+        run: |
+          source ./.github/scripts/setup.sh
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Workflow Lint -- Install Requirements
+        run: |
+          pip install yamllint
+
+      - name: Workflow Lint -- Run Linter
+        run: |
+          yamllint .github/workflows
+          shellcheck .github/scripts/*
+
+      - name: Workflow Lint -- Report Job Status (Success)
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: workflow linting was successful!"
+      - name: Workflow Lint -- Report Job Status (Failure)
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: workflow linting has failed!"

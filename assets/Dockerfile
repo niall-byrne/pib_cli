@@ -1,4 +1,5 @@
-FROM python:3.7-slim AS base
+ARG PYTHON_VERSION=3.7
+FROM python:$PYTHON_VERSION-slim AS base
 MAINTAINER niall@niallbyrne.ca
 ENV PYTHONUNBUFFERED 1
 ENV PROJECT_NAME "pib_cli"

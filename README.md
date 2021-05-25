@@ -12,6 +12,13 @@ A development environment CLI, complete with tooling.
 
 [![pib_cli-automation](https://github.com/shared-vision-solutions/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/shared-vision-solutions/pib_cli/actions)
 
+## Supported Python Versions
+
+Tested to work under the following python version:
+- Python 3.7
+- Python 3.8
+- Python 3.9
+
 ## Installation
 
 This is a development environment CLI, with a customizable yaml config.
@@ -104,7 +111,7 @@ You'll need to install:
 
 Build the development environment container (this takes a few minutes):
 
-- `docker-compose build`
+- `docker-compose build --build-arg PYTHON_VERSION=[3.7|3.8|3.9]`
 
 Start the environment container:
 
