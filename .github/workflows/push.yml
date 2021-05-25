@@ -45,6 +45,22 @@ jobs:
         run: |
           docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
 
+      - name: Build 3.7 -- Run Git Leaks
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev leaks
+
+      - name: Build 3.7 -- Show Config Location
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash -c 'diff <(echo "Current Configuration: ${PIB_CONFIG_FILE_LOCATION}") <(dev config-location)'
+
+      - name: Build 3.7 -- Show Config Content
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash -c 'diff <(dev config-show) "${PIB_CONFIG_FILE_LOCATION}"'
+
+      - name: Build 3.9 -- Show Version
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev version
+
       - name: Build 3.7 -- Run Linter
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev lint
@@ -103,6 +119,22 @@ jobs:
         run: |
           docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
 
+      - name: Build 3.8 -- Run Git Leaks
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev leaks
+
+      - name: Build 3.8 -- Show Config Location
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash -c 'diff <(echo "Current Configuration: ${PIB_CONFIG_FILE_LOCATION}") <(dev config-location)'
+
+      - name: Build 3.8 -- Show Config Content
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash -c 'diff <(dev config-show) "${PIB_CONFIG_FILE_LOCATION}"'
+
+      - name: Build 3.8 -- Show Version
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev version
+
       - name: Build 3.8 -- Run Linter
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev lint
@@ -160,6 +192,22 @@ jobs:
       - name: Build 3.9 -- Run TOML Linter
         run: |
           docker-compose exec -T "${PROJECT_NAME}" tomll /app/pyproject.toml
+
+      - name: Build 3.9 -- Run Git Leaks
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev leaks
+
+      - name: Build 3.9 -- Show Config Location
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash -c 'diff <(echo "Current Configuration: ${PIB_CONFIG_FILE_LOCATION}") <(dev config-location)'
+
+      - name: Build 3.9 -- Show Config Content
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash -c 'diff <(dev config-show) "${PIB_CONFIG_FILE_LOCATION}"'
+
+      - name: Build 3.9 -- Show Version
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev version
 
       - name: Build 3.9 -- Run Linter
         run: |

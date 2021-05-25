@@ -23,6 +23,18 @@ def build_wheel():
   execute_external_command(['build-wheel'])
 
 
+@cli.command("config-location")
+def config_location():
+  """Show location of the current configuration file"""
+  execute_internal_command(['config_location'])
+
+
+@cli.command("config-show")
+def config_show():
+  """Show current configuration file"""
+  execute_internal_command(['config_show'])
+
+
 @cli.command(
     "coverage",
     context_settings=dict(
@@ -91,3 +103,9 @@ def setup_environment(ctx):
 def unittests(extra_options):
   """Run Unittests"""
   execute_external_command(['test'], overload=extra_options)
+
+
+@cli.command("version")
+def version():
+  """Report the CLI Version"""
+  execute_internal_command(["version"])

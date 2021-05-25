@@ -38,6 +38,9 @@ INTERNAL_COMMANDS_EXTERNAL_COMMAND_EXECUTOR = (
 INTERNAL_COMMANDS_SPAWN = (
     'pib_cli.support.internal_commands.ProcessManager.spawn'
 )
+INTERNAL_COMMANDS_GET_CONFIG_FILE_NAME = (
+    'pib_cli.support.internal_commands.get_config_file_name'
+)
 
 PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
 PATH_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.paths.os.path.exists'

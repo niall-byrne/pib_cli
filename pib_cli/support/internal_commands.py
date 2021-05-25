@@ -6,8 +6,9 @@ import shutil
 from pathlib import Path
 
 import click
+import pkg_resources
 
-from .. import config, project_root
+from .. import config, get_config_file_name, project_root
 from .container import ContainerManager
 from .paths import get_path_manager
 from .processes import ProcessManager
@@ -20,10 +21,30 @@ class InternalCommands:
     self.process_manager = ProcessManager()
     self.path_manager = get_path_manager()
 
+  def config_location(self):
+    """Report the location of the current active config.
+
+    :returns: A success message, if the command completes successfully.
+    :rtype: basestring
+    """
+    current_config = get_config_file_name()
+    return f"Current Configuration: {current_config}"
+
+  def config_show(self):
+    """Exports the current active configuration.
+
+    :returns: A success message, if the command completes successfully.
+    :rtype: basestring
+    """
+    current_config = get_config_file_name()
+    with open(current_config) as fhandle:
+      results = fhandle.read().strip()
+    return results
+
   def setup_bash(self):
     """Configures the BASH environment for a development container.
 
-    :returns: A success message, if the command completes sucessfully.
+    :returns: A success message, if the command completes successfully.
     :rtype: basestring
     """
 
@@ -40,6 +61,12 @@ class InternalCommands:
       results.append(f"Copied: {file_name} -> {destination} ")
     results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     return "\n".join(results)
+
+  def version(self):
+    return (
+        "pib_cli version: "
+        f"{pkg_resources.get_distribution('pib_cli').version}"
+    )
 
 
 def execute_internal_command(commands):

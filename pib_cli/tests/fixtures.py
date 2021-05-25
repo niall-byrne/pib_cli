@@ -32,10 +32,6 @@ class CommandTestHarness(TestCase):
 
   def setUp(self,):
     self.runner = CliRunner()
-    self.invocation_command = self.__class__.invocation_command
-    self.internal_commands = self.__class__.internal_commands
-    self.external_commands = self.__class__.external_commands
-    self.overload = self.__class__.overload
 
   @patch(patchbay.CLI_EXECUTE_EXTERNAL_COMMAND)
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)

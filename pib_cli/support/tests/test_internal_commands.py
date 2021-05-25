@@ -4,7 +4,9 @@ import glob
 import os
 from pathlib import Path
 from unittest import TestCase
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, mock_open, patch
+
+import pkg_resources
 
 from ... import config, patchbay, project_root
 from ..internal_commands import InternalCommands, execute_internal_command
@@ -54,6 +56,28 @@ class TestInternalCommands(TestCase):
         self.internal_commands.path_manager, ContainerPathManager
     )
 
+  @patch(patchbay.INTERNAL_COMMANDS_GET_CONFIG_FILE_NAME)
+  def test_config_location(self, mock_config_file):
+    mock_config_file.return_value = "/mock/path"
+    result = self.internal_commands.config_location()
+    self.assertEqual(
+        result,
+        f"Current Configuration: {mock_config_file.return_value}",
+    )
+
+  @patch(patchbay.INTERNAL_COMMANDS_GET_CONFIG_FILE_NAME)
+  def test_config_show(self, mock_config_file):
+    mock_config_file.return_value = "/mock/path"
+    mock_configuration = "mock config data "
+
+    with patch(
+        "builtins.open",
+        mock_open(read_data=mock_configuration),
+    ) as mock_config_data:
+      result = self.internal_commands.config_show()
+      mock_config_data.assert_called_once_with(mock_config_file.return_value)
+      self.assertEqual(result, mock_configuration.strip())
+
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
   def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
@@ -88,3 +112,13 @@ class TestInternalCommands(TestCase):
     results = self.internal_commands.setup_bash()
     mock_copy.assert_not_called()
     self.assertEqual(results, config.ERROR_CONTAINER_ONLY)
+
+  def test_version(self):
+    results = self.internal_commands.version()
+    self.assertEqual(
+        results,
+        (
+            "pib_cli version: "
+            f"{pkg_resources.get_distribution('pib_cli').version}"
+        ),
+    )
