@@ -53,7 +53,7 @@
 - name: "sectest"
   path_method: "project_root"
   commands:
-    - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit'
+    - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit -x tests'
     - 'echo "\nPoetry is exporting the lockfile standby..."'
     - 'poetry export --without-hashes --dev -f requirements.txt | safety check --stdin'
   success: "Security Test Passed!"
