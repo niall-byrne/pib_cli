@@ -55,44 +55,26 @@ jobs:
       # START Continuous Deployment -- Customize this Section Depending on your strategy
 
       - name: Publish to PyPi -- Build and Publish a Python Package to Test PyPI
-        if: env.TEST_PYPI_API_TOKEN != ''
         run: |
-          echo "CD_ENABLED=true" >> "$GITHUB_ENV"
-          docker-compose exec -T "${PROJECT_NAME}" bash -c "                                                 \
-            poetry config repositories.testpypi https://test.pypi.org/legacy/                             && \
-            poetry publish --build -r testpypi --username __token__ --password \"${TEST_PYPI_API_TOKEN}\"    \
-          "
+          source .github/scripts/release_pypi.sh
         env:
           TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
-
-      - name: Publish to PyPi -- Build and Publish a Python Package to PyPI
-        if: env.PYPI_TOKEN != ''
-        run: |
-          echo "CD_ENABLED=true" >> "$GITHUB_ENV"
-          docker-compose exec -T "${PROJECT_NAME}" bash -c "                                                 \
-            poetry publish --build --username __token__ --password \"${PYPI_API_TOKEN}\"                     \
-          "
-        env:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
       # END Continuous Deployment -- Customize this Section Depending on your strategy
 
-      - name: Publish to PyPi -- Report Success (CD is enabled)
-        if: env.TEST_PYPI_API_TOKEN != ''
+      - name: Publish to PyPi -- Report Success (CD is enabled) (Test PyPi)
+        if: env.CD_TEST == 'true'
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: new release has been pushed to Test PyPi!"
-        env:
-          TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
       - name: Publish to PyPi -- Report Success (CD is enabled)
-        if: env.PYPI_API_TOKEN != ''
+        if: env.CD_ENABLED == 'true'
         run: |
-         ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: new release has been pushed to PyPi!"
-        env:
-          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: new release has been pushed to PyPi!"
 
       - name: Publish to PyPi -- Report Success (CD is not enabled)
-        if: env.CD_ENABLED != 'true'
+        if: env.CD_ENABLED == 'false' && env.CD_TEST == 'false'
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" "new release wheel has been built, but CD is disabled for this repository!"
 

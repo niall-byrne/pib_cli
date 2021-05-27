@@ -16,6 +16,7 @@ main() {
   echo "USERNAME=${USERNAME}" >> "$GITHUB_ENV"
   echo "DOCKER_USERNAME=${DOCKER_USERNAME}" >> "$GITHUB_ENV"
   echo "CD_ENABLED=false" >> "$GITHUB_ENV"
+  echo "CD_TEST=false" >> "$GITHUB_ENV"
 }
 
 main "$@"
