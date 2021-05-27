@@ -1,9 +1,10 @@
 ---
-name: pib_cli Deploys
+name: pib_cli-release-pypi
 
 # Workflow Secrets:
 # SLACK_WEBHOOK              (Required, for slack notifications...)
-# PYPI_API_TOKEN             (Required, for publish to pypi...)
+# PYPI_API_TOKEN             (Optional, for publishing wheels to pypi...)
+# TEST_PYPI_API_TOKEN        (Optional, for publishing wheels to test-pypi...)
 
 on:
   release:
@@ -11,20 +12,31 @@ on:
 
 jobs:
   release:
+
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        include:
+          - python-version: 3.7
 
     steps:
-
-      - name: Publish to PyPi -- Checkout Repository
+      - name: Publish to PyPi -- Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
+      - name: Publish to PyPi -- Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
       - name: Publish to PyPi -- Setup Environment
         run: |
-          source ./.github/scripts/setup.sh
+          source .github/scripts/setup.sh
         env:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          PYTHON_VERSION: ${{ matrix.python-version }}
 
       - name: Publish to PyPi -- Create Docker Mounted Content
         run: |
@@ -38,38 +50,53 @@ jobs:
 
       - name: Publish to PyPi -- Build Container
         run: |
-          docker-compose build --build-arg VERSION=${VERSION}
-          docker-compose up -d
+          source .github/scripts/build_container.sh
 
       # START Continuous Deployment -- Customize this Section Depending on your strategy
 
-      - name: Publish to PyPi -- Is CD enabled?
-        if: env.PYPI_TOKEN != ''
+      - name: Publish to PyPi -- Build and Publish a Python Package to Test PyPI
+        if: env.TEST_PYPI_API_TOKEN != ''
         run: |
-          echo "CD_ENABLED=true" >> $GITHUB_ENV
+          echo "CD_ENABLED=true" >> "$GITHUB_ENV"
+          docker-compose exec -T "${PROJECT_NAME}" bash -c "                                                 \
+            poetry config repositories.testpypi https://test.pypi.org/legacy/                             && \
+            poetry publish --build -r testpypi --username __token__ --password \"${TEST_PYPI_API_TOKEN}\"    \
+          "
         env:
-          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
       - name: Publish to PyPi -- Build and Publish a Python Package to PyPI
-        if: env.CD_ENABLED == 'true'
+        if: env.PYPI_TOKEN != ''
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" poetry publish --build --username __token__ --password "${PYPI_API_TOKEN}"
+          echo "CD_ENABLED=true" >> "$GITHUB_ENV"
+          docker-compose exec -T "${PROJECT_NAME}" bash -c "                                                 \
+            poetry publish --build --username __token__ --password \"${PYPI_API_TOKEN}\"                     \
+          "
         env:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
       # END Continuous Deployment -- Customize this Section Depending on your strategy
 
-      - name: Publish to PyPi -- Report Job Status (Success)
+      - name: Publish to PyPi -- Report Success (CD is enabled)
+        if: env.TEST_PYPI_API_TOKEN != ''
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: new release has been pushed to Test PyPi!"
+        env:
+          TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+      - name: Publish to PyPi -- Report Success (CD is enabled)
+        if: env.PYPI_API_TOKEN != ''
+        run: |
+         ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: new release has been pushed to PyPi!"
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Publish to PyPi -- Report Success (CD is not enabled)
         if: env.CD_ENABLED != 'true'
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" "new release wheel has been built, but CD is disabled for this repository!"
 
-      - name: Publish to PyPi -- Report Job Status (Success)
-        if: env.CD_ENABLED == 'true'
-        run: |
-          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: new release has been pushed to PyPi!"
-
-      - name: Publish to PyPi -- Report Job Status (Failure)
+      - name: Publish to PyPi -- Report Failure
         if: failure()
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: automated PyPi release has failed!"
