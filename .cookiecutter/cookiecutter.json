@@ -1,0 +1,13 @@
+{
+    "python_version": "3.7",
+    "project_name": "pib_cli",
+    "project_slug": "pib_cli",
+    "description": "Python Development CLI",
+    "author": "Niall Byrne",
+    "email": "niall@niallbyrne.ca",
+    "github_username": "shared-vision-solutions",
+    "include_ssh_keys": "true",
+    "include_gitconfig": "true",
+    "include_gitconfig_global": "true",
+    "_pib_cli_version": "0.1.1"
+}
