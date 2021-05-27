@@ -23,9 +23,20 @@ class TestGetConfigFileName(TestCase):
       {config.ENV_OVERRIDE_CONFIG_LOCATION: "/app/somefile.yml"},
       clear=True,
   )
-  def test_with_override(self):
+  @patch("os.path.exists", return_value=True)
+  def test_with_override_exists(self, _):
     result = get_config_file_name()
     assert result == "/app/somefile.yml"
+
+  @patch.dict(
+      os.environ,
+      {config.ENV_OVERRIDE_CONFIG_LOCATION: "/app/somefile.yml"},
+      clear=True,
+  )
+  @patch("os.path.exists", return_value=False)
+  def test_with_override_does_not_exist(self, _):
+    result = get_config_file_name()
+    assert result == os.path.join(project_root, "config", "config.yml")
 
 
 class TestCheckProjectName(TestCase):

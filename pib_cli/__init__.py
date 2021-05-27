@@ -3,6 +3,8 @@
 import os
 import pathlib
 
+import click
+
 from . import config
 
 project_root = pathlib.Path(__file__).parent.absolute()
@@ -16,8 +18,9 @@ def get_config_file_name():
   :rtype: basestring
   """
   override = os.getenv(config.ENV_OVERRIDE_CONFIG_LOCATION, None)
-  if override:
+  if override and os.path.exists(override):
     return override
+  click.echo("** PIB DEFAULT CONFIG IN USE **")
   return default_config
 
 
