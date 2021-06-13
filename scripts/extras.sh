@@ -12,7 +12,7 @@ install_git_hooks() {
 }
 
 pib_setup_hostmachine() {
-  poetry install
+  poetry install -E pib_docs
 
   # shellcheck disable=SC2139
   alias dev="PROJECT_NAME=\"pib_cli\" PIB_CONFIG_FILE_LOCATION=\"${ROOT}/assets/cli.yml\" poetry run dev"

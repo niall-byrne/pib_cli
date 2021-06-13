@@ -67,7 +67,7 @@ COPY . /app
 USER user
 
 # Setup The Dev CLI, bootstrapping the current version of pib_cli
-RUN poetry install                                    && \
+RUN poetry install -E pib_docs                               && \
     dev setup-bash
 
 CMD ["./pib_cli/container_init.sh"]
@@ -83,7 +83,7 @@ ENV ENVIRONMENT=PRODUCTION
 COPY . /app
 
 # Install Production Packages Only
-RUN poetry install --no-dev --no-root
+RUN poetry install -E docs --no-dev --no-root
 
 # Set the runtime user
 USER user
