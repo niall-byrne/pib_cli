@@ -47,7 +47,7 @@
   path_method: "project_root"
   commands:
     - "poetry lock"
-    - "poetry install"
+    - "poetry install -E docs"
   success: "Reinstall Succeeded!"
   failure: "Reinstall Failed!"
 - name: "sectest"

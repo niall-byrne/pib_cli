@@ -28,6 +28,10 @@ EXPECTED=$(cat << EOF
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
+53c50
+<     - "poetry install -E pib_docs"
+---
+>     - "poetry install -E docs"
 EOF
 )
 [[ "${DIFF}" != "${EXPECTED}" ]] && halt "Assets and Onboard CLI configuration does not appear to match."

@@ -10,5 +10,6 @@ python:
   install:
     - method: pip
       path: .
-    - requirements: documentation/requirements.txt
+      extra_requirements:
+        - pib_docs
   system_packages: false
