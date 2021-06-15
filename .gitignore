@@ -142,3 +142,6 @@ override.env
 
 # Macs
 .DS_Store
+
+# Documentation
+documentation/source/codebase/pib_cli/pib_cli/_autosummary

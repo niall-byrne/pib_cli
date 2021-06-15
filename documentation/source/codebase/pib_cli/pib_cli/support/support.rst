@@ -1,7 +1,0 @@
-support
-=======
-.. toctree::
-   :glob:
-
-   *
-

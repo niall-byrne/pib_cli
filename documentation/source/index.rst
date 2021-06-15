@@ -7,6 +7,7 @@ PIB CLI's documentation
 .. toctree::
    :glob:
 
+   cli/*
    codebase/*
    project/*
 

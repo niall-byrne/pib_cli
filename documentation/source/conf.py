@@ -32,11 +32,18 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
     'sphinx_click.ext',
+    'sphinx_autopackagesummary',
+    'sphinx-jsonschema',
 ]
 
 source_suffix = {
     '.rst': 'restructuredtext',
 }
+
+autosummary_mock_imports = [
+    "pib_cli.tests",
+    "pib_cli.support.tests",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

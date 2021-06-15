@@ -59,6 +59,28 @@ To install, simply use: `pip install pib_cli`
 | yamllint   | Lint yaml configuration files     |
 | yapf       | Customizable Code Formatting      |
 
+- `poetry install` to install only these dependencies
+
+## Installed Packages, 'docs' extras:
+| package    | Description                       |
+| ---------- | --------------------------------- |
+| sphinx     | Generating documentation          |
+| sphinx-autopackagesummary | Template nested module content |
+
+- `poetry install -E docs` to include the documentation building dependencies
+- These are generic included extras to facilitate building documentation by projects using `pib_cli`
+
+## Installed Packages, 'pib_docs' extras:
+| package    | Description                       |
+| ---------- | --------------------------------- |
+| sphinx     | Generating documentation          |
+| sphinx-click              | Generate cli documentation         |
+| sphinx-jsonschema         | Generate schema documentation      |
+| sphinx-autopackagesummary | Template nested module content     |
+
+- `poetry install -E pib_docs` to build `pib_cli`'s documentation
+- These extras exist only to support building `pib_cli`'s documentation
+
 ## Customizing the Command Line Interface
 
 The CLI has some defaults built in, but is customizable by setting the `PIB_CONFIG_FILE_LOCATION` environment variable.

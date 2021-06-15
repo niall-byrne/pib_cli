@@ -1,14 +1,8 @@
 pib_cli
 ========
-.. automodule:: pib_cli
-    :members:
 
-.. toctree::
-   :glob:
+ Python Development CLI
 
-   *
-   config/config.rst
-   patchbay/patchbay.rst
-   support/support.rst
-
-
+ .. autopackagesummary:: pib_cli
+    :toctree: _autosummary
+    :template: autosummary/package.rst
