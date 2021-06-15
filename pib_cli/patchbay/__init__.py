@@ -5,7 +5,7 @@ CLI_EXECUTE_EXTERNAL_COMMAND = 'pib_cli.cli.execute_external_command'
 CLI_EXECUTE_INTERNAL_COMMAND = 'pib_cli.cli.execute_internal_command'
 
 CONTAINER_MANAGER_IS_CONTAINER = (
-    'pib_cli.support.container.ContainerManager.is_container'
+    'pib_cli.support.container.Container.is_container'
 )
 CONTAINER_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.container.os.path.exists'
 

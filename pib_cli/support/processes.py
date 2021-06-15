@@ -1,4 +1,4 @@
-"""Process Management Class"""
+"""Process Management Class."""
 
 import os
 
@@ -13,18 +13,18 @@ class ProcessManager:
     self.overload = None
 
   def __insert_overload(self):
-    """Adds the overload parameters as an environment variable."""
+    """Add the overload parameters as an environment variable."""
     if self.overload:
       overload_string = " ".join(self.overload)
       os.environ[config.ENV_OVERLOAD_ARGUMENTS] = overload_string
 
   def __clear_overload(self):
-    """Clears the overload environment variable."""
+    """Clear the overload environment variable."""
     if os.getenv(config.ENV_OVERLOAD_ARGUMENTS, None) is not None:
       os.environ.__delitem__(config.ENV_OVERLOAD_ARGUMENTS)
 
   def spawn_single(self, command):
-    """Executes a single given system call and returns it's exit code.
+    """Execute a single given system call and returns it's exit code.
 
     :param command: The system call to execute
     :type command: basestring
@@ -35,7 +35,7 @@ class ProcessManager:
     self.exit_code = int(result / 256)
 
   def spawn(self, command_list, overload):
-    """Executes a batch of system calls.
+    """Execute a batch of system calls.
 
     :param command_list: A list of system calls to be executed
     :type command_list: list[basestring]

@@ -1,4 +1,4 @@
-"""Tests for Internal Commands"""
+"""Tests for Internal Commands."""
 
 import glob
 import os
@@ -15,6 +15,7 @@ from ..processes import ProcessManager
 
 
 class TestExecuteInternalCommandFunction(TestCase):
+  """Test the execute_internal_command function."""
 
   def setUp(self):
     self.mock_response = "Ready to Test"
@@ -43,6 +44,7 @@ class TestExecuteInternalCommandFunction(TestCase):
 
 
 class TestInternalCommands(TestCase):
+  """Test the InternalCommands class."""
 
   def setUp(self):
     with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):

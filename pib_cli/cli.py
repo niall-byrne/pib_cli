@@ -1,4 +1,4 @@
-"""The Python In a Box Command Line Interface"""
+"""The Python In a Box Command Line Interface."""
 
 import click
 

@@ -49,6 +49,7 @@ To install, simply use: `pip install pib_cli`
 | isort      | Sorts imports                     |
 | mypy       | Static type checker               |
 | poetry     | Python Package Manager            |
+| pydocstyle | PEP 257 enforcement               |
 | pylint     | Static Code Analysis              |
 | pytest     | Test suite                        |
 | pytest-cov | Coverage support for pytest       |

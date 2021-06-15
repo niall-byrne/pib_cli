@@ -1,16 +1,16 @@
-"""Container Management Class"""
+"""Container Management Class."""
 
 import os
 
 from .. import config
 
 
-class ContainerManager:
+class Container:
   """Methods relating to the presence of a development environment container."""
 
   @staticmethod
   def is_container():
-    """Determines if the current environment is a development container.
+    """Determine if the current environment is a development container.
 
     :returns: A boolean indicating if the command is executing in a container
     :rtype: bool

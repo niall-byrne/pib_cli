@@ -1,4 +1,4 @@
-"""Tests for the Configuration Manager"""
+"""Tests for the Configuration Manager."""
 
 from unittest import TestCase
 from unittest.mock import patch
@@ -12,6 +12,7 @@ from ..configuration import ConfigurationManager
 
 
 class TestConfigurationManager(TestCase):
+  """Test the ConfigurationManager class."""
 
   def yaml_test_data(self, path_method, command_name, commands, container_only):
     self.configuration_manager.config.append(
@@ -199,6 +200,7 @@ class TestConfigurationManager(TestCase):
 
 @patch(patchbay.CONFIGURATION_MANAGER_LOAD_CONFIG)
 class TestConfigurationManagerInvalidConfig(TestCase):
+  """Test the ConfigurationManager class with invalid configuration."""
 
   def test_invalid_configuration(self, m_config):
     m_config.return_value = 'Invalid Configuration Data'
