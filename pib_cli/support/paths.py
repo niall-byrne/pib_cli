@@ -1,32 +1,34 @@
-"""Path Management Classes"""
+"""Path Management Classes."""
 
 import abc
 import os
 
 from .. import config
-from .container import ContainerManager
+from .container import Container
 
 
 def get_path_manager():
-  if ContainerManager.is_container():
+  """Return the appropriate BasePathManager implementation."""
+
+  if Container.is_container():
     return ContainerPathManager()
   return ExternalPathManager()
 
 
 class BasePathManager(abc.ABC):
-  """The Path Manager Interface"""
+  """The Path Manager Interface."""
 
   @abc.abstractmethod
   def project_root(self):
-    pass
+    """Abstract project_root method."""
 
   @abc.abstractmethod
   def project_home(self):
-    pass
+    """Abstract project_home method."""
 
   @abc.abstractmethod
   def project_docs(self):
-    pass
+    """Abstract project_docs method."""
 
 
 class ContainerPathManager(BasePathManager):
@@ -44,15 +46,15 @@ class ContainerPathManager(BasePathManager):
     )
 
   def project_root(self):
-    """Changes the path to the project root folder location."""
+    """Change the path to the project root folder location."""
     os.chdir(self.root)
 
   def project_home(self):
-    """Changes the path to the project home folder location."""
+    """Change the path to the project home folder location."""
     os.chdir(self.home)
 
   def project_docs(self):
-    """Changes the path to the project documentation location."""
+    """Change the path to the project documentation location."""
     os.chdir(self.docs)
 
 
@@ -72,15 +74,15 @@ class ExternalPathManager(BasePathManager):
     self.__git_root()
 
   def project_root(self):
-    """Changes the path to the project root folder location."""
+    """Change the path to the project root folder location."""
     self.__git_root()
 
   def project_home(self):
-    """Changes the path to the project home folder location."""
+    """Change the path to the project home folder location."""
     self.__git_root()
     os.chdir(self.home)
 
   def project_docs(self):
-    """Changes the path to the project documentation location."""
+    """Change the path to the project documentation location."""
     self.__git_root()
     os.chdir(self.docs)

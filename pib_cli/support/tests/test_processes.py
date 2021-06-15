@@ -1,4 +1,4 @@
-"""Tests for the Process Manager"""
+"""Tests for the Process Manager."""
 
 import os
 from unittest import TestCase
@@ -9,6 +9,7 @@ from ..processes import ProcessManager
 
 
 class TestProcessManager(TestCase):
+  """Test the ProcessManager class."""
 
   def setUp(self):
     self.process_manager = ProcessManager()

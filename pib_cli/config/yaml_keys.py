@@ -1,4 +1,4 @@
-"""Yaml Configuration Settings"""
+"""Yaml Configuration Settings."""
 
 CONTAINER_ONLY = 'container_only'
 PATH_METHOD = 'path_method'

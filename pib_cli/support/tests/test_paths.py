@@ -1,4 +1,4 @@
-"""Tests for the Path Manager"""
+"""Tests for the Path Manager."""
 
 import os
 from unittest import TestCase
@@ -14,6 +14,7 @@ from ..paths import (
 
 
 class TestBasePathManager(TestCase):
+  """Test the abstract BasePathManager class."""
 
   @patch.multiple(BasePathManager, __abstractmethods__=set())
   def setUp(self):
@@ -27,6 +28,7 @@ class TestBasePathManager(TestCase):
 
 
 class TestGetPathManager(TestCase):
+  """Test the get_path_manager function."""
 
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True)
   def test_is_container(self, _):
@@ -40,6 +42,7 @@ class TestGetPathManager(TestCase):
 
 
 class TestContainerPathManager(TestCase):
+  """Test the ContainerPathManager class."""
 
   def setUp(self):
     self.path_manager = ContainerPathManager()
@@ -72,6 +75,7 @@ class TestContainerPathManager(TestCase):
 
 
 class TestExternalPathManager(TestCase):
+  """Test the ExternalPathManager class."""
 
   def setUp(self):
     self.path_manager = ExternalPathManager()

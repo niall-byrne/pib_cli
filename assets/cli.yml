@@ -42,6 +42,8 @@
   commands:
     - 'shellcheck ${PROJECT_NAME}/bash/* -x'
     - 'shellcheck ${PROJECT_NAME}/container_init.sh'
+    - 'pydocstyle "${PROJECT_NAME}"'
+    - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
     - 'yamllint *.yml .*.yml ${PROJECT_NAME}/config/ assets/ .github/workflows/'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'

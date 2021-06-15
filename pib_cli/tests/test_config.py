@@ -1,4 +1,4 @@
-"""Test the Intial Environment and Discovery Functions"""
+"""Test the Initial Environment and Discovery Functions."""
 
 import os
 from unittest import TestCase
@@ -8,6 +8,7 @@ from .. import check_project_name, config, get_config_file_name, project_root
 
 
 class TestGetConfigFileName(TestCase):
+  """Test the get_config_file_name function."""
 
   @patch.dict(
       os.environ,
@@ -40,6 +41,7 @@ class TestGetConfigFileName(TestCase):
 
 
 class TestCheckProjectName(TestCase):
+  """Test the check_project_name function."""
 
   @patch.dict(
       os.environ,

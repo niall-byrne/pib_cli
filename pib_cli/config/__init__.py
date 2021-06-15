@@ -1,4 +1,4 @@
-"""Generic Configuration Settings"""
+"""Generic Configuration Settings."""
 
 import os
 

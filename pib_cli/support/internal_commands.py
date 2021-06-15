@@ -1,4 +1,4 @@
-"""CLI Internal Command Management Class"""
+"""CLI Internal Command Management Class."""
 
 import glob
 import os
@@ -9,7 +9,7 @@ import click
 import pkg_resources
 
 from .. import config, get_config_file_name, project_root
-from .container import ContainerManager
+from .container import Container
 from .paths import get_path_manager
 from .processes import ProcessManager
 
@@ -31,7 +31,7 @@ class InternalCommands:
     return f"Current Configuration: {current_config}"
 
   def config_show(self):
-    """Exports the current active configuration.
+    """Export the current active configuration.
 
     :returns: A success message, if the command completes successfully.
     :rtype: basestring
@@ -42,13 +42,12 @@ class InternalCommands:
     return results
 
   def setup_bash(self):
-    """Configures the BASH environment for a development container.
+    """Configure the BASH environment for a development container.
 
     :returns: A success message, if the command completes successfully.
     :rtype: basestring
     """
-
-    if not ContainerManager.is_container():
+    if not Container.is_container():
       return config.ERROR_CONTAINER_ONLY
 
     results = []
@@ -63,6 +62,8 @@ class InternalCommands:
     return "\n".join(results)
 
   def version(self):
+    """Return the current version of the pib_cli in use."""
+
     return (
         "pib_cli version: "
         f"{pkg_resources.get_distribution('pib_cli').version}"
@@ -70,12 +71,11 @@ class InternalCommands:
 
 
 def execute_internal_command(commands):
-  """Executes a batch of internal python commands.
+  """Execute a batch of internal python commands.
 
   :param commands: A list of commands to be executed
   :type commands: list[basestring]
   """
-
   internal_commands = InternalCommands()
 
   for command in commands:

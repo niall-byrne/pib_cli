@@ -1,4 +1,4 @@
-"""CLI External Command Management Class"""
+"""CLI External Command Management Class."""
 
 import sys
 
@@ -19,15 +19,14 @@ class ExternalCommands:
     self.configuration_manager = ConfigurationManager()
 
   def __change_directory(self):
-    """Extracts the correct :class:`pib_cli.support.paths.PathManager` method
-    from the yaml configuration and calls it.
-    """
+    """Extract the correct method from the yaml configuration and call it."""
+
     yaml_path_method = self.configuration_manager.get_config_path_method()
     goto_path = getattr(self.path_manager, yaml_path_method)
     goto_path()
 
   def __spawn_commands(self, overload):
-    """Extracts the correct series of commands from the yaml configuration.
+    """Extract the correct series of commands from the yaml configuration.
 
     (calls :func:`pib_cli.support.processes.ProcessManager.spawn`)
 
@@ -41,7 +40,7 @@ class ExternalCommands:
     return self.process_manager.exit_code
 
   def invoke(self, command, overload):
-    """Reads the yaml configuration of the given command, and executes it.
+    """Read the yaml configuration of the given command, and executes it.
 
     :param command: The name of the yaml configured command to execute
     :type command: basestring
@@ -63,14 +62,13 @@ class ExternalCommands:
 
 
 def execute_external_command(commands, overload=None):
-  """Executes a batch of yaml configured commands.
+  """Execute a batch of yaml configured commands.
 
   :param commands: A list of commands to be executed
   :type commands: list[basestring]
   :param overload: Extra overloaded arguments specified at the CLI
   :type overload: tuple[basestring]
   """
-
   command_manager = ExternalCommands()
 
   for command in commands:

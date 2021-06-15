@@ -1,4 +1,4 @@
-"""Tests for External Command Invocations"""
+"""Tests for External Command Invocations."""
 
 from unittest import TestCase
 from unittest.mock import Mock, patch
@@ -13,6 +13,7 @@ from .fixtures import CommandTestHarness
 
 
 class TestExecuteExternalCommandFunction(TestCase):
+  """Test the execute_external_command function."""
 
   def setUp(self):
     self.mock_response = "Ready to Test"
@@ -70,6 +71,7 @@ class TestExecuteExternalCommandFunction(TestCase):
 
 
 class TestCommandClass(TestCase):
+  """Test the ExternalCommands class."""
 
   def yaml_test_data(self, path_method, test_command, container_only):
     return {
@@ -131,36 +133,50 @@ class TestCommandClass(TestCase):
 
 
 class TestBuildDocs(CommandTestHarness):
+  """Test the build-docs command."""
+
   __test__ = True
   command = 'build-docs'
 
 
 class TestBuildWheel(CommandTestHarness):
+  """Test the build-wheel command."""
+
   __test__ = True
   command = 'build-wheel'
 
 
 class TestFormatter(CommandTestHarness):
+  """Test the fmt command."""
+
   __test__ = True
   command = 'fmt'
 
 
 class TestLinter(CommandTestHarness):
+  """Test the lint command."""
+
   __test__ = True
   command = 'lint'
 
 
 class TestSecTest(CommandTestHarness):
+  """Test the sectest command."""
+
   __test__ = True
   command = 'sectest'
 
 
 class TestTest(CommandTestHarness):
+  """Test the test command."""
+
   __test__ = True
   command = 'test'
 
 
 class TestTestWithOptions(CommandTestHarness):
+  """Test the test command with an overload."""
+
   __test__ = True
   command = 'test'
   overload = (
@@ -170,16 +186,22 @@ class TestTestWithOptions(CommandTestHarness):
 
 
 class TestCoverage(CommandTestHarness):
+  """Test the coverage command."""
+
   __test__ = True
   command = 'coverage'
 
 
 class TestCoverageWithOptions(CommandTestHarness):
+  """Test the coverage command with an overload."""
+
   __test__ = True
   command = 'coverage'
   overload = ('/specific/file/to/test.py',)
 
 
 class TestReinstallRequirements(CommandTestHarness):
+  """Test the reinstall-requirements command."""
+
   __test__ = True
   command = 'reinstall-requirements'

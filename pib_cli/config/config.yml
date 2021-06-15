@@ -40,6 +40,8 @@
   path_method: "project_root"
   commands:
     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
+    - 'pydocstyle "${PROJECT_NAME}"'
+    - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"
