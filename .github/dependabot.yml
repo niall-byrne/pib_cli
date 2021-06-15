@@ -1,0 +1,11 @@
+---
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    target-branch: "master"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+    reviewers:
+      - "niall-byrne"
