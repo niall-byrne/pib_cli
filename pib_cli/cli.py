@@ -105,6 +105,12 @@ def unittests(extra_options):
   execute_external_command(['test'], overload=extra_options)
 
 
+@cli.command("types")
+def types():
+  """Run Static Type Checker"""
+  execute_external_command(['types'])
+
+
 @cli.command("version")
 def version():
   """Report the CLI Version"""

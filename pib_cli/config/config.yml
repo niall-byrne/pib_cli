@@ -14,11 +14,12 @@
   failure: "Error Building Wheel"
 - name: "coverage"
   path_method: "project_root"
-  commands: |
-    pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}
-    EXIT_CODE="$?"
-    coverage html
-    exit "${EXIT_CODE}"
+  commands:
+    - |
+      pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}
+      EXIT_CODE="$?"
+      coverage html
+      exit "${EXIT_CODE}"
   success: "Coverage Passed!"
   failure: "Coverage Failed!"
 - name: "fmt"
@@ -64,3 +65,9 @@
     - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
   success: "Unittests Passed!"
   failure: "Unittests Failed!"
+- name: "types"
+  path_method: "project_root"
+  commands:
+    - 'mypy ${PROJECT_NAME}'
+  success: "Type Check Passed!"
+  failure: "Type Check Failed!"

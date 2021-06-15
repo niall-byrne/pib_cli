@@ -98,6 +98,12 @@ class TestSetup(CommandTestHarness):
   external_commands = ['reinstall-requirements']
 
 
+class TestTypes(CommandTestHarness):
+  __test__ = True
+  invocation_command = ['types']
+  external_commands = ['types']
+
+
 class TestVersion(CommandTestHarness):
   __test__ = True
   invocation_command = ['version']
