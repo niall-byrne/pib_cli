@@ -4,6 +4,7 @@ from unittest import TestCase
 from unittest.mock import patch
 
 import yaml
+from jsonschema import ValidationError
 
 from ... import config_filename, patchbay
 from ...config import yaml_keys
@@ -194,3 +195,12 @@ class TestConfigurationManager(TestCase):
         self.configuration_manager.get_config_response(99),
         failure,
     )
+
+
+@patch(patchbay.CONFIGURATION_MANAGER_LOAD_CONFIG)
+class TestConfigurationManagerInvalidConfig(TestCase):
+
+  def test_invalid_configuration(self, m_config):
+    m_config.return_value = 'Invalid Configuration Data'
+    with self.assertRaises(ValidationError):
+      ConfigurationManager()

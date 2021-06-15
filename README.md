@@ -47,6 +47,7 @@ To install, simply use: `pip install pib_cli`
 | bandit     | Finds common security issues      |
 | commitizen | Standardizes commit messages      |
 | isort      | Sorts imports                     |
+| mypy       | Static type checker               |
 | poetry     | Python Package Manager            |
 | pylint     | Static Code Analysis              |
 | pytest     | Test suite                        |

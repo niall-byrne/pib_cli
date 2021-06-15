@@ -1,21 +1,41 @@
 """Configuration Management Class"""
 
-import yaml
+import json
+from pathlib import Path
 
-from .. import config_filename
+import yaml
+from jsonschema import validate
+
+from .. import config, config_filename
 from ..config import yaml_keys
 from .container import ContainerManager
 
 
 class ConfigurationManager:
   """Manages access to the yaml configuration."""
+  schema_file = Path(config.__file__).parent / "schema.json"
 
   def __init__(self):
-    with open(config_filename) as file_handle:
-      self.config = yaml.safe_load(file_handle)
+    self.schema = self._load_schema()
+    self.config = self._load_config()
+
+    self._validate()
     self.config_entry = None
 
-  def __coerce_command_string_to_list(self):
+  def _load_schema(self):
+    with open(self.schema_file) as file_handle:
+      schema = json.load(file_handle)
+    return schema
+
+  def _load_config(self):
+    with open(config_filename) as file_handle:
+      configuration_file_content = yaml.safe_load(file_handle)
+    return configuration_file_content
+
+  def _validate(self):
+    validate(self.config, self.schema)
+
+  def _coerce_command_string_to_list(self):
     """Converts the yaml data for the key of commands into a list if it is
     entered as a string."""
     commands = self.config_entry[yaml_keys.COMMANDS]
@@ -32,7 +52,7 @@ class ConfigurationManager:
     for entry in self.config:
       if entry[yaml_keys.COMMAND_NAME] == command_name:
         self.config_entry = entry
-        self.__coerce_command_string_to_list()
+        self._coerce_command_string_to_list()
         return
     raise KeyError("Could not find yaml key name: %s" % command_name)
 

@@ -18,6 +18,9 @@ CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE = (
 CONFIGURATION_MANAGER_GET_CONFIG_PATH_METHOD = (
     'pib_cli.support.configuration.ConfigurationManager.get_config_path_method'
 )
+CONFIGURATION_MANAGER_LOAD_CONFIG = (
+    'pib_cli.support.configuration.ConfigurationManager._load_config'
+)
 
 EXTERNAL_COMMANDS_PROCESS_MANAGER = (
     'pib_cli.support.external_commands.ProcessManager'
