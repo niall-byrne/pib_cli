@@ -54,15 +54,15 @@ jobs:
 
       - name: Build -- Run Linter
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" dev lint
+          docker-compose exec -T "${PROJECT_NAME}" bash -cl 'dev lint'
 
       - name: Build -- Run Sec Test
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" dev sectest
+          docker-compose exec -T "${PROJECT_NAME}" bash -cl 'dev sectest'
 
       - name: Build -- Run Unit Tests
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" dev coverage
+          docker-compose exec -T "${PROJECT_NAME}" bash -cl 'dev coverage'
 
       - name: Build -- Run Release Validation
         run: |
@@ -78,7 +78,7 @@ jobs:
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: build for Python ${PYTHON_VERSION} failed!"
 
   create_release:
-    needs: [build, documentation_test, security_test, shellcheck_test, workflow_lint_test]
+    needs: [build, dockerfile_test, documentation_test, security_test, shellcheck_test, workflow_lint_test]
 
     runs-on: ubuntu-latest
 
@@ -154,6 +154,35 @@ jobs:
         if: failure() && contains(github.ref, '/tags/v')
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: automated release generation failed!"
+
+  dockerfile_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dockerfile Test -- Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Dockerfile Test -- Setup Environment
+        run: |
+          source .github/scripts/setup.sh
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Dockerfile Test -- Documentation Validation
+        uses: hadolint/hadolint-action@v1.5.0
+        with:
+          dockerfile: assets/Dockerfile
+          failure-threshold: error
+
+      - name: Dockerfile Test -- Report Success
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: dockerfile linting was successful!"
+
+      - name: Dockerfile Test -- Report Failure
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: dockerfile linting failed!"
 
   documentation_test:
 

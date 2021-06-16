@@ -1,0 +1,6 @@
+---
+label-schema:
+  project: text
+  environment: text
+
+strict-labels: true
