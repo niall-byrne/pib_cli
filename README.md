@@ -27,11 +27,14 @@ It's built into this [Cookie Cutter](https://github.com/cookiecutter/cookiecutte
 
 - [Python In A Box](https://github.com/shared-vision-solutions/python-in-a-box)
 
-To install, simply use: `pip install pib_cli`
+To install, simply use: 
+- `pip install pib_cli`
+- `pip install pib_cli[docs]` (Adds [Sphinx](https://www.sphinx-doc.org/en/master/) support.)
+- `pip install pib_cli[types]` (Adds [MyPy](http://mypy-lang.org/) support.)
 
 ## Usage
 
-- use the `dev` command for details once inside the container
+- use the `dev` command for details once installed
 
 ## Container
 
@@ -41,45 +44,62 @@ To install, simply use: `pip install pib_cli`
 
 [MPL-2](LICENSE)
 
-## Installed Packages:
+## Included Packages
+
+After using `pib_cli` on a number of projects I realized there is not a one size fits all solution.  
+
+- Some projects require extensive documentation, some projects require typing, some do not.
+- At the suggestion of a friend, I've grouped the installable packages into "extras", that you can choose to install alongside the core `pib_cli` install.
+
+### Core Installed Packages:
 | package    | Description                       |
 | ---------- | --------------------------------- |
 | bandit     | Finds common security issues      |
 | commitizen | Standardizes commit messages      |
 | isort      | Sorts imports                     |
-| mypy       | Static type checker               |
 | poetry     | Python Package Manager            |
 | pydocstyle | PEP 257 enforcement               |
 | pylint     | Static Code Analysis              |
 | pytest     | Test suite                        |
 | pytest-cov | Coverage support for pytest       |
-| sphinx     | Generating documentation          |
 | safety     | Dependency vulnerability scanning |
 | wheel      | Package distribution tools        |
 | yamllint   | Lint yaml configuration files     |
 | yapf       | Customizable Code Formatting      |
 
-- `poetry install` to install only these dependencies
+- `poetry install` to install only these dependencies.
+- This is the base install, and you'll always get these dependencies installed.
 
-## Installed Packages, 'docs' extras:
+### 'types' extras:
+| package    | Description                       |
+| ---------- | --------------------------------- |
+| mypy       | Static type checker               |
+
+- `poetry install -E types` to add these dependencies to the core installation.
+
+### 'docs' extras:
 | package    | Description                       |
 | ---------- | --------------------------------- |
 | sphinx     | Generating documentation          |
 | sphinx-autopackagesummary | Template nested module content |
 
-- `poetry install -E docs` to include the documentation building dependencies
-- These are generic included extras to facilitate building documentation by projects using `pib_cli`
+- `poetry install -E docs` to add these dependencies to the core installation.
 
-## Installed Packages, 'pib_docs' extras:
+### 'pib_docs' extras:
 | package    | Description                       |
 | ---------- | --------------------------------- |
 | sphinx     | Generating documentation          |
+| sphinx-autopackagesummary | Template nested module content     |
 | sphinx-click              | Generate cli documentation         |
 | sphinx-jsonschema         | Generate schema documentation      |
-| sphinx-autopackagesummary | Template nested module content     |
 
-- `poetry install -E pib_docs` to build `pib_cli`'s documentation
-- These extras exist only to support building `pib_cli`'s documentation
+- `poetry install -E pib_docs` to add these dependencies to the core installation.
+- These extras exist only to support building `pib_cli`'s documentation- they aren't meant to be consumed by user projects.
+
+### Installing Multiple Extras:
+
+This is straight-forward to do:
+- `poetry install -E docs -E types`
 
 ## Customizing the Command Line Interface
 
@@ -122,25 +142,8 @@ This is most useful for making an IDE like pycharm aware of what's installed in 
 > It is still recommended to work inside the container, as you'll have access to the full managed python environment, 
 > as well as any additional services you are running in containers.  
 
-If you wish to use the cli outside the container for all tasks, [tomll](https://github.com/pelletier/go-toml) and [gitleaks](https://github.com/zricethezav/gitleaks) will also need to be installed, or the [cli.yml](./assets/cli.yml) configuration will need to be customized to remove these commands. (Not recommended.)
+If you wish to use the cli outside the container for all tasks, [tomll](https://github.com/pelletier/go-toml) and [gitleaks](https://github.com/zricethezav/gitleaks) will also need to be installed, or the [cli.yml](./assets/cli.yml) configuration will need to be customized to remove these commands.
 
-## Development Dependencies
+## Development Guide for `pib_cli`
 
-You'll need to install:
-
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
-## Setup the Development Environment
-
-Build the development environment container (this takes a few minutes):
-
-- `docker-compose build --build-arg PYTHON_VERSION=[3.7|3.8|3.9]`
-
-Start the environment container:
-
-- `docker-compose up -d`
-
-Spawn a shell inside the container:
-
-- `./container`
+Please see the documentation [here](./CONTRIBUTING.md).
