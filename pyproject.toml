@@ -51,7 +51,6 @@
       isort = "^5.8.0"
       jinja2 = "^2.11.3"
       jsonschema = "^3.2.0"
-      mypy = "^0.902"
       pydocstyle = "^6.1.1"
       pylint = "^2.8.3"
       pytest = "^6.2.4"
@@ -63,11 +62,16 @@
       yamllint = "^1.25.0"
       yapf = "^0.31.0"
 
+      [tool.poetry.dependencies.mypy]
+        optional = true
+        version = "^0.902"
+
       [tool.poetry.dependencies.sphinx]
         optional = true
         version = "^4.0.2"
 
       [tool.poetry.dependencies.sphinx-autopackagesummary]
+        optional = true
         version = "^1.3"
 
       [tool.poetry.dependencies.sphinx-click]
@@ -75,11 +79,13 @@
         version = "^3.0.0"
 
       [tool.poetry.dependencies.sphinx-jsonschema]
+        optional = true
         version = "^1.16.8"
 
     [tool.poetry.extras]
       docs = ["Sphinx","sphinx-autopackagesummary"]
       pib_docs = ["Sphinx","sphinx-click","sphinx-autopackagesummary","sphinx-jsonschema"]
+      types = ["mypy"]
 
     [[tool.poetry.packages]]
       include = "pib_cli"

@@ -33,7 +33,7 @@ EXPECTED=$(cat << EOF
 <     - "poetry install -E pib_docs"
 ---
 >     - "poetry install -E docs"
-74,76c71,73
+76,78c73,75
 <     - 'echo "Typing is disabled for this project."'
 <   success: ""
 <   failure: ""
