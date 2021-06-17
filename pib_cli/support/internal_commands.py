@@ -51,15 +51,29 @@ class InternalCommands:
       return config.ERROR_CONTAINER_ONLY
 
     results = []
-    bash_files = glob.glob(os.path.join(project_root, "bash", "*"))
+    self._copy_bash_files(results)
+    self._copy_shim(results)
+    results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
+    return "\n".join(results)
+
+  def _copy_bash_files(self, results):
     home_dir = str(Path.home())
+    bash_files = glob.glob(os.path.join(project_root, "bash", "bash*"))
     for file_name in bash_files:
       dotted_name = "." + os.path.basename(file_name)
       destination = os.path.join(home_dir, dotted_name)
       shutil.copy(file_name, destination)
       results.append(f"Copied: {file_name} -> {destination} ")
-    results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
-    return "\n".join(results)
+    return results
+
+  def _copy_shim(self, results):
+    home_dir = str(Path.home())
+    shim_file = os.path.join(project_root, "bash", "shim")
+    os.makedirs(config.LOCAL_EXECUTABLES, exist_ok=True)
+    destination = os.path.join(config.LOCAL_EXECUTABLES, 'dev')
+    shutil.copy(shim_file, os.path.join(home_dir, destination))
+    results.append(f"Copied: {shim_file} -> {destination} ")
+    return results
 
   def version(self):
     """Return the current version of the pib_cli in use."""

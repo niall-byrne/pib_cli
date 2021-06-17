@@ -31,6 +31,7 @@ EXTERNAL_COMMANDS = 'pib_cli.support.external_commands.ExternalCommands'
 INTERNAL_COMMANDS_OS_PATH_EXISTS = (
     'pib_cli.support.internal_commands.os.path.exists'
 )
+INTERNAL_COMMANDS_MAKE_DIRS = ('pib_cli.support.internal_commands.os.makedirs')
 INTERNAL_COMMANDS_SHUTIL_COPY = (
     'pib_cli.support.internal_commands.shutil.copy'
 )

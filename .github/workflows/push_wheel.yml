@@ -54,15 +54,15 @@ jobs:
 
       - name: Build -- Run Linter
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" bash -cl 'dev lint'
+          docker-compose exec -T "${PROJECT_NAME}" dev lint
 
       - name: Build -- Run Sec Test
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" bash -cl 'dev sectest'
+          docker-compose exec -T "${PROJECT_NAME}" dev sectest
 
       - name: Build -- Run Unit Tests
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" bash -cl 'dev coverage'
+          docker-compose exec -T "${PROJECT_NAME}" dev coverage
 
       - name: Build -- Run Release Validation
         run: |

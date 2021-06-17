@@ -82,28 +82,47 @@ class TestInternalCommands(TestCase):
 
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
-  def test_setup_bash_copy_operations(self, mock_exists, mock_copy):
+  @patch(patchbay.INTERNAL_COMMANDS_MAKE_DIRS)
+  def test_setup_bash_copy_operations(self, _, mock_exists, mock_copy):
     mock_exists.return_value = True
     self.internal_commands.setup_bash()
-    bash_files = glob.glob(os.path.join(project_root, "bash", "*"))
+    bash_files = glob.glob(os.path.join(project_root, "bash", "bash*"))
     home_dir = str(Path.home())
     for file_name in bash_files:
       dotted_name = "." + os.path.basename(file_name)
       mock_copy.assert_any_call(file_name, os.path.join(home_dir, dotted_name))
-    self.assertEqual(len(bash_files), mock_copy.call_count)
+    self.assertEqual(len(bash_files) + 1, mock_copy.call_count)
 
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
   @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
-  def test_setup_bash_output(self, mock_exists, _):
+  @patch(patchbay.INTERNAL_COMMANDS_MAKE_DIRS)
+  def test_setup_bash_shim_copy(self, mock_dirs, mock_exists, mock_copy):
+    mock_exists.return_value = True
+    self.internal_commands.setup_bash()
+    shim_file = os.path.join(project_root, "bash", "shim")
+    destination = os.path.join(config.LOCAL_EXECUTABLES, "dev")
+    mock_copy.assert_any_call(shim_file, destination)
+    mock_dirs.assert_called_once_with(config.LOCAL_EXECUTABLES, exist_ok=True)
+
+  @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)
+  @patch(patchbay.INTERNAL_COMMANDS_OS_PATH_EXISTS)
+  @patch(patchbay.INTERNAL_COMMANDS_MAKE_DIRS)
+  def test_setup_bash_output(self, _, mock_exists, __):
     mock_exists.return_value = True
     result = self.internal_commands.setup_bash()
     home_dir = str(Path.home())
     expected_results = []
-    bash_files = glob.glob(os.path.join(project_root, "bash", "*"))
+
+    bash_files = glob.glob(os.path.join(project_root, "bash", "bash*"))
     for file_name in bash_files:
       dotted_name = "." + os.path.basename(file_name)
       destination = os.path.join(home_dir, dotted_name)
       expected_results.append(f"Copied: {file_name} -> {destination} ")
+
+    shim_file = os.path.join(project_root, "bash", "shim")
+    destination = os.path.join(config.LOCAL_EXECUTABLES, "dev")
+    expected_results.append(f"Copied: {shim_file} -> {destination} ")
+
     expected_results.append(config.SETTING_BASH_SETUP_SUCCESS_MESSAGE)
     self.assertEqual(result, "\n".join(expected_results))
 

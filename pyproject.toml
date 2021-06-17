@@ -97,7 +97,7 @@
   [tool.pylint]
 
     [tool.pylint.basic]
-      argument-rgx = "[a-z_][a-z0-9_]{2,30}$|^pk$"
+      argument-rgx = "[a-z_][a-z0-9_]{1,30}$|^pk$"
       attr-rgx = "[a-z_][a-z0-9_]{2,30}$"
       bad-functions = "map,filter,apply,input"
       bad-names = "foo,bar,baz,toto,tutu,tata"
