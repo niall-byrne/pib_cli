@@ -16,7 +16,7 @@
             },
             "commands": {
                 "description": "A list of shell commands to run to perform this option.",
-                "type": "array",
+                "type": ["string", "array"],
                 "minItems": 1,
                 "items": {
                     "description": "An individual shell command.",

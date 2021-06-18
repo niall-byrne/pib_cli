@@ -20,20 +20,20 @@ DIFF=$(git diff)
 echo "Checking Config ... "
 DIFF=$(diff assets/cli.yml pib_cli/config/config.yml)
 EXPECTED=$(cat << EOF
-28d27
+27d26
 <     - 'tomll pyproject.toml'
-43,44c42
+42,43c41
 <     - 'shellcheck \${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck \${PROJECT_NAME}/container_init.sh'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
-47d44
+46d43
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
-56c53
+55c52
 <     - "poetry install -E pib_docs"
 ---
 >     - "poetry install -E docs"
-76,78c73,75
+75,77c72,74
 <     - 'echo "Typing is disabled for this project."'
 <   success: ""
 <   failure: ""
