@@ -185,3 +185,8 @@
       additional-builtins = ""
       dummy-variables-rgx = "_$|dummy"
       init-import = "no"
+
+  [tool.pytest]
+
+    [tool.pytest.ini_options]
+      testpaths = ["pib_cli"]
