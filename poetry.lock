@@ -652,7 +652,7 @@ sphinx = ">=2.0"
 
 [[package]]
 name = "sphinx-jsonschema"
-version = "1.16.8"
+version = "1.16.9"
 description = "Sphinx extension to display JSON Schema"
 category = "main"
 optional = true
@@ -855,7 +855,7 @@ types = ["mypy"]
 
 [metadata]
 lock-version = "1.1"
-      python-versions = ">=3.7.0,<4.0.0"
+python-versions = ">=3.7.0,<4.0.0"
 content-hash = "cc176cd9dc1bb8de26adbdfe1e843a89bff7faa9fbe44fff6ec5b0e915e9ae9f"
 
 [metadata.files]
@@ -1232,7 +1232,7 @@ sphinx-click = [
     {file = "sphinx_click-3.0.1-py3-none-any.whl", hash = "sha256:e9ee2237e5a6b6620e9996b8214934afdf8f7f9f9fc082482c77be0e4379038e"},
 ]
 sphinx-jsonschema = [
-    {file = "sphinx-jsonschema-1.16.8.tar.gz", hash = "sha256:5728b3ece1fe475c285d5ae16953242c51b4e6852f48f0bb734cd8408f3ac8b3"},
+    {file = "sphinx-jsonschema-1.16.9.tar.gz", hash = "sha256:bbc97ed6d2f50bdd1cc0318784a92922520982a3296ddea1159ebd8e811ef37e"},
 ]
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},
