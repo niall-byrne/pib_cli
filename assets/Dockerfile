@@ -74,7 +74,7 @@ RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER user
 
 # Copy the poetry configuration
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml /app/
 
 # Cache Dependencies
 RUN poetry install --no-root -E docs -E types -E pib_docs
@@ -101,10 +101,11 @@ ENV ENVIRONMENT "PRE_PRODUCTION"
 USER user
 
 # Copy the poetry configuration
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml /app/
 
 # Export the lock file
-RUN poetry export --without-hashes -E pib_docs -E types -f requirements.txt -o /app/requirements.txt
+RUN poetry install && \
+    poetry export --without-hashes -E pib_docs -E types -f requirements.txt -o /app/requirements.txt
 
 # Copy the codebase
 COPY . /app

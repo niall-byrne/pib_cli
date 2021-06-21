@@ -145,3 +145,7 @@ override.env
 
 # Documentation
 documentation/source/codebase/pib_cli/pib_cli/_autosummary
+
+# Lock File
+poetry.lock
+
