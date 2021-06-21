@@ -2,7 +2,7 @@
 
 # shellcheck disable=SC2129
 
-set -o pipefail
+set -eo pipefail
 
 main() {
   BRANCH_OR_TAG="$(echo "${GITHUB_REF}" | sed 's/refs\/heads\///g' | sed 's/refs\/tags\///g')"
