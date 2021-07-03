@@ -7,7 +7,7 @@ set -eo pipefail
 main() {
   BRANCH_OR_TAG="$(echo "${GITHUB_REF}" | sed 's/refs\/heads\///g' | sed 's/refs\/tags\///g')"
   PROJECT_NAME="pib_cli"
-  USERNAME="shared-vision-solutions"
+  USERNAME="niall-byrne"
   WORKFLOW_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
   echo "PYTHON_VERSION=${PYTHON_VERSION}" >> "$GITHUB_ENV"
   echo "BRANCH_OR_TAG=${BRANCH_OR_TAG}" >> "$GITHUB_ENV"

@@ -6,11 +6,11 @@ A development environment CLI, complete with tooling.
 
 ## Master Branch
 
-[![pib_cli-automation](https://github.com/shared-vision-solutions/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/shared-vision-solutions/pib_cli/actions)
+[![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
 
 ## Production Branch
 
-[![pib_cli-automation](https://github.com/shared-vision-solutions/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/shared-vision-solutions/pib_cli/actions)
+[![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/niall-byrne/pib_cli/actions)
 
 ## Supported Python Versions
 
@@ -25,7 +25,7 @@ This is a development environment CLI, with a customizable yaml config.
 
 It's built into this [Cookie Cutter](https://github.com/cookiecutter/cookiecutter) template:
 
-- [Python In A Box](https://github.com/shared-vision-solutions/python-in-a-box)
+- [Python In A Box](https://github.com/niall-byrne/python-in-a-box)
 
 To install, simply use: 
 - `pip install pib_cli`

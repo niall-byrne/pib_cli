@@ -5,7 +5,7 @@
     "description": "Python Development CLI",
     "author": "Niall Byrne",
     "email": "niall@niallbyrne.ca",
-    "github_username": "shared-vision-solutions",
+    "github_username": "niall-byrne",
     "include_ssh_keys": "true",
     "include_gitconfig": "true",
     "include_gitconfig_global": "true",
