@@ -26,7 +26,7 @@ class TestConfigurationManager(TestCase):
 
   def setUp(self):
     self.configuration_manager = ConfigurationManager()
-    with open(config_filename) as file_handle:
+    with open(config_filename, encoding='utf-8') as file_handle:
       self.config = yaml.safe_load(file_handle)
 
   def test_initial_instance_variables(self):

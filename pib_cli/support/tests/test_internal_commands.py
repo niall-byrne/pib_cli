@@ -77,7 +77,10 @@ class TestInternalCommands(TestCase):
         mock_open(read_data=mock_configuration),
     ) as mock_config_data:
       result = self.internal_commands.config_show()
-      mock_config_data.assert_called_once_with(mock_config_file.return_value)
+      mock_config_data.assert_called_once_with(
+          mock_config_file.return_value,
+          encoding='utf-8',
+      )
       self.assertEqual(result, mock_configuration.strip())
 
   @patch(patchbay.INTERNAL_COMMANDS_SHUTIL_COPY)

@@ -24,12 +24,12 @@ class ConfigurationManager:
     self.config_entry = None
 
   def _load_schema(self):
-    with open(self.schema_file) as file_handle:
+    with open(self.schema_file, encoding='utf-8') as file_handle:
       schema = json.load(file_handle)
     return schema
 
   def _load_config(self):
-    with open(config_filename) as file_handle:
+    with open(config_filename, encoding='utf-8') as file_handle:
       configuration_file_content = yaml.safe_load(file_handle)
     return configuration_file_content
 
