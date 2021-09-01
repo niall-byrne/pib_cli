@@ -37,7 +37,7 @@ class InternalCommands:
     :rtype: basestring
     """
     current_config = get_config_file_name()
-    with open(current_config) as fhandle:
+    with open(current_config, encoding='utf-8') as fhandle:
       results = fhandle.read().strip()
     return results
 

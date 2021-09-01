@@ -46,7 +46,7 @@ class CommandTestHarness(TestCase):
 
   @classmethod
   def setUpClass(cls):
-    with open(config_filename) as file_handle:
+    with open(config_filename, encoding='utf-8') as file_handle:
       cls.yaml = yaml.safe_load(file_handle)
 
   @patch(patchbay.PATH_MANAGER_CONTAINER_PATH_MANAGER)
