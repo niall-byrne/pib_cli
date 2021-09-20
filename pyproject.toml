@@ -157,7 +157,7 @@
       profile = "no"
 
     [tool.pylint.message_control]
-      disable = "similarities,locally-disabled,fixme,too-few-public-methods,bad-continuation,C0411,E5901,E1101,R0201"
+      disable = "similarities,locally-disabled,fixme,too-few-public-methods,bad-continuation,C0411,E5901,E1101,R0201,consider-using-f-string"
 
     [tool.pylint.miscellaneous]
       notes = "FIXME,XXX,TODO"
