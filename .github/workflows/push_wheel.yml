@@ -99,7 +99,7 @@ jobs:
 
       - name: Create Release -- Generate Changelog
         if: contains(github.ref, '/tags/v')
-        uses: scottbrenner/generate-changelog-action@v1.3.1
+        uses: scottbrenner/generate-changelog-action@v1.3.3
         id: Changelog
         env:
           REPO: ${{ github.repository }}
@@ -169,7 +169,7 @@ jobs:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
       - name: Dockerfile Test -- Documentation Validation
-        uses: hadolint/hadolint-action@v1.5.0
+        uses: hadolint/hadolint-action@v1.6.0
         with:
           dockerfile: assets/Dockerfile
           failure-threshold: error
