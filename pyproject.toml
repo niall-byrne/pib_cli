@@ -50,7 +50,7 @@
       commitizen = "^2.7.16"
       isort = "^5.8.0"
       jinja2 = ">=2.11.3,<4.0.0"
-      jsonschema = "^3.2.0"
+      jsonschema = ">=3.2,<5.0"
       pydocstyle = "^6.1.1"
       pylint = "^2.8.3"
       pytest = "^6.2.4"
