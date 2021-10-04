@@ -37,7 +37,7 @@ class CommandTestHarness(TestCase):
       if entry[yaml_keys.COMMAND_NAME] == name:
         self.config = entry
         return
-    raise KeyError("Could not find yaml key name: %s" % name)
+    raise KeyError("Could not find yaml key name: %s" % name)  # pragma: nocover
 
   def get_coerced_from_string_commands(self):
     if isinstance(self.config[yaml_keys.COMMANDS], str):

@@ -4,7 +4,6 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from ... import config, patchbay
-from ...config import yaml_keys
 from ..configuration import ConfigurationManager
 from ..external_commands import ExternalCommands, execute_external_command
 from ..paths import ContainerPathManager
@@ -72,14 +71,6 @@ class TestExecuteExternalCommandFunction(TestCase):
 
 class TestCommandClass(TestCase):
   """Test the ExternalCommands class."""
-
-  def yaml_test_data(self, path_method, test_command, container_only):
-    return {
-        yaml_keys.COMMAND_NAME: test_command,
-        yaml_keys.CONTAINER_ONLY: container_only,
-        yaml_keys.PATH_METHOD: path_method,
-        yaml_keys.COMMANDS: "Some Command"
-    }
 
   def setUp(self):
     with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
