@@ -7,7 +7,7 @@ from unittest.mock import call, patch
 from ... import config, patchbay
 from ..paths import (
     BasePathManager,
-    ContainerPathManager,
+    DevContainerPathManager,
     ExternalPathManager,
     get_path_manager,
 )
@@ -33,7 +33,7 @@ class TestGetPathManager(TestCase):
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True)
   def test_is_container(self, _):
     path_manager = get_path_manager()
-    self.assertIsInstance(path_manager, ContainerPathManager)
+    self.assertIsInstance(path_manager, DevContainerPathManager)
 
   @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=False)
   def test_is_not_container(self, _):
@@ -45,7 +45,7 @@ class TestContainerPathManager(TestCase):
   """Test the ContainerPathManager class."""
 
   def setUp(self):
-    self.path_manager = ContainerPathManager()
+    self.path_manager = DevContainerPathManager()
 
   def test_initial_instance_variables(self):
     assert self.path_manager.root == os.path.join(

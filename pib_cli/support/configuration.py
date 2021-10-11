@@ -8,7 +8,7 @@ from jsonschema import validate
 
 from .. import config, config_filename
 from ..config import yaml_keys
-from .container import Container
+from .dev_container import DevContainer
 
 
 class ConfigurationManager:
@@ -90,7 +90,7 @@ class ConfigurationManager:
     :returns: A boolean indicating if the command can currently be executed
     :rtype: bool
     """
-    if not Container.is_container():
+    if not DevContainer.is_container():
       container_only_flag = self.config_entry.get(
           yaml_keys.CONTAINER_ONLY,
           None,

@@ -9,7 +9,7 @@ import click
 import pkg_resources
 
 from .. import config, get_config_file_name, project_root
-from .container import Container
+from .dev_container import DevContainer
 from .paths import get_path_manager
 from .processes import ProcessManager
 
@@ -47,7 +47,7 @@ class InternalCommands:
     :returns: A success message, if the command completes successfully.
     :rtype: basestring
     """
-    if not Container.is_container():
+    if not DevContainer.is_container():
       return config.ERROR_CONTAINER_ONLY
 
     results = []
