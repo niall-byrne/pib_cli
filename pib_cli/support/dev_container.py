@@ -1,11 +1,11 @@
-"""Container Management Class."""
+"""Dev Container Management Class."""
 
 import os
 
 from .. import config
 
 
-class Container:
+class DevContainer:
   """Methods relating to the presence of a development environment container."""
 
   @staticmethod

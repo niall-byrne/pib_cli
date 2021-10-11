@@ -4,14 +4,14 @@ import abc
 import os
 
 from .. import config
-from .container import Container
+from .dev_container import DevContainer
 
 
 def get_path_manager():
   """Return the appropriate BasePathManager implementation."""
 
-  if Container.is_container():
-    return ContainerPathManager()
+  if DevContainer.is_container():
+    return DevContainerPathManager()
   return ExternalPathManager()
 
 
@@ -31,7 +31,7 @@ class BasePathManager(abc.ABC):
     """Abstract project_docs method."""
 
 
-class ContainerPathManager(BasePathManager):
+class DevContainerPathManager(BasePathManager):
   """Manages changing location inside a dev container."""
 
   def __init__(self):

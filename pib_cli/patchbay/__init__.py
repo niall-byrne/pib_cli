@@ -5,9 +5,11 @@ CLI_EXECUTE_EXTERNAL_COMMAND = 'pib_cli.cli.execute_external_command'
 CLI_EXECUTE_INTERNAL_COMMAND = 'pib_cli.cli.execute_internal_command'
 
 CONTAINER_MANAGER_IS_CONTAINER = (
-    'pib_cli.support.container.Container.is_container'
+    'pib_cli.support.dev_container.DevContainer.is_container'
 )
-CONTAINER_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.container.os.path.exists'
+CONTAINER_MANAGER_OS_PATH_EXISTS = (
+    'pib_cli.support.dev_container.os.path.exists'
+)
 
 CONFIGURATION_MANAGER_FIND_CONFIG = (
     'pib_cli.support.configuration.ConfigurationManager.find_config_entry'
@@ -31,7 +33,7 @@ EXTERNAL_COMMANDS = 'pib_cli.support.external_commands.ExternalCommands'
 INTERNAL_COMMANDS_OS_PATH_EXISTS = (
     'pib_cli.support.internal_commands.os.path.exists'
 )
-INTERNAL_COMMANDS_MAKE_DIRS = ('pib_cli.support.internal_commands.os.makedirs')
+INTERNAL_COMMANDS_MAKE_DIRS = 'pib_cli.support.internal_commands.os.makedirs'
 INTERNAL_COMMANDS_SHUTIL_COPY = (
     'pib_cli.support.internal_commands.shutil.copy'
 )
@@ -49,7 +51,7 @@ INTERNAL_COMMANDS_GET_CONFIG_FILE_NAME = (
 PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
 PATH_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.paths.os.path.exists'
 PATH_MANAGER_CONTAINER_PATH_MANAGER = (
-    'pib_cli.support.paths.ContainerPathManager'
+    'pib_cli.support.paths.DevContainerPathManager'
 )
 
 PROCESS_MANAGER_OS_ENVIRON = 'pib_cli.support.processes.os.environ'
