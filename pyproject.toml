@@ -60,7 +60,7 @@
       safety = "^1.10.3"
       wheel = "^0.36.2"
       yamllint = "^1.25.0"
-      yapf = "^0.31.0"
+      yapf = ">=0.31,<0.33"
 
       [tool.poetry.dependencies.mypy]
         optional = true
