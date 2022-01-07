@@ -42,7 +42,7 @@ EXPECTED=$(cat << EOF
 <   success: ""
 <   failure: ""
 ---
->     - 'mypy \${PROJECT_NAME}'
+>     - 'mypy --strict \${PROJECT_NAME}'
 >   success: "Type Check Passed!"
 >   failure: "Type Check Failed!"
 EOF
