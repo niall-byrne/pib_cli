@@ -121,16 +121,15 @@
       valid-metaclass-classmethod-first-arg = "mcs"
 
     [tool.pylint.design]
-      ignored-argument-names = "_.*"
       max-args = 5
       max-attributes = 7
-      max-branches = 12
+      max-branches = 15
       max-locals = 15
       max-parents = 10
-      max-public-methods = 200
-      max-returns = 6
+      max-public-methods = 25
+      max-returns = 10
       max-statements = 50
-      min-public-methods = 2
+      min-public-methods = 1
 
     [tool.pylint.exceptions]
       overgeneral-exceptions = "Exception"
@@ -139,7 +138,7 @@
       ignore-long-lines = "^\\s*(# )?<?https?://\\S+>?$"
       indent-string = "  "
       max-line-length = 80
-      max-module-lines = 1000
+      max-module-lines = 2000
       no-space-check = "trailing-comma,dict-separator"
       single-line-if-stmt = "no"
 
@@ -157,7 +156,7 @@
       profile = "no"
 
     [tool.pylint.message_control]
-      disable = "locally-disabled,fixme,too-few-public-methods,bad-continuation,C0411,E5901,E1101,R0201,consider-using-f-string"
+      disable = "locally-disabled,fixme,too-few-public-methods,consider-using-f-string,C0411,E1101,R0201"
 
     [tool.pylint.miscellaneous]
       notes = "FIXME,XXX,TODO"
@@ -178,13 +177,16 @@
     [tool.pylint.typecheck]
       generated-members = "REQUEST,acl_users,aq_parent"
       ignore-mixin-members = "yes"
-      ignored-classes = "SQLObject"
-      zope = "no"
+      ignored-classes = "SQLObject,optparse.Values,thread._local,_thread._local"
 
     [tool.pylint.variables]
       additional-builtins = ""
+      allow-global-unused-variables = "yes"
+      callbacks = "cb_,_cb"
       dummy-variables-rgx = "_$|dummy"
+      ignored-argument-names = "_.*"
       init-import = "no"
+      redefining-builtins-modules = "six.moves,past.builtins,future.builtins,builtins,io"
 
   [tool.pytest]
 
