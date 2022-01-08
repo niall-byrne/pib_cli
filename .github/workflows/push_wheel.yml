@@ -89,6 +89,8 @@ jobs:
     steps:
       - name: Create Release -- Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Create Release -- Setup Environment
         run: |
@@ -226,6 +228,8 @@ jobs:
 
       - name: Security Test -- Checkout Repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Documentation Test -- Setup Environment
         run: |
