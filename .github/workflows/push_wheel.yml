@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Build -- Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Build -- Setup Environment
         run: |
@@ -84,7 +84,7 @@ jobs:
 
     steps:
       - name: Create Release -- Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Create Release -- Setup Environment
         run: |
@@ -160,7 +160,7 @@ jobs:
 
     steps:
       - name: Dockerfile Test -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Dockerfile Test -- Setup Environment
         run: |
@@ -189,7 +189,7 @@ jobs:
 
     steps:
       - name: Documentation Test -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Documentation Test -- Setup Environment
         run: |
@@ -219,7 +219,7 @@ jobs:
     steps:
 
       - name: Security Test -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Documentation Test -- Setup Environment
         run: |
@@ -244,7 +244,7 @@ jobs:
 
     steps:
       - name: Shellcheck -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Shellcheck -- Setup Environment
         run: |
@@ -280,7 +280,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Workflow Lint -- Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Workflow Lint -- Setup Environment
         run: |
