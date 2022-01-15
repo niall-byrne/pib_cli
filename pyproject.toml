@@ -41,7 +41,7 @@
     name = "pib_cli"
     readme = "README.md"
     repository = "https://github.com/niall-byrne/pib_cli"
-    version = "0.1.5"
+    version = "0.1.6"
 
     [tool.poetry.dependencies]
       PyYAML = ">=5.4.1,<7.0.0"
