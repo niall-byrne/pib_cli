@@ -77,7 +77,7 @@ USER user
 COPY pyproject.toml /app/
 
 # Cache Dependencies
-RUN poetry install --no-root -E docs -E types -E pib_docs
+RUN poetry install --no-root -E docstrings -E docs -E types -E pib_docs
 
 # Copy the codebase
 COPY . /app
@@ -105,7 +105,7 @@ COPY pyproject.toml /app/
 
 # Export the lock file
 RUN poetry install && \
-    poetry export --without-hashes -E pib_docs -E types -f requirements.txt -o /app/requirements.txt
+    poetry export --without-hashes -E docstrings -E pib_docs -E types -f requirements.txt -o /app/requirements.txt
 
 # Copy the codebase
 COPY . /app

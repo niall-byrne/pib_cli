@@ -30,6 +30,7 @@ It's built into this [Cookie Cutter](https://github.com/cookiecutter/cookiecutte
 To install, simply use: 
 - `pip install pib_cli`
 - `pip install pib_cli[docs]` (Adds [Sphinx](https://www.sphinx-doc.org/en/master/) support.)
+- `pip install pib_cli[docstrings]` (Adds [pydocstyle](http://www.pydocstyle.org/en/stable/) support.)
 - `pip install pib_cli[types]` (Adds [MyPy](http://mypy-lang.org/) support.)
 
 ## Usage
@@ -58,7 +59,6 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 | commitizen | Standardizes commit messages      |
 | isort      | Sorts imports                     |
 | poetry     | Python Package Manager            |
-| pydocstyle | PEP 257 enforcement               |
 | pylint     | Static Code Analysis              |
 | pytest     | Test suite                        |
 | pytest-cov | Coverage support for pytest       |
@@ -70,13 +70,6 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 - `poetry install` to install only these dependencies.
 - This is the base install, and you'll always get these dependencies installed.
 
-### 'types' extras:
-| package    | Description                       |
-| ---------- | --------------------------------- |
-| mypy       | Static type checker               |
-
-- `poetry install -E types` to add these dependencies to the core installation.
-
 ### 'docs' extras:
 | package    | Description                       |
 | ---------- | --------------------------------- |
@@ -84,6 +77,20 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 | sphinx-autopackagesummary | Template nested module content |
 
 - `poetry install -E docs` to add these dependencies to the core installation.
+
+### 'docstrings' extras:
+| package    | Description                       |
+| ---------- | --------------------------------- |
+| pydocstyle | PEP 257 enforcement               |
+
+- `poetry install -E docstrings` to add these dependencies to the core installation.
+
+### 'types' extras:
+| package    | Description                       |
+| ---------- | --------------------------------- |
+| mypy       | Static type checker               |
+
+- `poetry install -E types` to add these dependencies to the core installation.
 
 ### 'pib_docs' extras:
 | package    | Description                       |
@@ -99,7 +106,7 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 ### Installing Multiple Extras:
 
 This is straight-forward to do:
-- `poetry install -E docs -E types`
+- `poetry install -E docs -E docstrings -E types`
 
 ## Customizing the Command Line Interface
 
