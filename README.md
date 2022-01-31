@@ -43,7 +43,7 @@ To install, simply use:
 
 ## License
 
-[MPL-2](LICENSE)
+[MPL-2](https://github.com/niall-byrne/pib_cli/blob/master/LICENSE)
 
 ## Included Packages
 
@@ -111,7 +111,7 @@ This is straight-forward to do:
 ## Customizing the Command Line Interface
 
 The CLI has some defaults built in, but is customizable by setting the `PIB_CONFIG_FILE_LOCATION` environment variable.
-The default config file can be found [here](pib_cli/config/config.yml).
+The default config file can be found [here](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/config.yml).
 
 Each command is described by a yaml key in this format :
 
@@ -134,7 +134,7 @@ where `location_string` is one of:
 
 ## Installing a virtual environment, and the CLI on your host machine
 
-The [scripts/extras.sh](scripts/extras.sh) script does this for you.
+The [scripts/extras.sh](https://github.com/niall-byrne/pib_cli/blob/master/scripts/extras.sh) script does this for you.
 
 First install [poetry](https://python-poetry.org/) on your host machine:
 - `pip install poetry`
@@ -149,8 +149,8 @@ This is most useful for making an IDE like pycharm aware of what's installed in 
 > It is still recommended to work inside the container, as you'll have access to the full managed python environment, 
 > as well as any additional services you are running in containers.  
 
-If you wish to use the cli outside the container for all tasks, [tomll](https://github.com/pelletier/go-toml) and [gitleaks](https://github.com/zricethezav/gitleaks) will also need to be installed, or the [cli.yml](./assets/cli.yml) configuration will need to be customized to remove these commands.
+If you wish to use the cli outside the container for all tasks, [tomll](https://github.com/pelletier/go-toml) and [gitleaks](https://github.com/zricethezav/gitleaks) will also need to be installed, or the [cli.yml](https://github.com/niall-byrne/pib_cli/blob/master/assets/cli.yml) configuration will need to be customized to remove these commands.
 
 ## Development Guide for `pib_cli`
 
-Please see the documentation [here](./CONTRIBUTING.md).
+Please see the documentation [here](https://github.com/niall-byrne/pib_cli/blob/master/CONTRIBUTING.md).
