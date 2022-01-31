@@ -39,7 +39,7 @@ To install, simply use:
 
 ## Container
 
-[python:3.7-slim](https://github.com/docker-library/python/tree/master/3.7/buster/slim)
+[python:3.7-slim](https://github.com/docker-library/repo-info/blob/master/repos/python/remote/3.7-slim.md)
 
 ## License
 
