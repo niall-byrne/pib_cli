@@ -67,6 +67,10 @@
       yamllint = "^1.26.3"
       yapf = "^0.32.0"
 
+      [tool.poetry.dependencies.darglint]
+        optional = true
+        version = "^1.8.1"
+
       [tool.poetry.dependencies.mypy]
         optional = true
         version = "*"
@@ -92,8 +96,8 @@
         version = "^1.17.2"
 
     [tool.poetry.extras]
-      docs = ["Sphinx", "sphinx-autopackagesummary"]
-      docstrings = ["pydocstyle"]
+      docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]
+      docstrings = ["darglint", "pydocstyle"]
       pib_docs = ["Sphinx", "sphinx-click", "sphinx-autopackagesummary", "sphinx-jsonschema"]
       types = ["mypy"]
 

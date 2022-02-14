@@ -39,6 +39,7 @@
   path_method: "project_root"
   commands:
     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
+    - 'darglint "${PROJECT_NAME}"'
     - 'pydocstyle "${PROJECT_NAME}"'
     - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
     - 'isort -c "${PROJECT_NAME}"'

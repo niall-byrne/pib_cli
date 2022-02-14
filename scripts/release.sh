@@ -29,17 +29,17 @@ EXPECTED=$(cat << EOF
 <     - 'shellcheck \${PROJECT_NAME}/container_init.sh'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
-47d43
+48d44
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
-56c52
+57c53
 <     - "poetry install -E pib_docs"
 ---
 >     - "poetry install -E docs"
-64c60
+65c61
 <     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-76,78c72,74
+77,79c73,75
 <     - 'echo "Typing is disabled for this project."'
 <   success: ""
 <   failure: ""

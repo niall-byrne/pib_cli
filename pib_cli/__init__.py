@@ -27,8 +27,7 @@ def get_config_file_name():
 def check_project_name():
   """Get the current project name from the environment.
 
-  :returns: The value of the environment variable configured for project names.
-  :rtype: basestring
+  :raises: KeyError
   """
 
   if config.ENV_PROJECT_NAME not in os.environ:

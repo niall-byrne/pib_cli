@@ -78,6 +78,7 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 ### 'docs' extras:
 | package    | Description                       |
 | ---------- | --------------------------------- |
+| darglint   | Sphinx style guide enforcement    |
 | sphinx     | Generating documentation          |
 | sphinx-autopackagesummary | Template nested module content |
 

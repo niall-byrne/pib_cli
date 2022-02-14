@@ -28,8 +28,6 @@ class ProcessManager:
 
     :param command: The system call to execute
     :type command: basestring
-    :returns: The exit code of the command
-    :rtype: int
     """
     result = os.system(command)  # nosec
     self.exit_code = int(result / 256)
