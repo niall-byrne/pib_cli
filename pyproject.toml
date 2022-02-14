@@ -63,7 +63,7 @@
 
       [tool.poetry.dependencies.mypy]
         optional = true
-        version = "^0.902"
+        version = "*"
 
       [tool.poetry.dependencies.pydocstyle]
         optional = true
