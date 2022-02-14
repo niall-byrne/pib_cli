@@ -1,5 +1,3 @@
-#!/usr/local/bin/python
-# -*- coding: utf-8 -*-
-from pib_cli import cli
+#!/bin/bash
 
-cli.cli()
+python -c "from pib_cli import cli;cli.cli()" "$@"
