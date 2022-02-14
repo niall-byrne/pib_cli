@@ -47,18 +47,18 @@
       PyYAML = ">=5.4.1,<7.0.0"
       bandit = "^1.7.0"
       click = "^8.0.1"
-      commitizen = "^2.7.16"
-      isort = "^5.8.0"
+      commitizen = "^2.20.0"
+      isort = "^5.10.0"
       jinja2 = ">=2.11.3,<4.0.0"
-      jsonschema = ">=3.2,<5.0"
+      jsonschema = "^4.4.0"
       pylint = "^2.8.3"
-      pytest = "^6.2.4"
-      pytest-cov = ">=2.12.1,<4.0.0"
+      pytest = "^7.0.1"
+      pytest-cov = "^3.0.0"
       pytest-pylint = "^0.18.0"
       python = ">=3.7.0,<4.0.0"
       safety = "^1.10.3"
-      wheel = "^0.36.2"
-      yamllint = "^1.25.0"
+      wheel = "^0.37.1"
+      yamllint = "^1.26.3"
       yapf = "^0.32.0"
 
       [tool.poetry.dependencies.mypy]
@@ -71,7 +71,7 @@
 
       [tool.poetry.dependencies.sphinx]
         optional = true
-        version = "^4.0.2"
+        version = "^4.4.0"
 
       [tool.poetry.dependencies.sphinx-autopackagesummary]
         optional = true
@@ -79,11 +79,11 @@
 
       [tool.poetry.dependencies.sphinx-click]
         optional = true
-        version = "^3.0.0"
+        version = "^3.1.0"
 
       [tool.poetry.dependencies.sphinx-jsonschema]
         optional = true
-        version = "^1.16.8"
+        version = "^1.17.2"
 
     [tool.poetry.extras]
       docs = ["Sphinx", "sphinx-autopackagesummary"]
