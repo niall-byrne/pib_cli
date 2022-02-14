@@ -1,0 +1,23 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: commitizen
+        name: commitizen check
+        description: "Check whether the commit message follows committing rules."
+        entry: cz check --commit-msg-file
+        language: python
+        language_version: python3
+        stages: [ commit-msg ]
+        minimum_pre_commit_version: "0.15.4"
+        require_serial: true
+        always_run: true
+      - id: protected_branches
+        name: protected branches
+        description: "Run additional checks on branches marked as protected."
+        entry: ./scripts/hooks/protected_branches.sh
+        language: system
+        stages: [commit]
+        pass_filenames: false
+        require_serial: true
+        always_run: true

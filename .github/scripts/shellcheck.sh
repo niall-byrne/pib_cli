@@ -7,7 +7,7 @@ main() {
   shellcheck ./.github/scripts/*.sh
   shellcheck ./pib_cli/*.sh
   shellcheck ./scripts/*.sh
-  shellcheck ./scripts/hooks/*
+  shellcheck ./scripts/hooks/*.sh
 
 }
 

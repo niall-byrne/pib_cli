@@ -82,9 +82,15 @@ RUN poetry install --no-root -E docstrings -E docs -E types -E pib_docs
 # Copy the codebase
 COPY . /app
 
+# Modify the git hooks permissions
+USER root
+RUN chown user /app/.git/hooks/*
+USER user
+
 # Setup The Dev CLI, bootstrapping the current version of pib_cli
-RUN poetry install                  && \
-    poetry run dev setup-bash
+RUN poetry install                              && \
+    poetry run dev setup-bash                   && \
+    poetry run pre-commit install
 
 CMD ["./pib_cli/container_init.sh"]
 

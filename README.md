@@ -58,14 +58,15 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 | bandit     | Finds common security issues      |
 | commitizen | Standardizes commit messages      |
 | isort      | Sorts imports                     |
-| poetry     | Python Package Manager            |
-| pylint     | Static Code Analysis              |
+| poetry     | Python package manager            |
+| pre-commit | Pre-commit hook manager           |
+| pylint     | Static code analysis              |
 | pytest     | Test suite                        |
 | pytest-cov | Coverage support for pytest       |
 | safety     | Dependency vulnerability scanning |
 | wheel      | Package distribution tools        |
 | yamllint   | Lint yaml configuration files     |
-| yapf       | Customizable Code Formatting      |
+| yapf       | Customizable code formatting      |
 
 - `poetry install` to install only these dependencies.
 - This is the base install, and you'll always get these dependencies installed.

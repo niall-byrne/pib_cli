@@ -2,15 +2,6 @@
 
 ROOT="$(git rev-parse --show-toplevel)"
 
-install_git_hooks() {
-  pushd "${ROOT}"  > /dev/null
-    set +e
-      cd .git/hooks
-      ln -sf ../../scripts/hooks/pre-commit pre-commit
-    set -e
-  popd  > /dev/null
-}
-
 pib_setup_hostmachine() {
   poetry install -E docstrings -E pib_docs
 

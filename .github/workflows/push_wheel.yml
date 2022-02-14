@@ -82,7 +82,7 @@ jobs:
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: build for Python ${PYTHON_VERSION} failed!"
 
   create_release:
-    needs: [build, dockerfile_test, documentation_test, security_test, shellcheck_test, workflow_lint_test]
+    needs: [build, commitizen-check, dockerfile_test, documentation_test, security_test, shellcheck_test, workflow_lint_test]
 
     runs-on: ubuntu-latest
 
@@ -101,14 +101,12 @@ jobs:
       - name: Create Release -- Prepare Content
         if: contains(github.ref, '/tags/v')
         run: |
-          echo "{}" > package.json
+          pip install commitizen
 
       - name: Create Release -- Generate Changelog
         if: contains(github.ref, '/tags/v')
-        uses: scottbrenner/generate-changelog-action@v1.3.3
-        id: Changelog
-        env:
-          REPO: ${{ github.repository }}
+        run: |
+          source .github/scripts/changelog.sh
 
       - name: Create Release -- Create Github Release
         if: contains(github.ref, '/tags/v')
@@ -120,7 +118,7 @@ jobs:
           tag_name: ${{ env.BRANCH_OR_TAG }}
           release_name: Release ${{ env.BRANCH_OR_TAG }}
           body: |
-            ${{ steps.Changelog.outputs.changelog }}
+            ${{ env.CHANGE_LOG }}
             ## Deployment Checklist
             - [ ] Ensure documentation is accurate
             - [ ] Ensure readthedocs integration is working
@@ -159,6 +157,46 @@ jobs:
         if: failure() && contains(github.ref, '/tags/v')
         run: |
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: automated release generation failed!"
+
+  commitizen-check:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7]
+
+    steps:
+      - name: Commitizen Check -- Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Commitizen Check -- Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+
+      - name: Commitizen Check -- Setup Environment
+        run: |
+          source ./.github/scripts/setup.sh
+          pip install commitizen
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Commitizen Check -- Check Commit Messages
+        run: |
+          cz check --rev-range HEAD
+
+      - name: Commitizen Check -- Report Job Status on Success
+        if: ${{ env.VERBOSE_NOTIFICATIONS  == '1' }}
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: commit linting was successful!"
+
+      - name: Commitizen Check -- Report Job Status on Failure
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: commit linting has failed!"
 
   dockerfile_test:
 
