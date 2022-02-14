@@ -18,6 +18,7 @@ Tested to work under the following python version:
 - Python 3.7
 - Python 3.8
 - Python 3.9
+- Python 3.10
 
 ## Installation
 
@@ -37,9 +38,12 @@ To install, simply use:
 
 - use the `dev` command for details once installed
 
-## Container
+## Base Container Details
 
-[python:3.7-slim](https://github.com/docker-library/repo-info/blob/master/repos/python/remote/3.7-slim.md)
+- [python:3.7-slim](https://github.com/docker-library/repo-info/blob/master/repos/python/remote/3.7-slim.md)
+- [python:3.8-slim](https://github.com/docker-library/repo-info/blob/master/repos/python/remote/3.8-slim.md)
+- [python:3.9-slim](https://github.com/docker-library/repo-info/blob/master/repos/python/remote/3.9-slim.md)
+- [python:3.10-slim](https://github.com/docker-library/repo-info/blob/master/repos/python/remote/3.10-slim.md)
 
 ## License
 
