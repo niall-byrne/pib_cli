@@ -1,6 +1,9 @@
 ---
+ignored: []
+trustedRegistries:
+  - docker.io
 label-schema:
-  project: text
+  maintainer: text
   environment: text
-
+  project: text
 strict-labels: true

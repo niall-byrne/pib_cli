@@ -1,21 +1,23 @@
-ARG PYTHON_VERSION=3.7
-FROM python:$PYTHON_VERSION-slim AS base
+ARG BUILD_ARG_PYTHON_VERSION=3.7
+FROM python:$BUILD_ARG_PYTHON_VERSION-slim AS base
+
+ARG BUILD_ARG_ASPELL_LANGUAGE="en"
 
 LABEL maintainer="niall@niallbyrne.ca"
 LABEL project="pib_cli"
-LABEL environment=""
+LABEL environment="stage1"
 
 ENV PYTHONUNBUFFERED "1"
 ENV PROJECT_NAME "pib_cli"
 ENV PIB_CONFIG_FILE_LOCATION "/app/assets/cli.yml"
 
-ENV VERSION_GITLEAKS "v7.2.0"
+ENV VERSION_ASPELL "aspell-${BUILD_ARG_ASPELL_LANGUAGE}=*"
+ENV VERSION_GITLEAKS "8.3.0"
 ENV VERSION_POETRY "poetry>=1.1.12,<1.2.0"
-ENV VERSION_ASPELL "aspell-en=*"
 
 # Mark Container
-RUN echo "2.0" > /etc/container_pib
-RUN echo "pib_cli" > /etc/container_release
+RUN echo "1.0.0" > /etc/container_pib_version   && \
+    echo "pib_cli" > /etc/container_release
 
 # Install Base Dependencies
 RUN apt-get update               && \
@@ -44,10 +46,11 @@ ENV PATH "/home/user/.local/bin/:${PATH}"
 # Poetry Intermediary
 FROM base AS poetry
 
-LABEL environment=""
+LABEL environment="stage2"
 
 # Install Latest Poetry
-RUN pip install --no-cache-dir poetry
+# hadolint ignore=DL3013
+RUN pip install --no-cache-dir "${VERSION_POETRY}"
 
 # ======================================================
 
@@ -57,6 +60,7 @@ LABEL environment="DEVELOPMENT"
 ENV ENVIRONMENT DEVELOPMENT
 
 # Install Dev Dependencies
+# hadolint ignore=DL3008
 RUN apt-get update                      && \
     apt-get install -y                     \
     --no-install-recommends                \
@@ -72,8 +76,12 @@ RUN apt-get update                      && \
     vim=2:8.*
 
 # Install Git Leaks
-RUN curl --fail -sL "https://github.com/zricethezav/gitleaks/releases/download/${VERSION_GITLEAKS}/gitleaks-linux-amd64"    \
-    -o /usr/bin/gitleaks                                                                                                 && \
+RUN curl --fail -sL                                                                                                                   \
+    "https://github.com/zricethezav/gitleaks/releases/download/v${VERSION_GITLEAKS}/gitleaks_${VERSION_GITLEAKS}_linux_x64.tar.gz"    \
+    -o gitleaks.tar.gz                                                                                                             && \
+    tar -xvzf gitleaks.tar.gz gitleaks                                                                                             && \
+    mv ./gitleaks /usr/bin/gitleaks                                                                                                && \
+    rm gitleaks.tar.gz                                                                                                             && \
     chmod +x /usr/bin/gitleaks
 
 # Add user to sudoers, and make the default user
