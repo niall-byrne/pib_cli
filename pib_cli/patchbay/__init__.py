@@ -48,12 +48,6 @@ INTERNAL_COMMANDS_GET_CONFIG_FILE_NAME = (
     'pib_cli.support.internal_commands.get_config_file_name'
 )
 
-PATH_MANAGER_OS_CHDIR = 'pib_cli.support.paths.os.chdir'
-PATH_MANAGER_OS_PATH_EXISTS = 'pib_cli.support.paths.os.path.exists'
-PATH_MANAGER_CONTAINER_PATH_MANAGER = (
-    'pib_cli.support.paths.DevContainerPathManager'
-)
-
 PROCESS_MANAGER_OS_ENVIRON = 'pib_cli.support.processes.os.environ'
 PROCESS_MANAGER_OS_SYSTEM = 'pib_cli.support.processes.os.system'
 PROCESS_MANAGER_SPAWN_SINGLE = (

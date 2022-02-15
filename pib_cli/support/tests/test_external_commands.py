@@ -6,7 +6,7 @@ from unittest.mock import Mock, patch
 from ... import config, patchbay
 from ..configuration import ConfigurationManager
 from ..external_commands import ExternalCommands, execute_external_command
-from ..paths import DevContainerPathManager
+from ..path_map import PathMap
 from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
 
@@ -78,7 +78,7 @@ class TestCommandClass(TestCase):
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
-    self.assertIsInstance(self.commands.path_manager, DevContainerPathManager)
+    self.assertIsInstance(self.commands.path_manager, PathMap)
     self.assertIsInstance(
         self.commands.configuration_manager, ConfigurationManager
     )

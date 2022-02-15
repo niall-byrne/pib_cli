@@ -14,6 +14,5 @@ ERROR_PROJECT_NAME_NOT_SET = (
 SETTING_BASH_SETUP_SUCCESS_MESSAGE = "Setup Succeeded!"
 SETTING_CONTAINER_MARKER = os.path.join("/", "etc", "container_release")
 SETTING_DOCUMENTATION_FOLDER_NAME = "documentation"
-SETTING_PROJECT_ROOT_NAME = "app"
 
 LOCAL_EXECUTABLES = "/home/user/.local/bin"

@@ -10,7 +10,7 @@ import pkg_resources
 
 from .. import config, get_config_file_name, project_root
 from .dev_container import DevContainer
-from .paths import get_path_manager
+from .path_map import PathMap
 from .processes import ProcessManager
 
 
@@ -19,7 +19,7 @@ class InternalCommands:
 
   def __init__(self):
     self.process_manager = ProcessManager()
-    self.path_manager = get_path_manager()
+    self.path_manager = PathMap()
 
   def config_location(self):
     """Report the location of the current active config.

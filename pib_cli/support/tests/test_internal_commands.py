@@ -10,7 +10,7 @@ import pkg_resources
 
 from ... import config, patchbay, project_root
 from ..internal_commands import InternalCommands, execute_internal_command
-from ..paths import DevContainerPathManager
+from ..path_map import PathMap
 from ..processes import ProcessManager
 
 
@@ -54,9 +54,7 @@ class TestInternalCommands(TestCase):
     self.assertIsInstance(
         self.internal_commands.process_manager, ProcessManager
     )
-    self.assertIsInstance(
-        self.internal_commands.path_manager, DevContainerPathManager
-    )
+    self.assertIsInstance(self.internal_commands.path_manager, PathMap)
 
   @patch(patchbay.INTERNAL_COMMANDS_GET_CONFIG_FILE_NAME)
   def test_config_location(self, mock_config_file):

@@ -6,7 +6,7 @@ import click
 
 from .. import config
 from .configuration import ConfigurationManager
-from .paths import get_path_manager
+from .path_map import PathMap
 from .processes import ProcessManager
 
 
@@ -15,7 +15,7 @@ class ExternalCommands:
 
   def __init__(self):
     self.process_manager = ProcessManager()
-    self.path_manager = get_path_manager()
+    self.path_manager = PathMap()
     self.configuration_manager = ConfigurationManager()
 
   def __change_directory(self):

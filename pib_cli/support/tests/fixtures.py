@@ -7,7 +7,7 @@ import yaml
 
 from ... import config_filename, patchbay
 from ...config import yaml_keys
-from ..external_commands import ExternalCommands
+from .. import external_commands
 
 
 class MockPathManager:
@@ -49,19 +49,17 @@ class CommandTestHarness(TestCase):
     with open(config_filename, encoding='utf-8') as file_handle:
       cls.yaml = yaml.safe_load(file_handle)
 
-  @patch(patchbay.PATH_MANAGER_CONTAINER_PATH_MANAGER)
   @patch(patchbay.EXTERNAL_COMMANDS_PROCESS_MANAGER)
-  def setUp(self, mock_proc, mock_path):  # pylint: disable=arguments-differ
+  def setUp(self, mock_proc):  # pylint: disable=arguments-differ
     self.command = self.__class__.command
     self.overload = self.__class__.overload
     self.path_manager = MockPathManager()
     self.proc_manager = MockProcessManager()
-
-    mock_path.return_value = self.path_manager
     mock_proc.return_value = self.proc_manager
 
     with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
-      self.cmd_mgr = ExternalCommands()
+      self.cmd_mgr = external_commands.ExternalCommands()
+      self.cmd_mgr.path_manager = self.path_manager
 
     self.get_yaml_entry(self.command)
 

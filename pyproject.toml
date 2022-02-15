@@ -6,7 +6,7 @@
 [tool]
 
   [tool.bandit]
-    skips = ["B101"]
+    skips = ["B101", "B404", "B603"]
 
   [tool.commitizen]
     name = "cz_conventional_commits"
@@ -52,6 +52,7 @@
     version = "1.0.0"
 
     [tool.poetry.dependencies]
+      GitPython = "^3.1.26"
       PyYAML = ">=5.4.1,<7.0.0"
       bandit = "^1.7.0"
       click = "^8.0.1"
