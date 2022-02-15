@@ -56,7 +56,7 @@
 - name: "sectest"
   path_method: "project_root"
   commands:
-    - 'bandit -r "${PROJECT_NAME}" -c .bandit.rc --ini .bandit -x tests'
+    - 'bandit -r "${PROJECT_NAME}" -c pyproject.toml -x tests'
     - 'echo "\nPoetry is exporting the lockfile standby..."'
     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
   success: "Security Test Passed!"

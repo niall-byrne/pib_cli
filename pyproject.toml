@@ -5,6 +5,9 @@
 
 [tool]
 
+  [tool.bandit]
+    skips = ["B101"]
+
   [tool.commitizen]
     name = "cz_conventional_commits"
     tag_format = "v$version"
@@ -206,3 +209,14 @@
 
     [tool.pytest.ini_options]
       testpaths = ["pib_cli"]
+
+  [tool.yapf]
+    align_closing_bracket_with_visual_indent = false
+    based_on_style = "google"
+    dedent_closing_brackets = true
+    force_multiline_dict = true
+    indent_width = 2
+    split_before_logical_operator = true
+
+  [tool.yapfignore]
+    ignore_patterns = []
