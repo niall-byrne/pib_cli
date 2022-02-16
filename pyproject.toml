@@ -37,6 +37,13 @@
     sections = "FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
     skip_glob = "*_pb2.py"
 
+  [tool.mypy]
+    ignore_missing_imports = false
+
+    [[tool.mypy.overrides]]
+      ignore_missing_imports = true
+      module = ["jsonschema.*"]
+
   [tool.poetry]
     authors = ["Niall Byrne <niall@niallbyrne.ca>"]
     description = "Python Development CLI"
@@ -98,6 +105,9 @@
       [tool.poetry.dependencies.sphinx-jsonschema]
         optional = true
         version = "^1.17.2"
+
+    [tool.poetry.dev-dependencies]
+      types-PyYAML = "^6.0.4"
 
     [tool.poetry.extras]
       docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]

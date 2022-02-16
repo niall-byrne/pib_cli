@@ -3,9 +3,9 @@
 import sys
 
 import click
+from pib_cli.support import user_configuration
 
 from .. import config
-from .configuration import ConfigurationManager
 from .path_map import PathMap
 from .processes import ProcessManager
 
@@ -16,12 +16,13 @@ class ExternalCommands:
   def __init__(self):
     self.process_manager = ProcessManager()
     self.path_manager = PathMap()
-    self.configuration_manager = ConfigurationManager()
+    self.configuration_manager = user_configuration.UserConfiguration()
+    self.selected_command = None
 
   def __change_directory(self):
     """Extract the correct method from the yaml configuration and call it."""
 
-    yaml_path_method = self.configuration_manager.get_config_path_method()
+    yaml_path_method = self.selected_command.get_config_path_method()
     goto_path = getattr(self.path_manager, yaml_path_method)
     goto_path()
 
@@ -35,7 +36,7 @@ class ExternalCommands:
     :returns: The resulting exit code of the process
     :rtype: int
     """
-    yaml_commands = self.configuration_manager.get_config_commands()
+    yaml_commands = self.selected_command.get_config_commands()
     self.process_manager.spawn(yaml_commands, overload)
     return self.process_manager.exit_code
 
@@ -49,16 +50,18 @@ class ExternalCommands:
     :returns: The response message from the yaml configuration
     :rtype: basestring
     """
-    self.configuration_manager.find_config_entry(command)
+    self.selected_command = self.configuration_manager.select_config_entry(
+        command
+    )
 
-    if not self.configuration_manager.is_config_executable():
+    if not self.selected_command.is_executable():
       self.process_manager.exit_code = 0
       return config.ERROR_CONTAINER_ONLY
 
     self.__change_directory()
     exit_code = self.__spawn_commands(overload)
 
-    return self.configuration_manager.get_config_response(exit_code)
+    return self.selected_command.get_config_response(exit_code)
 
 
 def execute_external_command(commands, overload=None):

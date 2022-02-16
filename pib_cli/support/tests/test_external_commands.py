@@ -4,8 +4,7 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from ... import config, patchbay
-from ..configuration import ConfigurationManager
-from ..external_commands import ExternalCommands, execute_external_command
+from .. import external_commands, user_configuration
 from ..path_map import PathMap
 from ..processes import ProcessManager
 from .fixtures import CommandTestHarness
@@ -41,7 +40,7 @@ class TestExecuteExternalCommandFunction(TestCase):
     self.mock_command_manager.process_manager.exit_code = 0
     mock_commands.return_value = self.mock_command_manager
 
-    execute_external_command(self.test_commands)
+    external_commands.execute_external_command(self.test_commands)
     self.validate_calls(None, mock_echo, mock_exit, 0)
 
   @patch(patchbay.EXTERNAL_COMMANDS)
@@ -52,7 +51,9 @@ class TestExecuteExternalCommandFunction(TestCase):
     mock_commands.return_value = self.mock_command_manager
     options = ('one', 'two', 'three')
 
-    execute_external_command(self.test_commands, overload=options)
+    external_commands.execute_external_command(
+        self.test_commands, overload=options
+    )
     self.validate_calls(options, mock_echo, mock_exit, 0)
 
   @patch(patchbay.EXTERNAL_COMMANDS)
@@ -62,7 +63,9 @@ class TestExecuteExternalCommandFunction(TestCase):
     mock_commands.return_value = self.mock_command_manager
     options = ('one', 'two', 'three')
 
-    execute_external_command(self.test_commands, overload=options)
+    external_commands.execute_external_command(
+        self.test_commands, overload=options
+    )
 
     self.mock_invoke.assert_called_once_with(self.test_commands[0], options)
     mock_echo.assert_called_once_with(self.mock_response)
@@ -74,13 +77,14 @@ class TestCommandClass(TestCase):
 
   def setUp(self):
     with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
-      self.commands = ExternalCommands()
+      self.commands = external_commands.ExternalCommands()
 
   def test_initial_instance_variables(self):
     self.assertIsInstance(self.commands.process_manager, ProcessManager)
     self.assertIsInstance(self.commands.path_manager, PathMap)
     self.assertIsInstance(
-        self.commands.configuration_manager, ConfigurationManager
+        self.commands.configuration_manager,
+        user_configuration.UserConfiguration,
     )
 
   def test_invoke_non_existent_command(self):
@@ -91,29 +95,31 @@ class TestCommandClass(TestCase):
     with self.assertRaises(KeyError):
       self.commands.invoke("non-existent-command", ('option1',))
 
-  @patch(patchbay.CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE)
-  @patch(patchbay.CONFIGURATION_MANAGER_FIND_CONFIG)
-  def test_outside_container_flag_fails(self, mock_config, mock_exec):
-    mock_config.return_value = None
-    mock_exec.return_value = False
+  @patch(user_configuration.__name__ + ".UserConfiguration.select_config_entry")
+  def test_outside_container_flag_fails(
+      self,
+      mock_config,
+  ):
+    mock_selected = Mock()
+    mock_config.return_value = mock_selected
+    mock_selected.is_executable.return_value = False
 
     response = self.commands.invoke("test_command", None)
     self.assertEqual(response, config.ERROR_CONTAINER_ONLY)
     self.assertEqual(0, self.commands.process_manager.exit_code)
 
-  @patch(patchbay.CONFIGURATION_MANAGER_IS_CONFIG_EXECUTABLE)
-  @patch(patchbay.CONFIGURATION_MANAGER_FIND_CONFIG)
-  @patch(patchbay.CONFIGURATION_MANAGER_GET_CONFIG_PATH_METHOD)
+  @patch(user_configuration.__name__ + ".UserConfiguration.select_config_entry")
   def test_outside_container_flag_succeeds(
       self,
-      mock_path,
       mock_config,
-      mock_exec,
   ):
+    mock_selected = Mock()
+    mock_config.return_value = mock_selected
     expected_exception = "Expected Exception!"
-    mock_config.return_value = None
-    mock_exec.return_value = True
-    mock_path.side_effect = Exception(expected_exception)
+    mock_selected.is_executable.return_value = True
+    mock_selected.get_config_path_method.side_effect = Exception(
+        expected_exception
+    )
 
     with self.assertRaises(Exception) as raised_error:
       self.commands.invoke("test_command", None)
