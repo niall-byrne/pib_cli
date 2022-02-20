@@ -1,24 +1,30 @@
 ARG PYTHON_VERSION=3.7
 FROM python:$PYTHON_VERSION-slim AS base
 
-LABEL project "pib_cli"
-LABEL environment ""
+LABEL maintainer="niall@niallbyrne.ca"
+LABEL project="pib_cli"
+LABEL environment=""
 
 ENV PYTHONUNBUFFERED "1"
 ENV PROJECT_NAME "pib_cli"
 ENV PIB_CONFIG_FILE_LOCATION "/app/assets/cli.yml"
-ENV GITLEAKSVERSION "v7.2.0"
+
+ENV VERSION_GITLEAKS "v7.2.0"
+ENV VERSION_POETRY "poetry>=1.1.12,<1.2.0"
+ENV VERSION_ASPELL "aspell-en=*"
 
 # Mark Container
+RUN echo "2.0" > /etc/container_pib
 RUN echo "pib_cli" > /etc/container_release
 
 # Install Base Dependencies
-RUN apt-get update          && \
-    apt-get upgrade -y      && \
-    apt-get install -y         \
-    --no-install-recommends    \
-    bash                       \
-    build-essential
+RUN apt-get update               && \
+    apt-get upgrade -y           && \
+    apt-get install -y              \
+    --no-install-recommends         \
+    bash=5.*                        \
+    build-essential=12.*         && \
+    rm -rf /var/lib/apt/lists/*
 
 # Setup directories
 RUN mkdir -p /home/user /app
@@ -38,7 +44,7 @@ ENV PATH "/home/user/.local/bin/:${PATH}"
 # Poetry Intermediary
 FROM base AS poetry
 
-LABEL environment ""
+LABEL environment=""
 
 # Install Latest Poetry
 RUN pip install --no-cache-dir poetry
@@ -47,24 +53,27 @@ RUN pip install --no-cache-dir poetry
 
 # Development Environment
 FROM poetry AS development
-LABEL environment DEVELOPMENT
+LABEL environment="DEVELOPMENT"
 ENV ENVIRONMENT DEVELOPMENT
 
 # Install Dev Dependencies
-RUN apt-get install -y              \
-    --no-install-recommends         \
-    curl                            \
-    jq                              \
-    golang-github-pelletier-go-toml \
-    openssh-client                  \
-    shellcheck                      \
-    sudo                            \
-    tig                             \
-    vim
+RUN apt-get update                      && \
+    apt-get install -y                     \
+    --no-install-recommends                \
+    "${VERSION_ASPELL}"                    \
+    curl=7.74.*                            \
+    fish=3.1.*                             \
+    golang-github-pelletier-go-toml=1.8.*  \
+    jq=1.6*                                \
+    openssh-client=1:8.*                   \
+    shellcheck=0.7.*                       \
+    sudo=1.9.*                             \
+    tig=2.5.*                              \
+    vim=2:8.*
 
 # Install Git Leaks
-RUN curl -sL "https://github.com/zricethezav/gitleaks/releases/download/${GITLEAKSVERSION}/gitleaks-linux-amd64"    \
-    -o /usr/bin/gitleaks                                                                                         && \
+RUN curl --fail -sL "https://github.com/zricethezav/gitleaks/releases/download/${VERSION_GITLEAKS}/gitleaks-linux-amd64"    \
+    -o /usr/bin/gitleaks                                                                                                 && \
     chmod +x /usr/bin/gitleaks
 
 # Add user to sudoers, and make the default user
@@ -81,6 +90,9 @@ RUN poetry install --no-root -E docstrings -E docs -E types -E pib_docs
 
 # Copy the codebase
 COPY . /app
+
+# Create A Symlink For the Bash Customizations
+RUN ln -sf /app/assets/.bash_customize /home/user/.bash_customize
 
 # Modify the git hooks permissions
 USER root
@@ -99,7 +111,7 @@ CMD ["./pib_cli/container_init.sh"]
 # Pre Production Environment
 FROM poetry as pre_production
 
-LABEL environment "PRE_PRODUCTION"
+LABEL environment="PRE_PRODUCTION"
 
 ENV ENVIRONMENT "PRE_PRODUCTION"
 
@@ -110,7 +122,7 @@ USER user
 COPY pyproject.toml /app/
 
 # Export the lock file
-RUN poetry install && \
+RUN poetry lock    && \
     poetry export --without-hashes -E docstrings -E pib_docs -E types -f requirements.txt -o /app/requirements.txt
 
 # Copy the codebase
@@ -121,7 +133,7 @@ COPY . /app
 # Production Environment
 FROM base as production
 
-LABEL environment "PRODUCTION"
+LABEL environment="PRODUCTION"
 
 ENV ENVIRONMENT "PRODUCTION"
 

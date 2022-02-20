@@ -22,24 +22,28 @@ DIFF=$(diff assets/cli.yml pib_cli/config/config.yml)
 EXPECTED=$(cat << EOF
 6d5
 <     - 'if [ ! -d "./source/codebase/\${PROJECT_NAME}/\${PROJECT_NAME}/_autosummary" ]; then rm -rf "./source/codebase/\${PROJECT_NAME}/\${PROJECT_NAME}/_autosummary"; fi'
-28d26
+28,32d26
+<     - |
+<       cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp
+<       sed "1s/^/personal_ws-1.1 en \$(wc -l .aspell.pws.swp | awk '{print \$1}')\n/" .aspell.pws.swp > .aspell.pws
+<       rm .aspell.pws.swp
 <     - 'tomll pyproject.toml'
-43,44c41
+47,48c41
 <     - 'shellcheck \${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck \${PROJECT_NAME}/container_init.sh'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
-48d44
+52d44
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
-57c53
+61c53
 <     - "poetry install -E pib_docs"
 ---
 >     - "poetry install -E docs"
-65c61
+69c61
 <     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-77,79c73,75
+81,83c73,75
 <     - 'echo "Typing is disabled for this project."'
 <   success: ""
 <   failure: ""

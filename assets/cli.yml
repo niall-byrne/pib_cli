@@ -25,6 +25,10 @@
 - name: "fmt"
   path_method: "project_root"
   commands:
+    - |
+      cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp
+      sed "1s/^/personal_ws-1.1 en $(wc -l .aspell.pws.swp | awk '{print $1}')\n/" .aspell.pws.swp > .aspell.pws
+      rm .aspell.pws.swp
     - 'tomll pyproject.toml'
     - 'yapf -i --recursive .'
     - 'isort "${PROJECT_NAME}"'

@@ -2,13 +2,22 @@
 repos:
   - repo: local
     hooks:
+      - id: check_spelling
+        name: check commit spelling
+        description: "Check spelling on commit messages."
+        entry: ./scripts/hooks/check_spelling.sh
+        language: system
+        stages: [commit-msg]
+        minimum_pre_commit_version: "0.15.4"
+        require_serial: true
+        always_run: true
       - id: commitizen
         name: commitizen check
         description: "Check whether the commit message follows committing rules."
         entry: cz check --commit-msg-file
         language: python
         language_version: python3
-        stages: [ commit-msg ]
+        stages: [commit-msg]
         minimum_pre_commit_version: "0.15.4"
         require_serial: true
         always_run: true
