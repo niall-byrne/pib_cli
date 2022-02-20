@@ -8,6 +8,7 @@
 
 import os
 import sys
+import pathlib
 
 if os.path.exists('/app'):
   sys.path.insert(0, os.path.abspath('/app'))
@@ -40,10 +41,21 @@ source_suffix = {
     '.rst': 'restructuredtext',
 }
 
-autosummary_mock_imports = [
-    "pib_cli.tests",
-    "pib_cli.support.tests",
-]
+
+def detect_tests():
+  """Create a list of import paths with tests."""
+
+  test_paths = []
+  for root, dirs, _ in os.walk('../../pib_cli'):
+    for name in dirs:
+      if name == 'tests':
+        directory = pathlib.Path(os.path.join(root, name).replace('../../', ''))
+        test_paths.append('.'.join(directory.with_suffix('').parts))
+  return test_paths
+
+
+# Exclude tests from sphinx_autopackagesummary heres
+autosummary_mock_imports = detect_tests()
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
