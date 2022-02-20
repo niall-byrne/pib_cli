@@ -109,7 +109,7 @@ USER user
 
 # Setup The Dev CLI, bootstrapping the current version of pib_cli
 RUN poetry install                              && \
-    poetry run dev setup-bash                   && \
+    poetry run dev @pib container setup         && \
     poetry run pre-commit install
 
 CMD ["./pib_cli/container_init.sh"]

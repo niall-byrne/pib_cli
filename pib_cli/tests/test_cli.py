@@ -19,22 +19,6 @@ class TestBuildWheel(CommandTestHarness):
   external_commands = ['build-wheel']
 
 
-class TestConfigLocation(CommandTestHarness):
-  """Test the config-location command."""
-
-  __test__ = True
-  invocation_command = ['config-location']
-  internal_commands = ['config_location']
-
-
-class TestConfigShow(CommandTestHarness):
-  """Test the config-show command."""
-
-  __test__ = True
-  invocation_command = ['config-show']
-  internal_commands = ['config_show']
-
-
 class TestFormat(CommandTestHarness):
   """Test the fmt command."""
 
@@ -111,34 +95,9 @@ class TestReinstallRequirements(CommandTestHarness):
   external_commands = ['reinstall-requirements']
 
 
-class TestSetupBash(CommandTestHarness):
-  """Test the setup-bash command."""
-
-  __test__ = True
-  invocation_command = ['setup-bash']
-  internal_commands = ['setup_bash']
-
-
-class TestSetup(CommandTestHarness):
-  """Test the setup command."""
-
-  __test__ = True
-  invocation_command = ['setup']
-  internal_commands = ['setup_bash']
-  external_commands = ['reinstall-requirements']
-
-
 class TestTypes(CommandTestHarness):
   """Test the types command."""
 
   __test__ = True
   invocation_command = ['types']
   external_commands = ['types']
-
-
-class TestVersion(CommandTestHarness):
-  """Test the version command."""
-
-  __test__ = True
-  invocation_command = ['version']
-  internal_commands = ['version']

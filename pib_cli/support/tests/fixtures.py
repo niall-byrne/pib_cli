@@ -57,7 +57,10 @@ class CommandTestHarness(TestCase):
     self.proc_manager = MockProcessManager()
     mock_proc.return_value = self.proc_manager
 
-    with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
+    with patch(
+        'pib_cli.support.container.DevContainer.is_container'
+    ) as m_container:
+      m_container.return_value.is_container.return_value = True
       self.cmd_mgr = external_commands.ExternalCommands()
       self.cmd_mgr.path_manager = self.path_manager
 

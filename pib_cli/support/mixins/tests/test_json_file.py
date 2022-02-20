@@ -40,7 +40,6 @@ class JSONFileReaderTest(TestCase):
       m_json: mock.Mock,
   ) -> None:
     mock_path = "/mock/path"
-    self.mock_context.return_value = self.mock_json
     m_open.return_value.__enter__.return_value = self.mock_context
 
     self.instance.load_json_file(mock_path)

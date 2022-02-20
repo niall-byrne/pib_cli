@@ -30,12 +30,15 @@ class PathMap:
 
   def project_root(self) -> None:
     """Change the path to the project root folder location."""
+
     os.chdir(self.root)
 
   def project_home(self) -> None:
     """Change the path to the project home folder location."""
+
     os.chdir(self.home)
 
   def project_docs(self) -> None:
     """Change the path to the project documentation folder location."""
+
     os.chdir(self.docs)

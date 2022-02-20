@@ -43,7 +43,6 @@ class YAMLFileReaderTest(TestCase):
       m_yaml: mock.Mock,
   ) -> None:
     mock_path = "/mock/path"
-    self.mock_context.return_value = self.mock_yaml
     m_open.return_value.__enter__.return_value = self.mock_context
 
     self.instance.load_yaml_file(mock_path)

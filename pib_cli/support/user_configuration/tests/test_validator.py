@@ -27,7 +27,7 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
     m_json.assert_called_once_with(instance.schema_file)
 
   @mock.patch(validator.__name__ + ".validate")
-  def test_validate_valid_call(self, m_validate: mock.Mock) -> None:
+  def test_validate_call(self, m_validate: mock.Mock) -> None:
     mock_object = mock.Mock()
     instance = validator.UserConfigurationValidator()
     instance.validate(mock_object)

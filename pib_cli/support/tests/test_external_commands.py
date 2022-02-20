@@ -34,7 +34,7 @@ class TestExecuteExternalCommandFunction(TestCase):
     self.assertEqual(len(self.test_commands), mock_echo.call_count)
 
   @patch(patchbay.EXTERNAL_COMMANDS)
-  @patch(patchbay.CLI_CLICK_ECHO)
+  @patch('pib_cli.cli.interface.click.echo')
   @patch(patchbay.EXTERNAL_COMMANDS_SYS_EXIT)
   def test_command_call_single(self, mock_exit, mock_echo, mock_commands):
     self.mock_command_manager.process_manager.exit_code = 0
@@ -44,7 +44,7 @@ class TestExecuteExternalCommandFunction(TestCase):
     self.validate_calls(None, mock_echo, mock_exit, 0)
 
   @patch(patchbay.EXTERNAL_COMMANDS)
-  @patch(patchbay.CLI_CLICK_ECHO)
+  @patch('pib_cli.cli.interface.click.echo')
   @patch(patchbay.EXTERNAL_COMMANDS_SYS_EXIT)
   def test_command_call_with_options(self, mock_exit, mock_echo, mock_commands):
     self.mock_command_manager.process_manager.exit_code = 0
@@ -57,7 +57,7 @@ class TestExecuteExternalCommandFunction(TestCase):
     self.validate_calls(options, mock_echo, mock_exit, 0)
 
   @patch(patchbay.EXTERNAL_COMMANDS)
-  @patch(patchbay.CLI_CLICK_ECHO)
+  @patch('pib_cli.cli.interface.click.echo')
   @patch(patchbay.EXTERNAL_COMMANDS_SYS_EXIT)
   def test_command_call_fails(self, mock_exit, mock_echo, mock_commands):
     mock_commands.return_value = self.mock_command_manager
@@ -76,7 +76,8 @@ class TestCommandClass(TestCase):
   """Test the ExternalCommands class."""
 
   def setUp(self):
-    with patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER, return_value=True):
+    with patch('pib_cli.support.container.DevContainer') as m_container:
+      m_container.return_value.is_container.return_value = True
       self.commands = external_commands.ExternalCommands()
 
   def test_initial_instance_variables(self):

@@ -10,8 +10,8 @@ from pib_cli.support import user_configuration
 @patch(user_configuration.__name__ + ".UserConfiguration.load_yaml_file")
 @patch(user_configuration.__name__ + ".validator.UserConfigurationValidator")
 @patch(user_configuration.__name__ + ".selected.SelectedUserConfigurationEntry")
-class TestUserConfiguration(TestCase):
-  """Tests for the UserConfiguration class."""
+class TestUserConfigurationYamlMethods(TestCase):
+  """Tests for the UserConfiguration class relating to YAML."""
 
   def create_instance(self) -> user_configuration.UserConfiguration:
     return user_configuration.UserConfiguration()
@@ -74,3 +74,28 @@ class TestUserConfiguration(TestCase):
         exc.exception.args,
         ("Could not find command named: %s" % mock_command,)
     )
+
+
+class TestUserConfigurationTextMethods(TestCase):
+  """Tests for the UserConfiguration class relating to plain text."""
+
+  def create_instance(self) -> user_configuration.UserConfiguration:
+    with patch(
+        user_configuration.__name__ + ".validator.UserConfigurationValidator"
+    ):
+      with patch(
+          user_configuration.__name__ + ".UserConfiguration.load_yaml_file"
+      ):
+        return user_configuration.UserConfiguration()
+
+  def setUp(self) -> None:
+    self.instance = self.create_instance()
+
+  @patch(user_configuration.__name__ + ".UserConfiguration.load_text_file")
+  def test_get_raw_file(
+      self,
+      m_text: Mock,
+  ) -> None:
+    m_text.return_value = " mock text content "
+    instance = self.create_instance()
+    self.assertEqual(instance.get_raw_file(), m_text.return_value.rstrip())

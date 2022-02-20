@@ -108,6 +108,7 @@
 
     [tool.poetry.dev-dependencies]
       types-PyYAML = "^6.0.4"
+      types-setuptools = "^57.4.9"
 
     [tool.poetry.extras]
       docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]
@@ -119,8 +120,8 @@
       include = "pib_cli"
 
     [tool.poetry.scripts]
-      dev = "pib_cli.cli:cli"
-      pib_cli = "pib_cli.cli:cli"
+      dev = "pib_cli.main:main"
+      pib_cli = "pib_cli.main:main"
 
   [tool.pylint]
 

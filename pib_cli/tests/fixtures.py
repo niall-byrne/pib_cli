@@ -4,9 +4,7 @@ from unittest import TestCase
 from unittest.mock import patch
 
 from click.testing import CliRunner
-
-from .. import patchbay
-from ..cli import cli
+from pib_cli.cli.interface import cli_interface as cli
 
 
 class CommandTestHarness(TestCase):
@@ -26,43 +24,31 @@ class CommandTestHarness(TestCase):
       else:
         mock_execute.assert_called_once_with(self.external_commands)
 
-  def check_internal_commands(self, mock_internal):
-    if self.internal_commands:
-      mock_internal.assert_called_once_with(self.internal_commands)
-
   def setUp(self,):
     self.runner = CliRunner()
 
-  @patch(patchbay.CLI_EXECUTE_EXTERNAL_COMMAND)
-  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  @patch(patchbay.CLI_EXECUTE_INTERNAL_COMMAND)
+  @patch('pib_cli.cli.interface.external.execute_external_command')
+  @patch('pib_cli.support.container.DevContainer')
   def test_command_invocation_no_overload(
       self,
-      mock_internal,
       mock_container,
       mock_execute,
   ):
     if self.overload is None:
-      mock_container.return_value = True
-      mock_internal.return_value = "Success Message"
+      mock_container.return_value.is_container.return_value = True
       self.runner.invoke(cli, self.invocation_command)
 
       self.check_yaml_commands(mock_execute)
-      self.check_internal_commands(mock_internal)
 
-  @patch(patchbay.CLI_EXECUTE_EXTERNAL_COMMAND)
-  @patch(patchbay.CONTAINER_MANAGER_IS_CONTAINER)
-  @patch(patchbay.CLI_EXECUTE_INTERNAL_COMMAND)
+  @patch('pib_cli.cli.interface.external.execute_external_command')
+  @patch('pib_cli.support.container.DevContainer')
   def test_command_invocation_with_overload(
       self,
-      mock_internal,
       mock_container,
       mock_execute,
   ):
     if self.overload is not None:
-      mock_container.return_value = True
-      mock_internal.return_value = "Success Message"
+      mock_container.return_value.is_container.return_value = True
       self.runner.invoke(cli, self.invocation_command + list(self.overload))
 
       self.check_yaml_commands(mock_execute)
-      self.check_internal_commands(mock_internal)
