@@ -1,7 +1,12 @@
 """Built in CLI configuration commands."""
 
 import click
-from pib_cli.cli.commands import config_show, config_where, handler
+from pib_cli.cli.commands import (
+    config_show,
+    config_validate,
+    config_where,
+    handler,
+)
 
 
 @click.group('config')
@@ -14,6 +19,13 @@ def show_config_builtin() -> None:
   """Display the current CLI configuration."""
 
   handler(config_show.ConfigShowCommand)
+
+
+@config.command("validate")
+def validate_config_builtin() -> None:
+  """Validate the current CLI configuration."""
+
+  handler(config_validate.ConfigValidateCommand)
 
 
 @config.command("where")

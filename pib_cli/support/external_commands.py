@@ -50,6 +50,9 @@ class ExternalCommands:
     :returns: The response message from the yaml configuration
     :rtype: basestring
     """
+
+    self.configuration_manager.validate()
+
     self.selected_command = self.configuration_manager.select_config_entry(
         command
     )

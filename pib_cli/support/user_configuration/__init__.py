@@ -11,9 +11,8 @@ class UserConfiguration(yaml_file.YAMLFileReader, text_file.TextFileReader):
   """The entire user defined pib_cli configuration."""
 
   def __init__(self) -> None:
-    self.validator = validator.UserConfigurationValidator()
-    self.config = self.load_yaml_file(config_filename)
-    self.validator.validate(self.config)
+    self.configuration_validator = validator.UserConfigurationValidator()
+    self.configuration = self.load_yaml_file(config_filename)
 
   def get_raw_file(self) -> str:
     """Return the original configuration file from disk."""
@@ -28,7 +27,12 @@ class UserConfiguration(yaml_file.YAMLFileReader, text_file.TextFileReader):
     :returns: A Python representation of the selected configuration.
     :raises: KeyError
     """
-    for entry in self.config:
+    for entry in self.configuration:
       if entry[yaml_keys.COMMAND_NAME] == command_name:
         return selected.SelectedUserConfigurationEntry(entry)
     raise KeyError("Could not find command named: %s" % command_name)
+
+  def validate(self) -> None:
+    """Validate the user configuration."""
+
+    self.configuration_validator.validate(self.configuration)

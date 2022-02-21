@@ -5,10 +5,10 @@ from unittest.mock import Mock, patch
 
 from pib_cli.config import yaml_keys
 from pib_cli.support import user_configuration
+from pib_cli.support.user_configuration import validator
 
 
 @patch(user_configuration.__name__ + ".UserConfiguration.load_yaml_file")
-@patch(user_configuration.__name__ + ".validator.UserConfigurationValidator")
 @patch(user_configuration.__name__ + ".selected.SelectedUserConfigurationEntry")
 class TestUserConfigurationYamlMethods(TestCase):
   """Tests for the UserConfiguration class relating to YAML."""
@@ -32,19 +32,19 @@ class TestUserConfigurationYamlMethods(TestCase):
   def test_initialize(
       self,
       _: Mock,
-      m_validator: Mock,
       m_yaml: Mock,
   ) -> None:
     m_yaml.return_value = self.mock_config
     instance = self.create_instance()
 
-    self.assertEqual(instance.config, m_yaml.return_value)
-    m_validator.return_value.validate.assert_called_once_with(instance.config)
+    self.assertEqual(instance.configuration, m_yaml.return_value)
+    self.assertIsInstance(
+        instance.configuration_validator, validator.UserConfigurationValidator
+    )
 
   def test_select_config_entry_found(
       self,
       m_selected: Mock,
-      _: Mock,
       m_yaml: Mock,
   ) -> None:
     index = 2
@@ -61,7 +61,6 @@ class TestUserConfigurationYamlMethods(TestCase):
   def test_select_config_entry_not_found(
       self,
       _: Mock,
-      __: Mock,
       m_yaml: Mock,
   ) -> None:
     mock_command = "non_existent_command"
@@ -73,6 +72,21 @@ class TestUserConfigurationYamlMethods(TestCase):
     self.assertEqual(
         exc.exception.args,
         ("Could not find command named: %s" % mock_command,)
+    )
+
+  @patch(user_configuration.__name__ + ".validator.UserConfigurationValidator")
+  def test_validate(
+      self,
+      m_validator: Mock,
+      _: Mock,
+      m_yaml: Mock,
+  ) -> None:
+    instance = self.create_instance()
+    instance.validate()
+
+    m_validator.assert_called_once_with()
+    m_validator.return_value.validate.assert_called_once_with(
+        m_yaml.return_value
     )
 
 

@@ -88,13 +88,19 @@ class TestCommandClass(TestCase):
         user_configuration.UserConfiguration,
     )
 
-  def test_invoke_non_existent_command(self):
+  @patch(user_configuration.__name__ + ".UserConfiguration.validate")
+  def test_invoke_non_existent_command(self, m_validate: Mock) -> None:
     with self.assertRaises(KeyError):
       self.commands.invoke("non-existent-command", None)
+    m_validate.assert_called_once()
 
-  def test_invoke_non_existent_command_with_options(self):
+  @patch(user_configuration.__name__ + ".UserConfiguration.validate")
+  def test_invoke_non_existent_command_with_options(
+      self, m_validate: Mock
+  ) -> None:
     with self.assertRaises(KeyError):
       self.commands.invoke("non-existent-command", ('option1',))
+    m_validate.assert_called_once()
 
   @patch(user_configuration.__name__ + ".UserConfiguration.select_config_entry")
   def test_outside_container_flag_fails(
