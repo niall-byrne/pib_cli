@@ -13,10 +13,8 @@ from .. import external_commands
 class MockPathManager:
 
   def __init__(self):
-    self.project_root = Mock()
-    self.project_docs = Mock()
-    self.is_container = Mock()
-    self.is_container.return_value = True
+    self.git_root = Mock()
+    self.documentation_root = Mock()
 
 
 class MockProcessManager:

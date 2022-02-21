@@ -20,30 +20,34 @@ DIFF=$(git diff)
 echo "Checking Config ... "
 DIFF=$(diff assets/cli.yml pib_cli/config/config.yml)
 EXPECTED=$(cat << EOF
-6d5
+7d6
 <     - 'if [ ! -d "./source/codebase/\${PROJECT_NAME}/\${PROJECT_NAME}/_autosummary" ]; then rm -rf "./source/codebase/\${PROJECT_NAME}/\${PROJECT_NAME}/_autosummary"; fi'
-28,32d26
+32,36d30
 <     - |
 <       cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp
 <       sed "1s/^/personal_ws-1.1 en \$(wc -l .aspell.pws.swp | awk '{print \$1}')\n/" .aspell.pws.swp > .aspell.pws
 <       rm .aspell.pws.swp
 <     - 'tomll pyproject.toml'
-47,48c41
+50d43
+<   description: "Run the code linters."
+51a45
+>   description: "Run the code linters."
+53,54c47
 <     - 'shellcheck \${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck \${PROJECT_NAME}/container_init.sh'
 ---
 >     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
-52d44
+58d50
 <     - 'yamllint *.yml .*.yml \${PROJECT_NAME}/config/ assets/ .github/workflows/'
-61c53
+68c60
 <     - "poetry install -E pib_docs"
 ---
 >     - "poetry install -E docs"
-69c61
+77c69
 <     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-81,83c73,75
+91,93c83,85
 <     - 'echo "Typing is disabled for this project."'
 <   success: ""
 <   failure: ""

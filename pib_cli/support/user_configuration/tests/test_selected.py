@@ -21,7 +21,7 @@ class TestSelectedUserConfigurationEntry(TestCase):
   ) -> yaml_keys.TypeUserConfiguration:
     test_data = cast(
         yaml_keys.TypeUserConfiguration, {
-            "path_method": 'project_docs',
+            "path": 'documentation_root',
             "command_name": 'test_command',
             "commands": commands if commands else ["default_command"],
             "success": "Successful!",
@@ -84,7 +84,7 @@ class TestSelectedUserConfigurationEntry(TestCase):
 
     self.assertEqual(
         instance.get_config_path_method(),
-        test_data['path_method'],
+        test_data['path'],
     )
 
   def test_get_config_commands(self) -> None:

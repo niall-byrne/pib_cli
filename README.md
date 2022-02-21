@@ -116,6 +116,8 @@ This is straight-forward to do:
 
 ## Customizing the Command Line Interface
 
+**BREAKING CHANGE:**  pib_cli v1.0.0 introduces a new JSON schema version!  (Older configuration files will need to be modified!)
+
 The CLI has some defaults built in, but is customizable by setting the `PIB_CONFIG_FILE_LOCATION` environment variable.
 The default config file can be found [here](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/config.yml).
 
@@ -123,7 +125,9 @@ Each command is described by a yaml key in this format :
 
 ```yaml
 - name: "command-name"
-  path_method: "location_string"
+  description: "A description of the command."
+  container_only: false # Optional restriction of the command to a PIB container
+  path: "location_string"
   commands:
     - "one or more"
     - "shell commands"
@@ -134,9 +138,9 @@ Each command is described by a yaml key in this format :
 
 where `location_string` is one of:
 
-- `project_root` (`/app`)
-- `project_docs` (`/app/documentation`)
-- `project_home` (`/app/${PROJECT_HOME}`)
+- `git_root` (`/app`)
+- `documentation_root` (`/app/documentation`)
+- `project_root` (`/app/${PROJECT_HOME}`)
 
 ## Installing a virtual environment, and the CLI on your host machine
 
