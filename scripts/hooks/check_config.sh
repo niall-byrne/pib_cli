@@ -49,14 +49,6 @@ config_check() {
 <     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-100,102c83,85
-<     - 'echo "Typing is disabled for this project."'
-<   success: ""
-<   failure: ""
----
->     - 'mypy --strict \${PROJECT_NAME}'
->   success: "Type Check Passed!"
->   failure: "Type Check Failed!"
 EOF
 )
 

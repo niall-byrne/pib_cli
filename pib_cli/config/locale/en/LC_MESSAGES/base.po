@@ -1,4 +1,4 @@
-#: pib_cli/__init__.py:24
+#: pib_cli/__init__.py:23
 msgid "** PIB DEFAULT CONFIG IN USE **"
 msgstr ""
 

@@ -3,5 +3,5 @@
 from pib_cli.cli.interface import cli_interface
 
 
-def main():
+def main() -> None:
   cli_interface()

@@ -80,6 +80,6 @@
   description: "Run the type checker."
   path: "git_root"
   commands:
-    - 'mypy --strict ${PROJECT_NAME}'
+    - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
   success: "Type Check Passed!"
   failure: "Type Check Failed!"

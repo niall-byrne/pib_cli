@@ -97,6 +97,6 @@
   description: "Run the type checker."
   path: "git_root"
   commands:
-    - 'echo "Typing is disabled for this project."'
-  success: ""
-  failure: ""
+    - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
+  success: "Type Check Passed!"
+  failure: "Type Check Failed!"
