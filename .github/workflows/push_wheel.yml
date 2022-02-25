@@ -15,6 +15,57 @@ env:
 
 jobs:
 
+  acceptance:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        include:
+          - python-version: "3.7"
+          - python-version: "3.8"
+          - python-version: "3.9"
+          - python-version: "3.10"
+
+    steps:
+      - name: Acceptance -- Checkout
+        uses: actions/checkout@v2
+
+      - name: Acceptance -- Setup Environment
+        run: |
+          source .github/scripts/setup.sh
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          PYTHON_VERSION: ${{ matrix.python-version }}
+
+      - name: Acceptance -- Create Docker Mounted Content
+        run: |
+          echo | ssh-keygen
+          touch ${HOME}/.gitconfig
+          touch ${HOME}/.gitconfig_global
+
+      - name: Acceptance -- Ensure File System is Writable by the Container
+        run: |
+          sudo chmod -R o+w .
+
+      - name: Acceptance -- Build Container
+        run: |
+          source .github/scripts/build_container.sh
+
+      - name: Acceptance -- CLI Conformity Test
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" bash .github/scripts/cli_test.sh
+
+      - name: Acceptance -- Report Job Status (Success)
+        if: ${{ env.VERBOSE_NOTIFICATIONS  == '1' }}
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":white_check_mark: acceptance for Python ${PYTHON_VERSION} was successful"
+
+      - name: Acceptance -- Report Job Status (Failure)
+        if: failure()
+        run: |
+          ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: acceptance for Python ${PYTHON_VERSION} failed!"
+
   build:
 
     runs-on: ubuntu-latest
@@ -83,7 +134,7 @@ jobs:
           ./.github/scripts/notifications.sh "${NOTIFICATION}" ":x: build for Python ${PYTHON_VERSION} failed!"
 
   create_release:
-    needs: [build, commitizen-check, dockerfile_test, documentation_test, security_test, shellcheck_test, workflow_lint_test]
+    needs: [acceptance, build, commitizen-check, dockerfile_test, documentation_test, security_test, shellcheck_test, workflow_lint_test]
 
     runs-on: ubuntu-latest
 
