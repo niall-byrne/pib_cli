@@ -2,6 +2,14 @@
 repos:
   - repo: local
     hooks:
+      - id: check_config
+        name: check config
+        description: "Check for configuration for changes."
+        entry: ./scripts/hooks/check_config.sh
+        language: system
+        stages: [ commit ]
+        pass_filenames: false
+        require_serial: true
       - id: check_spelling
         name: check commit spelling
         description: "Check spelling on commit messages."
