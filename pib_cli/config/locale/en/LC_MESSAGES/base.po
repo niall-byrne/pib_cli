@@ -10,6 +10,14 @@ msgstr ""
 msgid "Current Configuration: {config_filename}"
 msgstr ""
 
+#: pib_cli/cli/commands/container_validate.py:23
+msgid "Detected valid container."
+msgstr ""
+
+#: pib_cli/cli/commands/container_validate.py:25
+msgid "No compatible PIB container found."
+msgstr ""
+
 #: pib_cli/cli/commands/container_version.py:24
 msgid "Detected PIB container version: {version_data}"
 msgstr ""
@@ -31,7 +39,7 @@ msgid "@pib"
 msgstr ""
 
 #: pib_cli/cli/interface/builtins/__init__.py:16
-#: pib_cli/cli/interface/builtins/container.py:20
+#: pib_cli/cli/interface/builtins/container.py:30
 msgid "version"
 msgstr ""
 
@@ -44,6 +52,7 @@ msgid "show"
 msgstr ""
 
 #: pib_cli/cli/interface/builtins/config.py:25
+#: pib_cli/cli/interface/builtins/container.py:24
 msgid "validate"
 msgstr ""
 
@@ -51,11 +60,11 @@ msgstr ""
 msgid "where"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/container.py:8
+#: pib_cli/cli/interface/builtins/container.py:13
 msgid "container"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/container.py:13
+#: pib_cli/cli/interface/builtins/container.py:18
 msgid "setup"
 msgstr ""
 
