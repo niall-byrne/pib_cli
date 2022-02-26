@@ -1,0 +1,286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Niall Byrne
+# This file is distributed under the same license as the pib_cli package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pib_cli \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 18:19+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/cli/user_guide.rst:2
+msgid "PIB CLI User Guide"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:5
+msgid "PIB CLI Internal Commands"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:7
+msgid "This commands allow you to introspect the pib_cli application itself:"
+msgstr ""
+
+#: ../../dev @pib:1
+msgid "PIB built-in commands."
+msgstr ""
+
+#: ../../dev @pib config:1
+msgid "PIB user configuration commands."
+msgstr ""
+
+#: ../../dev @pib config show:1
+msgid "Display the current CLI configuration."
+msgstr ""
+
+#: ../../dev @pib config validate:1
+msgid "Validate the current CLI configuration."
+msgstr ""
+
+#: ../../dev @pib config where:1
+msgid "Display the current CLI configuration location."
+msgstr ""
+
+#: ../../dev @pib container:1
+msgid "PIB container commands."
+msgstr ""
+
+#: ../../dev @pib container setup:1
+msgid "Copy file assets to setup the development container."
+msgstr ""
+
+#: ../../dev @pib container version:1
+msgid "Display the current container version."
+msgstr ""
+
+#: ../../dev @pib version:1
+msgid "Display the current CLI version."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:14
+msgid "PIB CLI Default Custom Commands"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:16
+msgid "These are the default configuration based commands shipped with pib_cli:"
+msgstr ""
+
+#: ../../dev:1
+msgid "Stub for testing custom commands during development."
+msgstr ""
+
+#: ../../dev babel-extract:1
+msgid "Create an updated template file for translations."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst
+msgid "Arguments"
+msgstr ""
+
+#: ../../dev babel-extract:1 build-docs:1 build-wheel:1 coverage:1 fmt:1
+#: leaks:1 lint:1 reinstall-requirements:1 sectest:1 test:1 types:1
+msgid "Optional argument(s)"
+msgstr ""
+
+#: ../../dev build-docs:1
+msgid "Build the project's documentation."
+msgstr ""
+
+#: ../../dev build-wheel:1
+msgid "Build a distribution wheel."
+msgstr ""
+
+#: ../../dev coverage:1
+msgid "Run code coverage test."
+msgstr ""
+
+#: ../../dev fmt:1
+msgid "Run code formatters."
+msgstr ""
+
+#: ../../dev leaks:1
+msgid "Run a scan for leaked credentials in commits."
+msgstr ""
+
+#: ../../dev lint:1
+msgid "Run the code linters."
+msgstr ""
+
+#: ../../dev reinstall-requirements:1
+msgid "Reinstall the project requirements."
+msgstr ""
+
+#: ../../dev sectest:1
+msgid "Run the security tests."
+msgstr ""
+
+#: ../../dev test:1
+msgid "Run the unittests."
+msgstr ""
+
+#: ../../dev types:1
+msgid "Run the type checker."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:24
+msgid "PIB CLI Default Configuration"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:26
+msgid "The default YAML CLI configuration:"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:33
+msgid "PIB CLI Configuration JSON Schema"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:35
+msgid "Follow this schema to build your own CLI commands:"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "PIB CLI Configuration Specification v2.0"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "type"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "*array*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "items"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "*object*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "properties"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**name**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid ""
+"The CLI command name. ('@pib' is a reserved command name and cannot be "
+"redefined.)"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "*string*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "pattern"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "^(?!@pib$)[0-9a-zA-Z-\\_]+$"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**description**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "A description of the CLI command.  (Appears in CLI help messages.)"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**path**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "The filesystem location from which to execute the command."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "enum"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "documentation_root, git_root, project_root"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**commands**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "The shell commands that will be run."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "*string* / *array*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "An individual shell command."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "minItems"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "1"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**success**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "A message to display on success."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**failure**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "A message to display on failure."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "container\\_only"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "Restrict this command to inside a managed PIB container."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "*boolean*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "additionalProperties"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "False"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "uniqueItems"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "True"
+msgstr ""
+

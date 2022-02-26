@@ -108,6 +108,7 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 | sphinx     | Generating documentation          |
 | sphinx-autopackagesummary | Template nested module content     |
 | sphinx-click              | Generate cli documentation         |
+| sphinx-intl               | Add translation support            |
 | sphinx-jsonschema         | Generate schema documentation      |
 
 - `poetry install -E pib_docs` to add these dependencies to the core installation.

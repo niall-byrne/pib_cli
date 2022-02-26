@@ -13,8 +13,10 @@
   description: "Build the project's documentation."
   path: "documentation_root"
   commands:
-    - 'if [ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ]; then rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"; fi'
-    - "make html"
+    - if [ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ]; then rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"; fi
+    - "make gettext"
+    - "sphinx-intl update -p build/gettext -l en"
+    - make -e SPHINXOPTS="-D language='en'" html
   success: "Documentation Built"
   failure: "Error Building Documentation"
 - name: "build-wheel"

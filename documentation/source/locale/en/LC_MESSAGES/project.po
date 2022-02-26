@@ -1,0 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Niall Byrne
+# This file is distributed under the same license as the pib_cli package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pib_cli \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 18:19+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/project/license.rst:2
+msgid "License"
+msgstr ""
+
+#: ../../source/project/readme.rst:2
+msgid "Repository README.md"
+msgstr ""
+
+#: ../../source/project/readme.rst:4 ../../source/project/repository.rst:4
+msgid "`pib_cli repository <https://github.com/niall-byrne/pib_cli>`_"
+msgstr ""
+
+#: ../../source/project/repository.rst:2
+msgid "GitHub Repository"
+msgstr ""
+

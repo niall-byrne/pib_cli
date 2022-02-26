@@ -102,6 +102,10 @@
         optional = true
         version = "^3.1.0"
 
+      [tool.poetry.dependencies.sphinx-intl]
+        optional = true
+        version = "^2.0.1"
+
       [tool.poetry.dependencies.sphinx-jsonschema]
         optional = true
         version = "^1.17.2"
@@ -114,7 +118,7 @@
     [tool.poetry.extras]
       docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]
       docstrings = ["darglint", "pydocstyle"]
-      pib_docs = ["Sphinx", "sphinx-autopackagesummary", "sphinx-click", "sphinx-jsonschema"]
+      pib_docs = ["Sphinx", "sphinx-autopackagesummary", "sphinx-click", "sphinx-intl", "sphinx-jsonschema"]
       types = ["mypy"]
 
     [[tool.poetry.packages]]

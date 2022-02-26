@@ -21,6 +21,7 @@ project = 'pib_cli'
 copyright = '2020, Niall Byrne'
 author = 'Niall Byrne'
 os.environ['PROJECT_NAME'] = project
+locale_dirs = ['locale/']
 
 # -- General configuration ---------------------------------------------------
 
