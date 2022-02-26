@@ -1,5 +1,7 @@
 """ContainerVersionCommand class."""
 
+import sys
+
 import click
 from pib_cli.config.locale import _
 from pib_cli.support import container
@@ -25,3 +27,4 @@ class ContainerVersionCommand(command.CommandBase):
       )
     except exceptions.DevContainerException:
       click.echo(_("No PIB container found."))
+      sys.exit(development_container.incompatible_container_exit_code)

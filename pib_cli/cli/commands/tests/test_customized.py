@@ -3,6 +3,7 @@
 from typing import Tuple, Type
 from unittest.mock import Mock, patch
 
+from pib_cli import config
 from pib_cli.support.container import exceptions
 
 from .. import customized
@@ -45,7 +46,10 @@ class TestCustomizedCommand(command_harness.CommandBaseTestHarness):
     self.assertEqual(
         self.instance.command_configuration, self.mock_command_configuration
     )
-    self.assertEqual(self.instance.container_only_error_exit_code, 127)
+    self.assertEqual(
+        self.instance.container_only_error_exit_code,
+        config.EXIT_CODE_CONTAINER_ONLY
+    )
     self.assertEqual(self.instance.overload, self.mock_overload)
 
   def test_invoke(self) -> None:

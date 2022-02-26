@@ -25,3 +25,6 @@ ERROR_CONTAINER_VERSION: Callable[[str], str] = \
 ERROR_PROJECT_NAME_NOT_SET = (
     f"You must set the {ENV_PROJECT_NAME} variable to use this tool."
 )
+
+EXIT_CODE_CONTAINER_ONLY = 127
+EXIT_CODE_CONTAINER_INCOMPATIBLE = 126

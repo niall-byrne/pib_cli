@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 from unittest import TestCase
 
+from pib_cli import config
 from pib_cli.support import container
 from pib_cli.support.mixins import text_file
 
@@ -32,3 +33,7 @@ class DevContainerBaseTest(TestCase):
     )
     self.assertEqual(self.instance.minimum_pib_version, "1.0.0")
     self.assertEqual(self.instance.unversioned_pib_value, "0.0.1")
+    self.assertEqual(
+        self.instance.incompatible_container_exit_code,
+        config.EXIT_CODE_CONTAINER_INCOMPATIBLE
+    )

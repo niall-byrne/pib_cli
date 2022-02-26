@@ -4,6 +4,7 @@ import sys
 from typing import Tuple
 
 import click
+from pib_cli import config
 from pib_cli.config.locale import _
 from pib_cli.support import runner
 from pib_cli.support.container import exceptions
@@ -21,7 +22,7 @@ class CustomizedCommand(command.CommandBase):
   :param overload: Additional parameters passed to the CLI interface.
   """
 
-  container_only_error_exit_code = 127
+  container_only_error_exit_code = config.EXIT_CODE_CONTAINER_ONLY
 
   def __init__(
       self,

@@ -10,15 +10,15 @@ msgstr ""
 msgid "Current Configuration: {config_filename}"
 msgstr ""
 
-#: pib_cli/cli/commands/container_version.py:22
+#: pib_cli/cli/commands/container_version.py:24
 msgid "Detected PIB container version: {version_data}"
 msgstr ""
 
-#: pib_cli/cli/commands/container_version.py:27
+#: pib_cli/cli/commands/container_version.py:29
 msgid "No PIB container found."
 msgstr ""
 
-#: pib_cli/cli/commands/customized.py:42
+#: pib_cli/cli/commands/customized.py:43
 msgid "ERROR: {container_error}"
 msgstr ""
 

@@ -1,4 +1,4 @@
-"""Test the ContainerSetup class."""
+"""Test the ContainerSetupCommand class."""
 
 from typing import Tuple
 from unittest.mock import Mock, patch
@@ -7,8 +7,8 @@ from .. import container_setup
 from ..bases.fixtures import command_harness
 
 
-class TestContainerSetup(command_harness.CommandBaseTestHarness):
-  """Test the ContainerSetup class."""
+class TestContainerSetupCommand(command_harness.CommandBaseTestHarness):
+  """Test the ContainerSetupCommand class."""
 
   __test__ = True
   test_class = container_setup.ContainerSetupCommand
