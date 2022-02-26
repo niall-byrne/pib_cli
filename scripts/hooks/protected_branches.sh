@@ -3,20 +3,22 @@
 # protected_branches.sh
 # Run additional pre-commit checks on selected branches.
 
+# Container Only:  Please use this hook inside a PIB container.
+
 set -eo pipefail
 
 bypass() {
 
-  local_branch="$(git rev-parse --abbrev-ref HEAD)"
-  protected_branches="${GIT_HOOKS_PROTECTED_BRANCHES}"
+  LOCAL_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  TARGET_BRANCHES="${GIT_HOOKS_PROTECTED_BRANCHES}"
 
-  if [[ ! ${local_branch} =~ ${protected_branches} ]]; then
+  if [[ ! ${LOCAL_BRANCH} =~ ${TARGET_BRANCHES} ]]; then
         exit 0
   fi
 
 }
 
-checks() {
+protected_branches() {
 
   dev lint
   dev sectest
@@ -28,7 +30,7 @@ checks() {
 main() {
 
   bypass
-  checks
+  protected_branches
 
 }
 

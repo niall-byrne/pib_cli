@@ -7,7 +7,7 @@ repos:
         description: "Check for configuration for changes."
         entry: ./scripts/hooks/check_config.sh
         language: system
-        stages: [ commit ]
+        stages: [commit]
         pass_filenames: false
         require_serial: true
       - id: check_spelling
@@ -24,7 +24,7 @@ repos:
         description: "Check translations for changes."
         entry: ./scripts/hooks/check_translations.sh
         language: system
-        stages: [ commit ]
+        stages: [commit]
         pass_filenames: false
         require_serial: true
       - id: commitizen
