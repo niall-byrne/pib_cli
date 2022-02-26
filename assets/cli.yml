@@ -66,7 +66,7 @@
     - 'darglint "${PROJECT_NAME}"'
     - 'pydocstyle "${PROJECT_NAME}"'
     - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
-    - 'yamllint *.yml .*.yml ${PROJECT_NAME}/config/ assets/ .github/workflows/'
+    - 'yamllint . ${PROJECT_NAME}/config/ assets/ .github/workflows/'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"

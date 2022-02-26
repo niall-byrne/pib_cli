@@ -44,10 +44,10 @@
   path: "git_root"
   description: "Run the code linters."
   commands:
-    - 'yamllint *.yml .*.yml assets/ .github/workflows/'
     - 'darglint "${PROJECT_NAME}"'
     - 'pydocstyle "${PROJECT_NAME}"'
     - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
+    - 'yamllint . assets/ .github/workflows/'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"

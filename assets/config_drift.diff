@@ -25,13 +25,13 @@
 <   description: "Run the code linters."
 62a45
 >   description: "Run the code linters."
-64,65c47
+64,65d46
 <     - 'shellcheck ${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck ${PROJECT_NAME}/container_init.sh'
+69c50
+<     - 'yamllint . ${PROJECT_NAME}/config/ assets/ .github/workflows/'
 ---
->     - 'yamllint *.yml .*.yml assets/ .github/workflows/'
-69d50
-<     - 'yamllint *.yml .*.yml ${PROJECT_NAME}/config/ assets/ .github/workflows/'
+>     - 'yamllint . assets/ .github/workflows/'
 79c60
 <     - "poetry install -E pib_docs"
 ---
