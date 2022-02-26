@@ -11,6 +11,14 @@ repos:
         minimum_pre_commit_version: "0.15.4"
         require_serial: true
         always_run: true
+      - id: check_translations
+        name: check translations
+        description: "Check translations for changes."
+        entry: ./scripts/hooks/check_translations.sh
+        language: system
+        stages: [ commit ]
+        pass_filenames: false
+        require_serial: true
       - id: commitizen
         name: commitizen check
         description: "Check whether the commit message follows committing rules."
