@@ -12,6 +12,10 @@ A development environment CLI, complete with tooling.
 
 [![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/niall-byrne/pib_cli/actions)
 
+## Documentation Builds
+
+[![Documentation Status](https://readthedocs.org/projects/pib-cli/badge/?version=latest)](https://pib-cli.readthedocs.io/en/latest/?badge=latest)
+
 ## Supported Python Versions
 
 Tested to work under the following python version:
