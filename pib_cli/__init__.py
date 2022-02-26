@@ -6,6 +6,7 @@ import pathlib
 import click
 
 from . import config
+from .config.locale import _
 
 project_root = pathlib.Path(__file__).parent.absolute()
 default_config = os.path.join(project_root, "config/config.yml")
@@ -20,7 +21,7 @@ def get_config_file_name():
   override = os.getenv(config.ENV_OVERRIDE_CONFIG_LOCATION, None)
   if override and os.path.exists(override):
     return override
-  click.echo("** PIB DEFAULT CONFIG IN USE **")
+  click.echo(_("** PIB DEFAULT CONFIG IN USE **"))
   return default_config
 
 

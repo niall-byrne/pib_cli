@@ -2,6 +2,7 @@
 
 import click
 import pkg_resources
+from pib_cli.config.locale import _
 
 from .bases import command
 
@@ -12,7 +13,7 @@ class VersionCommand(command.CommandBase):
   def invoke(self) -> None:
     """Invoke the command."""
 
+    version_data = pkg_resources.get_distribution('pib_cli').version
     click.echo(
-        "pib_cli version: "
-        f"{pkg_resources.get_distribution('pib_cli').version}",
+        _("pib_cli version: {version_data}").format(version_data=version_data),
     )

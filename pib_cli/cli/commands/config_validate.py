@@ -1,6 +1,7 @@
 """ConfigValidateCommand class."""
 
 import click
+from pib_cli.config.locale import _
 from pib_cli.support import user_configuration
 
 from .bases import command
@@ -15,4 +16,4 @@ class ConfigValidateCommand(command.CommandBase):
     configuration = user_configuration.UserConfiguration()
     configuration.validate()
 
-    click.echo("Current configuration is valid.")
+    click.echo(_("Current configuration is valid."))

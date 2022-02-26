@@ -1,0 +1,86 @@
+#: pib_cli/__init__.py:24
+msgid "** PIB DEFAULT CONFIG IN USE **"
+msgstr ""
+
+#: pib_cli/cli/commands/config_validate.py:19
+msgid "Current configuration is valid."
+msgstr ""
+
+#: pib_cli/cli/commands/config_where.py:17
+msgid "Current Configuration: {config_filename}"
+msgstr ""
+
+#: pib_cli/cli/commands/container_version.py:22
+msgid "Detected PIB container version: {version_data}"
+msgstr ""
+
+#: pib_cli/cli/commands/container_version.py:27
+msgid "No PIB container found."
+msgstr ""
+
+#: pib_cli/cli/commands/customized.py:42
+msgid "ERROR: {container_error}"
+msgstr ""
+
+#: pib_cli/cli/commands/version.py:18
+msgid "pib_cli version: {version_data}"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/__init__.py:11
+msgid "@pib"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/__init__.py:16
+#: pib_cli/cli/interface/builtins/container.py:20
+msgid "version"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/config.py:13
+msgid "config"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/config.py:18
+msgid "show"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/config.py:25
+msgid "validate"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/config.py:32
+msgid "where"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/container.py:8
+msgid "container"
+msgstr ""
+
+#: pib_cli/cli/interface/builtins/container.py:13
+msgid "setup"
+msgstr ""
+
+#: pib_cli/cli/interface/custom/__init__.py:10
+msgid "configuration_commands"
+msgstr ""
+
+#: pib_cli/config/__init__.py:14
+msgid ""
+"This command can only be run inside a PIB container.\n"
+"Find out more here: {PIB_URL}"
+msgstr ""
+
+#: pib_cli/config/__init__.py:20
+msgid ""
+"This command can only be run inside a PIB container with version "
+"{minimum_version} or greater.\n"
+"Find out more here: {PIB_URL}"
+msgstr ""
+
+#: pib_cli/support/container/installer.py:16
+msgid "Setup Succeeded!"
+msgstr ""
+
+#: pib_cli/support/container/installer.py:29
+msgid "Copied: {source} -> {destination}"
+msgstr ""
+

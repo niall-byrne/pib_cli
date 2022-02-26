@@ -1,6 +1,7 @@
 """ContainerVersionCommand class."""
 
 import click
+from pib_cli.config.locale import _
 from pib_cli.support import container
 from pib_cli.support.container import exceptions
 
@@ -18,9 +19,9 @@ class ContainerVersionCommand(command.CommandBase):
     try:
       version_data = development_container.get_container_version()
       click.echo(
-          "Detected PIB container version: {version_data}".format(
+          _("Detected PIB container version: {version_data}").format(
               version_data=version_data
           )
       )
     except exceptions.DevContainerException:
-      click.echo("No PIB container found.")
+      click.echo(_("No PIB container found."))

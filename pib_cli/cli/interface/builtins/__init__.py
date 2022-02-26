@@ -2,17 +2,18 @@
 
 import click
 from pib_cli.cli.commands import handler, version
+from pib_cli.config.locale import _
 
 from .config import config_commands
 from .container import container_commands
 
 
-@click.group('@pib')
+@click.group(_("@pib"))
 def builtins() -> None:
   """PIB built-in commands."""
 
 
-@builtins.command("version")
+@builtins.command(_("version"))
 def version_builtin() -> None:
   """Display the current CLI version."""
 

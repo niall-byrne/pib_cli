@@ -50,6 +50,7 @@
     documentation = "https://github.com/niall-byrne/pib_cli/blob/develop/README.md"
     exclude = ["**/tests/*", "**/*.sh"]
     homepage = "https://github.com/niall-byrne/pib_cli"
+    include = ["pib_cli/config/**/*.mo"]
     keywords = []
     license = "MPL-2.0"
     name = "pib_cli"
@@ -106,13 +107,14 @@
         version = "^1.17.2"
 
     [tool.poetry.dev-dependencies]
+      Babel = "^2.9.1"
       types-PyYAML = "^6.0.4"
       types-setuptools = "^57.4.9"
 
     [tool.poetry.extras]
       docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]
       docstrings = ["darglint", "pydocstyle"]
-      pib_docs = ["Sphinx", "sphinx-click", "sphinx-autopackagesummary", "sphinx-jsonschema"]
+      pib_docs = ["Sphinx", "sphinx-autopackagesummary", "sphinx-click", "sphinx-jsonschema"]
       types = ["mypy"]
 
     [[tool.poetry.packages]]

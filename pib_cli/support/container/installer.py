@@ -4,6 +4,7 @@ import os
 import shutil
 from typing import Callable, List
 
+from pib_cli.config.locale import _
 from pib_cli.support import container
 from pib_cli.support.iterators import container_bash_files, container_shim_file
 from pib_cli.support.iterators.bases import file_copy_base
@@ -12,7 +13,7 @@ from pib_cli.support.iterators.bases import file_copy_base
 class DevContainerInstaller(container.DevContainer):
   """Configure a development container with PIB resources."""
 
-  bash_setup_success_message = "Setup Succeeded!"
+  bash_setup_success_message = _("Setup Succeeded!")
 
   def setup(self, notifier: Callable[[str], None]) -> None:
     """Copy pib_cli assets to the container to configure BASH and Python.
@@ -24,7 +25,12 @@ class DevContainerInstaller(container.DevContainer):
 
     for file in self.get_installation_files():
       shutil.copy(file.source, file.destination)
-      notifier(f"Copied: {file.source} -> {file.destination}")
+      notifier(
+          _("Copied: {source} -> {destination}").format(
+              source=file.source,
+              destination=file.destination
+          )
+      )
 
     notifier(self.bash_setup_success_message)
 

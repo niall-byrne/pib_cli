@@ -7,28 +7,29 @@ from pib_cli.cli.commands import (
     config_where,
     handler,
 )
+from pib_cli.config.locale import _
 
 
-@click.group('config')
+@click.group(_("config"))
 def config() -> None:
   """PIB user configuration commands."""
 
 
-@config.command("show")
+@config.command(_("show"))
 def show_config_builtin() -> None:
   """Display the current CLI configuration."""
 
   handler(config_show.ConfigShowCommand)
 
 
-@config.command("validate")
+@config.command(_("validate"))
 def validate_config_builtin() -> None:
   """Validate the current CLI configuration."""
 
   handler(config_validate.ConfigValidateCommand)
 
 
-@config.command("where")
+@config.command(_("where"))
 def where_config_builtin() -> None:
   """Display the current CLI configuration location."""
 

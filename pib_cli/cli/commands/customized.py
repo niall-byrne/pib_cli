@@ -4,6 +4,7 @@ import sys
 from typing import Tuple
 
 import click
+from pib_cli.config.locale import _
 from pib_cli.support import runner
 from pib_cli.support.container import exceptions
 from pib_cli.support.user_configuration.selected import (
@@ -37,7 +38,9 @@ class CustomizedCommand(command.CommandBase):
       self.command_configuration.is_executable_exception()
       self._call_runner()
     except exceptions.DevContainerException as exc:
-      click.echo("ERROR: {container_error}".format(container_error=exc.args[0]))
+      click.echo(
+          _("ERROR: {container_error}").format(container_error=exc.args[0])
+      )
       sys.exit(self.container_only_error_exit_code)
 
   def _call_runner(self) -> None:

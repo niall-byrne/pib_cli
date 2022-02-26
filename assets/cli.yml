@@ -1,5 +1,14 @@
 # Development Environment CLI Configuration
 ---
+- name: "babel-extract"
+  description: "Create an updated template file for translations."
+  path: "git_root"
+  commands:
+    - "pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header"
+    - "pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N"
+    - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
+  success: "Template and English translation base generated!"
+  failure: "An error occurred!"
 - name: "build-docs"
   description: "Build the project's documentation."
   path: "documentation_root"

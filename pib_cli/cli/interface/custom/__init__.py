@@ -3,10 +3,11 @@
 import copy
 
 import click
+from pib_cli.config.locale import _
 from pib_cli.support.iterators import cli_custom_commands
 
 
-@click.group("configuration_commands")
+@click.group(_("configuration_commands"))
 def defined_with_user_configuration() -> None:
   """Stub for testing custom commands during development."""
 

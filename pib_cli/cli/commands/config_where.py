@@ -2,6 +2,7 @@
 
 import click
 from pib_cli import config_filename
+from pib_cli.config.locale import _
 
 from .bases import command
 
@@ -12,4 +13,8 @@ class ConfigWhereCommand(command.CommandBase):
   def invoke(self) -> None:
     """Invoke the command."""
 
-    click.echo(f"Current Configuration: {config_filename}")
+    click.echo(
+        _("Current Configuration: {config_filename}").format(
+            config_filename=config_filename
+        )
+    )
