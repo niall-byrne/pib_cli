@@ -118,7 +118,7 @@
 
     [tool.poetry.extras]
       docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]
-      docstrings = ["darglint", "pydocstyle"]
+      docstrings = ["pydocstyle"]
       pib_docs = ["Sphinx", "sphinx-autopackagesummary", "sphinx-click", "sphinx-intl", "sphinx-jsonschema"]
       types = ["mypy"]
 
