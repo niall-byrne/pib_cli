@@ -46,12 +46,13 @@
 
   [tool.poetry]
     authors = ["Niall Byrne <niall@niallbyrne.ca>"]
+    classifiers = ["Development Status :: 5 - Production/Stable", "Environment :: Console", "Intended Audience :: Developers", "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)", "Operating System :: POSIX :: Linux", "Programming Language :: Python", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.7", "Programming Language :: Python :: 3.8", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Topic :: Software Development", "Topic :: Software Development :: Build Tools", "Topic :: Software Development :: Libraries", "Topic :: Software Development :: Quality Assurance", "Topic :: Software Development :: Testing", "Topic :: Utilities"]
     description = "Python Development CLI"
     documentation = "https://github.com/niall-byrne/pib_cli/blob/develop/README.md"
     exclude = ["**/tests/*", "**/*.sh"]
     homepage = "https://github.com/niall-byrne/pib_cli"
     include = ["pib_cli/config/**/*.mo"]
-    keywords = []
+    keywords = ["development cli", "development docker", "development environment", "development testing", "development tooling", "development utility", "pib", "python-in-a-box"]
     license = "MPL-2.0"
     name = "pib_cli"
     readme = "README.md"
