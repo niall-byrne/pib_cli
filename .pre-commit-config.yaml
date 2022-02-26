@@ -10,6 +10,15 @@ repos:
         stages: [commit]
         pass_filenames: false
         require_serial: true
+      - id: check_container
+        name: check container
+        description: "Check for a valid PIB container."
+        entry: ./scripts/hooks/check_container.sh
+        language: system
+        stages: [commit]
+        pass_filenames: false
+        require_serial: true
+        always_run: true
       - id: check_spelling
         name: check commit spelling
         description: "Check spelling on commit messages."

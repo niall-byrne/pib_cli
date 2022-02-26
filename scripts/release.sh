@@ -11,12 +11,12 @@ halt() {
 [[ ! -f /etc/container_release ]] && halt "Must be run inside the container."
 
 # Formatting
-echo "Checking Formatting ... "
-dev fmt
-DIFF=$(git diff)
-[[ -n "${DIFF}" ]] && halt "Formatting needs to be checked!"
 
 set -eo pipefail
+
+# Check Formatting
+echo "Checking Formatting ..."
+/app/scripts/hooks/check_formatting.sh
 
 # Check Translations
 echo "Checking Translations ..."
