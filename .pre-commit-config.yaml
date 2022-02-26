@@ -21,6 +21,15 @@ repos:
         minimum_pre_commit_version: "0.15.4"
         require_serial: true
         always_run: true
+      - id: gitleaks
+        name: check for credentials
+        description: "Scan the commit for leaked credentials."
+        entry: gitleaks protect --verbose --redact --staged
+        language: system
+        stages: [commit]
+        pass_filenames: false
+        require_serial: true
+        always_run: true
       - id: protected_branches
         name: protected branches
         description: "Run additional checks on branches marked as protected."
