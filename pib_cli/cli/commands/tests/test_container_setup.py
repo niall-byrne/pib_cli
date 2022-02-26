@@ -1,5 +1,6 @@
 """Test the ContainerSetup class."""
 
+from typing import Tuple
 from unittest.mock import Mock, patch
 
 from .. import container_setup
@@ -11,14 +12,19 @@ class TestContainerSetup(command_harness.CommandBaseTestHarness):
 
   __test__ = True
   test_class = container_setup.ContainerSetupCommand
+  instance: container_setup.ContainerSetupCommand
 
-  @patch(container_setup.__name__ + ".click")
-  def test_invoke(self, m_module: Mock) -> None:
-    with patch(
-        container_setup.__name__ + ".installer.DevContainerInstaller"
-    ) as m_installer:
+  def invoke_command(self) -> Tuple[Mock, ...]:
+    with self.mock_stack as stack:
+      m_click = stack.enter_context(patch(container_setup.__name__ + ".click"))
+      m_installer = stack.enter_context(
+          patch(container_setup.__name__ + ".installer.DevContainerInstaller")
+      )
       self.instance.invoke()
+    return m_click, m_installer
 
+  def test_invoke(self) -> None:
+    m_click, m_installer = self.invoke_command()
     m_installer.assert_called_once_with()
     m_installer.return_value.container_valid_exception.assert_called_once()
-    m_installer.return_value.setup.assert_called_once_with(m_module.echo)
+    m_installer.return_value.setup.assert_called_once_with(m_click.echo)

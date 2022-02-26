@@ -1,1 +1,1 @@
-"""Iterators for the PIB CLI."""
+"""Iterator classes."""

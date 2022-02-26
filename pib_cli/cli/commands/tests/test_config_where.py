@@ -1,5 +1,6 @@
 """Test the ConfigWhereCommand class."""
 
+from typing import Tuple
 from unittest.mock import Mock, patch
 
 from pib_cli import config_filename
@@ -13,12 +14,16 @@ class TestConfigWhereCommand(command_harness.CommandBaseTestHarness):
 
   __test__ = True
   test_class = config_where.ConfigWhereCommand
+  instance: config_where.ConfigWhereCommand
 
-  @patch(config_where.__name__ + ".click")
-  def test_invoke(self, m_module: Mock) -> None:
+  def invoke_command(self) -> Tuple[Mock, ...]:
+    with self.mock_stack as stack:
+      m_click = stack.enter_context(patch(config_where.__name__ + ".click"))
+      self.instance.invoke()
+    return (m_click,)
 
-    self.instance.invoke()
-
-    m_module.echo.assert_called_once_with(
+  def test_invoke(self) -> None:
+    m_click = self.invoke_command()[0]
+    m_click.echo.assert_called_once_with(
         f"Current Configuration: {config_filename}"
     )

@@ -10,8 +10,8 @@ from pib_cli.cli.commands.bases.command import CommandBase
 from pib_cli.cli.interface import cli_interface
 
 
-class CliCommandTestHarness(TestCase):
-  """Test harness for CLI commands."""
+class CLICommandTestHarness(TestCase):
+  """Test harness for the CLI interface."""
 
   cli_command_module: ModuleType
   cli_command_string: str

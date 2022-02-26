@@ -33,7 +33,7 @@ class TestPathMap(TestCase):
         self.path_manager.documentation_root_folder,
         os.path.join(
             self.mock_git_root,
-            config.SETTING_DOCUMENTATION_FOLDER_NAME,
+            config.DOCUMENTATION_FOLDER_NAME,
         ),
     )
     self.assertEqual(

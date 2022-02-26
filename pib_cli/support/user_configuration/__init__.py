@@ -1,5 +1,7 @@
 """UserConfiguration class."""
 
+from typing import Any, Dict
+
 from pib_cli import config_filename
 from pib_cli.config import yaml_keys
 from pib_cli.support.mixins import text_file, yaml_file
@@ -13,6 +15,13 @@ class UserConfiguration(yaml_file.YAMLFileReader, text_file.TextFileReader):
   def __init__(self) -> None:
     self.configuration_validator = validator.UserConfigurationValidator()
     self.configuration = self.load_yaml_file(config_filename)
+    self.configuration_command_index = self._create_command_index()
+
+  def _create_command_index(self) -> Dict[str, yaml_keys.TypeUserConfiguration]:
+    index: Dict[str, yaml_keys.TypeUserConfiguration] = {}
+    for entry in self.configuration:
+      index[entry[yaml_keys.COMMAND_NAME]] = entry
+    return index
 
   def get_raw_file(self) -> str:
     """Return the original configuration file from disk."""
@@ -27,10 +36,11 @@ class UserConfiguration(yaml_file.YAMLFileReader, text_file.TextFileReader):
     :returns: A Python representation of the selected configuration.
     :raises: KeyError
     """
-    for entry in self.configuration:
-      if entry[yaml_keys.COMMAND_NAME] == command_name:
-        return selected.SelectedUserConfigurationEntry(entry)
-    raise KeyError("Could not find command named: %s" % command_name)
+    try:
+      entry = self.configuration_command_index[command_name]
+      return selected.SelectedUserConfigurationEntry(entry)
+    except KeyError as exc:
+      raise KeyError("Could not find command named: %s" % command_name) from exc
 
   def validate(self) -> None:
     """Validate the user configuration."""

@@ -15,7 +15,7 @@ PIB CLI Default Custom Commands
 
 These are the default configuration based commands shipped with pib_cli:
 
-.. click:: pib_cli.cli.interface.external:external
+.. click:: pib_cli.cli.interface.custom:defined_with_user_configuration
     :prog: dev
     :nested: full
 

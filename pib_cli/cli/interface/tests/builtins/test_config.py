@@ -5,7 +5,7 @@ from pib_cli.cli.interface.builtins import config
 from pib_cli.cli.interface.tests.fixtures import cli_harness
 
 
-class TestConfigShowInterface(cli_harness.CliCommandTestHarness):
+class TestConfigShowInterface(cli_harness.CLICommandTestHarness):
   """Test the click CLI config show command interface."""
 
   cli_command_string = "@pib config show"
@@ -13,7 +13,7 @@ class TestConfigShowInterface(cli_harness.CliCommandTestHarness):
   cli_command_module = config
 
 
-class TestConfigValidateInterface(cli_harness.CliCommandTestHarness):
+class TestConfigValidateInterface(cli_harness.CLICommandTestHarness):
   """Test the click CLI config validate command interface."""
 
   cli_command_string = "@pib config validate"
@@ -21,7 +21,7 @@ class TestConfigValidateInterface(cli_harness.CliCommandTestHarness):
   cli_command_module = config
 
 
-class TestConfigWhereInterface(cli_harness.CliCommandTestHarness):
+class TestConfigWhereInterface(cli_harness.CLICommandTestHarness):
   """Test the click CLI config where command interface."""
 
   cli_command_string = "@pib config where"

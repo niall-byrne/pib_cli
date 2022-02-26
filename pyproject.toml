@@ -50,7 +50,6 @@
     documentation = "https://github.com/niall-byrne/pib_cli/blob/develop/README.md"
     exclude = ["**/tests/*", "**/*.sh"]
     homepage = "https://github.com/niall-byrne/pib_cli"
-    include = []
     keywords = []
     license = "MPL-2.0"
     name = "pib_cli"
@@ -141,7 +140,7 @@
       module-rgx = "(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$"
       no-docstring-rgx = ".*"
       required-attributes = []
-      variable-rgx = "[a-z_][a-z0-9_]{2,30}$|^pk$"
+      variable-rgx = "[a-z_][a-z0-9_]{2,30}$|^pk$|^_+$"
 
     [tool.pylint.classes]
       defining-attr-methods = "__init__,__new__,setUp"
@@ -201,7 +200,7 @@
       ignore-comments = "yes"
       ignore-docstrings = "yes"
       ignore-imports = "no"
-      min-similarity-lines = 4
+      min-similarity-lines = 5
 
     [tool.pylint.typecheck]
       generated-members = "REQUEST,acl_users,aq_parent"
@@ -212,7 +211,7 @@
       additional-builtins = ""
       allow-global-unused-variables = "yes"
       callbacks = "cb_,_cb"
-      dummy-variables-rgx = "_$|dummy"
+      dummy-variables-rgx = "^_+$|dummy"
       ignored-argument-names = "_.*"
       init-import = "no"
       redefining-builtins-modules = "six.moves,past.builtins,future.builtins,builtins,io"

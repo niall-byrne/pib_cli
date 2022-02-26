@@ -21,11 +21,12 @@ class TestSelectedUserConfigurationEntry(TestCase):
   ) -> yaml_keys.TypeUserConfiguration:
     test_data = cast(
         yaml_keys.TypeUserConfiguration, {
-            "path": 'documentation_root',
-            "command_name": 'test_command',
-            "commands": commands if commands else ["default_command"],
-            "success": "Successful!",
-            "failure": "Failed!",
+            yaml_keys.PATH_METHOD: 'documentation_root',
+            yaml_keys.COMMAND_NAME: 'test_command',
+            yaml_keys.COMMAND_DESCRIPTION: "A test command",
+            yaml_keys.COMMANDS: commands if commands else ["default_command"],
+            yaml_keys.SUCCESS: "Successful!",
+            yaml_keys.FAILURE: "Failed!",
         }
     )
     if container_only is not None:
@@ -64,19 +65,20 @@ class TestSelectedUserConfigurationEntry(TestCase):
     test_data = self.get_yaml_test_data(container_only=True)
     instance = self.create_patched_instance(test_data, valid_container=True)
 
-    self.assertTrue(instance.is_executable())
+    instance.is_executable_exception()
 
   def test_outside_container_is_config_executable(self) -> None:
     test_data = self.get_yaml_test_data(container_only=True)
     instance = self.create_patched_instance(test_data, valid_container=False)
 
-    self.assertFalse(instance.is_executable())
+    with self.assertRaises(exceptions.DevContainerException):
+      instance.is_executable_exception()
 
   def test_outside_container_is_config_executable_default(self) -> None:
     test_data = self.get_yaml_test_data()
     instance = self.create_patched_instance(test_data, valid_container=False)
 
-    self.assertTrue(instance.is_executable())
+    instance.is_executable_exception()
 
   def test_get_config_path_method(self) -> None:
     test_data = self.get_yaml_test_data()

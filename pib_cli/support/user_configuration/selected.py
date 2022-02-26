@@ -4,11 +4,10 @@ from typing import List, Union
 
 from pib_cli.config import yaml_keys
 from pib_cli.support import container
-from pib_cli.support.container import exceptions
 
 
 class SelectedUserConfigurationEntry:
-  """A parsed user configuration entry, ready to use.
+  """A parsed end-user configuration entry, ready to use.
 
   :param user_configuration: A Python object for the YAML configuration.
   """
@@ -52,11 +51,10 @@ class SelectedUserConfigurationEntry:
       return self.user_configuration[yaml_keys.SUCCESS]
     return self.user_configuration[yaml_keys.FAILURE]
 
-  def is_executable(self) -> bool:
+  def is_executable_exception(self) -> None:
     """Determine if the currently selected command can be executed or not.
 
-    :returns: A boolean indicating if the command can currently be executed
-    :rtype: bool
+    :raises: :class:`pib_cli.support.container.exceptions.DevContainerException`
     """
     container_only_flag = self.user_configuration.get(
         yaml_keys.CONTAINER_ONLY,
@@ -64,8 +62,4 @@ class SelectedUserConfigurationEntry:
     )
 
     if container_only_flag:
-      try:
-        self.container.container_valid_exception()
-      except exceptions.DevContainerException:
-        return False
-    return True
+      self.container.container_valid_exception()

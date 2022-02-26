@@ -5,7 +5,7 @@ from pib_cli.cli.interface.builtins import container
 from pib_cli.cli.interface.tests.fixtures import cli_harness
 
 
-class TestContainerSetupInterface(cli_harness.CliCommandTestHarness):
+class TestContainerSetupInterface(cli_harness.CLICommandTestHarness):
   """Test the click CLI container setup command interface."""
 
   cli_command_string = "@pib container setup"

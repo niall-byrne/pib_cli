@@ -18,7 +18,7 @@ class PathMap:
     )
     self.documentation_root_folder = os.path.join(
         self.git_root_folder,
-        config.SETTING_DOCUMENTATION_FOLDER_NAME,
+        config.DOCUMENTATION_FOLDER_NAME,
     )
     self.project_root_folder = os.path.join(
         self.git_root_folder,

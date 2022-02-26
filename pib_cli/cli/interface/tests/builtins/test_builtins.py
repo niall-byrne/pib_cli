@@ -5,7 +5,7 @@ from pib_cli.cli.interface import builtins
 from pib_cli.cli.interface.tests.fixtures import cli_harness
 
 
-class TestVersionInterface(cli_harness.CliCommandTestHarness):
+class TestVersionInterface(cli_harness.CLICommandTestHarness):
   """Test the click CLI version command interface."""
 
   cli_command_string = "@pib version"

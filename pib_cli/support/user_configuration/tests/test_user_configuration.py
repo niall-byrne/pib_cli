@@ -19,13 +19,16 @@ class TestUserConfigurationYamlMethods(TestCase):
   def setUp(self) -> None:
     self.mock_config = [
         {
-            yaml_keys.COMMAND_NAME: "command1"
+            yaml_keys.COMMAND_NAME: "command1",
+            yaml_keys.COMMANDS: "/bin/command1"
         },
         {
-            yaml_keys.COMMAND_NAME: "command2"
+            yaml_keys.COMMAND_NAME: "command2",
+            yaml_keys.COMMANDS: "/bin/command2"
         },
         {
-            yaml_keys.COMMAND_NAME: "command3"
+            yaml_keys.COMMAND_NAME: "command3",
+            yaml_keys.COMMANDS: "/bin/command3"
         },
     ]
 
@@ -40,6 +43,23 @@ class TestUserConfigurationYamlMethods(TestCase):
     self.assertEqual(instance.configuration, m_yaml.return_value)
     self.assertIsInstance(
         instance.configuration_validator, validator.UserConfigurationValidator
+    )
+
+  def test_initialize_configuration_command_index(
+      self,
+      _: Mock,
+      m_yaml: Mock,
+  ) -> None:
+    m_yaml.return_value = self.mock_config
+    expected_result = {}
+    instance = self.create_instance()
+
+    for command in self.mock_config:
+      expected_result[command[yaml_keys.COMMAND_NAME]] = command
+
+    self.assertDictEqual(
+        instance.configuration_command_index,
+        expected_result,
     )
 
   def test_select_config_entry_found(

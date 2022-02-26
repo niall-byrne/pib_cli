@@ -9,7 +9,7 @@ from pib_cli.support.mixins import json_file
 
 
 class UserConfigurationValidator(json_file.JSONFileReader):
-  """Validator for end user configuration."""
+  """Validator for end-user configuration."""
 
   schema_file = Path(config.__file__).parent / "schema.json"
   config_filename = config_filename
