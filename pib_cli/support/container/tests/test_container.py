@@ -1,5 +1,6 @@
 """Tests for the DevContainer class."""
 
+from contextlib import ExitStack
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -51,23 +52,49 @@ class DevContainerTest(TestCase):
 
   def test_is_compatible_container_true(self) -> None:
     with patch.object(
-        self.instance, "load_text_file", return_value="1.0.0\n"
-    ) as m_load:
+        self.instance, "get_container_version", return_value="1.0.0\n"
+    ) as m_get:
       self.assertTrue(self.instance.is_compatible_container())
-      m_load.assert_called_once_with(self.instance.file_version_marker)
+      m_get.assert_called_once_with()
 
   def test_is_compatible_container_false(self) -> None:
     with patch.object(
-        self.instance, "load_text_file", return_value="0.9.0\n"
-    ) as m_load:
+        self.instance, "get_container_version", return_value="0.9.0\n"
+    ) as m_get:
       self.assertFalse(self.instance.is_compatible_container())
+      m_get.assert_called_once_with()
+
+  def test_get_container_version(self) -> None:
+    with patch.object(
+        self.instance, "load_text_file", return_value="1.0.0\n"
+    ) as m_load:
+      self.assertEqual(
+          self.instance.get_container_version(),
+          "1.0.0",
+      )
       m_load.assert_called_once_with(self.instance.file_version_marker)
 
-  def test_is_compatible_container_file_not_found(self) -> None:
+  def test_get_container_version_not_a_container(self) -> None:
+    with ExitStack() as stack:
+      m_is_container = stack.enter_context(
+          patch.object(self.instance, "is_container", return_value=False)
+      )
+      m_container_only = stack.enter_context(
+          patch.object(self.instance, "container_only_exception")
+      )
+      self.instance.get_container_version()
+
+      m_is_container.assert_called_once_with()
+      m_container_only.assert_called_once_with()
+
+  def test_get_container_version_file_not_found(self) -> None:
     with patch.object(
         self.instance, "load_text_file", side_effect=FileNotFoundError
     ) as m_load:
-      self.assertFalse(self.instance.is_compatible_container())
+      self.assertEqual(
+          self.instance.get_container_version(),
+          self.instance.unversioned_pib_value,
+      )
       m_load.assert_called_once_with(self.instance.file_version_marker)
 
   def test_assert_valid_container(self) -> None:

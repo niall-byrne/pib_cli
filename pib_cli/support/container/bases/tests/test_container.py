@@ -31,3 +31,4 @@ class DevContainerBaseTest(TestCase):
         str((Path.home() / ".local/bin").resolve())
     )
     self.assertEqual(self.instance.minimum_pib_version, "1.0.0")
+    self.assertEqual(self.instance.unversioned_pib_value, "0.0.1")

@@ -42,7 +42,6 @@ class DevContainer(container.DevContainerBase):
     """Determine if the current environment is a development container.
 
     :returns: A boolean indicating if the command is executing in a container.
-    :rtype: bool
     """
     return os.path.exists(self.file_container_marker)
 
@@ -50,13 +49,22 @@ class DevContainer(container.DevContainerBase):
     """Determine if the current environment is a compatible container.
 
     :returns: A boolean indicating if the container is a matching version.
-    :rtype: bool
     """
+    return (
+        version.parse(self.get_container_version()) >=
+        version.parse(self.minimum_pib_version)
+    )
+
+  def get_container_version(self) -> str:
+    """Return the the PIB container's version, or raise an exception.
+
+    :returns: The current version of the container.
+    :raises: :class:`DevContainerException`
+    """
+    if not self.is_container():
+      self.container_only_exception()
+
     try:
-      version_text = self.load_text_file(self.file_version_marker).strip()
-      return (
-          version.parse(version_text) >=
-          version.parse(self.minimum_pib_version)
-      )
+      return self.load_text_file(self.file_version_marker).strip()
     except FileNotFoundError:
-      return False
+      return self.unversioned_pib_value

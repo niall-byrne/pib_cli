@@ -13,3 +13,4 @@ class DevContainerBase(text_file.TextFileReader):
   file_version_marker = os.path.join("/", "etc", "container_pib_version")
   local_executable_folder = str((Path.home() / ".local/bin").resolve())
   minimum_pib_version = "1.0.0"
+  unversioned_pib_value = "0.0.1"
