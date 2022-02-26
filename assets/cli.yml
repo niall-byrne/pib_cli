@@ -39,6 +39,7 @@
 - name: "fmt"
   description: "Run code formatters."
   path: "git_root"
+  container_only: true
   commands:
     - |
       cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp

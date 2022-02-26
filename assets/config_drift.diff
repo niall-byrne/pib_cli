@@ -15,28 +15,30 @@
 <     - make -e SPHINXOPTS="-D language='en'" html
 ---
 >     - "make html"
-43,47d30
+42d29
+<   container_only: true
+44,48d30
 <     - |
 <       cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp
 <       sed "1s/^/personal_ws-1.1 en $(wc -l .aspell.pws.swp | awk '{print $1}')\n/" .aspell.pws.swp > .aspell.pws
 <       rm .aspell.pws.swp
 <     - 'tomll pyproject.toml'
-61d43
+62d43
 <   description: "Run the code linters."
-62a45
+63a45
 >   description: "Run the code linters."
-64,65d46
+65,66d46
 <     - 'shellcheck ${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck ${PROJECT_NAME}/container_init.sh'
-69c50
+70c50
 <     - 'yamllint . ${PROJECT_NAME}/config/ assets/ .github/workflows/'
 ---
 >     - 'yamllint . assets/ .github/workflows/'
-79c60
+80c60
 <     - "poetry install -E pib_docs"
 ---
 >     - "poetry install -E docs"
-88c69
+89c69
 <     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
