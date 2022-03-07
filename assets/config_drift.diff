@@ -1,4 +1,4 @@
-3,11d2
+3,28d2
 < - name: "babel-extract"
 <   description: "Create an updated template file for translations."
 <   path: "git_root"
@@ -8,37 +8,56 @@
 <     - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
 <   success: "Template and English translation base generated!"
 <   failure: "An error occurred!"
-16,19c7
-<     - if [ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ]; then rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"; fi
+< - name: "bump"
+<   description: "Increment a Major, Minor, or Patch version"
+<   path: "git_root"
+<   commands:
+<     - './scripts/utilities/version_bump.sh'
+<   success: "Version incremented and tag created."
+<   failure: "Could not increment version."
+< - name: "build-docs"
+<   description: "Build the project's documentation."
+<   path: "documentation_root"
+<   commands:
+<     - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
 <     - "make gettext"
 <     - "sphinx-intl update -p build/gettext -l en"
 <     - make -e SPHINXOPTS="-D language='en'" html
----
->     - "make html"
-42d29
-<   container_only: true
-44,48d30
-<     - |
-<       cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp
-<       sed "1s/^/personal_ws-1.1 en $(wc -l .aspell.pws.swp | awk '{print $1}')\n/" .aspell.pws.swp > .aspell.pws
-<       rm .aspell.pws.swp
-<     - 'tomll pyproject.toml'
-62d43
+<   success: "Documentation Built"
+<   failure: "Error Building Documentation"
+45d18
+<   path: "git_root"
+46a20
+>   path: "git_root"
+48d21
+<     - './scripts/utilities/aspell_sort.sh'
+63d35
 <   description: "Run the code linters."
-63a45
+64a37
 >   description: "Run the code linters."
-65,66d46
+66,70d38
 <     - 'shellcheck ${PROJECT_NAME}/bash/* -x'
 <     - 'shellcheck ${PROJECT_NAME}/container_init.sh'
-70c50
-<     - 'yamllint . ${PROJECT_NAME}/config/ assets/ .github/workflows/'
----
->     - 'yamllint . assets/ .github/workflows/'
-80c60
+<     - 'darglint "${PROJECT_NAME}"'
+<     - 'pydocstyle "${PROJECT_NAME}"'
+<     - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
+81c49
 <     - "poetry install -E pib_docs"
 ---
->     - "poetry install -E docs"
-89c69
+>     - "poetry install"
+90c58
 <     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
+97c65
+<     - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
+---
+>     - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
+100,106d67
+< - name: "types"
+<   description: "Run the type checker."
+<   path: "git_root"
+<   commands:
+<     - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
+<   success: "Type Check Passed!"
+<   failure: "Type Check Failed!"

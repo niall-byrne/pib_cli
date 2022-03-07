@@ -121,7 +121,7 @@ jobs:
 
       - name: Build -- Run Release Validation
         run: |
-          docker-compose exec -T "${PROJECT_NAME}" ./scripts/release.sh
+          docker-compose exec -T "${PROJECT_NAME}" ./scripts/utilities/check_release.sh
 
       - name: Build -- Report Job Status (Success)
         if: ${{ env.VERBOSE_NOTIFICATIONS  == '1' }}

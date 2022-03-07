@@ -1,12 +1,5 @@
 # Development Environment CLI Configuration
 ---
-- name: "build-docs"
-  description: "Build the project's documentation."
-  path: "documentation_root"
-  commands:
-    - "make html"
-  success: "Documentation Built"
-  failure: "Error Building Documentation"
 - name: "build-wheel"
   description: "Build a distribution wheel."
   path: "git_root"
@@ -17,17 +10,16 @@
 - name: "coverage"
   description: "Run code coverage test."
   path: "git_root"
-  commands: |
-    pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}
-    EXIT_CODE="$?"
-    coverage html
-    exit "${EXIT_CODE}"
+  commands:
+    - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
   success: "Coverage Passed!"
   failure: "Coverage Failed!"
 - name: "fmt"
   description: "Run code formatters."
+  container_only: true
   path: "git_root"
   commands:
+    - 'tomll pyproject.toml'
     - 'yapf -i --recursive .'
     - 'isort "${PROJECT_NAME}"'
   success: "Formatting Finished!"
@@ -44,10 +36,7 @@
   path: "git_root"
   description: "Run the code linters."
   commands:
-    - 'darglint "${PROJECT_NAME}"'
-    - 'pydocstyle "${PROJECT_NAME}"'
-    - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
-    - 'yamllint . assets/ .github/workflows/'
+    - 'yamllint .'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"
@@ -57,7 +46,7 @@
   path: "git_root"
   commands:
     - "poetry lock"
-    - "poetry install -E docs"
+    - "poetry install"
   success: "Reinstall Succeeded!"
   failure: "Reinstall Failed!"
 - name: "sectest"
@@ -76,10 +65,3 @@
     - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
   success: "Unittests Passed!"
   failure: "Unittests Failed!"
-- name: "types"
-  description: "Run the type checker."
-  path: "git_root"
-  commands:
-    - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
-  success: "Type Check Passed!"
-  failure: "Type Check Failed!"

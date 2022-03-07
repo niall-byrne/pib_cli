@@ -9,11 +9,18 @@
     - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
   success: "Template and English translation base generated!"
   failure: "An error occurred!"
+- name: "bump"
+  description: "Increment a Major, Minor, or Patch version"
+  path: "git_root"
+  commands:
+    - './scripts/utilities/version_bump.sh'
+  success: "Version incremented and tag created."
+  failure: "Could not increment version."
 - name: "build-docs"
   description: "Build the project's documentation."
   path: "documentation_root"
   commands:
-    - if [ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ]; then rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"; fi
+    - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
     - "make gettext"
     - "sphinx-intl update -p build/gettext -l en"
     - make -e SPHINXOPTS="-D language='en'" html
@@ -29,11 +36,8 @@
 - name: "coverage"
   description: "Run code coverage test."
   path: "git_root"
-  commands: |
-    pytest --cov-config=.coveragerc --cov-report term-missing --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}
-    EXIT_CODE="$?"
-    coverage html
-    exit "${EXIT_CODE}"
+  commands:
+    - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
   success: "Coverage Passed!"
   failure: "Coverage Failed!"
 - name: "fmt"
@@ -41,10 +45,7 @@
   path: "git_root"
   container_only: true
   commands:
-    - |
-      cat .aspell.pws | tail -n +2 | sort --unique > .aspell.pws.swp
-      sed "1s/^/personal_ws-1.1 en $(wc -l .aspell.pws.swp | awk '{print $1}')\n/" .aspell.pws.swp > .aspell.pws
-      rm .aspell.pws.swp
+    - './scripts/utilities/aspell_sort.sh'
     - 'tomll pyproject.toml'
     - 'yapf -i --recursive .'
     - 'isort "${PROJECT_NAME}"'
@@ -67,7 +68,7 @@
     - 'darglint "${PROJECT_NAME}"'
     - 'pydocstyle "${PROJECT_NAME}"'
     - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
-    - 'yamllint . ${PROJECT_NAME}/config/ assets/ .github/workflows/'
+    - 'yamllint .'
     - 'isort -c "${PROJECT_NAME}"'
     - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
   success: "Linter Test Passed!"
@@ -93,7 +94,7 @@
   description: "Run the unittests."
   path: "git_root"
   commands:
-    - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
+    - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
   success: "Unittests Passed!"
   failure: "Unittests Failed!"
 - name: "types"
