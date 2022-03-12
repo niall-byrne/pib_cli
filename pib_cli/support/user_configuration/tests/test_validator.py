@@ -20,6 +20,10 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
         instance.schema,
         m_json.return_value,
     )
+    self.assertEqual(
+        instance.schema_file,
+        Path(config.__file__).parent / "config_schema_v2.0.json"
+    )
 
   @mock.patch(json_file.__name__ + ".JSONFileReader.load_json_file")
   def test_file_loading(self, m_json: mock.Mock) -> None:

@@ -34,4 +34,4 @@ PIB CLI Configuration JSON Schema
 
 Follow this schema to build your own CLI commands:
 
-.. jsonschema:: ../../../pib_cli/config/schema.json
+.. jsonschema:: ../../../pib_cli/config/config_schema_v2.0.json
