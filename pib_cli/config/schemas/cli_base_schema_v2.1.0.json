@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "PIB CLI Base Configuration Specification v2.1.0",
+    "description": "The specification for the PIB CLI user configuration file.",
+    "type": "object",
+    "uniqueItems": true,
+    "properties": {
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "description": "The name of the project being managed by PIB.",
+                    "pattern": "[0-9a-zA-Z-_]+$",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "cli_definition": {
+            "$ref": "schemas/cli_cmd_schema_v0.1.0.json"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "cli_definition"
+    ]
+}

@@ -1,16 +1,14 @@
 """ConfigShowCommand class."""
 
 import click
-from pib_cli.support import state
 
-from .bases import command
+from .bases import command_config
 
 
-class ConfigShowCommand(command.CommandBase):
-  """CLI command to report the PIB CLI version."""
+class ConfigShowCommand(command_config.CommandConfigBase):
+  """CLI command to show the contents of a PIB CLI configuration file."""
 
   def invoke(self) -> None:
     """Invoke the command."""
 
-    loaded_configuration = state.State()
-    click.echo(loaded_configuration.user_config.get_raw_file())
+    click.echo(self.user_config_file.get_raw_file())

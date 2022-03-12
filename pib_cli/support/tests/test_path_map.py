@@ -15,7 +15,7 @@ class TestPathMap(TestCase):
   @patch.dict(os.environ, {config.ENV_PROJECT_NAME: "test_name"}, clear=True)
   def setUp(self) -> None:
     self.mock_project_name = "test_name"
-    self.mock_git_root = "/app"
+    self.mock_git_root = Path("/app")
     with patch(path_map.__name__ + ".git.Repo") as m_git:
       m_git.return_value.working_tree_dir = Path("/app")
       self.path_manager = path_map.PathMap()

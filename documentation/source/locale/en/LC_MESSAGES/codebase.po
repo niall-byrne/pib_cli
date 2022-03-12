@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 15:45+0000\n"
+"POT-Creation-Date: 2022-03-18 18:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,6 +168,17 @@ msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.rst:9:<autosummary>:1
 msgid ""
+":py:obj:`pib_cli.cli.commands.bases.command_config "
+"<pib_cli.cli.commands.bases.command_config>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.rst:9:<autosummary>:1
+#: of pib_cli.cli.commands.bases.command_config:1
+msgid "PIB CLI base config command class."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.rst:9:<autosummary>:1
+msgid ""
 ":py:obj:`pib_cli.cli.commands.bases.fixtures "
 "<pib_cli.cli.commands.bases.fixtures>`\\"
 msgstr ""
@@ -189,6 +200,35 @@ msgstr ""
 msgid "Invoke this command."
 msgstr ""
 
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.command_config.rst:2
+msgid "pib\\_cli.cli.commands.bases.command\\_config"
+msgstr ""
+
+#: of pib_cli.cli.commands.bases.command_config.CommandConfigBase:1
+msgid "An invokable command with a specified configuration file."
+msgstr ""
+
+#: of pib_cli.cli.commands.bases.command_config.CommandConfigBase
+#: pib_cli.cli.commands.customized.CustomizedCommand
+#: pib_cli.support.container.installer.DevContainerInstaller.setup
+#: pib_cli.support.iterators.bases.file_copy_base.FileCopyIteratorBase.hook_create_destination
+#: pib_cli.support.iterators.container_bash_files.ContainerBashFilesIterator.hook_create_destination
+#: pib_cli.support.iterators.container_shim_file.ContainerShimFileIterator.hook_create_destination
+#: pib_cli.support.mixins.json_file.JSONFileReader.load_json_file
+#: pib_cli.support.mixins.text_file.TextFileReader.load_text_file
+#: pib_cli.support.mixins.yaml_file.YAMLFileReader.load_yaml_file
+#: pib_cli.support.runner.CommandRunner
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry
+#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry
+#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_response
+#: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate
+msgid "Parameters"
+msgstr ""
+
+#: of pib_cli.cli.commands.bases.command_config.CommandConfigBase:3
+msgid "The specified file to use, instead of the default."
+msgstr ""
+
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:2
 msgid "pib\\_cli.cli.commands.bases.fixtures"
 msgstr ""
@@ -202,6 +242,17 @@ msgstr ""
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:9:<autosummary>:1
 #: of pib_cli.cli.commands.bases.fixtures.command_harness:1
 msgid "CLI CommandBase test harness."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.cli.commands.bases.fixtures.command_harness_config "
+"<pib_cli.cli.commands.bases.fixtures.command_harness_config>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:9:<autosummary>:1
+#: of pib_cli.cli.commands.bases.fixtures.command_harness_config:1
+msgid "CLI CommandConfigBase test harness."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:9:<autosummary>:1
@@ -226,18 +277,31 @@ msgstr ""
 
 #: of
 #: pib_cli.cli.commands.bases.fixtures.command_harness.CommandBaseTestHarness.invoke_command:1
+#: pib_cli.cli.commands.bases.fixtures.command_harness_config.CommandConfigBaseTestHarness.invoke_command:1
 msgid "Override to wrap invoke in appropriate patches."
 msgstr ""
 
 #: of
 #: pib_cli.cli.commands.bases.fixtures.command_harness.CommandBaseTestHarness.setUp:1
+#: pib_cli.cli.commands.bases.fixtures.command_harness_config.CommandConfigBaseTestHarness.setUp:1
 #: pib_cli.cli.commands.bases.fixtures.command_harness_exceptions.CommandBaseExceptionsTestHarness.setUp:1
 msgid "Hook method for setting up the test fixture before exercising it."
 msgstr ""
 
 #: of
 #: pib_cli.cli.commands.bases.fixtures.command_harness.CommandBaseTestHarness.test_invoke:1
+#: pib_cli.cli.commands.bases.fixtures.command_harness_config.CommandConfigBaseTestHarness.test_invoke_default:1
+#: pib_cli.cli.commands.bases.fixtures.command_harness_config.CommandConfigBaseTestHarness.test_invoke_with_config:1
 msgid "Override to test the invoke class."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.command_harness_config.rst:2
+msgid "pib\\_cli.cli.commands.bases.fixtures.command\\_harness\\_config"
+msgstr ""
+
+#: of
+#: pib_cli.cli.commands.bases.fixtures.command_harness_config.CommandConfigBaseTestHarness:1
+msgid "CLI test harness for CommandConfigBase subclasses."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.command_harness_exceptions.rst:2
@@ -259,8 +323,7 @@ msgid "pib\\_cli.cli.commands.config\\_show"
 msgstr ""
 
 #: of pib_cli.cli.commands.config_show.ConfigShowCommand:1
-#: pib_cli.cli.commands.version.VersionCommand:1
-msgid "CLI command to report the PIB CLI version."
+msgid "CLI command to show the contents of a PIB CLI configuration file."
 msgstr ""
 
 #: of pib_cli.cli.commands.config_show.ConfigShowCommand.invoke:1
@@ -279,7 +342,7 @@ msgid "pib\\_cli.cli.commands.config\\_validate"
 msgstr ""
 
 #: of pib_cli.cli.commands.config_validate.ConfigValidateCommand:1
-msgid "CLI command to validate the current PIB CLI configuration."
+msgid "CLI command to validate a PIB CLI configuration file."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.config_where.rst:2
@@ -287,7 +350,7 @@ msgid "pib\\_cli.cli.commands.config\\_where"
 msgstr ""
 
 #: of pib_cli.cli.commands.config_where.ConfigWhereCommand:1
-msgid "CLI command to reveal the current PIB CLI configuration's location."
+msgid "CLI command to locate a PIB CLI configuration file."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.container_setup.rst:2
@@ -322,22 +385,6 @@ msgstr ""
 msgid "CLI command to execute a configuration defined command."
 msgstr ""
 
-#: of pib_cli.cli.commands.customized.CustomizedCommand
-#: pib_cli.support.container.installer.DevContainerInstaller.setup
-#: pib_cli.support.iterators.bases.file_copy_base.FileCopyIteratorBase.hook_create_destination
-#: pib_cli.support.iterators.container_bash_files.ContainerBashFilesIterator.hook_create_destination
-#: pib_cli.support.iterators.container_shim_file.ContainerShimFileIterator.hook_create_destination
-#: pib_cli.support.mixins.json_file.JSONFileReader.load_json_file
-#: pib_cli.support.mixins.text_file.TextFileReader.load_text_file
-#: pib_cli.support.mixins.yaml_file.YAMLFileReader.load_yaml_file
-#: pib_cli.support.runner.CommandRunner
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry
-#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry
-#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_response
-#: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate
-msgid "Parameters"
-msgstr ""
-
 #: of pib_cli.cli.commands.customized.CustomizedCommand:3
 msgid "The configured command's Python representation."
 msgstr ""
@@ -348,6 +395,10 @@ msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.version.rst:2
 msgid "pib\\_cli.cli.commands.version"
+msgstr ""
+
+#: of pib_cli.cli.commands.version.VersionCommand:1
+msgid "CLI command to report the PIB CLI version."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.interface.rst:2
@@ -426,10 +477,16 @@ msgstr ""
 #: pib_cli.support.mixins.json_file.JSONFileReader.load_json_file
 #: pib_cli.support.mixins.text_file.TextFileReader.load_text_file
 #: pib_cli.support.mixins.yaml_file.YAMLFileReader.load_yaml_file
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry
 #: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_commands
 #: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_path_method
 #: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_response
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_raw_file
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.parse
+#: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate
+#: pib_cli.support.user_configuration.versions.UserConfigurationV200.get_project_name
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name
 msgid "Returns"
 msgstr ""
 
@@ -552,7 +609,7 @@ msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.rst:9:<autosummary>:1
 #: of pib_cli.support.user_configuration:1
-msgid "UserConfiguration class."
+msgid "User defined configuration."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.container.rst:2
@@ -604,9 +661,12 @@ msgstr ""
 #: pib_cli.support.container.DevContainer.container_valid_exception
 #: pib_cli.support.container.DevContainer.container_version_exception
 #: pib_cli.support.container.DevContainer.get_container_version
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry
 #: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.is_executable_exception
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.parse
 #: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate
+#: pib_cli.support.user_configuration.versions.UserConfigurationV200.get_project_name
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name
 msgid "raises"
 msgstr ""
 
@@ -1044,58 +1104,156 @@ msgstr ""
 msgid "pib\\_cli.support.user\\_configuration"
 msgstr ""
 
-#: of pib_cli.support.user_configuration.UserConfiguration:1:<autosummary>:1
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.support.user_configuration.bases "
+"<pib_cli.support.user_configuration.bases>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+#: of pib_cli.support.user_configuration.bases:1
+msgid "User configuration base classes."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
 msgid ""
 ":py:obj:`pib_cli.support.user_configuration.selected "
 "<pib_cli.support.user_configuration.selected>`\\"
 msgstr ""
 
-#: of pib_cli.support.user_configuration.UserConfiguration:1:<autosummary>:1
-#: pib_cli.support.user_configuration.selected:1
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+#: of pib_cli.support.user_configuration.selected:1
 msgid "SelectedUserConfigurationEntry class."
 msgstr ""
 
-#: of pib_cli.support.user_configuration.UserConfiguration:1:<autosummary>:1
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.support.user_configuration.user_configuration_file "
+"<pib_cli.support.user_configuration.user_configuration_file>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+#: of pib_cli.support.user_configuration.user_configuration_file:1
+msgid "UserConfigurationFile class."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
 msgid ""
 ":py:obj:`pib_cli.support.user_configuration.validator "
 "<pib_cli.support.user_configuration.validator>`\\"
 msgstr ""
 
-#: of pib_cli.support.user_configuration.UserConfiguration:1:<autosummary>:1
-#: pib_cli.support.user_configuration.validator:1
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+#: of pib_cli.support.user_configuration.validator:1
 msgid "UserConfigurationValidator class."
 msgstr ""
 
-#: of pib_cli.support.user_configuration.UserConfiguration:1
-msgid "The entire user defined pib_cli configuration."
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.support.user_configuration.versions "
+"<pib_cli.support.user_configuration.versions>`\\"
 msgstr ""
 
-#: of pib_cli.support.user_configuration.UserConfiguration.get_raw_file:1
-msgid "Return the original configuration file from disk."
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:9:<autosummary>:1
+#: of pib_cli.support.user_configuration.versions:1
+msgid "UserConfigurationVersionBase implementations."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.rst:2
+msgid "pib\\_cli.support.user\\_configuration.bases"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.support.user_configuration.bases.fixtures "
+"<pib_cli.support.user_configuration.bases.fixtures>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.support.user_configuration.bases.user_configuration_base"
+" <pib_cli.support.user_configuration.bases.user_configuration_base>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.rst:9:<autosummary>:1
+#: of pib_cli.support.user_configuration.bases.user_configuration_base:1
+msgid "UserConfigurationBase class."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.fixtures.rst:2
+msgid "pib\\_cli.support.user\\_configuration.bases.fixtures"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.fixtures.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.support.user_configuration.bases.fixtures.user_configuration_base_harness"
+" "
+"<pib_cli.support.user_configuration.bases.fixtures.user_configuration_base_harness>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.fixtures.rst:9:<autosummary>:1
+#: of
+#: pib_cli.support.user_configuration.bases.fixtures.user_configuration_base_harness:1
+msgid "Tests for the UserConfiguration class."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.fixtures.user_configuration_base_harness.rst:2
+msgid "pib\\_cli.support.user\\_configuration.bases.fixtures.user\\_configuration\\_base\\_harness"
 msgstr ""
 
 #: of
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry:1
+#: pib_cli.support.user_configuration.bases.fixtures.user_configuration_base_harness.UserConfigurationVersionBaseTestHarness:1
+msgid "Test harness for the UserConfigurationVersionBase class."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.bases.fixtures.user_configuration_base_harness.UserConfigurationVersionBaseTestHarness.test_get_project_name:1
+msgid "Override to test the get_project_name_method."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.user_configuration_base.rst:2
+msgid "pib\\_cli.support.user\\_configuration.bases.user\\_configuration\\_base"
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase:1
+msgid "The base class for a schema version of pib_cli configurations."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.get_command_definitions:1
+#: pib_cli.support.user_configuration.versions.UserConfigurationV200.get_command_definitions:1
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_command_definitions:1
+msgid "Return the CLI command definitions from the configuration."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.get_project_name:1
+#: pib_cli.support.user_configuration.versions.UserConfigurationV200.get_project_name:1
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:1
+msgid "Return the project name from the configuration."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry:1
 msgid "Select the configuration entry of the specified command."
 msgstr ""
 
 #: of
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry:3
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry:3
 msgid "The name of the command to select"
 msgstr ""
 
 #: of
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry:4
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry:4
 msgid "A Python representation of the selected configuration."
 msgstr ""
 
 #: of
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry:5
+#: pib_cli.support.user_configuration.bases.user_configuration_base.UserConfigurationVersionBase.select_config_entry:5
+#: pib_cli.support.user_configuration.versions.UserConfigurationV200.get_project_name:4
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:8
 msgid "KeyError"
-msgstr ""
-
-#: of pib_cli.support.user_configuration.UserConfiguration.validate:1
-msgid "Validate the user configuration."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.selected.rst:2
@@ -1157,6 +1315,71 @@ msgstr ""
 msgid ":class:`pib_cli.support.container.exceptions.DevContainerException`"
 msgstr ""
 
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.user_configuration_file.rst:2
+msgid "pib\\_cli.support.user\\_configuration.user\\_configuration\\_file"
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile:1
+msgid "The end-user's pib_cli configuration file."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name:1
+msgid "Get the full path of the yaml configuration file."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name:3
+msgid "Look for a manually specified file first,"
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name:4
+msgid "Look for an environment variable defined file next."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name:5
+msgid "Look for a configuration file in the repository root folder next."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name:6
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:5
+msgid "Finally, fall back to the default configuration."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_config_file_name:8
+msgid "The path to the configuration file"
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_raw_file:1
+msgid "Return the configuration file from disk."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_raw_file:3
+msgid "The configuration file from disk."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.parse:1
+msgid "Load, validate and detect the version of the UserConfiguration."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.parse:3
+msgid "A class representing the detected version of config."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.parse:4
+msgid ":class:`NotImplementedError`"
+msgstr ""
+
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.validator.rst:2
 msgid "pib\\_cli.support.user\\_configuration.validator"
 msgstr ""
@@ -1177,7 +1400,40 @@ msgstr ""
 
 #: of
 #: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate:4
+msgid "The first configuration schema version that passes validation."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate:5
 msgid ":class:`jsonschema.exceptions.ValidationError`"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.versions.rst:2
+msgid "pib\\_cli.support.user\\_configuration.versions"
+msgstr ""
+
+#: of pib_cli.support.user_configuration.versions.UserConfigurationV200:1
+msgid "User configuration for schema version v2.0.0."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV200.get_project_name:3
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:7
+msgid "The configured project name"
+msgstr ""
+
+#: of pib_cli.support.user_configuration.versions.UserConfigurationV210:1
+msgid "User configuration for schema version v2.1.0."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:3
+msgid "Look for an environment variable defined value first."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:4
+msgid "Look for a configuration file definition next."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/pib_cli.rst:2
@@ -1203,4 +1459,25 @@ msgstr ""
 #: ../../source/codebase/pib_cli/pib_cli/pib_cli.rst:8:<autosummary>:1
 msgid ":py:obj:`pib_cli.support <pib_cli.support>`\\"
 msgstr ""
+
+#~ msgid "CLI command to validate the current PIB CLI configuration."
+#~ msgstr ""
+
+#~ msgid "CLI command to reveal the current PIB CLI configuration's location."
+#~ msgstr ""
+
+#~ msgid "UserConfiguration class."
+#~ msgstr ""
+
+#~ msgid "The entire user defined pib_cli configuration."
+#~ msgstr ""
+
+#~ msgid "Return the original configuration file from disk."
+#~ msgstr ""
+
+#~ msgid "Validate the user configuration."
+#~ msgstr ""
+
+#~ msgid "Look for a configuration file in the current folder next."
+#~ msgstr ""
 

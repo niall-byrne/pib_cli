@@ -14,36 +14,103 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
   """Tests for the UserConfigurationValidator class."""
 
   @mock.patch(json_file.__name__ + ".JSONFileReader.load_json_file")
-  def test_instantiation(self, m_json: mock.Mock) -> None:
+  def test_instantiation(self, _: mock.Mock) -> None:
     instance = validator.UserConfigurationValidator()
-    self.assertEqual(
-        instance.schema,
-        m_json.return_value,
-    )
-    self.assertEqual(
-        instance.schema_file,
-        Path(config.__file__).parent / "config_schema_v2.0.json"
+    self.assertDictEqual(
+        instance.active_schemas, {
+            "2.1.0": "cli_base_schema_v2.1.0.json",
+            "2.0.0": "cli_cmd_schema_v0.1.0.json"
+        }
     )
 
   @mock.patch(json_file.__name__ + ".JSONFileReader.load_json_file")
   def test_file_loading(self, m_json: mock.Mock) -> None:
     instance = validator.UserConfigurationValidator()
-    m_json.assert_called_once_with(instance.schema_file)
+    self.assertDictEqual(
+        instance.schemas, {
+            "2.1.0": m_json.return_value,
+            "2.0.0": m_json.return_value,
+        }
+    )
+    m_json.assert_any_call(
+        Path(config.__file__).parent / "schemas" /
+        instance.active_schemas["2.1.0"]
+    )
+    m_json.assert_any_call(
+        Path(config.__file__).parent / "schemas" /
+        instance.active_schemas["2.0.0"]
+    )
 
   @mock.patch(validator.__name__ + ".validate")
-  def test_validate_call(self, m_validate: mock.Mock) -> None:
+  @mock.patch(validator.__name__ + ".RefResolver")
+  def test_validate_v210_valid(
+      self, m_resolver: mock.Mock, m_validate: mock.Mock
+  ) -> None:
     mock_object = mock.Mock()
     instance = validator.UserConfigurationValidator()
-    instance.validate(mock_object)
-    m_validate.assert_called_once_with(mock_object, instance.schema)
+    version = instance.validate(mock_object)
+    m_validate.assert_called_once_with(
+        mock_object,
+        instance.schemas["2.1.0"],
+        resolver=m_resolver.return_value,
+    )
+    self.assertEqual(version, "2.1.0")
 
-  def test_validate_valid(self) -> None:
+  @mock.patch(validator.__name__ + ".validate")
+  @mock.patch(validator.__name__ + ".RefResolver")
+  def test_validate_v200_valid(
+      self, m_resolver: mock.Mock, m_validate: mock.Mock
+  ) -> None:
+    m_validate.side_effect = [ValidationError("MockValidationError"), None]
+    mock_object = mock.Mock()
+    instance = validator.UserConfigurationValidator()
+    version = instance.validate(mock_object)
+    m_validate.assert_any_call(
+        mock_object,
+        instance.schemas["2.1.0"],
+        resolver=m_resolver.return_value,
+    )
+    m_validate.assert_any_call(
+        mock_object,
+        instance.schemas["2.0.0"],
+        resolver=m_resolver.return_value,
+    )
+    self.assertEqual(m_validate.call_count, 2)
+    self.assertEqual(version, "2.0.0")
+
+  @mock.patch(validator.__name__ + ".validate")
+  @mock.patch(validator.__name__ + ".RefResolver")
+  def test_validate_none_valid(
+      self, m_resolver: mock.Mock, m_validate: mock.Mock
+  ) -> None:
+    m_validate.side_effect = [
+        ValidationError("MockValidationError"),
+        ValidationError("MockValidationError")
+    ]
+    mock_object = mock.Mock()
+    instance = validator.UserConfigurationValidator()
+    with self.assertRaises(ValidationError):
+      instance.validate(mock_object)
+    m_validate.assert_any_call(
+        mock_object,
+        instance.schemas["2.1.0"],
+        resolver=m_resolver.return_value,
+    )
+    m_validate.assert_any_call(
+        mock_object,
+        instance.schemas["2.0.0"],
+        resolver=m_resolver.return_value,
+    )
+    self.assertEqual(m_validate.call_count, 2)
+
+  def test_validate_default_config(self) -> None:
     valid_config_file = Path(config.__file__).parent / "default_cli_config.yml"
     valid_loaded_config = self.load_yaml_file(valid_config_file)
     instance = validator.UserConfigurationValidator()
-    instance.validate(valid_loaded_config)
+    version = instance.validate(valid_loaded_config)
+    self.assertEqual(version, "2.1.0")
 
-  def test_validate_invalid(self) -> None:
+  def test_validate_known_invalid_config(self) -> None:
     invalid_loaded_config = {
         "string": "value"
     }

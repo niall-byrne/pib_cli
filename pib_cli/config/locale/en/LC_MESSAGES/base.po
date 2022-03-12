@@ -2,12 +2,14 @@
 msgid "** PIB DEFAULT CONFIG IN USE **"
 msgstr ""
 
-#: pib_cli/cli/commands/config_validate.py:19
-msgid "Current configuration is valid."
+#: pib_cli/cli/commands/config_validate.py:17
+msgid ""
+"Configuration file: {path}\n"
+"This configuration is valid."
 msgstr ""
 
-#: pib_cli/cli/commands/config_where.py:17
-msgid "Current Configuration: {config_filename}"
+#: pib_cli/cli/commands/config_where.py:16
+msgid "Configuration file: {config_filename}"
 msgstr ""
 
 #: pib_cli/cli/commands/container_validate.py:23
@@ -34,6 +36,10 @@ msgstr ""
 msgid "pib_cli version: {version_data}"
 msgstr ""
 
+#: pib_cli/cli/interface/__init__.py:12
+msgid "Python-In-A-Box CLI."
+msgstr ""
+
 #: pib_cli/cli/interface/builtins/__init__.py:11
 msgid "@pib"
 msgstr ""
@@ -43,20 +49,20 @@ msgstr ""
 msgid "version"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:13
+#: pib_cli/cli/interface/builtins/config.py:15
 msgid "config"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:18
+#: pib_cli/cli/interface/builtins/config.py:36
 msgid "show"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:25
+#: pib_cli/cli/interface/builtins/config.py:44
 #: pib_cli/cli/interface/builtins/container.py:24
 msgid "validate"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:32
+#: pib_cli/cli/interface/builtins/config.py:54
 msgid "where"
 msgstr ""
 
@@ -72,13 +78,13 @@ msgstr ""
 msgid "configuration_commands"
 msgstr ""
 
-#: pib_cli/config/__init__.py:14
+#: pib_cli/config/__init__.py:17
 msgid ""
 "This command can only be run inside a PIB container.\n"
 "Find out more here: {PIB_URL}"
 msgstr ""
 
-#: pib_cli/config/__init__.py:20
+#: pib_cli/config/__init__.py:23
 msgid ""
 "This command can only be run inside a PIB container with version "
 "{minimum_version} or greater.\n"
@@ -92,4 +98,21 @@ msgstr ""
 #: pib_cli/support/container/installer.py:29
 msgid "Copied: {source} -> {destination}"
 msgstr ""
+
+#: pib_cli/support/user_configuration/user_configuration_file.py:83
+msgid "Configurations version {detected_version} is not supported!"
+msgstr ""
+
+#~ msgid "Current configuration is valid."
+#~ msgstr ""
+
+#~ msgid "Current Configuration: {config_filename}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Project name: {name}\n"
+#~ "Configuration file: {path}\n"
+#~ "Configuration version: {version}\n"
+#~ "This configuration is valid."
+#~ msgstr ""
 

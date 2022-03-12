@@ -4,8 +4,7 @@ from typing import cast
 from unittest.mock import Mock, patch
 
 from pib_cli.cli.interface.custom import cli_custom_commands
-from pib_cli.support import user_configuration
-from pib_cli.support.user_configuration import selected
+from pib_cli.support.user_configuration import selected, user_configuration_file
 
 from . import cli_harness
 
@@ -25,7 +24,8 @@ class CustomCLIInterfaceTestHarness(cli_harness.CLICommandTestHarness):
     return selected_default_config
 
   def setUp(self) -> None:
-    self.default_config = user_configuration.UserConfiguration()
+    self.default_config = user_configuration_file.UserConfigurationFile().parse(
+    )
 
   def invoke_custom_command(self) -> Mock:
     with patch(

@@ -25,7 +25,7 @@ main() {
   dev @pib config validate
 
   diff <(dev @pib config show) "${PIB_CONFIG_FILE_LOCATION}"
-  [[ "$(dev @pib config where)" == "Current Configuration: ${PIB_CONFIG_FILE_LOCATION}" ]]
+  [[ "$(dev @pib config where)" == "Configuration file: ${PIB_CONFIG_FILE_LOCATION}" ]]
 
   dev @pib container setup
   [[ "$(dev @pib container version)" =~ Detected[[:space:]]PIB[[:space:]]container[[:space:]]version:[[:space:]]1\.[0-9]+\.[0-9]+ ]]

@@ -9,7 +9,7 @@ from pib_cli.support.iterators import cli_custom_commands
 
 
 @click.group(_("configuration_commands"))
-def defined_with_user_configuration() -> None:
+def document_custom_commands() -> None:
   """Click group of all custom defined commands."""
 
 
@@ -21,8 +21,8 @@ def load_custom_commands() -> click.Group:
 
   state.State().load()
   for custom_command in cli_custom_commands.CustomClickCommandIterator():
-    defined_with_user_configuration.add_command(custom_command)
-  return defined_with_user_configuration
+    document_custom_commands.add_command(custom_command)
+  return document_custom_commands
 
 
 # Create a copy of the click group to allow Sphinx to reference the original

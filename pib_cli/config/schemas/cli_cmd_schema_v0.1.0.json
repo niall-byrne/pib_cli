@@ -1,6 +1,8 @@
 {
+    "$$target": ["schemas/cli_cmd_schema_v0.1.0.json", "../../../pib_cli/config/schemas/cli_cmd_schema_v0.1.0.json"],
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "description": "PIB CLI Configuration Specification v2.0",
+    "title": "PIB CLI Custom Command Configuration Specification v0.1.0",
+    "description": "The specification for user defined CLI commands.",
     "type": "array",
     "uniqueItems": true,
     "items": {

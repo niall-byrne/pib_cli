@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 15:45+0000\n"
+"POT-Creation-Date: 2022-03-18 15:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,19 +34,27 @@ msgid "PIB built-in commands."
 msgstr ""
 
 #: ../../dev @pib config:1
-msgid "PIB user configuration commands."
+msgid "PIB CLI configuration commands."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst
+msgid "Options"
+msgstr ""
+
+#: ../../dev @pib config:1
+msgid "A config file to use instead of the active one."
 msgstr ""
 
 #: ../../dev @pib config show:1
-msgid "Display the current CLI configuration."
+msgid "Display a CLI configuration file (defaults to the active file)."
 msgstr ""
 
 #: ../../dev @pib config validate:1
-msgid "Validate the current CLI configuration."
+msgid "Validate a CLI configuration file (defaults to the active file)."
 msgstr ""
 
 #: ../../dev @pib config where:1
-msgid "Display the current CLI configuration location."
+msgid "Locate a CLI configuration file (defaults to the active file)."
 msgstr ""
 
 #: ../../dev @pib container:1
@@ -154,144 +162,193 @@ msgstr ""
 msgid "Follow this schema to build your own CLI commands:"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
-msgid "PIB CLI Configuration Specification v2.0"
+msgid "PIB CLI Base Configuration Specification v2.1.0"
 msgstr ""
 
 #: ../../source/cli/user_guide.rst:38
+msgid "The specification for the PIB CLI user configuration file."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
 msgid "type"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
-msgid "*array*"
-msgstr ""
-
-#: ../../source/cli/user_guide.rst:38
-msgid "items"
-msgstr ""
-
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
 msgid "*object*"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
 msgid "properties"
 msgstr ""
 
 #: ../../source/cli/user_guide.rst:38
-msgid "**name**"
+msgid "metadata"
 msgstr ""
 
 #: ../../source/cli/user_guide.rst:38
+msgid "project\\_name"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "The name of the project being managed by PIB."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
+msgid "*string*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
+msgid "pattern"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "[0-9a-zA-Z-\\_]+$"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
+msgid "additionalProperties"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38 ../../source/cli/user_guide.rst:39
+msgid "False"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid "**cli\\_definition**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:38
+msgid ":ref:`schemas/cli_cmd_schema_v0.1.0.json`"
+msgstr ""
+
+msgid "PIB CLI Custom Command Configuration Specification v0.1.0"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:39
+msgid "The specification for user defined CLI commands."
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:39
+msgid "*array*"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:39
+msgid "items"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:39
+msgid "**name**"
+msgstr ""
+
+#: ../../source/cli/user_guide.rst:39
 msgid ""
 "The CLI command name. ('@pib' is a reserved command name and cannot be "
 "redefined.)"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
-msgid "*string*"
-msgstr ""
-
-#: ../../source/cli/user_guide.rst:38
-msgid "pattern"
-msgstr ""
-
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "^(?!@pib$)[0-9a-zA-Z-\\_]+$"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "**description**"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "A description of the CLI command.  (Appears in CLI help messages.)"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "**path**"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "The filesystem location from which to execute the command."
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "enum"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "documentation_root, git_root, project_root"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "**commands**"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "The shell commands that will be run."
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "*string* / *array*"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "An individual shell command."
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "minItems"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "1"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "**success**"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "A message to display on success."
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "**failure**"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "A message to display on failure."
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "container\\_only"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "Restrict this command to inside a managed PIB container."
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "*boolean*"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
-msgid "additionalProperties"
-msgstr ""
-
-#: ../../source/cli/user_guide.rst:38
-msgid "False"
-msgstr ""
-
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "uniqueItems"
 msgstr ""
 
-#: ../../source/cli/user_guide.rst:38
+#: ../../source/cli/user_guide.rst:39
 msgid "True"
 msgstr ""
 
 #~ msgid "Stub for testing custom commands during development."
+#~ msgstr ""
+
+#~ msgid "PIB user configuration commands."
+#~ msgstr ""
+
+#~ msgid "Display the current CLI configuration."
+#~ msgstr ""
+
+#~ msgid "Validate the current CLI configuration."
+#~ msgstr ""
+
+#~ msgid "Display the current CLI configuration location."
+#~ msgstr ""
+
+#~ msgid "PIB CLI Configuration Specification v2.0"
 #~ msgstr ""
 

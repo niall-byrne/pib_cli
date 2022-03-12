@@ -2,18 +2,22 @@
 
 import click
 from pib_cli.config.locale import _
-from pib_cli.support import state
 
-from .bases import command
+from .bases import command_config
 
 
-class ConfigValidateCommand(command.CommandBase):
-  """CLI command to validate the current PIB CLI configuration."""
+class ConfigValidateCommand(command_config.CommandConfigBase):
+  """CLI command to validate a PIB CLI configuration file."""
 
   def invoke(self) -> None:
     """Invoke the command."""
 
-    loaded_configuration = state.State()
-    loaded_configuration.user_config.validate()
-
-    click.echo(_("Current configuration is valid."))
+    user_config = self.user_config_file.parse()
+    click.echo(
+        _(
+            "Configuration file: {path}\n"
+            "This configuration is valid.").format(
+                name=user_config.project_name,
+                path=self.user_config_file.get_config_file_name(),
+            )
+    )

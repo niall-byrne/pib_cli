@@ -1,63 +1,66 @@
-3,28d2
-< - name: "babel-extract"
-<   description: "Create an updated template file for translations."
-<   path: "git_root"
-<   commands:
-<     - "pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header"
-<     - "pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N"
-<     - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
-<   success: "Template and English translation base generated!"
-<   failure: "An error occurred!"
-< - name: "bump"
-<   description: "Increment a Major, Minor, or Patch version"
-<   path: "git_root"
-<   commands:
-<     - './scripts/utilities/version_bump.sh'
-<   success: "Version incremented and tag created."
-<   failure: "Could not increment version."
-< - name: "build-docs"
-<   description: "Build the project's documentation."
-<   path: "documentation_root"
-<   commands:
-<     - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
-<     - "make gettext"
-<     - "sphinx-intl update -p build/gettext -l en"
-<     - make -e SPHINXOPTS="-D language='en'" html
-<   success: "Documentation Built"
-<   failure: "Error Building Documentation"
-45d18
-<   path: "git_root"
-46a20
->   path: "git_root"
-48d21
-<     - './scripts/utilities/aspell_sort.sh'
-63d35
-<   description: "Run the code linters."
-64a37
->   description: "Run the code linters."
-66,70d38
-<     - 'shellcheck ${PROJECT_NAME}/bash/* -x'
-<     - 'shellcheck ${PROJECT_NAME}/container_init.sh'
-<     - 'darglint "${PROJECT_NAME}"'
-<     - 'pydocstyle "${PROJECT_NAME}"'
-<     - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
-81c49
-<     - "poetry install -E pib_docs"
+3,4d2
+< metadata:
+<   project_name: pib_cli
+6,31d3
+<   - name: "babel-extract"
+<     description: "Create an updated template file for translations."
+<     path: "git_root"
+<     commands:
+<       - "pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header"
+<       - "pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N"
+<       - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
+<     success: "Template and English translation base generated!"
+<     failure: "An error occurred!"
+<   - name: "bump"
+<     description: "Increment a Major, Minor, or Patch version"
+<     path: "git_root"
+<     commands:
+<       - './scripts/utilities/version_bump.sh'
+<     success: "Version incremented and tag created."
+<     failure: "Could not increment version."
+<   - name: "build-docs"
+<     description: "Build the project's documentation."
+<     path: "documentation_root"
+<     commands:
+<       - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
+<       - "make gettext"
+<       - "sphinx-intl update -p build/gettext -l en"
+<       - make -e SPHINXOPTS="-D language='en'" html
+<     success: "Documentation Built"
+<     failure: "Error Building Documentation"
+48d19
+<     path: "git_root"
+49a21
+>     path: "git_root"
+51d22
+<       - './scripts/utilities/aspell_sort.sh'
+66d36
+<     description: "Run the code linters."
+67a38
+>     description: "Run the code linters."
+69,73d39
+<       - 'shellcheck ${PROJECT_NAME}/bash/* -x'
+<       - 'shellcheck ${PROJECT_NAME}/container_init.sh'
+<       - 'darglint "${PROJECT_NAME}"'
+<       - 'pydocstyle "${PROJECT_NAME}"'
+<       - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
+84c50
+<       - "poetry install -E pib_docs"
 ---
->     - "poetry install"
-90c58
-<     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
+>       - "poetry install"
+93c59
+<       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
->     - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-97c65
-<     - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
+>       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
+100c66
+<       - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
 ---
->     - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
-100,106d67
-< - name: "types"
-<   description: "Run the type checker."
-<   path: "git_root"
-<   commands:
-<     - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
-<   success: "Type Check Passed!"
-<   failure: "Type Check Failed!"
+>       - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
+103,109d68
+<   - name: "types"
+<     description: "Run the type checker."
+<     path: "git_root"
+<     commands:
+<       - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
+<     success: "Type Check Passed!"
+<     failure: "Type Check Failed!"

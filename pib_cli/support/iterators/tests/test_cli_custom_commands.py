@@ -9,6 +9,7 @@ import click
 from click.testing import CliRunner
 from pib_cli.config import yaml_keys
 from pib_cli.support import state
+from pib_cli.support.user_configuration.bases import user_configuration_base
 
 from .. import cli_custom_commands
 
@@ -18,7 +19,8 @@ class TestCustomClickCommandIterator(TestCase):
 
   def create_instance(self) -> cli_custom_commands.CustomClickCommandIterator:
     with patch(
-        state.__name__ + ".user_configuration.UserConfiguration.load_yaml_file"
+        state.__name__ +
+        ".user_configuration_file.UserConfigurationFile.load_yaml_file"
     ) as m_load:
       m_load.return_value = self.create_test_config()
       state.State().load()
@@ -74,8 +76,8 @@ class TestCustomClickCommandIterator(TestCase):
     with ExitStack() as stack:
       m_select = stack.enter_context(
           patch(
-              state.__name__ +
-              ".user_configuration.UserConfiguration.select_config_entry"
+              user_configuration_base.__name__ +
+              ".UserConfigurationVersionBase.select_config_entry"
           )
       )
       m_customized = stack.enter_context(
@@ -109,31 +111,17 @@ class TestCustomClickCommandIterator(TestCase):
     self.runner = CliRunner()
     state.State.clear()
 
-  def test_initialization_validation(self) -> None:
-    with patch(
-        state.__name__ + ".user_configuration.UserConfiguration"
-    ) as m_config:
-
-      self.create_instance()
-
-      m_config.assert_called_once_with()
-      m_config.return_value.validate.assert_called_once()
-
   def test_initialization_configuration_commands(self) -> None:
-    with patch(
-        state.__name__ + ".user_configuration.UserConfiguration"
-    ) as m_config:
-      m_config.return_value.configuration_command_index = {
-          1: 1,
-          2: 2
-      }
 
-      instance = self.create_instance()
+    instance = self.create_instance()
 
-      self.assertListEqual(
-          instance.configuration_commands,
-          list(m_config.return_value.configuration_command_index.keys()),
-      )
+    self.assertListEqual(
+        instance.configuration_commands,
+        [
+            command[yaml_keys.COMMAND_NAME]
+            for command in self.create_test_config()
+        ],
+    )
 
   def test_function_one(self) -> None:
     click_commands = self.create_reversed_instance()

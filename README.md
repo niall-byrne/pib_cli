@@ -1,6 +1,6 @@
 # PIB CLI
 
-A development environment CLI, complete with tooling.
+A batteries included [make](https://www.gnu.org/software/make/) style CLI for [python](https://python.org) projects in [git](https://git-scm.com/) repositories.
 
 [Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
 
@@ -116,36 +116,87 @@ After using `pib_cli` on a number of projects I realized there is not a one size
 
 ### Installing Multiple Extras:
 
-This is straight-forward to do:
+This is straight forward to do:
 - `poetry install -E docs -E docstrings -E types`
 
 ## Customizing the Command Line Interface
 
-**BREAKING CHANGE:**  pib_cli v1.0.0 introduces a new JSON schema version!  (Older configuration files will need to be modified!)
+The most powerful feature of the `pib_cli` is its ability to customize how it interacts with the packages it brings to your project.  In this way it's very similar to the standard Linux [make](https://www.gnu.org/software/make/) command.  However, the `pib_cli` brings it's own tool chain with it in the form of it's included packages.
 
-The CLI has some defaults built in, but is customizable by setting the `PIB_CONFIG_FILE_LOCATION` environment variable.
-The default config file can be found [here](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/default_cli_config.yml).
+# TODO: update the path to https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/ +schemas 
+# upon merge to master
 
-Each command is described by a yaml key in this format :
+**The CLI configuration file is in YAML format, and conforms to [this](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config) set of JSON schemas.**
+
+- pib_cli v1.0.0 introduces a new JSON schema version.  **THIS IS A BREAKING CHANGE!**
+- pib_cli v1.2.0 introduces further extensions to the JSON schema but is fully backwards compatible with v1.0.0. 
+
+**Here's how to provide your own CLI configuration file:**
+
+1. First create a `.pib.yml` file
+   1. Use the command `dev @pib config -c <path to your file> validate` to ensure it adheres to the specification, before making it `active`.
+2. To `activate` your configuration, use one of the following methods:
+   1. Set the environment variable `PIB_CONFIG_FILE_LOCATION` to the absolute path where the file is located.  **This value will override any configuration based settings.**
+   2. Move your new `.pib.yml` file to the top level folder of your project.
+
+- Use the command `dev @pib config where` to confirm it's been activated.
+- If a `.pib.yml` file cannot be found with either of these methods, then the [default config](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/default_cli_config.yml) will be used.
+
+**Finding your source code**
+  - The `pib_cli` expects to find your source code in a top level folder with a specific name.  (See the following sections for how to configure this.)
+
+### Creating a `.pib.yml` File
+
+The top level of your `.pib.yml` file should include the following information:
 
 ```yaml
-- name: "command-name"
-  description: "A description of the command."
-  container_only: false # Optional restriction of the command to a PIB container
-  path: "location_string"
-  commands:
-    - "one or more"
-    - "shell commands"
-    - "each run in a discrete environment"
-  success: "Success Message"
-  failure: "Failure Message"
+metadata:
+  project_name: (The toplevel folder name where you project exists in the repository.)
+cli_definition:
+  - (A YAML array of cli command definitions, see the section below for details).
 ```
 
-where `location_string` is one of:
+- The `project_name` metadata section is currently optional, and can also be set using the `PROJECT_NAME` environment variable.
+- The `cli_definition` section is mandatory, and `pib_cli` will throw an error if it's missing.
 
-- `git_root` (`/app`)
-- `documentation_root` (`/app/documentation`)
-- `project_root` (`/app/${PROJECT_HOME}`)
+**An Important Detail To Clearly Understand:**
+  - The `pib_cli` expects to find your source code in the `PROJECT NAME` folder.
+
+### Adding a CLI Definition to a `.pib.yml` File
+
+The `cli_definition` yaml key, should contain a list of definitions for CLI commands you wish to use.
+
+Each command is described by a yaml key in this format:
+
+```yaml
+    - name: "command-name"
+      description: "A description of the command."
+      container_only: false # Optional restriction of the command to a PIB container
+      path: "location_string"
+      commands:
+        - "one or more"
+        - "shell commands"
+        - "each run in a discrete environment"
+      success: "Success Message"
+      failure: "Failure Message"
+```
+ 
+- where `container_only` restricts the command to working only inside a [Python-in-a-Box](https://github.com/niall-byrne/python-in-a-box) container environment.
+
+
+- also, where `location_string` is one of:
+
+  - `git_root` (`/app`)
+  - `documentation_root` (`/app/documentation`)
+  - `project_root` (`/app/<PROJECT NAME>`)
+
+
+- and lastly, where `PROJECT NAME` is defined by:
+  - the environment variable `PROJECT_NAME`.  
+  - `.pib.yml` metadata 
+
+**An Important Detail To Clearly Understand:**
+  - The `pib_cli` expects to find your source code in the `PROJECT NAME` folder.
 
 ## Installing a virtual environment, and the CLI on your host machine
 

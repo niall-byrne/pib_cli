@@ -15,7 +15,7 @@ PIB CLI Default Custom Commands
 
 These are the default configuration based commands shipped with pib_cli:
 
-.. click:: pib_cli.cli.interface.custom:defined_with_user_configuration
+.. click:: pib_cli.cli.interface.custom:document_custom_commands
     :prog: dev
     :nested: full
 
@@ -34,4 +34,5 @@ PIB CLI Configuration JSON Schema
 
 Follow this schema to build your own CLI commands:
 
-.. jsonschema:: ../../../pib_cli/config/config_schema_v2.0.json
+.. jsonschema:: ../../../pib_cli/config/schemas/cli_base_schema_v2.1.0.json
+.. jsonschema:: ../../../pib_cli/config/schemas/cli_cmd_schema_v0.1.0.json

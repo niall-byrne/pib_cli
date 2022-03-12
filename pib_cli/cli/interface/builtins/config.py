@@ -1,5 +1,7 @@
 """Built in CLI configuration commands."""
 
+from typing import Optional
+
 import click
 from pib_cli.cli.commands import (
     config_show,
@@ -11,29 +13,50 @@ from pib_cli.config.locale import _
 
 
 @click.group(_("config"))
-def config() -> None:
-  """PIB user configuration commands."""
+@click.option(
+    "-c",
+    "--config-file",
+    help="A config file to use instead of the active one.",
+    type=click.Path(
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
+    ),
+    required=False,
+)
+@click.pass_context
+def config(ctx: click.Context, config_file: Optional[str]) -> None:
+  """PIB CLI configuration commands."""
+  ctx.obj = {
+      "config_file": config_file
+  }
 
 
 @config.command(_("show"))
-def show_config_builtin() -> None:
-  """Display the current CLI configuration."""
+@click.pass_context
+def show_config_builtin(ctx: click.Context) -> None:
+  """Display a CLI configuration file (defaults to the active file)."""
 
-  handler(config_show.ConfigShowCommand)
+  handler(config_show.ConfigShowCommand, config_file=ctx.obj["config_file"])
 
 
 @config.command(_("validate"))
-def validate_config_builtin() -> None:
-  """Validate the current CLI configuration."""
+@click.pass_context
+def validate_config_builtin(ctx: click.Context) -> None:
+  """Validate a CLI configuration file (defaults to the active file)."""
 
-  handler(config_validate.ConfigValidateCommand)
+  handler(
+      config_validate.ConfigValidateCommand, config_file=ctx.obj["config_file"]
+  )
 
 
 @config.command(_("where"))
-def where_config_builtin() -> None:
-  """Display the current CLI configuration location."""
+@click.pass_context
+def where_config_builtin(ctx: click.Context) -> None:
+  """Locate a CLI configuration file (defaults to the active file)."""
 
-  handler(config_where.ConfigWhereCommand)
+  handler(config_where.ConfigWhereCommand, config_file=ctx.obj["config_file"])
 
 
 config_commands: click.Command = config
