@@ -9,7 +9,7 @@ set -eo pipefail
 
 main() {
 
-  PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/config.yml"
+  PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml"
 
   dev build-wheel
   dev coverage

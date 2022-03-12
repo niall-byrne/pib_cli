@@ -25,7 +25,7 @@ PIB CLI Default Configuration
 
 The default YAML CLI configuration:
 
-.. include:: ../../../pib_cli/config/config.yml
+.. include:: ../../../pib_cli/config/default_cli_config.yml
    :literal:
 
 

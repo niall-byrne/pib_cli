@@ -10,6 +10,11 @@ from .. import check_project_name, config, get_config_file_name, project_root
 class TestGetConfigFileName(TestCase):
   """Test the get_config_file_name function."""
 
+  def setUp(self) -> None:
+    self.default_config = os.path.join(
+        project_root, "config", "default_cli_config.yml"
+    )
+
   @patch.dict(
       os.environ,
       {},
@@ -17,7 +22,7 @@ class TestGetConfigFileName(TestCase):
   )
   def test_no_override(self) -> None:
     result = get_config_file_name()
-    self.assertEqual(result, os.path.join(project_root, "config", "config.yml"))
+    self.assertEqual(result, self.default_config)
 
   @patch.dict(
       os.environ,
@@ -40,7 +45,7 @@ class TestGetConfigFileName(TestCase):
   @patch("os.path.exists", Mock(return_value=False))
   def test_with_override_does_not_exist(self) -> None:
     result = get_config_file_name()
-    self.assertEqual(result, os.path.join(project_root, "config", "config.yml"))
+    self.assertEqual(result, self.default_config)
 
 
 class TestCheckProjectName(TestCase):

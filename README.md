@@ -124,7 +124,7 @@ This is straight-forward to do:
 **BREAKING CHANGE:**  pib_cli v1.0.0 introduces a new JSON schema version!  (Older configuration files will need to be modified!)
 
 The CLI has some defaults built in, but is customizable by setting the `PIB_CONFIG_FILE_LOCATION` environment variable.
-The default config file can be found [here](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/config.yml).
+The default config file can be found [here](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config/default_cli_config.yml).
 
 Each command is described by a yaml key in this format :
 

@@ -34,7 +34,7 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
     m_validate.assert_called_once_with(mock_object, instance.schema)
 
   def test_validate_valid(self) -> None:
-    valid_config_file = Path(config.__file__).parent / "config.yml"
+    valid_config_file = Path(config.__file__).parent / "default_cli_config.yml"
     valid_loaded_config = self.load_yaml_file(valid_config_file)
     instance = validator.UserConfigurationValidator()
     instance.validate(valid_loaded_config)

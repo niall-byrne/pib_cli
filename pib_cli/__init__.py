@@ -9,7 +9,7 @@ from . import config
 from .config.locale import _
 
 project_root = pathlib.Path(__file__).parent.absolute()
-default_config = os.path.join(project_root, "config/config.yml")
+default_config = os.path.join(project_root, "config/default_cli_config.yml")
 
 
 def get_config_file_name() -> str:

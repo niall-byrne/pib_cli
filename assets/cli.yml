@@ -94,7 +94,7 @@
   description: "Run the unittests."
   path: "git_root"
   commands:
-    - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
+    - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
   success: "Unittests Passed!"
   failure: "Unittests Failed!"
 - name: "types"
