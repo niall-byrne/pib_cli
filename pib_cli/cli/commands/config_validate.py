@@ -2,7 +2,7 @@
 
 import click
 from pib_cli.config.locale import _
-from pib_cli.support import user_configuration
+from pib_cli.support import state
 
 from .bases import command
 
@@ -13,7 +13,7 @@ class ConfigValidateCommand(command.CommandBase):
   def invoke(self) -> None:
     """Invoke the command."""
 
-    configuration = user_configuration.UserConfiguration()
-    configuration.validate()
+    loaded_configuration = state.State()
+    loaded_configuration.user_config.validate()
 
     click.echo(_("Current configuration is valid."))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 15:41+0000\n"
+"POT-Creation-Date: 2022-03-18 15:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgid "These are the default configuration based commands shipped with pib_cli:"
 msgstr ""
 
 #: ../../dev:1
-msgid "Stub for testing custom commands during development."
+msgid "Click group of all custom defined commands."
 msgstr ""
 
 #: ../../dev babel-extract:1
@@ -291,4 +291,7 @@ msgstr ""
 #: ../../source/cli/user_guide.rst:38
 msgid "True"
 msgstr ""
+
+#~ msgid "Stub for testing custom commands during development."
+#~ msgstr ""
 

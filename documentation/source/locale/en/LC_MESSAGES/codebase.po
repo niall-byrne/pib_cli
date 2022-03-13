@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 15:41+0000\n"
+"POT-Creation-Date: 2022-03-18 15:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -412,6 +412,31 @@ msgstr ""
 msgid "pib\\_cli.cli.interface.custom"
 msgstr ""
 
+#: of pib_cli.cli.interface.custom.load_custom_commands:1
+msgid "Create and attach the custom commands to the click group."
+msgstr ""
+
+#: of pib_cli.cli.interface.custom.load_custom_commands
+#: pib_cli.support.container.DevContainer.get_container_version
+#: pib_cli.support.container.DevContainer.is_compatible_container
+#: pib_cli.support.container.DevContainer.is_container
+#: pib_cli.support.container.installer.DevContainerInstaller.get_installation_files
+#: pib_cli.support.iterators.container_bash_files.ContainerBashFilesIterator.hook_create_destination
+#: pib_cli.support.iterators.container_shim_file.ContainerShimFileIterator.hook_create_destination
+#: pib_cli.support.mixins.json_file.JSONFileReader.load_json_file
+#: pib_cli.support.mixins.text_file.TextFileReader.load_text_file
+#: pib_cli.support.mixins.yaml_file.YAMLFileReader.load_yaml_file
+#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry
+#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_commands
+#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_path_method
+#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_response
+msgid "Returns"
+msgstr ""
+
+#: of pib_cli.cli.interface.custom.load_custom_commands:3
+msgid "The click group, with all custom commands attached."
+msgstr ""
+
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.config.rst:2
 msgid "pib\\_cli.config"
 msgstr ""
@@ -511,6 +536,15 @@ msgid "CommandRunner class."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.rst:9:<autosummary>:1
+msgid ":py:obj:`pib_cli.support.state <pib_cli.support.state>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.rst:9:<autosummary>:1
+#: of pib_cli.support.state:1
+msgid "Borg monostate of the current running configuration."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.rst:9:<autosummary>:1
 msgid ""
 ":py:obj:`pib_cli.support.user_configuration "
 "<pib_cli.support.user_configuration>`\\"
@@ -593,22 +627,6 @@ msgstr ""
 
 #: of pib_cli.support.container.DevContainer.get_container_version:1
 msgid "Return the the PIB container's version, or raise an exception."
-msgstr ""
-
-#: of pib_cli.support.container.DevContainer.get_container_version
-#: pib_cli.support.container.DevContainer.is_compatible_container
-#: pib_cli.support.container.DevContainer.is_container
-#: pib_cli.support.container.installer.DevContainerInstaller.get_installation_files
-#: pib_cli.support.iterators.container_bash_files.ContainerBashFilesIterator.hook_create_destination
-#: pib_cli.support.iterators.container_shim_file.ContainerShimFileIterator.hook_create_destination
-#: pib_cli.support.mixins.json_file.JSONFileReader.load_json_file
-#: pib_cli.support.mixins.text_file.TextFileReader.load_text_file
-#: pib_cli.support.mixins.yaml_file.YAMLFileReader.load_yaml_file
-#: pib_cli.support.user_configuration.UserConfiguration.select_config_entry
-#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_commands
-#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_path_method
-#: pib_cli.support.user_configuration.selected.SelectedUserConfigurationEntry.get_config_response
-msgid "Returns"
 msgstr ""
 
 #: of pib_cli.support.container.DevContainer.get_container_version:3
@@ -1004,6 +1022,22 @@ msgstr ""
 
 #: of pib_cli.support.runner.CommandRunner.execute:3
 msgid "Execution will terminate immediately if any command fails."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.state.rst:2
+msgid "pib\\_cli.support.state"
+msgstr ""
+
+#: of pib_cli.support.state.State:1
+msgid "Monostate of the current running configuration."
+msgstr ""
+
+#: of pib_cli.support.state.State.clear:1
+msgid "Reset the internal state back to default for future instances."
+msgstr ""
+
+#: of pib_cli.support.state.State.load:1
+msgid "Populate the monostate with configuration values."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.rst:2

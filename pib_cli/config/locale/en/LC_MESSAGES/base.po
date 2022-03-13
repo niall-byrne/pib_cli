@@ -68,7 +68,7 @@ msgstr ""
 msgid "setup"
 msgstr ""
 
-#: pib_cli/cli/interface/custom/__init__.py:10
+#: pib_cli/cli/interface/custom/__init__.py:11
 msgid "configuration_commands"
 msgstr ""
 

@@ -17,15 +17,17 @@ class TestConfigShow(command_harness.CommandBaseTestHarness):
   def invoke_command(self) -> Tuple[Mock, ...]:
     with self.mock_stack as stack:
       m_click = stack.enter_context(patch(config_show.__name__ + ".click"))
-      m_config = stack.enter_context(
-          patch(config_show.__name__ + ".user_configuration.UserConfiguration")
+      m_state = stack.enter_context(
+          patch(config_show.__name__ + ".state.State")
       )
-      m_config.return_value.get_raw_file.return_value = "mock config data "
+      m_state.return_value.user_config.get_raw_file.return_value = (
+          "mock config data "
+      )
       self.instance.invoke()
-    return m_click, m_config
+    return m_click, m_state
 
   def test_invoke(self) -> None:
-    m_click, m_config = self.invoke_command()
+    m_click, m_state = self.invoke_command()
     m_click.echo.assert_called_once_with(
-        m_config.return_value.get_raw_file.return_value
+        m_state.return_value.user_config.get_raw_file.return_value
     )

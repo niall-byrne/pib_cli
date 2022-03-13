@@ -5,7 +5,7 @@ from typing import Callable, Tuple
 import click
 from pib_cli.cli.commands import customized
 from pib_cli.config import yaml_keys
-from pib_cli.support import user_configuration
+from pib_cli.support import state
 
 
 class CustomClickCommandIterator:
@@ -15,8 +15,7 @@ class CustomClickCommandIterator:
   """
 
   def __init__(self) -> None:
-    self.user_configuration = user_configuration.UserConfiguration()
-    self.user_configuration.validate()
+    self.user_configuration = state.State().user_config
     self.configuration_commands = list(
         self.user_configuration.configuration_command_index.keys()
     )

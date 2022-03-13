@@ -1,6 +1,6 @@
 """UserConfiguration class."""
 
-from typing import Any, Dict
+from typing import Dict
 
 from pib_cli import config_filename
 from pib_cli.config import yaml_keys

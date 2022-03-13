@@ -1,7 +1,7 @@
 """ConfigShowCommand class."""
 
 import click
-from pib_cli.support import user_configuration
+from pib_cli.support import state
 
 from .bases import command
 
@@ -12,5 +12,5 @@ class ConfigShowCommand(command.CommandBase):
   def invoke(self) -> None:
     """Invoke the command."""
 
-    config = user_configuration.UserConfiguration()
-    click.echo(config.get_raw_file())
+    loaded_configuration = state.State()
+    click.echo(loaded_configuration.user_config.get_raw_file())

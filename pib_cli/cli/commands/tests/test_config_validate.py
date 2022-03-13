@@ -17,15 +17,13 @@ class TestConfigValidateCommand(command_harness.CommandBaseTestHarness):
   def invoke_command(self) -> Tuple[Mock, ...]:
     with self.mock_stack as stack:
       m_click = stack.enter_context(patch(config_validate.__name__ + ".click"))
-      m_config = stack.enter_context(
-          patch(
-              config_validate.__name__ + ".user_configuration.UserConfiguration"
-          )
+      m_state = stack.enter_context(
+          patch(config_validate.__name__ + ".state.State")
       )
       self.instance.invoke()
-    return m_click, m_config
+    return m_click, m_state
 
   def test_invoke(self) -> None:
-    m_click, m_config = self.invoke_command()
-    m_config.return_value.validate.assert_called_once_with()
+    m_click, m_state = self.invoke_command()
+    m_state.return_value.user_config.validate.assert_called_once_with()
     m_click.echo.assert_called_once_with("Current configuration is valid.")

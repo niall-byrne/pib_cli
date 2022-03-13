@@ -8,6 +8,7 @@ from unittest.mock import patch
 import click
 from click.testing import CliRunner
 from pib_cli.config import yaml_keys
+from pib_cli.support import state
 
 from .. import cli_custom_commands
 
@@ -17,10 +18,10 @@ class TestCustomClickCommandIterator(TestCase):
 
   def create_instance(self) -> cli_custom_commands.CustomClickCommandIterator:
     with patch(
-        cli_custom_commands.__name__ +
-        ".user_configuration.UserConfiguration.load_yaml_file"
+        state.__name__ + ".user_configuration.UserConfiguration.load_yaml_file"
     ) as m_load:
       m_load.return_value = self.create_test_config()
+      state.State().load()
       instance = cli_custom_commands.CustomClickCommandIterator()
     return instance
 
@@ -73,7 +74,7 @@ class TestCustomClickCommandIterator(TestCase):
     with ExitStack() as stack:
       m_select = stack.enter_context(
           patch(
-              cli_custom_commands.__name__ +
+              state.__name__ +
               ".user_configuration.UserConfiguration.select_config_entry"
           )
       )
@@ -106,10 +107,11 @@ class TestCustomClickCommandIterator(TestCase):
 
   def setUp(self) -> None:
     self.runner = CliRunner()
+    state.State.clear()
 
   def test_initialization_validation(self) -> None:
     with patch(
-        cli_custom_commands.__name__ + ".user_configuration.UserConfiguration"
+        state.__name__ + ".user_configuration.UserConfiguration"
     ) as m_config:
 
       self.create_instance()
@@ -119,7 +121,7 @@ class TestCustomClickCommandIterator(TestCase):
 
   def test_initialization_configuration_commands(self) -> None:
     with patch(
-        cli_custom_commands.__name__ + ".user_configuration.UserConfiguration"
+        state.__name__ + ".user_configuration.UserConfiguration"
     ) as m_config:
       m_config.return_value.configuration_command_index = {
           1: 1,
