@@ -119,6 +119,12 @@ jobs:
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev coverage
 
+      - name: Build -- Check Translations
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev babel-extract
+          docker-compose exec -T "${PROJECT_NAME}" dev build-docs
+          git diff --exit-code
+
       - name: Build -- Run Release Validation
         run: |
           docker-compose exec -T "${PROJECT_NAME}" ./scripts/utilities/check_release.sh
