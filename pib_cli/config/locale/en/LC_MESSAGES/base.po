@@ -91,6 +91,10 @@ msgid ""
 "Find out more here: {PIB_URL}"
 msgstr ""
 
+#: pib_cli/support/path_map.py:33
+msgid "No git repository not found."
+msgstr ""
+
 #: pib_cli/support/container/installer.py:16
 msgid "Setup Succeeded!"
 msgstr ""
