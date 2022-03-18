@@ -18,6 +18,11 @@ msgstr ""
 msgid "Configuration file: {config_filename}"
 msgstr ""
 
+#: pib_cli/cli/commands/container_setup.py:22
+#: pib_cli/cli/commands/customized.py:43
+msgid "ERROR: {container_error}"
+msgstr ""
+
 #: pib_cli/cli/commands/container_validate.py:23
 msgid "This container is valid."
 msgstr ""
@@ -32,10 +37,6 @@ msgstr ""
 
 #: pib_cli/cli/commands/container_version.py:29
 msgid "No PIB container found."
-msgstr ""
-
-#: pib_cli/cli/commands/customized.py:43
-msgid "ERROR: {container_error}"
 msgstr ""
 
 #: pib_cli/cli/commands/version.py:18

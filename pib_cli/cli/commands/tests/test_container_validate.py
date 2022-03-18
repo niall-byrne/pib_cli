@@ -40,7 +40,7 @@ class TestContainerValidateCommand(
     m_sys.assert_not_called()
 
   def test_invoke_exception(self) -> None:
-    self.side_effect = exceptions.DevContainerException
+    self.side_effect = exceptions.DevContainerException("message", exit_code=1)
     m_click, m_container, m_sys = self.invoke_command()
     m_container.assert_called_once_with()
     m_container.return_value.container_valid_exception.assert_called_once()

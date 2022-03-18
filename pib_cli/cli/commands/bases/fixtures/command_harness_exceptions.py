@@ -1,7 +1,7 @@
 """CLI CommandBase test harness with exception handling."""
 
 import abc
-from typing import Optional, Type
+from typing import Optional, Type, Union
 
 from .command_harness import CommandBaseTestHarness
 
@@ -13,7 +13,7 @@ class CommandBaseExceptionsTestHarness(CommandBaseTestHarness, abc.ABC):
 
   def setUp(self) -> None:
     super().setUp()
-    self.side_effect: Optional[Type[BaseException]] = None
+    self.side_effect: Optional[Union[Type[BaseException], BaseException]] = None
 
   @abc.abstractmethod
   def test_invoke_exception(self) -> None:

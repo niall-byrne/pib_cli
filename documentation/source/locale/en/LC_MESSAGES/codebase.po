@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 19:30+0000\n"
+"POT-Creation-Date: 2022-03-18 20:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,6 +221,7 @@ msgstr ""
 
 #: of pib_cli.cli.commands.bases.command_config.CommandConfigBase
 #: pib_cli.cli.commands.customized.CustomizedCommand
+#: pib_cli.support.container.exceptions.DevContainerException
 #: pib_cli.support.container.installer.DevContainerInstaller.setup
 #: pib_cli.support.iterators.bases.file_copy_base.FileCopyIteratorBase.hook_create_destination
 #: pib_cli.support.iterators.container_bash_files.ContainerBashFilesIterator.hook_create_destination
@@ -758,6 +759,14 @@ msgstr ""
 
 #: of pib_cli.support.container.exceptions.DevContainerException:1
 msgid "Raised when the current environment is not the expected container type."
+msgstr ""
+
+#: of pib_cli.support.container.exceptions.DevContainerException:3
+msgid "The exit code associated with this exception."
+msgstr ""
+
+#: of pib_cli.support.container.exceptions.DevContainerException.exit:1
+msgid "Exit with the defined exit_code."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.container.installer.rst:2

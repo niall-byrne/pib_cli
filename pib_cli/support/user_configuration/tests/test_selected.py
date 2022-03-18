@@ -41,7 +41,9 @@ class TestSelectedUserConfigurationEntry(TestCase):
     with patch(selected.__name__ + ".container.DevContainer") as m_container:
       if not valid_container:
         valid = m_container.return_value.container_valid_exception
-        valid.side_effect = exceptions.DevContainerException
+        valid.side_effect = exceptions.DevContainerException(
+            "message", exit_code=1
+        )
       return selected.SelectedUserConfigurationEntry(selected_configuration)
 
   def test_initialize(self) -> None:

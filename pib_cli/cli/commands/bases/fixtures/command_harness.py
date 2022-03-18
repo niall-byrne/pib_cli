@@ -2,7 +2,7 @@
 
 import abc
 from contextlib import ExitStack
-from typing import Tuple, Type
+from typing import Optional, Tuple, Type
 from unittest import TestCase, mock
 
 from .. import command
@@ -13,6 +13,7 @@ class CommandBaseTestHarness(TestCase, abc.ABC):
 
   __test__ = False
   test_class: Type[command.CommandBase]
+  test_exception: Optional[BaseException]
   instance: command.CommandBase
   mock_stack = ExitStack()
 
@@ -22,6 +23,7 @@ class CommandBaseTestHarness(TestCase, abc.ABC):
 
   def setUp(self) -> None:
     self.instance = self.test_class()
+    self.test_exception = None
 
   @abc.abstractmethod
   def test_invoke(self) -> None:

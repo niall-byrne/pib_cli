@@ -42,7 +42,7 @@ class CustomizedCommand(command.CommandBase):
       click.echo(
           _("ERROR: {container_error}").format(container_error=exc.args[0])
       )
-      sys.exit(self.container_only_error_exit_code)
+      exc.exit()
 
   def _call_runner(self) -> None:
     command_runner = runner.CommandRunner(

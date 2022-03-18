@@ -27,7 +27,9 @@ class DevContainer(container.DevContainerBase):
 
     :raises: :class:`DevContainerException`
     """
-    raise exceptions.DevContainerException(config.ERROR_CONTAINER_ONLY)
+    raise exceptions.DevContainerException(
+        config.ERROR_CONTAINER_ONLY, exit_code=config.EXIT_CODE_CONTAINER_ONLY
+    )
 
   def container_version_exception(self) -> None:
     """Raise an exception for a container with the wrong version information.
@@ -35,7 +37,8 @@ class DevContainer(container.DevContainerBase):
     :raises: :class:`DevContainerException`
     """
     raise exceptions.DevContainerException(
-        config.ERROR_CONTAINER_VERSION(self.minimum_pib_version)
+        config.ERROR_CONTAINER_VERSION(self.minimum_pib_version,),
+        exit_code=config.EXIT_CODE_CONTAINER_INCOMPATIBLE,
     )
 
   def is_container(self) -> bool:

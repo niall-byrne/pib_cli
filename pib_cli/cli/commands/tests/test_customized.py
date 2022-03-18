@@ -26,7 +26,7 @@ class TestCustomizedCommand(command_harness.CommandBaseTestHarness):
       m_runner = stack.enter_context(
           patch(customized.__name__ + ".runner.CommandRunner")
       )
-      m_exit = stack.enter_context(patch(customized.__name__ + ".sys.exit"))
+      m_exit = stack.enter_context(patch(exceptions.__name__ + ".sys.exit"))
       m_click = stack.enter_context(patch(customized.__name__ + ".click"))
       self.instance.invoke()
     return m_runner, m_exit, m_click
@@ -84,8 +84,12 @@ class TestCustomizedCommand(command_harness.CommandBaseTestHarness):
     with patch.object(
         self.instance.command_configuration, "is_executable_exception"
     ) as m_executable:
-      m_executable.side_effect = exceptions.DevContainerException(error_message)
+      exit_code = 1
+      mock_exception = exceptions.DevContainerException(
+          error_message, exit_code=exit_code
+      )
+      m_executable.side_effect = mock_exception
       _, m_exit, m_click = self.invoke_command()
 
     m_click.echo.assert_called_once_with(f"ERROR: {error_message}")
-    m_exit.assert_called_once_with(self.instance.container_only_error_exit_code)
+    m_exit.assert_called_once_with(exit_code)

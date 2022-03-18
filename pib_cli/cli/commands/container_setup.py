@@ -1,7 +1,8 @@
 """ContainerSetupCommand class."""
 
 import click
-from pib_cli.support.container import installer
+from pib_cli import _
+from pib_cli.support.container import exceptions, installer
 
 from .bases import command
 
@@ -12,6 +13,12 @@ class ContainerSetupCommand(command.CommandBase):
   def invoke(self) -> None:
     """Invoke the command."""
 
-    container_installer = installer.DevContainerInstaller()
-    container_installer.container_valid_exception()
-    container_installer.setup(click.echo)
+    try:
+      container_installer = installer.DevContainerInstaller()
+      container_installer.container_valid_exception()
+      container_installer.setup(click.echo)
+    except exceptions.DevContainerException as exc:
+      click.echo(
+          _("ERROR: {container_error}").format(container_error=exc.args[0])
+      )
+      exc.exit()

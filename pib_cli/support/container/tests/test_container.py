@@ -1,6 +1,7 @@
 """Tests for the DevContainer class."""
 
 from contextlib import ExitStack
+from typing import Tuple
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -14,9 +15,9 @@ class DevContainerTest(TestCase):
   """Tests for the DevContainer class."""
 
   def check_exception(
-      self, exc: exceptions.DevContainerException, message: str
+      self, exc: exceptions.DevContainerException, args: Tuple[str, int]
   ) -> None:
-    self.assertEqual(exc.args, (message,))
+    self.assertEqual(exc.args, args)
 
   def setUp(self) -> None:
     self.instance = container.DevContainer()
@@ -28,16 +29,20 @@ class DevContainerTest(TestCase):
     with self.assertRaises(exceptions.DevContainerException) as exc:
       self.instance.container_only_exception()
       self.check_exception(
-          exc.exception,
-          config.ERROR_CONTAINER_ONLY,
+          exc.exception, (
+              config.ERROR_CONTAINER_ONLY,
+              config.EXIT_CODE_CONTAINER_ONLY,
+          )
       )
 
   def test_container_version_exception(self) -> None:
     with self.assertRaises(exceptions.DevContainerException) as exc:
       self.instance.container_version_exception()
       self.check_exception(
-          exc.exception,
-          config.ERROR_CONTAINER_VERSION(self.instance.minimum_pib_version)
+          exc.exception, (
+              config.ERROR_CONTAINER_VERSION(self.instance.minimum_pib_version),
+              config.EXIT_CODE_CONTAINER_INCOMPATIBLE
+          )
       )
 
   def test_is_container_true(self) -> None:
@@ -112,8 +117,10 @@ class DevContainerTest(TestCase):
         with self.assertRaises(exceptions.DevContainerException) as exc:
           self.instance.container_valid_exception()
           self.check_exception(
-              exc.exception,
-              config.ERROR_CONTAINER_ONLY,
+              exc.exception, (
+                  config.ERROR_CONTAINER_ONLY,
+                  config.EXIT_CODE_CONTAINER_ONLY,
+              )
           )
 
   def test_assert_valid_container_wrong_version(self) -> None:
@@ -124,6 +131,10 @@ class DevContainerTest(TestCase):
         with self.assertRaises(exceptions.DevContainerException) as exc:
           self.instance.container_valid_exception()
           self.check_exception(
-              exc.exception,
-              config.ERROR_CONTAINER_VERSION(self.instance.minimum_pib_version)
+              exc.exception.args[0], (
+                  config.ERROR_CONTAINER_VERSION(
+                      self.instance.minimum_pib_version
+                  ),
+                  config.EXIT_CODE_CONTAINER_INCOMPATIBLE,
+              )
           )
