@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 18:19+0000\n"
+"POT-Creation-Date: 2022-03-18 15:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,10 @@ msgstr ""
 msgid "Copy file assets to setup the development container."
 msgstr ""
 
+#: ../../dev @pib container validate:1
+msgid "Validate the current container is compatible with the CLI."
+msgstr ""
+
 #: ../../dev @pib container version:1
 msgid "Display the current container version."
 msgstr ""
@@ -85,7 +89,7 @@ msgstr ""
 msgid "Arguments"
 msgstr ""
 
-#: ../../dev babel-extract:1 build-docs:1 build-wheel:1 coverage:1 fmt:1
+#: ../../dev babel-extract:1 build-docs:1 build-wheel:1 bump:1 coverage:1 fmt:1
 #: leaks:1 lint:1 reinstall-requirements:1 sectest:1 test:1 types:1
 msgid "Optional argument(s)"
 msgstr ""
@@ -96,6 +100,10 @@ msgstr ""
 
 #: ../../dev build-wheel:1
 msgid "Build a distribution wheel."
+msgstr ""
+
+#: ../../dev bump:1
+msgid "Increment a Major, Minor, or Patch version"
 msgstr ""
 
 #: ../../dev coverage:1

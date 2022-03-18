@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 18:19+0000\n"
+"POT-Creation-Date: 2022-03-18 15:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,6 +107,17 @@ msgstr ""
 
 #: of pib_cli.cli.commands.handler:1:<autosummary>:1
 msgid ""
+":py:obj:`pib_cli.cli.commands.container_validate "
+"<pib_cli.cli.commands.container_validate>`\\"
+msgstr ""
+
+#: of pib_cli.cli.commands.container_validate:1
+#: pib_cli.cli.commands.handler:1:<autosummary>:1
+msgid "ContainerValidateCommand class."
+msgstr ""
+
+#: of pib_cli.cli.commands.handler:1:<autosummary>:1
+msgid ""
 ":py:obj:`pib_cli.cli.commands.container_version "
 "<pib_cli.cli.commands.container_version>`\\"
 msgstr ""
@@ -193,6 +204,17 @@ msgstr ""
 msgid "CLI CommandBase test harness."
 msgstr ""
 
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:9:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.cli.commands.bases.fixtures.command_harness_exceptions "
+"<pib_cli.cli.commands.bases.fixtures.command_harness_exceptions>`\\"
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.rst:9:<autosummary>:1
+#: of pib_cli.cli.commands.bases.fixtures.command_harness_exceptions:1
+msgid "CLI CommandBase test harness with exception handling."
+msgstr ""
+
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.command_harness.rst:2
 msgid "pib\\_cli.cli.commands.bases.fixtures.command\\_harness"
 msgstr ""
@@ -209,12 +231,27 @@ msgstr ""
 
 #: of
 #: pib_cli.cli.commands.bases.fixtures.command_harness.CommandBaseTestHarness.setUp:1
+#: pib_cli.cli.commands.bases.fixtures.command_harness_exceptions.CommandBaseExceptionsTestHarness.setUp:1
 msgid "Hook method for setting up the test fixture before exercising it."
 msgstr ""
 
 #: of
 #: pib_cli.cli.commands.bases.fixtures.command_harness.CommandBaseTestHarness.test_invoke:1
 msgid "Override to test the invoke class."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.bases.fixtures.command_harness_exceptions.rst:2
+msgid "pib\\_cli.cli.commands.bases.fixtures.command\\_harness\\_exceptions"
+msgstr ""
+
+#: of
+#: pib_cli.cli.commands.bases.fixtures.command_harness_exceptions.CommandBaseExceptionsTestHarness:1
+msgid "CLI test harness for CommandBase subclasses with exceptions."
+msgstr ""
+
+#: of
+#: pib_cli.cli.commands.bases.fixtures.command_harness_exceptions.CommandBaseExceptionsTestHarness.test_invoke_exception:1
+msgid "Override to test the invoke class with an exception case."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.config_show.rst:2
@@ -230,6 +267,7 @@ msgstr ""
 #: pib_cli.cli.commands.config_validate.ConfigValidateCommand.invoke:1
 #: pib_cli.cli.commands.config_where.ConfigWhereCommand.invoke:1
 #: pib_cli.cli.commands.container_setup.ContainerSetupCommand.invoke:1
+#: pib_cli.cli.commands.container_validate.ContainerValidateCommand.invoke:1
 #: pib_cli.cli.commands.container_version.ContainerVersionCommand.invoke:1
 #: pib_cli.cli.commands.customized.CustomizedCommand.invoke:1
 #: pib_cli.cli.commands.version.VersionCommand.invoke:1
@@ -258,6 +296,14 @@ msgstr ""
 
 #: of pib_cli.cli.commands.container_setup.ContainerSetupCommand:1
 msgid "CLI command to setup a development container."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.container_validate.rst:2
+msgid "pib\\_cli.cli.commands.container\\_validate"
+msgstr ""
+
+#: of pib_cli.cli.commands.container_validate.ContainerValidateCommand:1
+msgid "CLI command to validate the current container."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.container_version.rst:2
