@@ -6,6 +6,7 @@ import click
 from pib_cli.cli.commands import (
     config_show,
     config_validate,
+    config_version,
     config_where,
     handler,
 )
@@ -48,6 +49,16 @@ def validate_config_builtin(ctx: click.Context) -> None:
 
   handler(
       config_validate.ConfigValidateCommand, config_file=ctx.obj["config_file"]
+  )
+
+
+@config.command(_("version"))
+@click.pass_context
+def version_config_builtin(ctx: click.Context) -> None:
+  """Find a CLI configuration file's version (defaults to the active file)."""
+
+  handler(
+      config_version.ConfigVersionCommand, config_file=ctx.obj["config_file"]
   )
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 15:47+0000\n"
+"POT-Creation-Date: 2022-03-18 19:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,6 +51,10 @@ msgstr ""
 
 #: ../../dev @pib config validate:1
 msgid "Validate a CLI configuration file (defaults to the active file)."
+msgstr ""
+
+#: ../../dev @pib config version:1
+msgid "Find a CLI configuration file's version (defaults to the active file)."
 msgstr ""
 
 #: ../../dev @pib config where:1

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 18:51+0000\n"
+"POT-Creation-Date: 2022-03-18 19:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,6 +81,17 @@ msgstr ""
 #: of pib_cli.cli.commands.config_validate:1
 #: pib_cli.cli.commands.handler:1:<autosummary>:1
 msgid "ConfigValidateCommand class."
+msgstr ""
+
+#: of pib_cli.cli.commands.handler:1:<autosummary>:1
+msgid ""
+":py:obj:`pib_cli.cli.commands.config_version "
+"<pib_cli.cli.commands.config_version>`\\"
+msgstr ""
+
+#: of pib_cli.cli.commands.config_version:1
+#: pib_cli.cli.commands.handler:1:<autosummary>:1
+msgid "ConfigVersionCommand class."
 msgstr ""
 
 #: of pib_cli.cli.commands.handler:1:<autosummary>:1
@@ -328,6 +339,7 @@ msgstr ""
 
 #: of pib_cli.cli.commands.config_show.ConfigShowCommand.invoke:1
 #: pib_cli.cli.commands.config_validate.ConfigValidateCommand.invoke:1
+#: pib_cli.cli.commands.config_version.ConfigVersionCommand.invoke:1
 #: pib_cli.cli.commands.config_where.ConfigWhereCommand.invoke:1
 #: pib_cli.cli.commands.container_setup.ContainerSetupCommand.invoke:1
 #: pib_cli.cli.commands.container_validate.ContainerValidateCommand.invoke:1
@@ -343,6 +355,14 @@ msgstr ""
 
 #: of pib_cli.cli.commands.config_validate.ConfigValidateCommand:1
 msgid "CLI command to validate a PIB CLI configuration file."
+msgstr ""
+
+#: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.config_version.rst:2
+msgid "pib\\_cli.cli.commands.config\\_version"
+msgstr ""
+
+#: of pib_cli.cli.commands.config_version.ConfigVersionCommand:1
+msgid "CLI command to validate the current PIB CLI configuration."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.cli.commands.config_where.rst:2

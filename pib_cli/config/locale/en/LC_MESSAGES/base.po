@@ -8,6 +8,12 @@ msgid ""
 "This configuration is valid."
 msgstr ""
 
+#: pib_cli/cli/commands/config_version.py:17
+msgid ""
+"Configuration file: {path}\n"
+"Configuration version: {version}"
+msgstr ""
+
 #: pib_cli/cli/commands/config_where.py:16
 msgid "Configuration file: {config_filename}"
 msgstr ""
@@ -45,24 +51,25 @@ msgid "@pib"
 msgstr ""
 
 #: pib_cli/cli/interface/builtins/__init__.py:16
+#: pib_cli/cli/interface/builtins/config.py:55
 #: pib_cli/cli/interface/builtins/container.py:30
 msgid "version"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:15
+#: pib_cli/cli/interface/builtins/config.py:16
 msgid "config"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:36
+#: pib_cli/cli/interface/builtins/config.py:37
 msgid "show"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:44
+#: pib_cli/cli/interface/builtins/config.py:45
 #: pib_cli/cli/interface/builtins/container.py:24
 msgid "validate"
 msgstr ""
 
-#: pib_cli/cli/interface/builtins/config.py:54
+#: pib_cli/cli/interface/builtins/config.py:65
 msgid "where"
 msgstr ""
 
