@@ -21,7 +21,7 @@ class ContainerVersionCommand(command.CommandBase):
     try:
       version_data = development_container.get_container_version()
       click.echo(
-          _("Detected PIB container version: {version_data}").format(
+          _("Container version: {version_data}").format(
               version_data=version_data
           )
       )

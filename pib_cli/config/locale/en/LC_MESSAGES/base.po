@@ -19,7 +19,7 @@ msgid "Configuration file: {config_filename}"
 msgstr ""
 
 #: pib_cli/cli/commands/container_validate.py:23
-msgid "Detected valid container."
+msgid "This container is valid."
 msgstr ""
 
 #: pib_cli/cli/commands/container_validate.py:25
@@ -27,7 +27,7 @@ msgid "No compatible PIB container found."
 msgstr ""
 
 #: pib_cli/cli/commands/container_version.py:24
-msgid "Detected PIB container version: {version_data}"
+msgid "Container version: {version_data}"
 msgstr ""
 
 #: pib_cli/cli/commands/container_version.py:29
@@ -125,5 +125,11 @@ msgstr ""
 #~ "Configuration file: {path}\n"
 #~ "Configuration version: {version}\n"
 #~ "This configuration is valid."
+#~ msgstr ""
+
+#~ msgid "Detected valid container."
+#~ msgstr ""
+
+#~ msgid "Detected PIB container version: {version_data}"
 #~ msgstr ""
 

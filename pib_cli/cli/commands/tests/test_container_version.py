@@ -37,7 +37,7 @@ class TestContainerVersionCommand(
     m_container.assert_called_once_with()
     m_container.return_value.get_container_version.assert_called_once()
     m_click.echo.assert_called_once_with(
-        "Detected PIB container version: "
+        "Container version: "
         f"{m_container.return_value.get_container_version.return_value}"
     )
     m_sys.assert_not_called()

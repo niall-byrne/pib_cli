@@ -28,12 +28,12 @@ main() {
   [[ "$(dev @pib config where)" == "Configuration file: ${PIB_CONFIG_FILE_LOCATION}" ]]
 
   dev @pib container setup
-  [[ "$(dev @pib container version)" =~ Detected[[:space:]]PIB[[:space:]]container[[:space:]]version:[[:space:]]1\.[0-9]+\.[0-9]+ ]]
+  [[ "$(dev @pib container version)" =~ Container[[:space:]]version:[[:space:]]1\.[0-9]+\.[0-9]+ ]]
 
   set +e
 
   if [[ -f /etc/container_release ]]; then
-    [[ "$(dev @pib container validate)" == "Detected valid container." ]] || exit 1
+    [[ "$(dev @pib container validate)" == "This container is valid." ]] || exit 1
   else
     [[ "$(dev @pib container validate)" == "No PIB container found." ]] || exit 1
   fi

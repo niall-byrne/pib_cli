@@ -20,7 +20,7 @@ class ContainerValidateCommand(command.CommandBase):
 
     try:
       development_container.container_valid_exception()
-      click.echo(_("Detected valid container."))
+      click.echo(_("This container is valid."))
     except exceptions.DevContainerException:
       click.echo(_("No compatible PIB container found."))
       sys.exit(development_container.incompatible_container_exit_code)
