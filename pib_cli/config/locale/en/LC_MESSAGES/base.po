@@ -108,7 +108,7 @@ msgid "Copied: {source} -> {destination}"
 msgstr ""
 
 #: pib_cli/support/user_configuration/user_configuration_file.py:84
-msgid "Configurations version {detected_version} is not supported!"
+msgid "Configuration version {detected_version} is not supported!"
 msgstr ""
 
 #~ msgid "Current configuration is valid."
@@ -131,5 +131,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "** PIB DEFAULT CONFIG IN USE **"
+#~ msgstr ""
+
+#~ msgid "Configurations version {detected_version} is not supported!"
 #~ msgstr ""
 

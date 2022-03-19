@@ -1,4 +1,4 @@
-"""Borg monostate of the current running configuration."""
+"""State class."""
 
 from typing import Any, Dict, cast
 

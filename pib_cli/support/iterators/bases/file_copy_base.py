@@ -17,7 +17,7 @@ class FileCopyIteratorBase(abc.ABC):
   """A base iterator for generating pairs of source, destination files.
 
   Creates a sequence of
-  :class:`pib_cli.support.iterators.bases.file_copy_base.SourceDestinationPair`.
+  :class:`.SourceDestinationPair`.
   """
 
   glob_pattern: str

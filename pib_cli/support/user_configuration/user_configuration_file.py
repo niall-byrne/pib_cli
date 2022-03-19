@@ -40,7 +40,7 @@ class UserConfigurationFile(yaml_file.YAMLFileReader, text_file.TextFileReader):
     #. Look for a configuration file in the repository root folder next.
     #. Finally, fall back to the default configuration.
 
-    :returns: The path to the configuration file
+    :returns: The path to the configuration file.
     """
 
     if self.specified_file_name:
@@ -81,7 +81,7 @@ class UserConfigurationFile(yaml_file.YAMLFileReader, text_file.TextFileReader):
         return user_configuration(configuration_yaml)
 
     raise NotImplementedError(
-        _("Configurations version {detected_version} is not supported!").format(
+        _("Configuration version {detected_version} is not supported!").format(
             detected_version=detected_version
         )
     )

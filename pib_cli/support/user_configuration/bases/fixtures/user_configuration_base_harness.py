@@ -1,4 +1,4 @@
-"""Tests for the UserConfiguration class."""
+"""Test harness for the UserConfigurationVersionBase class."""
 
 import abc
 from typing import Any, List, Type

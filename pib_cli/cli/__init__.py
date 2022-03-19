@@ -1,1 +1,1 @@
-"""The Python-In-a-Box CLI."""
+"""Python-in-a-Box CLI implementation."""

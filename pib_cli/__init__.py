@@ -1,1 +1,1 @@
-"""Python-in-a-Box Command Line Interface."""
+"""The pib_cli package."""

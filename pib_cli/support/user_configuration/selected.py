@@ -54,7 +54,7 @@ class SelectedUserConfigurationEntry:
   def is_executable_exception(self) -> None:
     """Determine if the currently selected command can be executed or not.
 
-    :raises: :class:`pib_cli.support.container.exceptions.DevContainerException`
+    :raises: :class:`.DevContainerException`
     """
     container_only_flag = self.user_configuration.get(
         yaml_keys.CONTAINER_ONLY,

@@ -1,1 +1,1 @@
-"""User defined configuration."""
+"""User defined configuration classes."""

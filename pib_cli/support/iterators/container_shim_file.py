@@ -13,7 +13,7 @@ class ContainerShimFileIterator(file_copy_base.FileCopyIteratorBase):
   """A iterator for the installation a CLI shim file.
 
   Creates a sequence of
-  :class:`pib_cli.support.iterators.bases.file_copy_base.SourceDestinationPair`
+  :class:`.SourceDestinationPair`
   to assist in the configuration of a PIB Development Container.
   """
 

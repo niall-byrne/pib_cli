@@ -1,4 +1,4 @@
-"""Yaml Configuration Settings."""
+"""YAML configuration settings."""
 
 from typing import List
 

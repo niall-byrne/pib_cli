@@ -30,7 +30,7 @@ class UserConfigurationValidator(json_file.JSONFileReader):
       )
 
   def validate(self, loaded_user_configuration: Any) -> str:
-    """Perform validation on the end-user configuration against the schema.
+    """Perform validation on the configuration against supported schemas.
 
     :param loaded_user_configuration: A Python object containing user config.
     :returns: The first configuration schema version that passes validation.

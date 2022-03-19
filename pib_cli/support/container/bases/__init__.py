@@ -1,1 +1,1 @@
-"""Development environment base classes."""
+"""Development container base classes."""

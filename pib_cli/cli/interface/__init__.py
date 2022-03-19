@@ -1,4 +1,4 @@
-"""Click based CLI interface."""
+"""CLI `click` based interface."""
 
 import click
 from pib_cli.cli.interface.builtins import builtin_commands

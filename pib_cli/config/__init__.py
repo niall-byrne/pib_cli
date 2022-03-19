@@ -1,4 +1,4 @@
-"""Generic Configuration Settings."""
+"""Python-in-a-Box CLI configuration settings."""
 
 from typing import Callable
 

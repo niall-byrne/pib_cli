@@ -1,4 +1,4 @@
-"""Localization support for the pib_cli."""
+"""Localization support."""
 
 import gettext
 import pathlib

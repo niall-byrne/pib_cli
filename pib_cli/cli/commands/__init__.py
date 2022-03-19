@@ -1,4 +1,4 @@
-"""PIB CLI command class definitions."""
+"""CLI command classes."""
 
 from typing import Optional, Type, Union
 

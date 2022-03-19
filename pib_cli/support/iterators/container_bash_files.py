@@ -12,7 +12,7 @@ class ContainerBashFilesIterator(file_copy_base.FileCopyIteratorBase):
   """A iterator for the installation of BASH configuration.
 
   Creates a sequence of
-  :class:`pib_cli.support.iterators.bases.file_copy_base.SourceDestinationPair`
+  :class:`.SourceDestinationPair`
   to assist in the configuration of a PIB Development Container.
   """
 
