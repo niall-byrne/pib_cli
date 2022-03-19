@@ -6,7 +6,8 @@ import sys
 
 import click
 import git
-from pib_cli import _, config
+from pib_cli import config
+from pib_cli.config.locale import _
 
 
 class PathMap:

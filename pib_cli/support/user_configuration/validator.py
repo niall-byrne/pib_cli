@@ -5,7 +5,8 @@ from pathlib import Path
 from typing import Any, Dict
 
 from jsonschema import RefResolver, exceptions, validate
-from pib_cli import config, config_filename
+from pib_cli import config
+from pib_cli.support import state
 from pib_cli.support.mixins import json_file
 
 
@@ -18,10 +19,10 @@ class UserConfigurationValidator(json_file.JSONFileReader):
           "2.0.0": "cli_cmd_schema_v0.1.0.json",
       }
   )
-  config_filename = config_filename
   _schema_folder = Path(config.__file__).parent / "schemas"
 
   def __init__(self) -> None:
+    self.config_filename = state.State().user_config_file.get_config_file_name()
     self.schemas: Dict[str, Any] = {}
     for schema_version, schema_path in self.active_schemas.items():
       self.schemas[schema_version] = self.load_json_file(

@@ -1,7 +1,3 @@
-#: pib_cli/__init__.py:23
-msgid "** PIB DEFAULT CONFIG IN USE **"
-msgstr ""
-
 #: pib_cli/cli/commands/config_validate.py:17
 msgid ""
 "Configuration file: {path}\n"
@@ -99,7 +95,7 @@ msgid ""
 "Find out more here: {PIB_URL}"
 msgstr ""
 
-#: pib_cli/support/path_map.py:33
+#: pib_cli/support/path_map.py:34
 msgid "No git repository not found."
 msgstr ""
 
@@ -111,7 +107,7 @@ msgstr ""
 msgid "Copied: {source} -> {destination}"
 msgstr ""
 
-#: pib_cli/support/user_configuration/user_configuration_file.py:83
+#: pib_cli/support/user_configuration/user_configuration_file.py:84
 msgid "Configurations version {detected_version} is not supported!"
 msgstr ""
 
@@ -132,5 +128,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Detected PIB container version: {version_data}"
+#~ msgstr ""
+
+#~ msgid "** PIB DEFAULT CONFIG IN USE **"
 #~ msgstr ""
 

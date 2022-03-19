@@ -5,7 +5,8 @@ import pathlib
 from typing import List, Optional, Type
 
 import pib_cli
-from pib_cli import _, config
+from pib_cli import config
+from pib_cli.config.locale import _
 from pib_cli.support import path_map
 from pib_cli.support.mixins import text_file, yaml_file
 

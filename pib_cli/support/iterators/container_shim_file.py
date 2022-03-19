@@ -1,8 +1,9 @@
 """ContainerBashFileIterator for PIB CLI."""
 
 import os
+from pathlib import Path
 
-from pib_cli import project_root
+import pib_cli
 from pib_cli.support import container
 
 from .bases import file_copy_base
@@ -16,7 +17,7 @@ class ContainerShimFileIterator(file_copy_base.FileCopyIteratorBase):
   to assist in the configuration of a PIB Development Container.
   """
 
-  glob_pattern = os.path.join(project_root, "bash", "shim")
+  glob_pattern = os.path.join(Path(pib_cli.__file__).parent, "bash", "shim")
 
   def hook_create_destination(self, current_source: str) -> str:
     """Generate a home folder destination from a source file.

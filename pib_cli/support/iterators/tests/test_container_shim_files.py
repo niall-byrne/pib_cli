@@ -1,8 +1,9 @@
 """Tests for the ContainerShimFileIterator class."""
 
 import os
+from pathlib import Path
 
-from pib_cli import project_root
+import pib_cli
 from pib_cli.support import container
 from pib_cli.support.iterators.bases.file_copy_base import SourceDestinationPair
 from pib_cli.support.iterators.bases.fixtures.file_copy_base_harness import (
@@ -38,5 +39,5 @@ class TestContainerShimFileIterator(FileCopyIteratorBaseTestHarness):
   def test_glob(self) -> None:
     self.assertEqual(
         self.test_class.glob_pattern,
-        os.path.join(project_root, "bash", "shim")
+        os.path.join(Path(pib_cli.__file__).parent, "bash", "shim")
     )

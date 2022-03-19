@@ -1,7 +1,7 @@
 """ContainerSetupCommand class."""
 
 import click
-from pib_cli import _
+from pib_cli.config.locale import _
 from pib_cli.support.container import exceptions, installer
 
 from .bases import command

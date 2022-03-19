@@ -5,6 +5,7 @@ from unittest import TestCase, mock
 
 from jsonschema import ValidationError
 from pib_cli import config
+from pib_cli.support import state
 from pib_cli.support.mixins import json_file, yaml_file
 
 from .. import validator
@@ -12,6 +13,10 @@ from .. import validator
 
 class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
   """Tests for the UserConfigurationValidator class."""
+
+  def setUp(self) -> None:
+    state.State.clear()
+    state.State().load()
 
   @mock.patch(json_file.__name__ + ".JSONFileReader.load_json_file")
   def test_instantiation(self, _: mock.Mock) -> None:
