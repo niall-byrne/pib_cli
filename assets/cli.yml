@@ -25,6 +25,7 @@ cli_definition:
     description: "Build the project's documentation."
     path: "documentation_root"
     commands:
+      - '[ ! -d build/gettext ] || rm -rf build/gettext'
       - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
       - |
         env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "

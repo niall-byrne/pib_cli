@@ -5,7 +5,7 @@
 3,4d2
 < metadata:
 <   project_name: pib_cli
-6,36d3
+6,37d3
 <   - name: "babel-extract"
 <     description: "Create an updated template file for translations."
 <     path: "git_root"
@@ -28,6 +28,7 @@
 <     description: "Build the project's documentation."
 <     path: "documentation_root"
 <     commands:
+<       - '[ ! -d build/gettext ] || rm -rf build/gettext'
 <       - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
 <       - |
 <         env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
@@ -37,16 +38,16 @@
 <         "
 <     success: "Documentation Built"
 <     failure: "Error Building Documentation"
-48c15
+49c15
 <       - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
 ---
 >       - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
-54d20
+55d20
 <     container_only: true
-56,57d21
+57,58d21
 <       - './scripts/utilities/aspell_sort.sh'
 <       - 'tomll pyproject.toml'
-62,69d25
+63,70d25
 <   - name: "leaks"
 <     description: "Run a scan for leaked credentials in commits."
 <     container_only: true
@@ -55,29 +56,29 @@
 <       - 'gitleaks detect -v'
 <     success: "Credential leaks Test Passed!"
 <     failure: "Credential leaks Test Failed!"
-71d26
+72d26
 <     description: "Run the code linters."
-72a28
+73a28
 >     description: "Run the code linters."
-74,78d29
+75,79d29
 <       - 'shellcheck ${PROJECT_NAME}/bash/* -x'
 <       - 'shellcheck ${PROJECT_NAME}/container_init.sh'
 <       - 'darglint "${PROJECT_NAME}"'
 <       - 'pydocstyle "${PROJECT_NAME}"'
 <       - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
-89c40
+90c40
 <       - "poetry install -E pib_docs"
 ---
 >       - "poetry install"
-98c49
+99c49
 <       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-105c56
+106c56
 <       - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
 ---
 >       - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
-108,114d58
+109,115d58
 <   - name: "types"
 <     description: "Run the type checker."
 <     path: "git_root"
