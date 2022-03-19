@@ -6,10 +6,12 @@ cli_definition:
   - name: "babel-extract"
     description: "Create an updated template file for translations."
     path: "git_root"
-    commands:
-      - "pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header"
-      - "pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N"
-      - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
+    commands: |
+      env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
+        pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header &&
+        pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N &&
+        pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo
+      "
     success: "Template and English translation base generated!"
     failure: "An error occurred!"
   - name: "bump"
@@ -24,9 +26,12 @@ cli_definition:
     path: "documentation_root"
     commands:
       - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
-      - "make gettext"
-      - "sphinx-intl update -p build/gettext -l en"
-      - make -e SPHINXOPTS="-D language='en'" html
+      - |
+        env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
+          make gettext &&
+          sphinx-intl update -p build/gettext -l en &&
+          make -e SPHINXOPTS=\"-D language='en'\" html
+        "
     success: "Documentation Built"
     failure: "Error Building Documentation"
   - name: "build-wheel"
@@ -40,7 +45,7 @@ cli_definition:
     description: "Run code coverage test."
     path: "git_root"
     commands:
-      - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+      - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
     success: "Coverage Passed!"
     failure: "Coverage Failed!"
   - name: "fmt"
@@ -97,7 +102,7 @@ cli_definition:
     description: "Run the unittests."
     path: "git_root"
     commands:
-      - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
+      - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
     success: "Unittests Passed!"
     failure: "Unittests Failed!"
   - name: "types"

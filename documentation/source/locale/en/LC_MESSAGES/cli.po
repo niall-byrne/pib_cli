@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 19:25+0000\n"
+"POT-Creation-Date: 2022-03-19 17:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,29 +93,17 @@ msgstr ""
 msgid "Click group of all custom defined commands."
 msgstr ""
 
-#: ../../dev babel-extract:1
-msgid "Create an updated template file for translations."
+#: ../../dev build-wheel:1
+msgid "Build a distribution wheel."
 msgstr ""
 
 #: ../../source/cli/user_guide.rst
 msgid "Arguments"
 msgstr ""
 
-#: ../../dev babel-extract:1 build-docs:1 build-wheel:1 bump:1 coverage:1 fmt:1
-#: leaks:1 lint:1 reinstall-requirements:1 sectest:1 test:1 types:1
+#: ../../dev build-wheel:1 coverage:1 fmt:1 lint:1 reinstall-requirements:1
+#: sectest:1 test:1
 msgid "Optional argument(s)"
-msgstr ""
-
-#: ../../dev build-docs:1
-msgid "Build the project's documentation."
-msgstr ""
-
-#: ../../dev build-wheel:1
-msgid "Build a distribution wheel."
-msgstr ""
-
-#: ../../dev bump:1
-msgid "Increment a Major, Minor, or Patch version"
 msgstr ""
 
 #: ../../dev coverage:1
@@ -124,10 +112,6 @@ msgstr ""
 
 #: ../../dev fmt:1
 msgid "Run code formatters."
-msgstr ""
-
-#: ../../dev leaks:1
-msgid "Run a scan for leaked credentials in commits."
 msgstr ""
 
 #: ../../dev lint:1
@@ -144,10 +128,6 @@ msgstr ""
 
 #: ../../dev test:1
 msgid "Run the unittests."
-msgstr ""
-
-#: ../../dev types:1
-msgid "Run the type checker."
 msgstr ""
 
 #: ../../source/cli/user_guide.rst:24
@@ -338,21 +318,18 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-#~ msgid "Stub for testing custom commands during development."
+#~ msgid "Create an updated template file for translations."
 #~ msgstr ""
 
-#~ msgid "PIB user configuration commands."
+#~ msgid "Build the project's documentation."
 #~ msgstr ""
 
-#~ msgid "Display the current CLI configuration."
+#~ msgid "Increment a Major, Minor, or Patch version"
 #~ msgstr ""
 
-#~ msgid "Validate the current CLI configuration."
+#~ msgid "Run a scan for leaked credentials in commits."
 #~ msgstr ""
 
-#~ msgid "Display the current CLI configuration location."
-#~ msgstr ""
-
-#~ msgid "PIB CLI Configuration Specification v2.0"
+#~ msgid "Run the type checker."
 #~ msgstr ""
 

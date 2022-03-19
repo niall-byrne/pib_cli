@@ -1,4 +1,4 @@
-# Development Environment CLI Configuration
+# The default PIB CLI configuration.
 ---
 cli_definition:
   - name: "build-wheel"
@@ -17,22 +17,12 @@ cli_definition:
     failure: "Coverage Failed!"
   - name: "fmt"
     description: "Run code formatters."
-    container_only: true
     path: "git_root"
     commands:
-      - 'tomll pyproject.toml'
       - 'yapf -i --recursive .'
       - 'isort "${PROJECT_NAME}"'
     success: "Formatting Finished!"
     failure: "Formatting Error!"
-  - name: "leaks"
-    description: "Run a scan for leaked credentials in commits."
-    container_only: true
-    path: "git_root"
-    commands:
-      - 'gitleaks detect -v'
-    success: "Credential leaks Test Passed!"
-    failure: "Credential leaks Test Failed!"
   - name: "lint"
     path: "git_root"
     description: "Run the code linters."
@@ -54,7 +44,7 @@ cli_definition:
     description: "Run the security tests."
     path: "git_root"
     commands:
-      - 'bandit -r "${PROJECT_NAME}" -c pyproject.toml -x tests'
+      - 'bandit -r "${PROJECT_NAME}" -x tests'
       - 'echo "\nPoetry is exporting the lockfile standby..."'
       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
     success: "Security Test Passed!"

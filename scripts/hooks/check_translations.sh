@@ -7,6 +7,10 @@
 
 set -eo pipefail
 
+restore_config() {
+    PIB_CONFIG_FILE_LOCATION="${ORIGINAL_PIB_CONFIG_FILE_LOCATION}"
+  }
+
 check_python_translations() {
   dev babel-extract > /dev/null 2>&1
 }
@@ -19,6 +23,9 @@ check_sphinx_translations() {
 }
 
 translation_check() {
+
+  # Use the default configuration for all translation operations
+  PIB_CONFIG_FILE_LOCATION="$(git rev-parse --show-toplevel)/pib_cli/config/default_cli_config.yml"
 
   check_python_translations &
   check_sphinx_translations &
@@ -33,6 +40,9 @@ translation_check() {
 }
 
 main() {
+
+  ORIGINAL_PIB_CONFIG_FILE_LOCATION="${PIB_CONFIG_FILE_LOCATION}"
+  trap restore_config EXIT
 
   translation_check "$@"
 

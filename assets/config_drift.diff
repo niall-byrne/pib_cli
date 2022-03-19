@@ -1,14 +1,20 @@
+1c1
+< # Development Environment CLI Configuration
+---
+> # The default PIB CLI configuration.
 3,4d2
 < metadata:
 <   project_name: pib_cli
-6,31d3
+6,36d3
 <   - name: "babel-extract"
 <     description: "Create an updated template file for translations."
 <     path: "git_root"
-<     commands:
-<       - "pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header"
-<       - "pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N"
-<       - "pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo"
+<     commands: |
+<       env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
+<         pybabel extract pib_cli/ -o pib_cli/config/locale/base.pot --omit-header &&
+<         pybabel update --omit-header -i pib_cli/config/locale/base.pot -o pib_cli/config/locale/en/LC_MESSAGES/base.po -l en -N &&
+<         pybabel compile -f -i ./pib_cli/config/locale/en/LC_MESSAGES/base.po -o ./pib_cli/config/locale/en/LC_MESSAGES/base.mo
+<       "
 <     success: "Template and English translation base generated!"
 <     failure: "An error occurred!"
 <   - name: "bump"
@@ -23,40 +29,55 @@
 <     path: "documentation_root"
 <     commands:
 <       - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
-<       - "make gettext"
-<       - "sphinx-intl update -p build/gettext -l en"
-<       - make -e SPHINXOPTS="-D language='en'" html
+<       - |
+<         env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
+<           make gettext &&
+<           sphinx-intl update -p build/gettext -l en &&
+<           make -e SPHINXOPTS=\"-D language='en'\" html
+<         "
 <     success: "Documentation Built"
 <     failure: "Error Building Documentation"
-48d19
-<     path: "git_root"
-49a21
->     path: "git_root"
-51d22
+48c15
+<       - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+---
+>       - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+54d20
+<     container_only: true
+56,57d21
 <       - './scripts/utilities/aspell_sort.sh'
-66d36
+<       - 'tomll pyproject.toml'
+62,69d25
+<   - name: "leaks"
+<     description: "Run a scan for leaked credentials in commits."
+<     container_only: true
+<     path: "git_root"
+<     commands:
+<       - 'gitleaks detect -v'
+<     success: "Credential leaks Test Passed!"
+<     failure: "Credential leaks Test Failed!"
+71d26
 <     description: "Run the code linters."
-67a38
+72a28
 >     description: "Run the code linters."
-69,73d39
+74,78d29
 <       - 'shellcheck ${PROJECT_NAME}/bash/* -x'
 <       - 'shellcheck ${PROJECT_NAME}/container_init.sh'
 <       - 'darglint "${PROJECT_NAME}"'
 <       - 'pydocstyle "${PROJECT_NAME}"'
 <       - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
-84c50
+89c40
 <       - "poetry install -E pib_docs"
 ---
 >       - "poetry install"
-93c59
+98c49
 <       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
 >       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
-100c66
-<       - 'env PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml" pytest ${PIB_OVERLOAD_ARGUMENTS}'
+105c56
+<       - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
 ---
 >       - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
-103,109d68
+108,114d58
 <   - name: "types"
 <     description: "Run the type checker."
 <     path: "git_root"

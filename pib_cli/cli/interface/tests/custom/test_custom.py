@@ -24,13 +24,6 @@ class TestFormat(custom_cli_harness.CustomCLIInterfaceTestHarness):
   cli_command_string = "fmt"
 
 
-class TestLeaks(custom_cli_harness.CustomCLIInterfaceTestHarness):
-  """Test the default custom 'leaks' CLI command interface."""
-
-  __test__ = True
-  cli_command_string = "leaks"
-
-
 class TestLint(custom_cli_harness.CustomCLIInterfaceTestHarness):
   """Test the default custom 'lint' CLI command interface."""
 

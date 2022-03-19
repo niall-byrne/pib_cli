@@ -14,7 +14,6 @@ main() {
   dev build-wheel
   dev coverage
   dev fmt
-  dev leaks
   dev lint
   dev reinstall-requirements
   dev sectest
