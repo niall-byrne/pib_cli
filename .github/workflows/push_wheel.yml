@@ -111,6 +111,10 @@ jobs:
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev lint
 
+      - name: Build -- Run Type Checker
+        run: |
+          docker-compose exec -T "${PROJECT_NAME}" dev types
+
       - name: Build -- Run Sec Test
         run: |
           docker-compose exec -T "${PROJECT_NAME}" dev sectest
