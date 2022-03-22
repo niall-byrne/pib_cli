@@ -11,7 +11,7 @@ PIB_CONFIG_FILE_NAME = ".pib.yml"
 DOCUMENTATION_FOLDER_NAME = "documentation"
 
 ENV_OVERLOAD_ARGUMENTS = 'PIB_OVERLOAD_ARGUMENTS'
-ENV_PROJECT_NAME = "PROJECT_NAME"
+ENV_OVERRIDE_PROJECT_NAME = "PROJECT_NAME"
 ENV_OVERRIDE_CONFIG_LOCATION = "PIB_CONFIG_FILE_LOCATION"
 
 ERROR_CONTAINER_ONLY = _(
@@ -26,7 +26,7 @@ ERROR_CONTAINER_VERSION: Callable[[str], str] = \
         "Find out more here: {PIB_URL}"
     ).format(minimum_version=minimum_version, PIB_URL=PIB_URL)
 ERROR_PROJECT_NAME_NOT_SET = (
-    f"You must set the {ENV_PROJECT_NAME} variable, or the "
+    f"You must set the {ENV_OVERRIDE_PROJECT_NAME} variable, or the "
     f"'{yaml_keys.V210_CLI_CONFIG_PROJECT_NAME}' config key "
     "to use this tool."
 )

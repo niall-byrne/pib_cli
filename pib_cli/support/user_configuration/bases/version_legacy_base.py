@@ -22,7 +22,7 @@ class LegacyUserVersionIntermediateBase(UserConfigurationVersionBase):
     :raises: KeyError
     """
 
-    project_name = os.getenv(config.ENV_PROJECT_NAME, None)
+    project_name = os.getenv(config.ENV_OVERRIDE_PROJECT_NAME, None)
 
     if project_name:
       return project_name

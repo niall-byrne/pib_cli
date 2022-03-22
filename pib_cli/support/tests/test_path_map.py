@@ -30,7 +30,9 @@ class TestPathMap(TestCase):
       self.path_manager = path_map.PathMap()
       self.mock_git_call = m_git
 
-  @patch.dict(os.environ, {config.ENV_PROJECT_NAME: "test_name"}, clear=True)
+  @patch.dict(
+      os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_name"}, clear=True
+  )
   def setUp(self) -> None:
     self.mock_project_name = "test_name"
     self.mock_git_root_str = "/app"

@@ -55,7 +55,7 @@ class UserConfigurationV210(version_base.UserConfigurationVersionBase):
     :raises: KeyError
     """
 
-    env_project_name = os.getenv(config.ENV_PROJECT_NAME, None)
+    env_project_name = os.getenv(config.ENV_OVERRIDE_PROJECT_NAME, None)
     yaml_project_name = self.configuration.get(
         yaml_keys.V210_CLI_CONFIG_PROJECT_NAME,
         None,

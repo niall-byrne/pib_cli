@@ -16,7 +16,7 @@ from pib_cli.support.user_configuration.selectors import (
 )
 
 
-@patch.dict(os.environ, {config.ENV_PROJECT_NAME: "test_value"})
+@patch.dict(os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_value"})
 class TestUserConfigurationV100(
     version_base_harness.UserConfigurationVersionBaseTestHarness
 ):
@@ -45,7 +45,7 @@ class TestUserConfigurationV100(
       self.create_instance()
 
 
-@patch.dict(os.environ, {config.ENV_PROJECT_NAME: "test_value"})
+@patch.dict(os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_value"})
 class TestUserConfigurationV200(
     version_base_harness.UserConfigurationVersionBaseTestHarness
 ):
@@ -72,7 +72,7 @@ class TestUserConfigurationV200(
       self.create_instance()
 
 
-@patch.dict(os.environ, {config.ENV_PROJECT_NAME: "test_value"})
+@patch.dict(os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_value"})
 class TestUserConfigurationV210(
     version_base_harness.UserConfigurationVersionBaseTestHarness
 ):

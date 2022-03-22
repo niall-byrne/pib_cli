@@ -22,7 +22,7 @@ class PathMap:
     self.project_root_folder = os.path.join(
         self.git_root_folder,
         os.environ.get(
-            config.ENV_PROJECT_NAME,
+            config.ENV_OVERRIDE_PROJECT_NAME,
             "not-defined",
         ),
     )
