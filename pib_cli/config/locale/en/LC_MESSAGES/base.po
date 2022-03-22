@@ -99,6 +99,10 @@ msgstr ""
 msgid "No git repository not found."
 msgstr ""
 
+#: pib_cli/support/state.py:44
+msgid "** PIB DEFAULT CONFIG IN USE **"
+msgstr ""
+
 #: pib_cli/support/container/installer.py:16
 msgid "Setup Succeeded!"
 msgstr ""

@@ -43,8 +43,9 @@ class TestRunningConfig(TestCase):
 
     self.assertEqual(instance2.user_config, None)
 
+  @patch(state.__name__ + ".click.echo")
   @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
-  def test_load_config(self, m_user_config_file: Mock) -> None:
+  def test_load_config(self, m_user_config_file: Mock, m_echo: Mock) -> None:
 
     instance = state.State()
     instance.load()
@@ -55,3 +56,23 @@ class TestRunningConfig(TestCase):
     self.assertEqual(
         instance.user_config, m_user_config_file.return_value.parse.return_value
     )
+    m_echo.assert_not_called()
+
+  @patch(state.__name__ + ".click.echo")
+  @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
+  def test_load_config_legacy(
+      self, m_user_config_file: Mock, m_echo: Mock
+  ) -> None:
+    m_user_config_file.return_value.default_config = \
+      m_user_config_file.return_value.get_config_file_name.return_value
+
+    instance = state.State()
+    instance.load()
+
+    m_user_config_file.assert_called_once_with()
+    m_user_config_file.return_value.parse.assert_called_once_with()
+    self.assertEqual(instance.user_config_file, m_user_config_file.return_value)
+    self.assertEqual(
+        instance.user_config, m_user_config_file.return_value.parse.return_value
+    )
+    m_echo.assert_called_once_with("** PIB DEFAULT CONFIG IN USE **")

@@ -10,6 +10,7 @@ set -eo pipefail
 main() {
 
   PIB_CONFIG_FILE_LOCATION="$(pwd)/pib_cli/config/default_cli_config.yml"
+  DEFAULT_CONFIG_WARNING="\*\* PIB DEFAULT CONFIG IN USE \*\*"
 
   dev build-wheel
   dev coverage
@@ -19,22 +20,26 @@ main() {
   dev sectest
   dev test
 
-  [[ "$(dev @pib version)" =~ pib_cli[[:space:]]version:[[:space:]]1.[0-9]+.[0-9]+ ]]
+  dev -h | grep "${DEFAULT_CONFIG_WARNING}"
 
-  dev @pib config validate
+  dev @pib version | grep -E "pib_cli version: 1.[0-9]+.[0-9]+"
 
-  diff <(dev @pib config show) "${PIB_CONFIG_FILE_LOCATION}"
-  [[ "$(dev @pib config where)" == "Configuration file: ${PIB_CONFIG_FILE_LOCATION}" ]]
+  dev @pib config validate | grep "This configuration is valid."
 
-  dev @pib container setup
-  [[ "$(dev @pib container version)" =~ Container[[:space:]]version:[[:space:]]1\.[0-9]+\.[0-9]+ ]]
+  diff <(dev @pib config show | grep -v "${DEFAULT_CONFIG_WARNING}") "${PIB_CONFIG_FILE_LOCATION}"
+
+  dev @pib config where | grep "Configuration file: ${PIB_CONFIG_FILE_LOCATION}"
+
+  dev @pib container setup | grep "Setup Succeeded!"
+
+  dev @pib container version | grep -E 'Container version: 1\.[0-9]+\.[0-9]+'
 
   set +e
 
   if [[ -f /etc/container_release ]]; then
-    [[ "$(dev @pib container validate)" == "This container is valid." ]] || exit 1
+    dev @pib container validate | grep "This container is valid."
   else
-    [[ "$(dev @pib container validate)" == "No PIB container found." ]] || exit 1
+    dev @pib container validate | grep "No PIB container found."
   fi
 
 }

@@ -2,6 +2,8 @@
 
 from typing import Any, Dict, cast
 
+import click
+from pib_cli.config.locale import _
 from pib_cli.support.user_configuration import user_configuration_file
 from pib_cli.support.user_configuration.bases import version_base
 
@@ -34,3 +36,9 @@ class State:
 
     self.user_config_file = user_configuration_file.UserConfigurationFile()
     self.user_config = self.user_config_file.parse()
+    self._default_config_warning()
+
+  def _default_config_warning(self) -> None:
+    config_file_in_use = self.user_config_file.get_config_file_name()
+    if self.user_config_file.default_config == config_file_in_use:
+      click.echo(_("** PIB DEFAULT CONFIG IN USE **"))
