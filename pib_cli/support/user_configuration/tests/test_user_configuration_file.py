@@ -9,7 +9,7 @@ from unittest.mock import Mock, call, patch
 import pib_cli
 from pib_cli import config
 from pib_cli.support.user_configuration import user_configuration_file, versions
-from pib_cli.support.user_configuration.bases import user_configuration_base
+from pib_cli.support.user_configuration.bases import version_base
 
 
 class TestUserConfigurationFile(TestCase):
@@ -37,8 +37,11 @@ class TestUserConfigurationFile(TestCase):
         os.path.join(instance.project_root, "config", "default_cli_config.yml"),
     )
     self.assertListEqual(
-        instance.supported_versions,
-        [versions.UserConfigurationV210, versions.UserConfigurationV200]
+        instance.supported_versions, [
+            versions.UserConfigurationV210,
+            versions.UserConfigurationV200,
+            versions.UserConfigurationV100,
+        ]
     )
     self.assertIsNone(instance.specified_file_name)
 
@@ -177,9 +180,7 @@ class TestUserConfigurationFile(TestCase):
     m_validator.return_value.validate.assert_called_once_with(
         m_yaml.return_value
     )
-    self.assertIsInstance(
-        result, user_configuration_base.UserConfigurationVersionBase
-    )
+    self.assertIsInstance(result, version_base.UserConfigurationVersionBase)
     self.assertEqual(
         result.version,
         m_validator.return_value.validate.return_value,

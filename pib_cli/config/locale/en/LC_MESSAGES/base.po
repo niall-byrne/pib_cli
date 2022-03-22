@@ -15,7 +15,7 @@ msgid "Configuration file: {config_filename}"
 msgstr ""
 
 #: pib_cli/cli/commands/container_setup.py:22
-#: pib_cli/cli/commands/customized.py:43
+#: pib_cli/cli/commands/customized.py:41
 msgid "ERROR: {container_error}"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Copied: {source} -> {destination}"
 msgstr ""
 
-#: pib_cli/support/user_configuration/user_configuration_file.py:84
+#: pib_cli/support/user_configuration/user_configuration_file.py:85
 msgid "Configuration version {detected_version} is not supported!"
 msgstr ""
 

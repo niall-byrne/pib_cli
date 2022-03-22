@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "PIB CLI Base Configuration Specification v1.0.0",
+    "description": "The specification for the PIB CLI user configuration file.",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "description": "The CLI command name.",
+                "pattern": "^(?!@pib$)[0-9a-zA-Z-_]+$",
+                "type": "string"
+            },
+            "path_method": {
+                "description": "The project path method to call: project_docs, project_root, project_home",
+                "enum": ["project_docs", "project_root", "project_home"]
+            },
+            "commands": {
+                "description": "A list of shell commands to run to perform this option.",
+                "type": ["string", "array"],
+                "minItems": 1,
+                "items": {
+                    "description": "An individual shell command.",
+                    "type": "string"
+                }
+            },
+            "success": {
+                "description": "A message to display on success.",
+                "type": "string"
+            },
+            "failure": {
+                "description": "A message to display on failure.",
+                "type": "string"
+            },
+            "container_only": {
+                "description": "Restrict this command to inside a managed PIB container.",
+                "type": "boolean"
+            }
+        },
+        "additionalProperties": false,
+        "required":
+        [
+            "name",
+            "path_method",
+            "commands",
+            "success",
+            "failure"
+        ]
+    }
+}

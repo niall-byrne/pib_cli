@@ -5,42 +5,39 @@ from typing import Any, cast
 
 from pib_cli import config
 from pib_cli.config import yaml_keys
+from pib_cli.support.user_configuration.bases import (
+    version_base,
+    version_legacy_base,
+)
+from pib_cli.support.user_configuration.selectors import (
+    command_selector,
+    command_selector_legacy,
+)
 
-from .bases import user_configuration_base
+
+class UserConfigurationV100(
+    version_legacy_base.LegacyUserVersionIntermediateBase,
+):
+  """User configuration for the legacy schema version v1.0.0."""
+
+  version = "1.0.0"
+  selector = command_selector_legacy.LegacyCommandSelector
 
 
 class UserConfigurationV200(
-    user_configuration_base.UserConfigurationVersionBase
+    version_legacy_base.LegacyUserVersionIntermediateBase,
 ):
   """User configuration for schema version v2.0.0."""
 
   version = "2.0.0"
-
-  def get_command_definitions(self) -> Any:
-    """Return the CLI command definitions from the configuration."""
-
-    return self.configuration
-
-  def get_project_name(self) -> str:
-    """Return the project name from the configuration.
-
-    :returns: The configured project name
-    :raises: KeyError
-    """
-
-    project_name = os.getenv(config.ENV_PROJECT_NAME, None)
-
-    if project_name:
-      return project_name
-    raise KeyError(config.ERROR_PROJECT_NAME_NOT_SET)
+  selector = command_selector.CommandSelector
 
 
-class UserConfigurationV210(
-    user_configuration_base.UserConfigurationVersionBase
-):
+class UserConfigurationV210(version_base.UserConfigurationVersionBase):
   """User configuration for schema version v2.1.0."""
 
   version = "2.1.0"
+  selector = command_selector.CommandSelector
 
   def get_command_definitions(self) -> Any:
     """Return the CLI command definitions from the configuration."""

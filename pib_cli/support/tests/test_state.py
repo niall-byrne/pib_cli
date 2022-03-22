@@ -4,7 +4,7 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from pib_cli.support.user_configuration import user_configuration_file
-from pib_cli.support.user_configuration.bases import user_configuration_base
+from pib_cli.support.user_configuration.bases import version_base
 
 from .. import state
 
@@ -19,7 +19,7 @@ class TestRunningConfig(TestCase):
     instance = state.State()
     self.assertIsNone(
         instance.user_config,
-        user_configuration_base.UserConfigurationVersionBase,
+        version_base.UserConfigurationVersionBase,
     )
     self.assertIsNone(
         instance.user_config_file,

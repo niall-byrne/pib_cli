@@ -16,7 +16,8 @@ class UserConfigurationValidator(json_file.JSONFileReader):
   active_schemas: Dict[str, str] = OrderedDict(
       {
           "2.1.0": "cli_base_schema_v2.1.0.json",
-          "2.0.0": "cli_cmd_schema_v0.1.0.json",
+          "2.0.0": "cli_base_schema_v2.0.0.json",
+          "1.0.0": "cli_base_schema_v1.0.0.json",
       }
   )
   _schema_folder = Path(config.__file__).parent / "schemas"

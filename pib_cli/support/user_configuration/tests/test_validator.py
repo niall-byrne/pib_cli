@@ -24,7 +24,8 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
     self.assertDictEqual(
         instance.active_schemas, {
             "2.1.0": "cli_base_schema_v2.1.0.json",
-            "2.0.0": "cli_cmd_schema_v0.1.0.json"
+            "2.0.0": "cli_base_schema_v2.0.0.json",
+            "1.0.0": "cli_base_schema_v1.0.0.json",
         }
     )
 
@@ -35,6 +36,7 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
         instance.schemas, {
             "2.1.0": m_json.return_value,
             "2.0.0": m_json.return_value,
+            "1.0.0": m_json.return_value,
         }
     )
     m_json.assert_any_call(
@@ -44,6 +46,10 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
     m_json.assert_any_call(
         Path(config.__file__).parent / "schemas" /
         instance.active_schemas["2.0.0"]
+    )
+    m_json.assert_any_call(
+        Path(config.__file__).parent / "schemas" /
+        instance.active_schemas["1.0.0"]
     )
 
   @mock.patch(validator.__name__ + ".validate")
@@ -90,23 +96,20 @@ class TestUserConfigurationValidator(yaml_file.YAMLFileReader, TestCase):
   ) -> None:
     m_validate.side_effect = [
         ValidationError("MockValidationError"),
-        ValidationError("MockValidationError")
+        ValidationError("MockValidationError"),
+        ValidationError("MockValidationError"),
     ]
     mock_object = mock.Mock()
     instance = validator.UserConfigurationValidator()
     with self.assertRaises(ValidationError):
       instance.validate(mock_object)
-    m_validate.assert_any_call(
-        mock_object,
-        instance.schemas["2.1.0"],
-        resolver=m_resolver.return_value,
-    )
-    m_validate.assert_any_call(
-        mock_object,
-        instance.schemas["2.0.0"],
-        resolver=m_resolver.return_value,
-    )
-    self.assertEqual(m_validate.call_count, 2)
+    for version in ["2.1.0", "2.0.0", "1.0.0"]:
+      m_validate.assert_any_call(
+          mock_object,
+          instance.schemas[version],
+          resolver=m_resolver.return_value,
+      )
+    self.assertEqual(m_validate.call_count, 3)
 
   def test_validate_default_config(self) -> None:
     valid_config_file = Path(config.__file__).parent / "default_cli_config.yml"

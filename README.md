@@ -128,8 +128,8 @@ The most powerful feature of the `pib_cli` is its ability to customize how it in
 
 **The CLI configuration file is in YAML format, and conforms to [this](https://github.com/niall-byrne/pib_cli/blob/master/pib_cli/config) set of JSON schemas.**
 
-- pib_cli v1.0.0 introduces a new JSON schema version.  **THIS IS A BREAKING CHANGE!**
-- pib_cli v1.2.0 introduces further extensions to the JSON schema but is fully backwards compatible with v1.0.0. 
+- pib_cli v1.0.0 introduces a new JSON schema version.
+- pib_cli v1.2.0 introduces further extensions to the JSON schema but is fully backwards compatible with v1.0.0, and **ALL** legacy configuration files.
 
 **Here's how to provide your own CLI configuration file:**
 

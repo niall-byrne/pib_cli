@@ -1,17 +1,18 @@
 """UserConfigurationVersionBase class."""
 
 import abc
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Type
 
 from pib_cli.config import yaml_keys
 
-from .. import selected
+from . import command_selector_base
 
 
 class UserConfigurationVersionBase:
-  """The base class for a schema version of pib_cli configurations."""
+  """The base class for a schema version of pib_cli configuration."""
 
   version: str
+  selector: Type[command_selector_base.CommandSelectorBase]
 
   def __init__(self, configuration: Any) -> None:
     self.configuration = configuration
@@ -34,7 +35,7 @@ class UserConfigurationVersionBase:
 
   def select_config_entry(
       self, command_name: str
-  ) -> selected.SelectedUserConfigurationEntry:
+  ) -> command_selector_base.CommandSelectorBase:
     """Select the configuration entry of the specified command.
 
     :param command_name: The name of the command to select
@@ -43,6 +44,6 @@ class UserConfigurationVersionBase:
     """
     try:
       entry = self.configuration_command_index[command_name]
-      return selected.SelectedUserConfigurationEntry(entry)
+      return self.selector(entry)
     except KeyError as exc:
       raise KeyError("Could not find command named: %s" % command_name) from exc

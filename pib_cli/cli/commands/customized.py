@@ -8,9 +8,7 @@ from pib_cli import config
 from pib_cli.config.locale import _
 from pib_cli.support import runner
 from pib_cli.support.container import exceptions
-from pib_cli.support.user_configuration.selected import (
-    SelectedUserConfigurationEntry,
-)
+from pib_cli.support.user_configuration.bases import command_selector_base
 
 from .bases import command
 
@@ -26,7 +24,7 @@ class CustomizedCommand(command.CommandBase):
 
   def __init__(
       self,
-      command_configuration: SelectedUserConfigurationEntry,
+      command_configuration: command_selector_base.CommandSelectorBase,
       overload: Tuple[str, ...],
   ) -> None:
     self.command_configuration = command_configuration

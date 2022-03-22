@@ -4,7 +4,8 @@ from typing import cast
 from unittest.mock import Mock, patch
 
 from pib_cli.cli.interface.custom import cli_custom_commands
-from pib_cli.support.user_configuration import selected, user_configuration_file
+from pib_cli.support.user_configuration import user_configuration_file
+from pib_cli.support.user_configuration.selectors import command_selector
 
 from . import cli_harness
 
@@ -15,17 +16,15 @@ class CustomCLIInterfaceTestHarness(cli_harness.CLICommandTestHarness):
   __test__ = False
   cli_command_string: str
 
-  def select_default_config(self) -> selected.SelectedUserConfigurationEntry:
+  def select_default_config(self) -> command_selector.CommandSelector:
     default_config = self.default_config.configuration_command_index[
         self.cli_command_string]
-    selected_default_config = selected.SelectedUserConfigurationEntry(
-        default_config
-    )
+    selected_default_config = command_selector.CommandSelector(default_config)
     return selected_default_config
 
   def setUp(self) -> None:
-    self.default_config = user_configuration_file.UserConfigurationFile().parse(
-    )
+    self.default_config = \
+      user_configuration_file.UserConfigurationFile().parse()
 
   def invoke_custom_command(self) -> Mock:
     with patch(
@@ -38,7 +37,7 @@ class CustomCLIInterfaceTestHarness(cli_harness.CLICommandTestHarness):
     m_command = self.invoke_custom_command()
     _, kwargs = m_command.call_args
     config_object = cast(
-        selected.SelectedUserConfigurationEntry, kwargs['command_configuration']
+        command_selector.CommandSelector, kwargs['command_configuration']
     )
 
     self.assertDictEqual(

@@ -3,7 +3,7 @@
 from typing import Any, Dict, cast
 
 from pib_cli.support.user_configuration import user_configuration_file
-from pib_cli.support.user_configuration.bases import user_configuration_base
+from pib_cli.support.user_configuration.bases import version_base
 
 
 class State:
@@ -19,7 +19,7 @@ class State:
           None,
       )
       self.user_config = cast(
-          user_configuration_base.UserConfigurationVersionBase,
+          version_base.UserConfigurationVersionBase,
           None,
       )
 

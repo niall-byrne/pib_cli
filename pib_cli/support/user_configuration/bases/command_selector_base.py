@@ -1,19 +1,19 @@
-"""SelectedUserConfigurationEntry class."""
+"""CommandSelectorBase class."""
 
+import abc
 from typing import List, Union
 
 from pib_cli.config import yaml_keys
 from pib_cli.support import container
 
 
-class SelectedUserConfigurationEntry:
-  """A parsed end-user configuration entry, ready to use.
-
-  :param user_configuration: A Python object for the YAML configuration.
-  """
+class CommandSelectorBase(abc.ABC):
+  """A parsed end-user configuration entry, ready to use."""
 
   def __init__(
-      self, user_configuration: yaml_keys.TypeUserConfiguration
+      self,
+      user_configuration: Union[yaml_keys.TypeLegacyUserConfiguration,
+                                yaml_keys.TypeUserConfiguration],
   ) -> None:
     self.container = container.DevContainer()
     self.user_configuration = user_configuration
@@ -27,12 +27,9 @@ class SelectedUserConfigurationEntry:
       return [command]
     return command
 
+  @abc.abstractmethod
   def get_config_path_method(self) -> str:
-    """Return the path method associated with the selected yaml config.
-
-    :returns: The name of the path method from the selected yaml config.
-    """
-    return self.user_configuration[yaml_keys.PATH_METHOD]
+    """Return the path method associated with the selected yaml config."""
 
   def get_config_commands(self) -> List[str]:
     """Return the commands section of the selected yaml config.

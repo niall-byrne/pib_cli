@@ -11,9 +11,9 @@ from pib_cli.support import path_map
 from pib_cli.support.mixins import text_file, yaml_file
 
 from . import validator, versions
-from .bases import user_configuration_base
+from .bases import version_base
 
-TypeVersion = Type[user_configuration_base.UserConfigurationVersionBase]
+TypeVersion = Type[version_base.UserConfigurationVersionBase]
 
 
 class UserConfigurationFile(yaml_file.YAMLFileReader, text_file.TextFileReader):
@@ -22,6 +22,7 @@ class UserConfigurationFile(yaml_file.YAMLFileReader, text_file.TextFileReader):
   supported_versions: List[TypeVersion] = [
       versions.UserConfigurationV210,
       versions.UserConfigurationV200,
+      versions.UserConfigurationV100,
   ]
 
   def __init__(self, config_file: Optional[str] = None) -> None:
@@ -65,7 +66,7 @@ class UserConfigurationFile(yaml_file.YAMLFileReader, text_file.TextFileReader):
 
     return self.load_text_file(self.get_config_file_name()).rstrip()
 
-  def parse(self) -> user_configuration_base.UserConfigurationVersionBase:
+  def parse(self) -> version_base.UserConfigurationVersionBase:
     """Load, validate and detect the version of the UserConfiguration.
 
     :returns: A class representing the detected version of config.

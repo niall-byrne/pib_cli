@@ -9,7 +9,7 @@ import click
 from click.testing import CliRunner
 from pib_cli.config import yaml_keys
 from pib_cli.support import state
-from pib_cli.support.user_configuration.bases import user_configuration_base
+from pib_cli.support.user_configuration.bases import version_base
 
 from .. import cli_custom_commands
 
@@ -76,7 +76,7 @@ class TestCustomClickCommandIterator(TestCase):
     with ExitStack() as stack:
       m_select = stack.enter_context(
           patch(
-              user_configuration_base.__name__ +
+              version_base.__name__ +
               ".UserConfigurationVersionBase.select_config_entry"
           )
       )

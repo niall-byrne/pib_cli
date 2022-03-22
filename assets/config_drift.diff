@@ -70,6 +70,10 @@
 <       - "poetry install -E pib_docs"
 ---
 >       - "poetry install"
+97c47
+<       - 'bandit -r "${PROJECT_NAME}" -c pyproject.toml -x tests'
+---
+>       - 'bandit -r "${PROJECT_NAME}" -x tests'
 99c49
 <       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
