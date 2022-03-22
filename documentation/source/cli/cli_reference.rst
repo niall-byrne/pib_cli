@@ -1,10 +1,20 @@
-PIB CLI User Guide
-==================
+CLI Reference
+=============
+
+There are two categories of `pib_cli` commands:
+
+- internal commands
+- customizable commands
+
+While the internal commands are statically defined, you have complete control over the customizable commands.
+
+`pib_cli` ships with some default customized commands that you can use with your project right away.
+
 
 PIB CLI Internal Commands
 -------------------------
 
-This commands allow you to introspect the pib_cli application itself:
+These commands allow you to interact with the `pib_cli` application itself:
 
 .. click:: pib_cli.cli.interface.builtins:builtin_commands
     :prog: dev @pib
@@ -13,7 +23,7 @@ This commands allow you to introspect the pib_cli application itself:
 PIB CLI Default Custom Commands
 -------------------------------
 
-These are the default configuration based commands shipped with pib_cli:
+These are the default configuration based commands shipped with `pib_cli`:
 
 .. click:: pib_cli.cli.interface.custom:document_custom_commands
     :prog: dev

@@ -17,6 +17,7 @@ check_python_translations() {
 
 check_sphinx_translations() {
   pushd documentation > /dev/null 2>&1 || exit 127
+    pandoc ../README.md --from markdown --to rst --columns=100 -s -o source/project/introduction.rst
     make gettext > /dev/null 2>&1
     sphinx-intl update -p build/gettext -l en > /dev/null 2>&1
   popd > /dev/null 2>&1

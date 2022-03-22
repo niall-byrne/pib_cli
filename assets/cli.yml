@@ -28,6 +28,7 @@ cli_definition:
     commands:
       - '[ ! -d build/gettext ] || rm -rf build/gettext'
       - '[ ! -d "./source/codebase/${PIB_PROJECT_NAME}/${PIB_PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PIB_PROJECT_NAME}/${PIB_PROJECT_NAME}/_autosummary"'
+      - pandoc ../README.md --from markdown --to rst --columns=100 -s -o source/project/introduction.rst
       - |
         env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
           make gettext &&

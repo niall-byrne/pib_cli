@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 18:19+0000\n"
+"POT-Creation-Date: 2022-03-25 16:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../source/index.rst:4
+#: ../../source/index.rst:6
 msgid "Contents:"
 msgstr ""
 
 #: ../../source/index.rst:2
-msgid "PIB CLI's documentation"
+msgid "pib_cli"
 msgstr ""
 
-#: ../../source/index.rst:16
-msgid "Indices and tables"
-msgstr ""
-
-#: ../../source/index.rst:18
-msgid ":ref:`genindex`"
+#: ../../source/index.rst:4
+msgid "A development environment CLI, with a customizable YAML config."
 msgstr ""
 
 #: ../../source/index.rst:19
+msgid "Indices and tables"
+msgstr ""
+
+#: ../../source/index.rst:21
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../source/index.rst:22
 msgid ":ref:`modindex`"
 msgstr ""
 
-#: ../../source/index.rst:20
+#: ../../source/index.rst:23
 msgid ":ref:`search`"
 msgstr ""
+
+#~ msgid "PIB CLI's documentation"
+#~ msgstr ""
 

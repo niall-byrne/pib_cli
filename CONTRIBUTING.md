@@ -1,6 +1,6 @@
 # PIB CLI Development Guide
 
-A development environment CLI, complete with tooling.
+A batteries included [make](https://www.gnu.org/software/make/) style CLI for [python](https://python.org) projects in [git](https://git-scm.com/) repositories.
 
 [Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
 
@@ -24,3 +24,13 @@ Start the environment container:
 Spawn a shell inside the container:
 
 - `./container`
+
+## Environment Variables in the Dev Environment
+
+Developing `pib_cli` is a bit of a chicken and egg problem, as the project makes use of itself during development.
+
+To manage this, the `default config` is activated during the execution of tests, linting, etc.  You can see this [here](./assets/cli.yml).
+
+## Deviations from PEP
+
+I prefer to use a two-space indent, and so [yapf](https://github.com/google/yapf) is configured this way.  Please use the `dev fmt` command to match style on commits.

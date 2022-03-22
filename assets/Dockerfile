@@ -70,6 +70,7 @@ RUN apt-get update                      && \
     golang-github-pelletier-go-toml=1.8.*  \
     jq=1.6*                                \
     openssh-client=1:8.*                   \
+    pandoc=2.*                             \
     shellcheck=0.7.*                       \
     sudo=1.9.*                             \
     tig=2.5.*                              \

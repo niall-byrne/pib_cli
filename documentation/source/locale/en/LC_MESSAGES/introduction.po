@@ -1,0 +1,2171 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Niall Byrne
+# This file is distributed under the same license as the pib_cli package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pib_cli \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-25 19:28+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/introduction.rst:2
+msgid "PIB CLI"
+msgstr ""
+
+#: ../../source/introduction.rst:4
+msgid ""
+"A batteries included `make <https://www.gnu.org/software/make/>`__ style "
+"CLI for `python <https://python.org>`__ projects in `git <https://git-"
+"scm.com/>`__ repositories."
+msgstr ""
+
+#: ../../source/introduction.rst:7
+msgid "`Project Documentation <https://pib_cli.readthedocs.io/en/latest/>`__"
+msgstr ""
+
+#: ../../source/introduction.rst:10
+msgid "Master Branch"
+msgstr ""
+
+#: ../../source/introduction.rst:12 ../../source/introduction.rst:17
+msgid "|pib_cli-automation|"
+msgstr ""
+
+#: ../../source/introduction.rst
+msgid "pib_cli-automation"
+msgstr ""
+
+#: ../../source/introduction.rst:15
+msgid "Production Branch"
+msgstr ""
+
+#: ../../source/introduction.rst:20
+msgid "Documentation Builds"
+msgstr ""
+
+#: ../../source/introduction.rst:22
+msgid "|Documentation Status|"
+msgstr ""
+
+#: ../../source/introduction.rst
+msgid "Documentation Status"
+msgstr ""
+
+#: ../../source/introduction.rst:25
+msgid "Supported Python Versions"
+msgstr ""
+
+#: ../../source/introduction.rst:27
+msgid "Tested to work with the following Python versions:"
+msgstr ""
+
+#: ../../source/introduction.rst:29
+msgid "Python 3.7"
+msgstr ""
+
+#: ../../source/introduction.rst:30
+msgid "Python 3.8"
+msgstr ""
+
+#: ../../source/introduction.rst:31
+msgid "Python 3.9"
+msgstr ""
+
+#: ../../source/introduction.rst:32
+msgid "Python 3.10"
+msgstr ""
+
+#: ../../source/introduction.rst:35
+msgid "Installation"
+msgstr ""
+
+#: ../../source/introduction.rst:37
+msgid "To install, simply use:"
+msgstr ""
+
+#: ../../source/introduction.rst:39
+msgid "``pip install pib_cli``"
+msgstr ""
+
+#: ../../source/introduction.rst:40
+msgid ""
+"``pip install pib_cli[docs]`` (Adds `Sphinx <https://www.sphinx-"
+"doc.org/en/master/>`__ support.)"
+msgstr ""
+
+#: ../../source/introduction.rst:41
+msgid ""
+"``pip install pib_cli[docstrings]`` (Adds `pydocstyle "
+"<http://www.pydocstyle.org/en/stable/>`__ support.)"
+msgstr ""
+
+#: ../../source/introduction.rst:42
+msgid ""
+"``pip install pib_cli[types]`` (Adds `mypy <http://mypy-lang.org/>`__ "
+"support.)"
+msgstr ""
+
+#: ../../source/introduction.rst:45
+msgid "Usage"
+msgstr ""
+
+#: ../../source/introduction.rst:47
+msgid "The CLI itself is launched with the ``dev`` command."
+msgstr ""
+
+#: ../../source/introduction.rst:48
+msgid "Try ``dev --help`` for details."
+msgstr ""
+
+#: ../../source/introduction.rst:51
+msgid "With Cookiecutter"
+msgstr ""
+
+#: ../../source/introduction.rst:53
+msgid ""
+"``pib_cli`` is also baked into this `Cookie Cutter "
+"<https://github.com/cookiecutter/cookiecutter>`__ template:"
+msgstr ""
+
+#: ../../source/introduction.rst:55
+msgid "`Python In A Box <https://github.com/niall-byrne/python-in-a-box>`__"
+msgstr ""
+
+#: ../../source/introduction.rst:58
+msgid "License"
+msgstr ""
+
+#: ../../source/introduction.rst:60
+msgid "`MPL-2 <https://github.com/niall-byrne/pib_cli/blob/master/LICENSE>`__"
+msgstr ""
+
+#: ../../source/introduction.rst:63
+msgid "Included Packages"
+msgstr ""
+
+#: ../../source/introduction.rst:65
+msgid ""
+"As it’s batteries included, ``pib_cli`` ships with a slightly opinionated"
+" list of popular development packages. You can customize the exact mix by"
+" specifying one or more `extras "
+"<https://packaging.python.org/en/latest/guides/installing-using-pip-and-"
+"virtual-environments/?highlight=extras#installing-extras>`__ when "
+"installing the package."
+msgstr ""
+
+#: ../../source/introduction.rst:71
+msgid "Core Installed Packages"
+msgstr ""
+
+#: ../../source/introduction.rst:74 ../../source/introduction.rst:94
+#: ../../source/introduction.rst:109 ../../source/introduction.rst:123
+#: ../../source/introduction.rst:134 ../../source/introduction.rst:145
+msgid "package"
+msgstr ""
+
+#: ../../source/introduction.rst:74 ../../source/introduction.rst:94
+#: ../../source/introduction.rst:109 ../../source/introduction.rst:123
+#: ../../source/introduction.rst:134 ../../source/introduction.rst:145
+msgid "Description"
+msgstr ""
+
+#: ../../source/introduction.rst:76
+msgid "bandit"
+msgstr ""
+
+#: ../../source/introduction.rst:76
+msgid "Finds common security issues"
+msgstr ""
+
+#: ../../source/introduction.rst:77
+msgid "commitizen"
+msgstr ""
+
+#: ../../source/introduction.rst:77
+msgid "Standardizes commit messages"
+msgstr ""
+
+#: ../../source/introduction.rst:78
+msgid "isort"
+msgstr ""
+
+#: ../../source/introduction.rst:78
+msgid "Sorts imports"
+msgstr ""
+
+#: ../../source/introduction.rst:79
+msgid "pre-commit"
+msgstr ""
+
+#: ../../source/introduction.rst:79
+msgid "Pre-commit hook manager"
+msgstr ""
+
+#: ../../source/introduction.rst:80
+msgid "pylint"
+msgstr ""
+
+#: ../../source/introduction.rst:80
+msgid "Static code analysis"
+msgstr ""
+
+#: ../../source/introduction.rst:81
+msgid "pytest"
+msgstr ""
+
+#: ../../source/introduction.rst:81
+msgid "Testing with Python"
+msgstr ""
+
+#: ../../source/introduction.rst:82
+msgid "pytest-cov"
+msgstr ""
+
+#: ../../source/introduction.rst:82
+msgid "Coverage support for pytest"
+msgstr ""
+
+#: ../../source/introduction.rst:83
+msgid "pytest-pylint"
+msgstr ""
+
+#: ../../source/introduction.rst:83
+msgid "Pylint support for pytest"
+msgstr ""
+
+#: ../../source/introduction.rst:84
+msgid "safety"
+msgstr ""
+
+#: ../../source/introduction.rst:84
+msgid "Dependency vulnerability scanning"
+msgstr ""
+
+#: ../../source/introduction.rst:85
+msgid "wheel"
+msgstr ""
+
+#: ../../source/introduction.rst:85
+msgid "Package distribution tools"
+msgstr ""
+
+#: ../../source/introduction.rst:86
+msgid "yamllint"
+msgstr ""
+
+#: ../../source/introduction.rst:86
+msgid "Lint YAML configuration files"
+msgstr ""
+
+#: ../../source/introduction.rst:87
+msgid "yapf"
+msgstr ""
+
+#: ../../source/introduction.rst:87
+msgid "Customizable code formatting"
+msgstr ""
+
+#: ../../source/introduction.rst:91
+msgid "Installed and required by ``pib_cli``"
+msgstr ""
+
+#: ../../source/introduction.rst:96
+msgid "click"
+msgstr ""
+
+#: ../../source/introduction.rst:96
+msgid "Command line interface toolkit"
+msgstr ""
+
+#: ../../source/introduction.rst:97
+msgid "jsonschema"
+msgstr ""
+
+#: ../../source/introduction.rst:97
+msgid "JSON Schema validation for Python"
+msgstr ""
+
+#: ../../source/introduction.rst:98
+msgid "GitPython"
+msgstr ""
+
+#: ../../source/introduction.rst:98
+msgid "Interact with Git repositories"
+msgstr ""
+
+#: ../../source/introduction.rst:99
+msgid "PyYAML"
+msgstr ""
+
+#: ../../source/introduction.rst:99
+msgid "YAML parser and emitter for Python"
+msgstr ""
+
+#: ../../source/introduction.rst:102
+msgid "``pip install pib_cli`` to install only these dependencies."
+msgstr ""
+
+#: ../../source/introduction.rst:103
+msgid ""
+"These become indirect **development** dependencies of **YOUR** project, "
+"so it’s good to keep that in mind."
+msgstr ""
+
+#: ../../source/introduction.rst:106
+msgid "‘docs’ extras"
+msgstr ""
+
+#: ../../source/introduction.rst:111
+msgid "darglint"
+msgstr ""
+
+#: ../../source/introduction.rst:111
+msgid "Sphinx style guide enforcement"
+msgstr ""
+
+#: ../../source/introduction.rst:112 ../../source/introduction.rst:147
+msgid "sphinx"
+msgstr ""
+
+#: ../../source/introduction.rst:112 ../../source/introduction.rst:147
+msgid "Python documentation generator"
+msgstr ""
+
+#: ../../source/introduction.rst:113 ../../source/introduction.rst:148
+msgid "sphinx-autopackagesummary"
+msgstr ""
+
+#: ../../source/introduction.rst:113
+msgid "Template nested module content"
+msgstr ""
+
+#: ../../source/introduction.rst:114 ../../source/introduction.rst:152
+msgid "sphinx_rtd_theme"
+msgstr ""
+
+#: ../../source/introduction.rst:114 ../../source/introduction.rst:152
+msgid "The `Read the Docs <https://readthedocs.org/>`__ Sphinx theme"
+msgstr ""
+
+#: ../../source/introduction.rst:117
+msgid ""
+"``pip install pib_cli[docs]`` to add these dependencies to the core "
+"installation."
+msgstr ""
+
+#: ../../source/introduction.rst:120
+msgid "‘docstrings’ extras"
+msgstr ""
+
+#: ../../source/introduction.rst:125
+msgid "pydocstyle"
+msgstr ""
+
+#: ../../source/introduction.rst:125
+msgid "PEP 257 enforcement"
+msgstr ""
+
+#: ../../source/introduction.rst:128
+msgid ""
+"``pip install[docstrings]`` to add these dependencies to the core "
+"installation."
+msgstr ""
+
+#: ../../source/introduction.rst:131
+msgid "‘types’ extras"
+msgstr ""
+
+#: ../../source/introduction.rst:136
+msgid "mypy"
+msgstr ""
+
+#: ../../source/introduction.rst:136
+msgid "Static type checker"
+msgstr ""
+
+#: ../../source/introduction.rst:139
+msgid ""
+"``pip install pib_cli[types]`` to add these dependencies to the core "
+"installation."
+msgstr ""
+
+#: ../../source/introduction.rst:142
+msgid "‘pib_docs’ extras"
+msgstr ""
+
+#: ../../source/introduction.rst:148
+msgid "Templates nested module content"
+msgstr ""
+
+#: ../../source/introduction.rst:149
+msgid "sphinx-click"
+msgstr ""
+
+#: ../../source/introduction.rst:149
+msgid "Generates CLI documentation"
+msgstr ""
+
+#: ../../source/introduction.rst:150
+msgid "sphinx-intl"
+msgstr ""
+
+#: ../../source/introduction.rst:150
+msgid "Generates documentation translations"
+msgstr ""
+
+#: ../../source/introduction.rst:151
+msgid "sphinx-jsonschema"
+msgstr ""
+
+#: ../../source/introduction.rst:151
+msgid "Generates JSON schema documentation"
+msgstr ""
+
+#: ../../source/introduction.rst:155
+msgid ""
+"``pip install pib_cli[pib_docs]`` to add these dependencies to the core "
+"installation."
+msgstr ""
+
+#: ../../source/introduction.rst:156
+msgid ""
+"These extras exist only to support building ``pib_cli`` documentation- "
+"they aren’t meant to be consumed by user projects."
+msgstr ""
+
+#: ../../source/introduction.rst:160
+msgid "Installing Multiple Extras"
+msgstr ""
+
+#: ../../source/introduction.rst:162
+msgid "This is straightforward to do:"
+msgstr ""
+
+#: ../../source/introduction.rst:164
+msgid "``pip install pib_cli[docs,docstrings,types]``"
+msgstr ""
+
+#: ../../source/introduction.rst:167
+msgid "Customizing the Command Line Interface"
+msgstr ""
+
+#: ../../source/introduction.rst:169
+msgid ""
+"The most powerful feature of ``pib_cli`` is its ability to customize how "
+"it interacts with the packages it brings to your project. In this way "
+"it’s very similar to the standard Linux `make "
+"<https://www.gnu.org/software/make/>`__ command- with the notable "
+"difference being that ``pib_cli`` is packaged with a suite of Python "
+"libraries."
+msgstr ""
+
+#: ../../source/introduction.rst:173
+msgid ""
+"**The CLI configuration file is in YAML format, and conforms to**\\ `this"
+" <https://github.com/niall-"
+"byrne/pib_cli/blob/master/pib_cli/config/schemas>`__\\ **set of JSON "
+"schemas.**"
+msgstr ""
+
+#: ../../source/introduction.rst:176
+msgid ""
+"pib_cli v1.0.0 introduces a `new JSON schema version <https://github.com"
+"/niall-"
+"byrne/pib_cli/blob/master/pib_cli/config/schemas/cli_base_schema_v2.0.0.json>`__."
+msgstr ""
+
+#: ../../source/introduction.rst:178
+msgid ""
+"pib_cli v1.2.0 introduces `further refinements to the JSON schema "
+"<https://github.com/niall-"
+"byrne/pib_cli/blob/master/pib_cli/config/schemas/cli_base_schema_v2.1.0.json>`__"
+" but is fully backwards compatible with v1.0.0, and **ALL** legacy "
+"configuration files."
+msgstr ""
+
+#: ../../source/introduction.rst:183
+msgid "Creating a ``.pib.yml`` File"
+msgstr ""
+
+#: ../../source/introduction.rst:185
+msgid ""
+"The ``.pib.yml`` file is where you can take control, and customize "
+"``pib_cli`` behaviour to suit your particular needs. This file should "
+"adhere to the specification detailed above- read on for further detail."
+msgstr ""
+
+#: ../../source/introduction.rst:188
+msgid ""
+"The top level of your ``.pib.yml`` file should include metadata "
+"information. This metadata is used to tell ``pib_cli`` where to find your"
+" project’s codebase and any documentation (Sphinx) definitions."
+msgstr ""
+
+#: ../../source/introduction.rst:199
+msgid ""
+"The ``cli_definition`` section is mandatory, and ``pib_cli`` will throw "
+"an error if it’s missing."
+msgstr ""
+
+#: ../../source/introduction.rst:200
+msgid ""
+"The metadata itself though is actually optional, and can also be declared"
+" using environment variables."
+msgstr ""
+
+#: ../../source/introduction.rst:202
+msgid "**Understanding ``pib_cli`` metadata**"
+msgstr ""
+
+#: ../../source/introduction.rst:204
+msgid ""
+"Metadata tells ``pib_cli`` where to find your project’s files, so it’s "
+"important to set these values appropriately:"
+msgstr ""
+
+#: ../../source/introduction.rst:206
+msgid ""
+"``project_name`` is your project’s name from a Python perspective. It’s "
+"the top level folder (inside your git repository) that houses your "
+"codebase, such that ``from <project_name> import *`` would be accessing "
+"your codebase."
+msgstr ""
+
+#: ../../source/introduction.rst:208
+msgid ""
+"``documentation_root`` is a relative path from your repository’s root to "
+"a folder containing a Sphinx Makefile. This is purely a convenience "
+"definition for any documentation related commands."
+msgstr ""
+
+#: ../../source/introduction.rst:211
+msgid "**Environment Variables and ``pib_cli``**"
+msgstr ""
+
+#: ../../source/introduction.rst:213
+msgid ""
+"You may also define your project’s metadata by setting environment "
+"variables. This would allow you to reuse the same CLI configuration for "
+"multiple projects:"
+msgstr ""
+
+#: ../../source/introduction.rst:216
+msgid ""
+"``project_name`` can also be defined by ``PIB_PROJECT_NAME`` environment "
+"variable"
+msgstr ""
+
+#: ../../source/introduction.rst:217
+msgid ""
+"``documentation_root`` can also be defined by the "
+"``PIB_DOCUMENTATION_ROOT`` environment variable"
+msgstr ""
+
+#: ../../source/introduction.rst:219
+msgid ""
+"When configuration AND environment variables exist, ``pib_cli`` will "
+"**prefer to use environment variable values**."
+msgstr ""
+
+#: ../../source/introduction.rst:221
+msgid "**Environment Variables and ``pib_cli`` commands**"
+msgstr ""
+
+#: ../../source/introduction.rst:223
+msgid ""
+"Regardless of whether you have used configuration or environment "
+"variables, when your CLI commands are executed, the environment variables"
+" will be available in the shell:"
+msgstr ""
+
+#: ../../source/introduction.rst:226
+msgid ""
+"``PIB_PROJECT_NAME`` will always be defined and accessible from inside "
+"the shell"
+msgstr ""
+
+#: ../../source/introduction.rst:227
+msgid ""
+"``PIB_DOCUMENTATION_ROOT`` will always be defined and accessible from "
+"inside the shell"
+msgstr ""
+
+#: ../../source/introduction.rst:230
+msgid "Adding a CLI Definition to a ``.pib.yml`` File"
+msgstr ""
+
+#: ../../source/introduction.rst:232
+msgid ""
+"The ``cli_definition`` YAML key, should contain a list of definitions for"
+" CLI commands you wish to use."
+msgstr ""
+
+#: ../../source/introduction.rst:234
+msgid ""
+"Each command should adhere to this format (and you can have many commands"
+" for whatever tasks you need to perform):"
+msgstr ""
+
+#: ../../source/introduction.rst:252
+msgid "Notes on this configuration format:"
+msgstr ""
+
+#: ../../source/introduction.rst:254
+msgid ""
+"``container_only`` restricts the command to working only inside a "
+"`Python-in-a-Box <https://github.com/niall-byrne/python-in-a-box>`__ "
+"container environment. (Completely optional key to include, defaults to "
+"``false``.)"
+msgstr ""
+
+#: ../../source/introduction.rst:257
+msgid "``path`` must be one of:"
+msgstr ""
+
+#: ../../source/introduction.rst:259
+msgid "``repo_root`` (The root folder of your code repository.)"
+msgstr ""
+
+#: ../../source/introduction.rst:260
+msgid ""
+"``documentation_root`` (Defaults to the folder ``documentation``, can be "
+"customized with metadata or environment variables.)"
+msgstr ""
+
+#: ../../source/introduction.rst:262
+msgid ""
+"``project_root`` (The ``project_name`` folder as defined with metadata or"
+" environment variables.)"
+msgstr ""
+
+#: ../../source/introduction.rst:265
+msgid "Validating a ``.pib.yml`` File"
+msgstr ""
+
+#: ../../source/introduction.rst:267
+msgid ""
+"Use ``pib_cli`` to validate new configuration files before activating "
+"them:"
+msgstr ""
+
+#: ../../source/introduction.rst:269
+msgid "``dev @pib config -c <path to your file> validate``"
+msgstr ""
+
+#: ../../source/introduction.rst:272
+msgid "Activating a ``.pib.yml`` File"
+msgstr ""
+
+#: ../../source/introduction.rst:274
+msgid "To ``activate`` your configuration, use one of the following methods:"
+msgstr ""
+
+#: ../../source/introduction.rst:276
+msgid ""
+"You can set the environment variable ``PIB_CONFIG_FILE_LOCATION`` to the "
+"absolute path where the file is located."
+msgstr ""
+
+#: ../../source/introduction.rst:277
+msgid ""
+"Or just move your new ``.pib.yml`` file to the top level folder (the "
+"repository root) of your project."
+msgstr ""
+
+#: ../../source/introduction.rst:279
+msgid "Use the command ``dev @pib config where`` to confirm it’s been activated."
+msgstr ""
+
+#: ../../source/introduction.rst:281
+msgid ""
+"If a ``.pib.yml`` file cannot be found with either of these methods, then"
+" the `default config <https://github.com/niall-"
+"byrne/pib_cli/blob/master/pib_cli/config/default_cli_config.yml>`__ will "
+"be used."
+msgstr ""
+
+#: ../../source/introduction.rst:285
+msgid "Development Guide for ``pib_cli``"
+msgstr ""
+
+#: ../../source/introduction.rst:287
+msgid ""
+"Please see the documentation `here <https://github.com/niall-"
+"byrne/pib_cli/blob/master/CONTRIBUTING.md>`__."
+msgstr ""
+
+#: ../../source/introduction.rst:290
+msgid "Environment Variable Summary"
+msgstr ""
+
+#: ../../source/introduction.rst:292
+msgid ""
+"This table summarizes the environment variables that can be used with "
+"``pib_cli``:"
+msgstr ""
+
+#: ../../source/introduction.rst:295
+msgid "Name"
+msgstr ""
+
+#: ../../source/introduction.rst:295
+msgid "Purpose"
+msgstr ""
+
+#: ../../source/introduction.rst:297
+msgid "PIB_CONFIG_FILE_LOCATION"
+msgstr ""
+
+#: ../../source/introduction.rst:297
+msgid "The absolute path to the configuration file that should be used."
+msgstr ""
+
+#: ../../source/introduction.rst:298
+msgid "PIB_DOCUMENTATION_ROOT"
+msgstr ""
+
+#: ../../source/introduction.rst:298
+msgid "A relative path from the repository root where a Sphinx Makefile lives."
+msgstr ""
+
+#: ../../source/introduction.rst:299
+msgid "PIB_OVERLOAD_ARGUMENTS"
+msgstr ""
+
+#: ../../source/introduction.rst:299
+msgid "Reserved to pass arguments to customized CLI commands."
+msgstr ""
+
+#: ../../source/introduction.rst:300
+msgid "PIB_PROJECT_NAME"
+msgstr ""
+
+#: ../../source/introduction.rst:300
+msgid "The top level folder in the repository where the codebase is found."
+msgstr ""
+
+#~ msgid "Supported Python Versions"
+#~ msgstr ""
+
+#~ msgid "Tested to work with the following Python versions:"
+#~ msgstr ""
+
+#~ msgid "Python 3.7"
+#~ msgstr ""
+
+#~ msgid "Python 3.8"
+#~ msgstr ""
+
+#~ msgid "Python 3.9"
+#~ msgstr ""
+
+#~ msgid "Python 3.10"
+#~ msgstr ""
+
+#~ msgid "Installation"
+#~ msgstr ""
+
+#~ msgid "To install, simply use:"
+#~ msgstr ""
+
+#~ msgid "`pip install pib_cli`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib_cli[docs]` (Adds "
+#~ "[Sphinx](https://www.sphinx-doc.org/en/master/) support.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib_cli[docstrings]` (Adds "
+#~ "[pydocstyle](http://www.pydocstyle.org/en/stable/) support.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib_cli[types]` (Adds [mypy](http"
+#~ "://mypy-lang.org/) support.)"
+#~ msgstr ""
+
+#~ msgid "Usage"
+#~ msgstr ""
+
+#~ msgid "The CLI itself is launched with the `dev` command."
+#~ msgstr ""
+
+#~ msgid "Try `dev --help` for details."
+#~ msgstr ""
+
+#~ msgid "With Cookiecutter"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pib_cli` is also baked into this "
+#~ "[Cookie Cutter](https://github.com/cookiecutter/cookiecutter)"
+#~ " template:"
+#~ msgstr ""
+
+#~ msgid "[Python In A Box](https://github.com/niall-byrne/python-in-a-box)"
+#~ msgstr ""
+
+#~ msgid "License"
+#~ msgstr ""
+
+#~ msgid "[MPL-2](https://github.com/niall-byrne/pib_cli/blob/master/LICENSE)"
+#~ msgstr ""
+
+#~ msgid "Included Packages"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "As it's batteries included, `pib_cli` "
+#~ "ships with a slightly opinionated list"
+#~ " of popular development packages.  You "
+#~ "can customize the exact mix by "
+#~ "specifying one or more "
+#~ "[extras](https://packaging.python.org/en/latest/guides/installing-"
+#~ "using-pip-and-virtual-"
+#~ "environments/?highlight=extras#installing-extras) when "
+#~ "installing the package."
+#~ msgstr ""
+
+#~ msgid "Core Installed Packages"
+#~ msgstr ""
+
+#~ msgid "package"
+#~ msgstr ""
+
+#~ msgid "Description"
+#~ msgstr ""
+
+#~ msgid "bandit"
+#~ msgstr ""
+
+#~ msgid "Finds common security issues"
+#~ msgstr ""
+
+#~ msgid "commitizen"
+#~ msgstr ""
+
+#~ msgid "Standardizes commit messages"
+#~ msgstr ""
+
+#~ msgid "isort"
+#~ msgstr ""
+
+#~ msgid "Sorts imports"
+#~ msgstr ""
+
+#~ msgid "pre-commit"
+#~ msgstr ""
+
+#~ msgid "Pre-commit hook manager"
+#~ msgstr ""
+
+#~ msgid "pylint"
+#~ msgstr ""
+
+#~ msgid "Static code analysis"
+#~ msgstr ""
+
+#~ msgid "pytest"
+#~ msgstr ""
+
+#~ msgid "Testing with Python"
+#~ msgstr ""
+
+#~ msgid "pytest-cov"
+#~ msgstr ""
+
+#~ msgid "Coverage support for pytest"
+#~ msgstr ""
+
+#~ msgid "pytest-pylint"
+#~ msgstr ""
+
+#~ msgid "Pylint support for pytest"
+#~ msgstr ""
+
+#~ msgid "safety"
+#~ msgstr ""
+
+#~ msgid "Dependency vulnerability scanning"
+#~ msgstr ""
+
+#~ msgid "wheel"
+#~ msgstr ""
+
+#~ msgid "Package distribution tools"
+#~ msgstr ""
+
+#~ msgid "yamllint"
+#~ msgstr ""
+
+#~ msgid "Lint YAML configuration files"
+#~ msgstr ""
+
+#~ msgid "yapf"
+#~ msgstr ""
+
+#~ msgid "Customizable code formatting"
+#~ msgstr ""
+
+#~ msgid "Installed and required by `pib_cli`"
+#~ msgstr ""
+
+#~ msgid "click"
+#~ msgstr ""
+
+#~ msgid "Command line interface toolkit"
+#~ msgstr ""
+
+#~ msgid "jsonschema"
+#~ msgstr ""
+
+#~ msgid "JSON Schema validation for Python"
+#~ msgstr ""
+
+#~ msgid "GitPython"
+#~ msgstr ""
+
+#~ msgid "Interact with Git repositories"
+#~ msgstr ""
+
+#~ msgid "PyYAML"
+#~ msgstr ""
+
+#~ msgid "YAML parser and emitter for Python"
+#~ msgstr ""
+
+#~ msgid "`pip install pib_cli` to install only these dependencies."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "These become indirect **development** "
+#~ "dependencies of **YOUR** project, so "
+#~ "it's good to keep that in mind."
+#~ msgstr ""
+
+#~ msgid "'docs' extras"
+#~ msgstr ""
+
+#~ msgid "darglint"
+#~ msgstr ""
+
+#~ msgid "Sphinx style guide enforcement"
+#~ msgstr ""
+
+#~ msgid "sphinx"
+#~ msgstr ""
+
+#~ msgid "Generating documentation"
+#~ msgstr ""
+
+#~ msgid "sphinx-autopackagesummary"
+#~ msgstr ""
+
+#~ msgid "Template nested module content"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib_cli[docs]` to add these"
+#~ " dependencies to the core installation."
+#~ msgstr ""
+
+#~ msgid "'docstrings' extras"
+#~ msgstr ""
+
+#~ msgid "pydocstyle"
+#~ msgstr ""
+
+#~ msgid "PEP 257 enforcement"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install[docstrings]` to add these "
+#~ "dependencies to the core installation."
+#~ msgstr ""
+
+#~ msgid "'types' extras"
+#~ msgstr ""
+
+#~ msgid "mypy"
+#~ msgstr ""
+
+#~ msgid "Static type checker"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib_cli[types]` to add "
+#~ "these dependencies to the core "
+#~ "installation."
+#~ msgstr ""
+
+#~ msgid "'pib_docs' extras"
+#~ msgstr ""
+
+#~ msgid "Generates documentation"
+#~ msgstr ""
+
+#~ msgid "Templates nested module content"
+#~ msgstr ""
+
+#~ msgid "sphinx-click"
+#~ msgstr ""
+
+#~ msgid "Generates CLI documentation"
+#~ msgstr ""
+
+#~ msgid "sphinx-intl"
+#~ msgstr ""
+
+#~ msgid "Generates documentation translations"
+#~ msgstr ""
+
+#~ msgid "sphinx-jsonschema"
+#~ msgstr ""
+
+#~ msgid "Generates JSON schema documentation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib_cli[pib_docs]` to add "
+#~ "these dependencies to the core "
+#~ "installation."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "These extras exist only to support "
+#~ "building `pib_cli` documentation- they aren't"
+#~ " meant to be consumed by user "
+#~ "projects."
+#~ msgstr ""
+
+#~ msgid "Installing Multiple Extras"
+#~ msgstr ""
+
+#~ msgid "This is straightforward to do:"
+#~ msgstr ""
+
+#~ msgid "`pip install pib_cli[docs,docstrings,types]`"
+#~ msgstr ""
+
+#~ msgid "Customizing the Command Line Interface"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The most powerful feature of the "
+#~ "`pib_cli` is its ability to customize"
+#~ " how it interacts with the packages"
+#~ " it brings to your project.  In "
+#~ "this way it's very similar to the"
+#~ " standard Linux "
+#~ "[make](https://www.gnu.org/software/make/) command- with"
+#~ " the notable difference being that "
+#~ "`pib_cli` is packaged with a suite "
+#~ "of Python libraries."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**The CLI configuration file is in "
+#~ "YAML format, and conforms to "
+#~ "[this](https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/schemas) set of"
+#~ " JSON schemas.**"
+#~ msgstr ""
+
+#~ msgid "pib_cli v1.0.0 introduces a new JSON schema version."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "pib_cli v1.2.0 introduces further extensions"
+#~ " to the JSON schema but is "
+#~ "fully backwards compatible with v1.0.0, "
+#~ "and **ALL** legacy configuration files."
+#~ msgstr ""
+
+#~ msgid "Creating a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The `.pib.yml` file is where you "
+#~ "can take control, and customize "
+#~ "`pib_cli`'s behaviour to suit your "
+#~ "particular needs.  This file should "
+#~ "adhere to the format described below."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The top level of your `.pib.yml` "
+#~ "file should include `metadata` information."
+#~ "  This `metadata` is used to tell "
+#~ "`pib_cli` where to find your project's"
+#~ " codebase and any documentation (Sphinx)"
+#~ " definitions."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The `cli_definition` section is mandatory, "
+#~ "and `pib_cli` will throw an error "
+#~ "if it's missing."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The `metadata` itself though is actually"
+#~ " optional, and can also be declared"
+#~ " using environment variables."
+#~ msgstr ""
+
+#~ msgid "**Understanding `pib_cli` metadata**"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Metadata tells `pib_cli` where to find"
+#~ " your project's files, so it's "
+#~ "important to set these values "
+#~ "appropriately:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_name` is your project's name "
+#~ "from a Python perspective.  It's the "
+#~ "top level folder (inside your git "
+#~ "repository) that houses your code base,"
+#~ " such that `from <project_name> import "
+#~ "*` would be accessing your codebase."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` is a relative path "
+#~ "from your repository's root to a "
+#~ "folder containing a Sphinx `Makefile`.  "
+#~ "This is purely a convenience definition"
+#~ " for any documentation related commands."
+#~ msgstr ""
+
+#~ msgid "**Environment Variables and `pib_cli`**"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You may also define your project's "
+#~ "`metadata` by setting environment variables."
+#~ "  This would allow you to reuse "
+#~ "the same CLI configuration for multiple"
+#~ " projects:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_name` can also be defined by"
+#~ " the `PIB_PROJECT_NAME` environment variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` can also be defined "
+#~ "by the `PIB_DOCUMENTATION_ROOT` environment "
+#~ "variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When configuration AND environment variables"
+#~ " exist, `pib_cli` will look at "
+#~ "environment variable content FIRST."
+#~ msgstr ""
+
+#~ msgid "**Environment Variables and `pib_cli` commands**"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Regardless of whether you have defined"
+#~ " these values as configuration or "
+#~ "environment variables, when your CLI "
+#~ "commands are executed, the environment "
+#~ "variables will be available in the "
+#~ "shell:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`PIB_PROJECT_NAME` will always be defined "
+#~ "and accessible from inside the shell"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`PIB_DOCUMENTATION_ROOT` will always be "
+#~ "defined and accessible from inside the"
+#~ " shell"
+#~ msgstr ""
+
+#~ msgid "Adding a CLI Definition to a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The `cli_definition` YAML key, should "
+#~ "contain a list of definitions for "
+#~ "CLI commands you wish to use."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Each command should adhere to this "
+#~ "format, (and you can have many "
+#~ "commands for whatever tasks you need "
+#~ "to perform):"
+#~ msgstr ""
+
+#~ msgid "Notes on this configuration format:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`container_only` restricts the command to "
+#~ "working only inside a [Python-"
+#~ "in-a-Box](https://github.com/niall-byrne/python-in-a-box)"
+#~ " container environment.  (Completely optional "
+#~ "key to include, defaults to `false`.)"
+#~ msgstr ""
+
+#~ msgid "`path` must be one of:"
+#~ msgstr ""
+
+#~ msgid "`repo_root` (`/app`)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to "
+#~ "`/app/documentation`, but is defined by "
+#~ "project `metadata`)"
+#~ msgstr ""
+
+#~ msgid "`project_root` (`/app/<project_name>` as defined in project `metadata`)"
+#~ msgstr ""
+
+#~ msgid "Validating a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use the command `dev @pib config "
+#~ "-c <path to your file> validate` "
+#~ "to ensure it adheres to the "
+#~ "specification, before using it."
+#~ msgstr ""
+
+#~ msgid "Activating a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid "To `activate` your configuration, use one of the following methods:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can set the environment variable "
+#~ "`PIB_CONFIG_FILE_LOCATION` to the absolute "
+#~ "path where the file is located."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Or just move your new `.pib.yml` "
+#~ "file to the top level folder (the"
+#~ " repository root) of your project."
+#~ msgstr ""
+
+#~ msgid "Use the command `dev @pib config where` to confirm it's been activated."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If a `.pib.yml` file cannot be "
+#~ "found with either of these methods, "
+#~ "then the [default config](https://github.com"
+#~ "/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/default_cli_config.yml) "
+#~ "will be used."
+#~ msgstr ""
+
+#~ msgid "Development Guide for `pib_cli`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Please see the documentation "
+#~ "[here](https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/CONTRIBUTING.md)."
+#~ msgstr ""
+
+#~ msgid "[Project Documentation](https://pib_cli.readthedocs.io/en/latest/)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The `.pib.yml` file is where you "
+#~ "can take control, and customize "
+#~ "`pib_cli` behaviour to suit your "
+#~ "particular needs.  This file should "
+#~ "adhere to the format described below."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_name` can also be defined by"
+#~ " PIB_PROJECT_NAME` environment variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to the folder"
+#~ " `documentation`, can be customized with"
+#~ " `metadata` or environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with `metadata` or environment "
+#~ "variables.)"
+#~ msgstr ""
+
+#~ msgid "dev @pib config -c <path to your file> validate"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with [metadata](#section-i-want) or "
+#~ "environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to the folder"
+#~ " `documentation`, can be customized with"
+#~ " [metadata](#creating-a-pib-yml-file) or "
+#~ "environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with [metadata](#creating-a-pib-yml-"
+#~ "file) or environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to the folder"
+#~ " `documentation`, can be customized with"
+#~ " [metadata](#-creating-a-pib-yml-file) or "
+#~ "environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with [metadata](#-creating-a-pib-yml-"
+#~ "file) or environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to the folder"
+#~ " `documentation`, can be customized with"
+#~ " [metadata](###-creating-a-pib-yml-file) or "
+#~ "environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with [metadata](###-creating-a-pib-"
+#~ "yml-file) or environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to the folder"
+#~ " `documentation`, can be customized with"
+#~ " [metadata](#creating-a-pibyml-file) or "
+#~ "environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with [metadata](#creating-a-pibyml-file)"
+#~ " or environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The absolute path to a configuration "
+#~ "`.pib.yml` file that should be used."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This table summarizes the environment "
+#~ "variables that can be used with "
+#~ "PIB:"
+#~ msgstr ""
+
+#~ msgid "Introduction"
+#~ msgstr ""
+
+#~ msgid "Introduction (English)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A batteries included "
+#~ "`make](https://www.gnu.org/software/make/) style CLI "
+#~ "for [python](https://python.org) projects in "
+#~ "[git <https://git-scm.com/>`_ style CLI "
+#~ "for `python](https://python.org) projects in "
+#~ "[git <https://git-scm.com/>`_ projects in "
+#~ "`git <https://git-scm.com/>`_ repositories."
+#~ msgstr ""
+
+#~ msgid "# Master Branch"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[![pib_cli-automation](https://github.com/niall-"
+#~ "byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com"
+#~ "/niall-byrne/pib_cli/actions)"
+#~ msgstr ""
+
+#~ msgid "# Production Branch"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[![pib_cli-automation](https://github.com/niall-"
+#~ "byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com"
+#~ "/niall-byrne/pib_cli/actions)"
+#~ msgstr ""
+
+#~ msgid "# Documentation Builds"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[![Documentation Status](https://readthedocs.org/projects"
+#~ "/pib-cli/badge/?version=latest)](https://pib-"
+#~ "cli.readthedocs.io/en/latest/?badge=latest)"
+#~ msgstr ""
+
+#~ msgid "# Supported Python Versions"
+#~ msgstr ""
+
+#~ msgid "# Installation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To install, simply use: - `pip "
+#~ "install pib_cli` - `pip install "
+#~ "pib_cli`docs]` (Adds [Sphinx <https://www.sphinx-"
+#~ "doc.org/en/master/>`_ support.) - `pip install"
+#~ " pib_cli`docstrings]` (Adds [pydocstyle "
+#~ "<http://www.pydocstyle.org/en/stable/>`_ support.) - "
+#~ "`pip install pib_cli`types]` (Adds [mypy "
+#~ "<http://mypy-lang.org/>`_ support.)"
+#~ msgstr ""
+
+#~ msgid "# Usage"
+#~ msgstr ""
+
+#~ msgid "# With Cookiecutter"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pib_cli` is also baked into this "
+#~ "`Cookie Cutter "
+#~ "<https://github.com/cookiecutter/cookiecutter>`_ template: "
+#~ "- `Python In A Box <https://github.com"
+#~ "/niall-byrne/python-in-a-box>`_"
+#~ msgstr ""
+
+#~ msgid "# License"
+#~ msgstr ""
+
+#~ msgid "# Included Packages"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "As it's batteries included, `pib_cli` "
+#~ "ships with a slightly opinionated list"
+#~ " of popular development packages.  You "
+#~ "can customize the exact mix by "
+#~ "specifying one or more `extras "
+#~ "<https://packaging.python.org/en/latest/guides/installing-"
+#~ "using-pip-and-virtual-"
+#~ "environments/?highlight=extras#installing-extras>`_ when"
+#~ " installing the package."
+#~ msgstr ""
+
+#~ msgid "## Core Installed Packages"
+#~ msgstr ""
+
+#~ msgid "package       | Description                       |"
+#~ msgstr ""
+
+#~ msgid "------------- | --------------------------------- |"
+#~ msgstr ""
+
+#~ msgid "bandit        | Finds common security issues      |"
+#~ msgstr ""
+
+#~ msgid "commitizen    | Standardizes commit messages      |"
+#~ msgstr ""
+
+#~ msgid "isort         | Sorts imports                     |"
+#~ msgstr ""
+
+#~ msgid "pre-commit    | Pre-commit hook manager           |"
+#~ msgstr ""
+
+#~ msgid "pylint        | Static code analysis              |"
+#~ msgstr ""
+
+#~ msgid "pytest        | Testing with Python               |"
+#~ msgstr ""
+
+#~ msgid "pytest-cov    | Coverage support for pytest       |"
+#~ msgstr ""
+
+#~ msgid "pytest-pylint | Pylint support for pytest         |"
+#~ msgstr ""
+
+#~ msgid "safety        | Dependency vulnerability scanning |"
+#~ msgstr ""
+
+#~ msgid "wheel         | Package distribution tools        |"
+#~ msgstr ""
+
+#~ msgid "yamllint      | Lint YAML configuration files     |"
+#~ msgstr ""
+
+#~ msgid "yapf          | Customizable code formatting      |"
+#~ msgstr ""
+
+#~ msgid "## Installed and required by `pib_cli`"
+#~ msgstr ""
+
+#~ msgid "package       | Description                        |"
+#~ msgstr ""
+
+#~ msgid "------------- | ---------------------------------- |"
+#~ msgstr ""
+
+#~ msgid "click         | Command line interface toolkit     |"
+#~ msgstr ""
+
+#~ msgid "jsonschema    | JSON Schema validation for Python  |"
+#~ msgstr ""
+
+#~ msgid "GitPython     | Interact with Git repositories     |"
+#~ msgstr ""
+
+#~ msgid "PyYAML        | YAML parser and emitter for Python |"
+#~ msgstr ""
+
+#~ msgid "## 'docs' extras"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "package                   | Description"
+#~ "                                                |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "------------------------- | "
+#~ "---------------------------------------------------------- |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "darglint                  | Sphinx style guide"
+#~ " enforcement                             |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx                    | Python documentation "
+#~ "generator                             |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx-autopackagesummary | Template nested"
+#~ " module content                             |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx*rtd*theme          | The `Read the "
+#~ "Docs <https://readthedocs.org/>`_ Sphinx theme "
+#~ "|"
+#~ msgstr ""
+
+#~ msgid "## 'docstrings' extras"
+#~ msgstr ""
+
+#~ msgid "package    | Description                       |"
+#~ msgstr ""
+
+#~ msgid "---------- | --------------------------------- |"
+#~ msgstr ""
+
+#~ msgid "pydocstyle | PEP 257 enforcement               |"
+#~ msgstr ""
+
+#~ msgid "## 'types' extras"
+#~ msgstr ""
+
+#~ msgid "mypy       | Static type checker               |"
+#~ msgstr ""
+
+#~ msgid "## 'pib_docs' extras"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx-autopackagesummary | Templates nested"
+#~ " module content                            |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx-click              | Generates CLI "
+#~ "documentation                                |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx-intl               | Generates "
+#~ "documentation translations                       |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "sphinx-jsonschema         | Generates JSON "
+#~ "schema documentation                        |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`pip install pib*cli[pib*docs]` to add "
+#~ "these dependencies to the core "
+#~ "installation."
+#~ msgstr ""
+
+#~ msgid "## Installing Multiple Extras"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is straightforward to do: - "
+#~ "`pip install pib_cli[docs,docstrings,types]`"
+#~ msgstr ""
+
+#~ msgid "# Customizing the Command Line Interface"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The most powerful feature of `pib_cli`"
+#~ " is its ability to customize how "
+#~ "it interacts with the packages it "
+#~ "brings to your project.  In this "
+#~ "way it's very similar to the "
+#~ "standard Linux `make "
+#~ "<https://www.gnu.org/software/make/>`_ command- with "
+#~ "the notable difference being that "
+#~ "`pib_cli` is packaged with a suite "
+#~ "of Python libraries."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**The CLI configuration file is in "
+#~ "YAML format, and conforms to `this "
+#~ "<https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/schemas>`_ set of"
+#~ " JSON schemas.**"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "pib_cli v1.0.0 introduces a `new JSON"
+#~ " schema version <https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/schemas/cli_base_schema_v2.0.0.json>`_."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "pib_cli v1.2.0 introduces `further refinements"
+#~ " to the JSON schema <https://github.com"
+#~ "/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/schemas/cli_base_schema_v2.1.0.json>`_"
+#~ " but is fully backwards compatible "
+#~ "with v1.0.0, and **ALL** legacy "
+#~ "configuration files."
+#~ msgstr ""
+
+#~ msgid "## Creating a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid "```yaml"
+#~ msgstr ""
+
+#~ msgid "metadata:"
+#~ msgstr ""
+
+#~ msgid "project*name: \"Tell pib*cli the folder your codebase is in.\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "documentation*root: \"Tell pib*cli where to"
+#~ " find your documentation definitions.\""
+#~ msgstr ""
+
+#~ msgid "cli_definition:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[A YAML array of cli command "
+#~ "definitions, which are detailed in the"
+#~ " next section]."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``` - The `cli*definition` section is"
+#~ " mandatory, and `pib*cli` will throw "
+#~ "an error if it's missing. - The"
+#~ " metadata itself though is actually "
+#~ "optional, and can also be declared "
+#~ "using environment variables."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Metadata tells `pib_cli` where to find"
+#~ " your project's files, so it's "
+#~ "important to set these values "
+#~ "appropriately: - `project*name` is your "
+#~ "project's name from a Python "
+#~ "perspective.  It's the top level folder"
+#~ " (inside your git repository) that "
+#~ "houses your codebase, such that `from"
+#~ " <project*name> import *` would be "
+#~ "accessing your codebase. - "
+#~ "`documentation_root` is a relative path "
+#~ "from your repository's root to a "
+#~ "folder containing a Sphinx Makefile.  "
+#~ "This is purely a convenience definition"
+#~ " for any documentation related commands."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project*name` can also be defined by"
+#~ " `PIB*PROJECT_NAME` environment variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation*root` can also be defined "
+#~ "by the `PIB*DOCUMENTATION_ROOT` environment "
+#~ "variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`PIB*PROJECT*NAME` will always be defined "
+#~ "and accessible from inside the shell"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`PIB*DOCUMENTATION*ROOT` will always be "
+#~ "defined and accessible from inside the"
+#~ " shell"
+#~ msgstr ""
+
+#~ msgid "## Adding a CLI Definition to a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid "\\- name: \"command\\-name\""
+#~ msgstr ""
+
+#~ msgid "description: \"A description of the command.\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "container\\_only: false # Optional restriction"
+#~ " of the command to a PIB "
+#~ "container"
+#~ msgstr ""
+
+#~ msgid "path: \"repo\\_root\""
+#~ msgstr ""
+
+#~ msgid "commands:"
+#~ msgstr ""
+
+#~ msgid "\\- \"one or more\""
+#~ msgstr ""
+
+#~ msgid "\\- \"shell commands\""
+#~ msgstr ""
+
+#~ msgid "\\- \"each run in a discrete environment\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\\- \"The ${PIB\\_DOCUMENTATION\\_ROOT} environment"
+#~ " variable is also available if you"
+#~ " need to navigate to that folder.\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\\- \"The ${PIB\\_PROJECT\\_NAME} environment "
+#~ "variable is available if you need "
+#~ "to navigate to that folder.\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\\- \"Any extra arguments passed are "
+#~ "stored in the ${PIB\\_OVERLOAD\\_ARGUMENTS} "
+#~ "environment variable.\""
+#~ msgstr ""
+
+#~ msgid "success: \"Success Message\""
+#~ msgstr ""
+
+#~ msgid "failure: \"Failure Message\""
+#~ msgstr ""
+
+#~ msgid "```"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Notes on this configuration format: -"
+#~ " `container_only` restricts the command to"
+#~ " working only inside a `Python-"
+#~ "in-a-Box <https://github.com/niall-byrne/python-"
+#~ "in-a-box>`_ container environment.  (Completely "
+#~ "optional key to include, defaults to "
+#~ "`false`.) - `path` must be one of:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project*root` (The `project*name` folder as"
+#~ " defined with metadata or environment "
+#~ "variables.)"
+#~ msgstr ""
+
+#~ msgid "## Validating a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use `pib_cli` to validate new "
+#~ "configuration files before activating them:"
+#~ " - `dev @pib config -c <path to"
+#~ " your file> validate`"
+#~ msgstr ""
+
+#~ msgid "## Activating a `.pib.yml` File"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can set the environment variable "
+#~ "`PIB*CONFIG*FILE_LOCATION` to the absolute "
+#~ "path where the file is located."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If a `.pib.yml` file cannot be "
+#~ "found with either of these methods, "
+#~ "then the `default config <https://github.com"
+#~ "/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/default_cli_config.yml>`_ "
+#~ "will be used."
+#~ msgstr ""
+
+#~ msgid "# Development Guide for `pib_cli`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Please see the documentation `here "
+#~ "<https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/CONTRIBUTING.md>`_."
+#~ msgstr ""
+
+#~ msgid "# Environment Variable Summary"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Name                      | Purpose"
+#~ "                                                                   "
+#~ "|"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "------------------------- | "
+#~ "-------------------------------------------------------------------------"
+#~ " |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "PIB*CONFIG*FILE_LOCATION  | The absolute path"
+#~ " to the configuration file that "
+#~ "should be used.          |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "PIB*DOCUMENTATION*ROOT    | A relative path"
+#~ " from the repository root where a "
+#~ "Sphinx Makefile lives.   |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "PIB*OVERLOAD*ARGUMENTS    | Reserved to pass"
+#~ " arguments to customized CLI commands."
+#~ "                    |"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "PIB*PROJECT*NAME          | The top level "
+#~ "folder in the repository where the "
+#~ "codebase is found.       |"
+#~ msgstr ""
+
+#~ msgid "Introduction (en)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A batteries included "
+#~ "[make](https://www.gnu.org/software/make/) style CLI "
+#~ "for [python](https://python.org) projects in "
+#~ "[git](https://git-scm.com/) repositories."
+#~ msgstr ""
+
+#~ msgid "The [Read the Docs](https://readthedocs.org/) Sphinx theme"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The most powerful feature of `pib_cli`"
+#~ " is its ability to customize how "
+#~ "it interacts with the packages it "
+#~ "brings to your project.  In this "
+#~ "way it's very similar to the "
+#~ "standard Linux [make](https://www.gnu.org/software/make/)"
+#~ " command- with the notable difference "
+#~ "being that `pib_cli` is packaged with"
+#~ " a suite of Python libraries."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "pib_cli v1.0.0 introduces a [new JSON"
+#~ " schema version](https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/schemas/cli_base_schema_v2.0.0.json)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "pib_cli v1.2.0 introduces [further refinements"
+#~ " to the JSON schema](https://github.com/niall-"
+#~ "byrne/pib_cli/blob/master/pib_cli/config/schemas/cli_base_schema_v2.1.0.json)"
+#~ " but is fully backwards compatible "
+#~ "with v1.0.0, and **ALL** legacy "
+#~ "configuration files."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The `.pib.yml` file is where you "
+#~ "can take control, and customize "
+#~ "`pib_cli` behaviour to suit your "
+#~ "particular needs.  This file should "
+#~ "adhere to the specification detailed "
+#~ "above- read on for further detail."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The top level of your `.pib.yml` "
+#~ "file should include metadata information.  "
+#~ "This metadata is used to tell "
+#~ "`pib_cli` where to find your project's"
+#~ " codebase and any documentation (Sphinx)"
+#~ " definitions."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_name` is your project's name "
+#~ "from a Python perspective.  It's the "
+#~ "top level folder (inside your git "
+#~ "repository) that houses your codebase, "
+#~ "such that `from <project_name> import *`"
+#~ " would be accessing your codebase."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` is a relative path "
+#~ "from your repository's root to a "
+#~ "folder containing a Sphinx Makefile.  "
+#~ "This is purely a convenience definition"
+#~ " for any documentation related commands."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You may also define your project's "
+#~ "metadata by setting environment variables."
+#~ "  This would allow you to reuse "
+#~ "the same CLI configuration for multiple"
+#~ " projects:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_name` can also be defined by"
+#~ " `PIB_PROJECT_NAME` environment variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When configuration AND environment variables"
+#~ " exist, `pib_cli` will **prefer to "
+#~ "use environment variable values**."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Regardless of whether you have used "
+#~ "configuration or environment variables, when"
+#~ " your CLI commands are executed, the"
+#~ " environment variables will be available"
+#~ " in the shell:"
+#~ msgstr ""
+
+#~ msgid "`repo_root` (The root folder of your code repository.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`documentation_root` (Defaults to the folder"
+#~ " `documentation`, can be customized with"
+#~ " metadata or environment variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`project_root` (The `project_name` folder as"
+#~ " defined with metadata or environment "
+#~ "variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use `pib_cli` to validate new "
+#~ "configuration files before activating them:"
+#~ msgstr ""
+
+#~ msgid "`dev @pib config -c <path to your file> validate`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This table summarizes the environment "
+#~ "variables that can be used with "
+#~ "`pib_cli`:"
+#~ msgstr ""
+
+#~ msgid "PIB_CONFIG_FILE_LOCATION"
+#~ msgstr ""
+
+#~ msgid "PIB_DOCUMENTATION_ROOT"
+#~ msgstr ""
+
+#~ msgid "PIB_OVERLOAD_ARGUMENTS"
+#~ msgstr ""
+
+#~ msgid "PIB_PROJECT_NAME"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Tested to work with the following "
+#~ "Python versions: - Python 3.7 - "
+#~ "Python 3.8 - Python 3.9 - Python"
+#~ " 3.10"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To install, simply use: - ``pip "
+#~ "install pib_cli`` - ``pip install "
+#~ "pib_cli[docs]`` (Adds `Sphinx <https://www"
+#~ ".sphinx-doc.org/en/master/>`__ support.) - ``pip"
+#~ " install pib_cli[docstrings]`` (Adds `pydocstyle"
+#~ " <http://www.pydocstyle.org/en/stable/>`__ support.) -"
+#~ " ``pip install pib_cli[types]`` (Adds `mypy"
+#~ " <http://mypy-lang.org/>`__ support.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``pib_cli`` is also baked into this "
+#~ "`Cookie Cutter "
+#~ "<https://github.com/cookiecutter/cookiecutter>`__ template: "
+#~ "- `Python In A Box <https://github.com"
+#~ "/niall-byrne/python-in-a-box>`__"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is straightforward to do: - "
+#~ "``pip install pib_cli[docs,docstrings,types]``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Metadata tells ``pib_cli`` where to find"
+#~ " your project’s files, so it’s "
+#~ "important to set these values "
+#~ "appropriately: - ``project_name`` is your "
+#~ "project’s name from a Python "
+#~ "perspective. It’s the top level folder"
+#~ " (inside your git repository) that "
+#~ "houses your codebase, such that ``from"
+#~ " <project_name> import *`` would be "
+#~ "accessing your codebase. - "
+#~ "``documentation_root`` is a relative path "
+#~ "from your repository’s root to a "
+#~ "folder containing a Sphinx Makefile. "
+#~ "This is purely a convenience definition"
+#~ " for any documentation related commands."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You may also define your project’s "
+#~ "metadata by setting environment variables. "
+#~ "This would allow you to reuse the"
+#~ " same CLI configuration for multiple "
+#~ "projects: - ``project_name`` can also be"
+#~ " defined by ``PIB_PROJECT_NAME`` environment "
+#~ "variable - ``documentation_root`` can also "
+#~ "be defined by the ``PIB_DOCUMENTATION_ROOT``"
+#~ " environment variable"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Regardless of whether you have used "
+#~ "configuration or environment variables, when"
+#~ " your CLI commands are executed, the"
+#~ " environment variables will be available"
+#~ " in the shell: - ``PIB_PROJECT_NAME`` "
+#~ "will always be defined and accessible"
+#~ " from inside the shell - "
+#~ "``PIB_DOCUMENTATION_ROOT`` will always be "
+#~ "defined and accessible from inside the"
+#~ " shell"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Notes on this configuration format: -"
+#~ " ``container_only`` restricts the command "
+#~ "to working only inside a `Python-"
+#~ "in-a-Box <https://github.com/niall-byrne/python-"
+#~ "in-a-box>`__ container environment. (Completely "
+#~ "optional key to include, defaults to "
+#~ "``false``.) - ``path`` must be one "
+#~ "of: - ``repo_root`` (The root folder "
+#~ "of your code repository.) - "
+#~ "``documentation_root`` (Defaults to the folder"
+#~ " ``documentation``, can be customized with"
+#~ " metadata or environment variables.) - "
+#~ "``project_root`` (The ``project_name`` folder "
+#~ "as defined with metadata or environment"
+#~ " variables.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use ``pib_cli`` to validate new "
+#~ "configuration files before activating them:"
+#~ " - ``dev @pib config -c <path "
+#~ "to your file> validate``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To ``activate`` your configuration, use "
+#~ "one of the following methods: 1. "
+#~ "You can set the environment variable "
+#~ "``PIB_CONFIG_FILE_LOCATION`` to the absolute "
+#~ "path where the file is located. 2."
+#~ " Or just move your new ``.pib.yml``"
+#~ " file to the top level folder "
+#~ "(the repository root) of your project."
+#~ msgstr ""
+
+#~ msgid "PIB_CONFI G_FILE_LOCATION"
+#~ msgstr ""
+
+#~ msgid "PIB_DOC UMENTATION_ROOT"
+#~ msgstr ""
+
+#~ msgid "PIB_OVE RLOAD_ARGUMENTS"
+#~ msgstr ""
+
+#~ msgid "P IB_PROJECT_NAME"
+#~ msgstr ""
+

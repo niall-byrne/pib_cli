@@ -18,9 +18,9 @@ if os.path.exists('../../pib_cli'):
 
 # -- Project information -----------------------------------------------------
 project = 'pib_cli'
-copyright = '2020, Niall Byrne'
+copyright = '2022, Niall Byrne'
 author = 'Niall Byrne'
-os.environ['PROJECT_NAME'] = project
+os.environ['PIB_PROJECT_NAME'] = project
 locale_dirs = ['locale/']
 
 # -- General configuration ---------------------------------------------------
@@ -36,6 +36,7 @@ extensions = [
     'sphinx_click.ext',
     'sphinx_autopackagesummary',
     'sphinx-jsonschema',
+    'sphinx_rtd_theme',
 ]
 
 source_suffix = {
@@ -74,12 +75,10 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'haiku'
+html_theme = "sphinx_rtd_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_theme_options = {
-    'body_max_width': '100%'
-}
+html_css_files = ['markdown.css']

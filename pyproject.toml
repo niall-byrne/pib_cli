@@ -111,15 +111,19 @@
         optional = true
         version = "^1.17.2"
 
+      [tool.poetry.dependencies.sphinx_rtd_theme]
+        optional = true
+        version = "^1.0.0"
+
     [tool.poetry.dev-dependencies]
       Babel = "^2.9.1"
       types-PyYAML = "^6.0.4"
       types-setuptools = "^57.4.9"
 
     [tool.poetry.extras]
-      docs = ["darglint", "Sphinx", "sphinx-autopackagesummary"]
+      docs = ["darglint", "Sphinx", "sphinx-autopackagesummary", "sphinx_rtd_theme"]
       docstrings = ["pydocstyle"]
-      pib_docs = ["Sphinx", "sphinx-autopackagesummary", "sphinx-click", "sphinx-intl", "sphinx-jsonschema"]
+      pib_docs = ["Sphinx", "sphinx-autopackagesummary", "sphinx-click", "sphinx-intl", "sphinx-jsonschema", "sphinx_rtd_theme"]
       types = ["mypy"]
 
     [[tool.poetry.packages]]
