@@ -5,7 +5,9 @@ from typing import List
 from typing_extensions import Final, TypedDict
 
 V210_CLI_CONFIG_ROOT: Final = 'cli_definition'
+V210_CLI_CONFIG_METADATA: Final = 'metadata'
 V210_CLI_CONFIG_PROJECT_NAME: Final = 'project_name'
+V210_CLI_CONFIG_DOCS_FOLDER: Final = 'documentation_root'
 
 CONTAINER_ONLY: Final = 'container_only'
 DESCRIPTION: Final = "description"

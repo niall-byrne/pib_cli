@@ -3,28 +3,28 @@
 cli_definition:
   - name: "build-wheel"
     description: "Build a distribution wheel."
-    path: "git_root"
+    path: "repo_root"
     commands:
       - "poetry build"
     success: "Wheel Built"
     failure: "Error Building Wheel"
   - name: "coverage"
     description: "Run code coverage test."
-    path: "git_root"
+    path: "repo_root"
     commands:
       - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
     success: "Coverage Passed!"
     failure: "Coverage Failed!"
   - name: "fmt"
     description: "Run code formatters."
-    path: "git_root"
+    path: "repo_root"
     commands:
       - 'yapf -i --recursive .'
       - 'isort "${PROJECT_NAME}"'
     success: "Formatting Finished!"
     failure: "Formatting Error!"
   - name: "lint"
-    path: "git_root"
+    path: "repo_root"
     description: "Run the code linters."
     commands:
       - 'yamllint .'
@@ -34,7 +34,7 @@ cli_definition:
     failure: "Linter Test Failed!"
   - name: "reinstall-requirements"
     description: "Reinstall the project requirements."
-    path: "git_root"
+    path: "repo_root"
     commands:
       - "poetry lock"
       - "poetry install"
@@ -42,7 +42,7 @@ cli_definition:
     failure: "Reinstall Failed!"
   - name: "sectest"
     description: "Run the security tests."
-    path: "git_root"
+    path: "repo_root"
     commands:
       - 'bandit -r "${PROJECT_NAME}" -x tests'
       - 'echo "\nPoetry is exporting the lockfile standby..."'
@@ -51,7 +51,7 @@ cli_definition:
     failure: "Security Test Failed!"
   - name: "test"
     description: "Run the unittests."
-    path: "git_root"
+    path: "repo_root"
     commands:
       - 'pytest ${PIB_OVERLOAD_ARGUMENTS}'
     success: "Unittests Passed!"

@@ -16,7 +16,12 @@ from pib_cli.support.user_configuration.selectors import (
 )
 
 
-@patch.dict(os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_value"})
+@patch.dict(
+    os.environ, {
+        config.ENV_OVERRIDE_PROJECT_NAME: "test_value1",
+        config.ENV_OVERRIDE_DOCUMENTATION_ROOT: "test_value2",
+    }
+)
 class TestUserConfigurationV100(
     version_base_harness.UserConfigurationVersionBaseTestHarness
 ):
@@ -37,15 +42,36 @@ class TestUserConfigurationV100(
 
   def test_get_project_name(self) -> None:
     instance = self.create_instance()
-    self.assertEqual(instance.project_name, "test_value")
+    self.assertEqual(instance.get_project_name(), "test_value1")
 
   @patch.dict(os.environ, {}, clear=True)
   def test_get_project_name_unset(self) -> None:
+    instance = self.create_instance()
     with self.assertRaises(KeyError):
-      self.create_instance()
+      instance.get_project_name()
+
+  def test_get_documentation_folder(self) -> None:
+    instance = self.create_instance()
+    self.assertEqual(
+        instance.get_documentation_root(),
+        "test_value2",
+    )
+
+  @patch.dict(os.environ, {}, clear=True)
+  def test_get_documentation_folder_unset(self) -> None:
+    instance = self.create_instance()
+    self.assertEqual(
+        instance.get_documentation_root(),
+        config.DEFAULT_DOCUMENTATION_FOLDER_NAME,
+    )
 
 
-@patch.dict(os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_value"})
+@patch.dict(
+    os.environ, {
+        config.ENV_OVERRIDE_PROJECT_NAME: "test_value1",
+        config.ENV_OVERRIDE_DOCUMENTATION_ROOT: "test_value2",
+    }
+)
 class TestUserConfigurationV200(
     version_base_harness.UserConfigurationVersionBaseTestHarness
 ):
@@ -64,15 +90,36 @@ class TestUserConfigurationV200(
 
   def test_get_project_name(self) -> None:
     instance = self.create_instance()
-    self.assertEqual(instance.project_name, "test_value")
+    self.assertEqual(instance.get_project_name(), "test_value1")
 
   @patch.dict(os.environ, {}, clear=True)
   def test_get_project_name_unset(self) -> None:
+    instance = self.create_instance()
     with self.assertRaises(KeyError):
-      self.create_instance()
+      instance.get_project_name()
+
+  def test_get_documentation_folder(self) -> None:
+    instance = self.create_instance()
+    self.assertEqual(
+        instance.get_documentation_root(),
+        "test_value2",
+    )
+
+  @patch.dict(os.environ, {}, clear=True)
+  def test_get_documentation_folder_unset(self) -> None:
+    instance = self.create_instance()
+    self.assertEqual(
+        instance.get_documentation_root(),
+        config.DEFAULT_DOCUMENTATION_FOLDER_NAME,
+    )
 
 
-@patch.dict(os.environ, {config.ENV_OVERRIDE_PROJECT_NAME: "test_value"})
+@patch.dict(
+    os.environ, {
+        config.ENV_OVERRIDE_PROJECT_NAME: "test_value1",
+        config.ENV_OVERRIDE_DOCUMENTATION_ROOT: "test_value2",
+    }
+)
 class TestUserConfigurationV210(
     version_base_harness.UserConfigurationVersionBaseTestHarness
 ):
@@ -80,7 +127,8 @@ class TestUserConfigurationV210(
 
   version = "2.1.0"
   selector = command_selector.CommandSelector
-  mock_config: Dict[str, Union[str, List[yaml_keys.TypeUserConfiguration]]]
+  mock_config: Dict[str, Union[str, Dict[str, str],
+                               List[yaml_keys.TypeUserConfiguration]]]
 
   @classmethod
   def setUpClass(cls) -> None:
@@ -93,15 +141,41 @@ class TestUserConfigurationV210(
 
   def test_get_project_name(self) -> None:
     instance = self.create_instance()
-    self.assertEqual(instance.project_name, "test_value")
+    self.assertEqual(instance.get_project_name(), "test_value1")
 
   @patch.dict(os.environ, {}, clear=True)
   def test_get_project_name_config(self) -> None:
-    self.mock_config[yaml_keys.V210_CLI_CONFIG_PROJECT_NAME] = "test_value_two"
+    self.mock_config[yaml_keys.V210_CLI_CONFIG_METADATA] = {
+        yaml_keys.V210_CLI_CONFIG_PROJECT_NAME: "test_value3"
+    }
     instance = self.create_instance()
-    self.assertEqual(instance.project_name, "test_value_two")
+    self.assertEqual(instance.get_project_name(), "test_value3")
 
   @patch.dict(os.environ, {}, clear=True)
   def test_get_project_name_unset(self) -> None:
+    instance = self.create_instance()
     with self.assertRaises(KeyError):
-      self.create_instance()
+      instance.get_project_name()
+
+  def test_get_documentation_folder(self) -> None:
+    instance = self.create_instance()
+    self.assertEqual(
+        instance.get_documentation_root(),
+        "test_value2",
+    )
+
+  @patch.dict(os.environ, {}, clear=True)
+  def test_get_documentation_folder_config(self) -> None:
+    self.mock_config[yaml_keys.V210_CLI_CONFIG_METADATA] = {
+        yaml_keys.V210_CLI_CONFIG_DOCS_FOLDER: "test_value4"
+    }
+    instance = self.create_instance()
+    self.assertEqual(instance.get_documentation_root(), "test_value4")
+
+  @patch.dict(os.environ, {}, clear=True)
+  def test_get_documentation_folder_unset(self) -> None:
+    instance = self.create_instance()
+    self.assertEqual(
+        instance.get_documentation_root(),
+        config.DEFAULT_DOCUMENTATION_FOLDER_NAME
+    )

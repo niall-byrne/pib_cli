@@ -26,7 +26,7 @@ class UserConfigurationFile(yaml_file.YAMLFileReader, text_file.TextFileReader):
   ]
 
   def __init__(self, config_file: Optional[str] = None) -> None:
-    self.git_root_folder = path_map.PathMap().git_root_folder
+    self.git_root_folder = path_map.PathMap().repo_root_path
     self.project_root = pathlib.Path(pib_cli.__file__).parent.absolute()
     self.specified_file_name = config_file
     self.default_config = os.path.join(

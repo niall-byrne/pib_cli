@@ -16,7 +16,7 @@ class LegacyCommandSelector(CommandSelectorBase):
   user_configuration: yaml_keys.TypeLegacyUserConfiguration
   legacy_path_method_mapping: Dict[str, str] = {
       "project_docs": "documentation_root",
-      "project_root": "git_root",
+      "project_root": "repo_root",
       "project_home": "project_root",
   }
 

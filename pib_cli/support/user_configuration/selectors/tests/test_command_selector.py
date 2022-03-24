@@ -35,7 +35,7 @@ class TestCommandSelector(
     )
     instance = self.test_class(test_data)
 
-    for path_method in ["documentation_root", "git_root", "project_root"]:
+    for path_method in ["documentation_root", "repo_root", "project_root"]:
       test_data[yaml_keys.PATH_METHOD] = path_method
       self.assertEqual(
           instance.get_config_path_method(),

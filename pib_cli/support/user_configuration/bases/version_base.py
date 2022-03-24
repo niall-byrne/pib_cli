@@ -17,7 +17,6 @@ class UserConfigurationVersionBase:
   def __init__(self, configuration: Any) -> None:
     self.configuration = configuration
     self.configuration_command_index = self._create_command_index()
-    self.project_name = self.get_project_name()
 
   def _create_command_index(self) -> Dict[str, yaml_keys.TypeUserConfiguration]:
     index: Dict[str, yaml_keys.TypeUserConfiguration] = {}
@@ -28,6 +27,10 @@ class UserConfigurationVersionBase:
   @abc.abstractmethod
   def get_project_name(self) -> str:
     """Return the project name from the configuration."""
+
+  @abc.abstractmethod
+  def get_documentation_root(self) -> str:
+    """Return the documentation folder from the configuration."""
 
   @abc.abstractmethod
   def get_command_definitions(self) -> List[Any]:

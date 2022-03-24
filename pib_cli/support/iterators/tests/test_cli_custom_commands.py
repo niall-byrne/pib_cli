@@ -41,7 +41,7 @@ class TestCustomClickCommandIterator(TestCase):
             yaml_keys.SUCCESS: "Successful!",
             yaml_keys.FAILURE: "Failed!",
         }, {
-            yaml_keys.PATH_METHOD: 'git_root',
+            yaml_keys.PATH_METHOD: 'repo_root',
             yaml_keys.COMMAND_NAME: 'test_command2',
             yaml_keys.CONTAINER_ONLY: True,
             yaml_keys.COMMAND_DESCRIPTION: "The #2 test command",

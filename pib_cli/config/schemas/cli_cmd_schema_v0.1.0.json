@@ -19,7 +19,7 @@
             },
             "path": {
                 "description": "The filesystem location from which to execute the command.",
-                "enum": ["documentation_root", "git_root", "project_root"]
+                "enum": ["documentation_root", "git_root", "project_root", "repo_root"]
             },
             "commands": {
                 "description": "The shell commands that will be run.",

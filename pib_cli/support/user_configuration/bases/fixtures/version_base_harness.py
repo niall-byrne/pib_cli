@@ -91,4 +91,8 @@ class UserConfigurationVersionBaseTestHarness(TestCase, abc.ABC):
 
   @abc.abstractmethod
   def test_get_project_name(self) -> None:
-    """Override to test the get_project_name_method."""
+    """Override to test the get_project_name method."""
+
+  @abc.abstractmethod
+  def test_get_documentation_folder(self) -> None:
+    """Override to test the get_documentation_folder method."""

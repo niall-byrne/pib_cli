@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-22 18:37+0000\n"
+"POT-Creation-Date: 2022-03-24 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -502,6 +502,7 @@ msgstr ""
 #: pib_cli.support.user_configuration.bases.command_selector_base.CommandSelectorBase.get_config_commands
 #: pib_cli.support.user_configuration.bases.command_selector_base.CommandSelectorBase.get_config_response
 #: pib_cli.support.user_configuration.bases.version_base.UserConfigurationVersionBase.select_config_entry
+#: pib_cli.support.user_configuration.bases.version_legacy_base.LegacyUserVersionIntermediateBase.get_documentation_root
 #: pib_cli.support.user_configuration.bases.version_legacy_base.LegacyUserVersionIntermediateBase.get_project_name
 #: pib_cli.support.user_configuration.selectors.command_selector.CommandSelector.get_config_path_method
 #: pib_cli.support.user_configuration.selectors.command_selector_legacy.LegacyCommandSelector.get_config_path_method
@@ -509,6 +510,7 @@ msgstr ""
 #: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.get_raw_file
 #: pib_cli.support.user_configuration.user_configuration_file.UserConfigurationFile.parse
 #: pib_cli.support.user_configuration.validator.UserConfigurationValidator.validate
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_documentation_root
 #: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name
 msgid "Returns"
 msgstr ""
@@ -1084,12 +1086,29 @@ msgstr ""
 msgid "Change the path to the project documentation folder location."
 msgstr ""
 
+#: of pib_cli.support.path_map.PathMap.documentation_root_path:1
+msgid "Return the path to the documentation root."
+msgstr ""
+
 #: of pib_cli.support.path_map.PathMap.git_root:1
-msgid "Change the path to the git root folder location."
+#: pib_cli.support.path_map.PathMap.repo_root:1
+msgid "Change the path to the repository root folder location."
+msgstr ""
+
+#: of pib_cli.support.path_map.PathMap.git_root:3
+msgid "This is an alias of :func:`~.PathMap.repo_root`."
 msgstr ""
 
 #: of pib_cli.support.path_map.PathMap.project_root:1
 msgid "Change the path to the project's codebase root folder location."
+msgstr ""
+
+#: of pib_cli.support.path_map.PathMap.project_root_path:1
+msgid "Return the path to the project root."
+msgstr ""
+
+#: of pib_cli.support.path_map.PathMap.repo_root_path:1
+msgid "Return the path to the repository's root folder."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.runner.rst:2
@@ -1331,8 +1350,13 @@ msgid "pib\\_cli.support.user\\_configuration.bases.fixtures.version\\_base\\_ha
 msgstr ""
 
 #: of
+#: pib_cli.support.user_configuration.bases.fixtures.version_base_harness.UserConfigurationVersionBaseTestHarness.test_get_documentation_folder:1
+msgid "Override to test the get_documentation_folder method."
+msgstr ""
+
+#: of
 #: pib_cli.support.user_configuration.bases.fixtures.version_base_harness.UserConfigurationVersionBaseTestHarness.test_get_project_name:1
-msgid "Override to test the get_project_name_method."
+msgid "Override to test the get_project_name method."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.user_configuration.bases.version_base.rst:2
@@ -1349,6 +1373,13 @@ msgstr ""
 #: pib_cli.support.user_configuration.bases.version_legacy_base.LegacyUserVersionIntermediateBase.get_command_definitions:1
 #: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_command_definitions:1
 msgid "Return the CLI command definitions from the configuration."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.bases.version_base.UserConfigurationVersionBase.get_documentation_root:1
+#: pib_cli.support.user_configuration.bases.version_legacy_base.LegacyUserVersionIntermediateBase.get_documentation_root:1
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_documentation_root:1
+msgid "Return the documentation folder from the configuration."
 msgstr ""
 
 #: of
@@ -1390,8 +1421,8 @@ msgid "An intermediate base class for older json schemas."
 msgstr ""
 
 #: of
+#: pib_cli.support.user_configuration.bases.version_legacy_base.LegacyUserVersionIntermediateBase.get_documentation_root:3
 #: pib_cli.support.user_configuration.bases.version_legacy_base.LegacyUserVersionIntermediateBase.get_project_name:3
-#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:7
 msgid "The configured project name"
 msgstr ""
 
@@ -1544,7 +1575,7 @@ msgstr ""
 msgid "pib\\_cli.support.user\\_configuration.versions"
 msgstr ""
 
-#: of pib_cli.support.user_configuration.versions.UserConfigurationLegacy:1
+#: of pib_cli.support.user_configuration.versions.UserConfigurationV100:1
 msgid "User configuration for the legacy schema version v1.0.0."
 msgstr ""
 
@@ -1557,13 +1588,30 @@ msgid "User configuration for schema version v2.1.0."
 msgstr ""
 
 #: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_documentation_root:3
 #: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:3
 msgid "Look for an environment variable defined value first."
 msgstr ""
 
 #: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_documentation_root:4
 #: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:4
 msgid "Look for a configuration file definition next."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_documentation_root:5
+msgid "Finally, fall back to the default value."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_documentation_root:7
+msgid "The configured documentation folder."
+msgstr ""
+
+#: of
+#: pib_cli.support.user_configuration.versions.UserConfigurationV210.get_project_name:7
+msgid "The configured project name."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/pib_cli.rst:2
@@ -1726,5 +1774,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "pib\\_cli.support.user\\_configuration.bases.user\\_configuration\\_base"
+#~ msgstr ""
+
+#~ msgid "Change the path to the git root folder location."
+#~ msgstr ""
+
+#~ msgid "Override to test the get_project_name_method."
 #~ msgstr ""
 

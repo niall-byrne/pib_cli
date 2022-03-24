@@ -17,7 +17,7 @@ class ConfigValidateCommand(command_config.CommandConfigBase):
         _(
             "Configuration file: {path}\n"
             "This configuration is valid.").format(
-                name=user_config.project_name,
+                name=user_config.get_project_name(),
                 path=self.user_config_file.get_config_file_name(),
             )
     )

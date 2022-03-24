@@ -12,6 +12,11 @@
                     "description": "The name of the project being managed by PIB.",
                     "pattern": "[0-9a-zA-Z-_]+$",
                     "type": "string"
+                },
+                "documentation_root": {
+                    "description": "The relative path from the repository root to the Sphinx Makefile folder.",
+                    "pattern": "[\\s0-9a-zA-Z-_/\\\\]+$",
+                    "type": "string"
                 }
             },
             "additionalProperties": false

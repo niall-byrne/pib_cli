@@ -1,7 +1,7 @@
 """UserConfigurationVersionBase implementations."""
 
 import os
-from typing import Any, cast
+from typing import Any, Dict, Optional, cast
 
 from pib_cli import config
 from pib_cli.config import yaml_keys
@@ -51,18 +51,50 @@ class UserConfigurationV210(version_base.UserConfigurationVersionBase):
     #. Look for a configuration file definition next.
     #. Finally, fall back to the default configuration.
 
-    :returns: The configured project name
+    :returns: The configured project name.
     :raises: KeyError
     """
 
     env_project_name = os.getenv(config.ENV_OVERRIDE_PROJECT_NAME, None)
-    yaml_project_name = self.configuration.get(
-        yaml_keys.V210_CLI_CONFIG_PROJECT_NAME,
-        None,
-    )
+    metadata = self._get_metadata()
+    yaml_project_name = None
+    if metadata:
+      yaml_project_name = metadata.get(
+          yaml_keys.V210_CLI_CONFIG_PROJECT_NAME,
+          None,
+      )
 
     if env_project_name:
       return env_project_name
-    if yaml_project_name:
-      return cast(str, yaml_project_name)
+    if metadata and yaml_project_name:
+      return yaml_project_name
     raise KeyError(config.ERROR_PROJECT_NAME_NOT_SET)
+
+  def get_documentation_root(self) -> str:
+    """Return the documentation folder from the configuration.
+
+    #. Look for an environment variable defined value first.
+    #. Look for a configuration file definition next.
+    #. Finally, fall back to the default value.
+
+    :returns: The configured documentation folder.
+    """
+    env_docs_folder = os.getenv(config.ENV_OVERRIDE_DOCUMENTATION_ROOT, None)
+    metadata = self._get_metadata()
+    yaml_docs_folder = None
+    if metadata:
+      yaml_docs_folder = metadata.get(
+          yaml_keys.V210_CLI_CONFIG_DOCS_FOLDER, None
+      )
+
+    if env_docs_folder:
+      return env_docs_folder
+    if yaml_docs_folder:
+      return yaml_docs_folder
+    return config.DEFAULT_DOCUMENTATION_FOLDER_NAME
+
+  def _get_metadata(self) -> Optional[Dict[str, str]]:
+    return cast(
+        Optional[Dict[str, str]],
+        self.configuration.get(yaml_keys.V210_CLI_CONFIG_METADATA, None),
+    )

@@ -82,21 +82,29 @@ msgstr ""
 msgid "configuration_commands"
 msgstr ""
 
-#: pib_cli/config/__init__.py:17
+#: pib_cli/config/__init__.py:19
 msgid ""
 "This command can only be run inside a PIB container.\n"
 "Find out more here: {PIB_URL}"
 msgstr ""
 
-#: pib_cli/config/__init__.py:23
+#: pib_cli/config/__init__.py:25
 msgid ""
 "This command can only be run inside a PIB container with version "
 "{minimum_version} or greater.\n"
 "Find out more here: {PIB_URL}"
 msgstr ""
 
-#: pib_cli/support/path_map.py:34
+#: pib_cli/support/path_map.py:39
 msgid "No git repository not found."
+msgstr ""
+
+#: pib_cli/support/path_map.py:55
+msgid "ERROR: Documentation not found: {path} (config: {key}, env: {env})"
+msgstr ""
+
+#: pib_cli/support/path_map.py:78
+msgid "ERROR: Project not found: {path} (config: {key}, env: {env})"
 msgstr ""
 
 #: pib_cli/support/state.py:44

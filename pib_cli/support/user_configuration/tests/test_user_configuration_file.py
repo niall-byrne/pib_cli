@@ -75,7 +75,7 @@ class TestUserConfigurationFile(TestCase):
       m_path_map: Mock,
   ) -> None:
     m_exists.side_effect = [True]
-    m_path_map.return_value.git_root_folder = "/mock_path"
+    m_path_map.return_value.repo_root_path = "/mock_path"
 
     instance = self.create_instance()
     result = instance.get_config_file_name()
@@ -92,7 +92,7 @@ class TestUserConfigurationFile(TestCase):
       m_path_map: Mock,
   ) -> None:
     m_exists.side_effect = [False, True]
-    m_path_map.return_value.git_root_folder = "/mock_path"
+    m_path_map.return_value.repo_root_path = "/mock_path"
 
     instance = self.create_instance()
     result = instance.get_config_file_name()
@@ -102,7 +102,7 @@ class TestUserConfigurationFile(TestCase):
             call("/some_path"),
             call(
                 os.path.join(
-                    m_path_map.return_value.git_root_folder,
+                    m_path_map.return_value.repo_root_path,
                     config.PIB_CONFIG_FILE_NAME
                 )
             )
@@ -112,7 +112,7 @@ class TestUserConfigurationFile(TestCase):
     self.assertEqual(
         result,
         os.path.join(
-            m_path_map.return_value.git_root_folder, config.PIB_CONFIG_FILE_NAME
+            m_path_map.return_value.repo_root_path, config.PIB_CONFIG_FILE_NAME
         ),
     )
 
@@ -125,7 +125,7 @@ class TestUserConfigurationFile(TestCase):
       m_path_map: Mock,
   ) -> None:
     m_exists.side_effect = [False]
-    m_path_map.return_value.git_root_folder = "/mock_path"
+    m_path_map.return_value.repo_root_path = "/mock_path"
 
     instance = self.create_instance()
     result = instance.get_config_file_name()
@@ -134,7 +134,7 @@ class TestUserConfigurationFile(TestCase):
         [
             call(
                 os.path.join(
-                    m_path_map.return_value.git_root_folder,
+                    m_path_map.return_value.repo_root_path,
                     config.PIB_CONFIG_FILE_NAME
                 )
             )
