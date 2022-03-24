@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 16:24+0000\n"
+"POT-Creation-Date: 2022-03-24 16:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1133,6 +1133,10 @@ msgstr ""
 
 #: of pib_cli.support.runner.CommandRunner.execute:3
 msgid "Execution will terminate immediately if any command fails."
+msgstr ""
+
+#: of pib_cli.support.runner.TypeRunnerEnvVar:1
+msgid "Typed representation of a runner's environment variable."
 msgstr ""
 
 #: ../../source/codebase/pib_cli/pib_cli/_autosummary/pib_cli.support.state.rst:2

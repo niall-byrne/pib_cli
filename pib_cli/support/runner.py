@@ -3,9 +3,18 @@
 import os
 from typing import List, Tuple
 
-from pib_cli.support import path_map
+from pib_cli.support import path_map, state
+from typing_extensions import TypedDict
 
 from .. import config
+
+
+class TypeRunnerEnvVar(TypedDict):
+  """Typed representation of a runner's environment variable."""
+
+  name: str
+  value: str
+  always_set: bool
 
 
 class CommandRunner:
@@ -30,6 +39,7 @@ class CommandRunner:
         path_map.PathMap(),
         path_map_method,
     )
+    self._inserted_variable_content: List[str] = []
 
   def execute(self) -> None:
     """Execute the sequence of system calls.
@@ -38,24 +48,45 @@ class CommandRunner:
     """
 
     self._change_execution_location()
-    self._insert_overload()
+    self._setup_environment()
     for command in self.commands:
       self._system_call(command)
       if self.exit_code != 0:
         break
-    self._clear_overload()
+    self._clear_environment()
 
   def _system_call(self, command: str) -> None:
 
     result = os.system(command)  # nosec
     self.exit_code = int(result / 256)
 
-  def _insert_overload(self) -> None:
+  def _clear_environment(self) -> None:
 
-    overload_string = " ".join(self.overload)
-    os.environ[self.overload_environment_variable] = overload_string
+    for env_var in self._inserted_variable_content:
+      del os.environ[env_var]
 
-  def _clear_overload(self) -> None:
+  def _setup_environment(self) -> None:
+    for env in self._get_environment_config():
+      if env['name'] not in os.environ or env['always_set']:
+        os.environ[env['name']] = env['value']
+        self._inserted_variable_content.append(env['name'])
 
-    if self.overload_environment_variable in os.environ:
-      del os.environ[self.overload_environment_variable]
+  def _get_environment_config(self) -> List[TypeRunnerEnvVar]:
+    user_configuration = state.State().user_config
+    return [
+        TypeRunnerEnvVar(
+            name=config.ENV_OVERRIDE_PROJECT_NAME,
+            value=user_configuration.get_project_name(),
+            always_set=False,
+        ),
+        TypeRunnerEnvVar(
+            name=config.ENV_OVERRIDE_DOCUMENTATION_ROOT,
+            value=user_configuration.get_documentation_root(),
+            always_set=False,
+        ),
+        TypeRunnerEnvVar(
+            name=self.overload_environment_variable,
+            value=" ".join(self.overload),
+            always_set=True,
+        ),
+    ]
