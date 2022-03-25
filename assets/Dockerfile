@@ -8,7 +8,7 @@ LABEL project="pib_cli"
 LABEL environment="stage1"
 
 ENV PYTHONUNBUFFERED "1"
-ENV PROJECT_NAME "pib_cli"
+ENV PIB_PROJECT_NAME "pib_cli"
 ENV PIB_CONFIG_FILE_LOCATION "/app/assets/cli.yml"
 
 ENV VERSION_ASPELL "aspell-${BUILD_ARG_ASPELL_LANGUAGE}=*"

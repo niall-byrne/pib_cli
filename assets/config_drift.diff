@@ -30,7 +30,7 @@
 <     path: "documentation_root"
 <     commands:
 <       - '[ ! -d build/gettext ] || rm -rf build/gettext'
-<       - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
+<       - '[ ! -d "./source/codebase/${PIB_PROJECT_NAME}/${PIB_PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PIB_PROJECT_NAME}/${PIB_PROJECT_NAME}/_autosummary"'
 <       - |
 <         env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
 <           make gettext &&
@@ -40,9 +40,9 @@
 <     success: "Documentation Built"
 <     failure: "Error Building Documentation"
 50c15
-<       - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+<       - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PIB_PROJECT_NAME}" "${PIB_PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
 ---
->       - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+>       - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PIB_PROJECT_NAME}" "${PIB_PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
 56d20
 <     container_only: true
 58,59d21
@@ -62,19 +62,19 @@
 74a28
 >     description: "Run the code linters."
 76,80d29
-<       - 'shellcheck ${PROJECT_NAME}/bash/* -x'
-<       - 'shellcheck ${PROJECT_NAME}/container_init.sh'
-<       - 'darglint "${PROJECT_NAME}"'
-<       - 'pydocstyle "${PROJECT_NAME}"'
-<       - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
+<       - 'shellcheck ${PIB_PROJECT_NAME}/bash/* -x'
+<       - 'shellcheck ${PIB_PROJECT_NAME}/container_init.sh'
+<       - 'darglint "${PIB_PROJECT_NAME}"'
+<       - 'pydocstyle "${PIB_PROJECT_NAME}"'
+<       - 'pydocstyle --config=.pydocstyle.tests "${PIB_PROJECT_NAME}"'
 91c40
 <       - "poetry install -E pib_docs"
 ---
 >       - "poetry install"
 98c47
-<       - 'bandit -r "${PROJECT_NAME}" -c pyproject.toml -x tests'
+<       - 'bandit -r "${PIB_PROJECT_NAME}" -c pyproject.toml -x tests'
 ---
->       - 'bandit -r "${PROJECT_NAME}" -x tests'
+>       - 'bandit -r "${PIB_PROJECT_NAME}" -x tests'
 100c49
 <       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
 ---
@@ -88,6 +88,6 @@
 <     description: "Run the type checker."
 <     path: "repo_root"
 <     commands:
-<       - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
+<       - 'mypy --strict --show-error-codes --implicit-reexport ${PIB_PROJECT_NAME}'
 <     success: "Type Check Passed!"
 <     failure: "Type Check Failed!"

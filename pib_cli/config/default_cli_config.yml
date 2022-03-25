@@ -12,7 +12,7 @@ cli_definition:
     description: "Run code coverage test."
     path: "repo_root"
     commands:
-      - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+      - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PIB_PROJECT_NAME}" "${PIB_PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
     success: "Coverage Passed!"
     failure: "Coverage Failed!"
   - name: "fmt"
@@ -20,7 +20,7 @@ cli_definition:
     path: "repo_root"
     commands:
       - 'yapf -i --recursive .'
-      - 'isort "${PROJECT_NAME}"'
+      - 'isort "${PIB_PROJECT_NAME}"'
     success: "Formatting Finished!"
     failure: "Formatting Error!"
   - name: "lint"
@@ -28,8 +28,8 @@ cli_definition:
     description: "Run the code linters."
     commands:
       - 'yamllint .'
-      - 'isort -c "${PROJECT_NAME}"'
-      - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
+      - 'isort -c "${PIB_PROJECT_NAME}"'
+      - 'pytest --pylint --pylint-jobs=2 "${PIB_PROJECT_NAME}"'
     success: "Linter Test Passed!"
     failure: "Linter Test Failed!"
   - name: "reinstall-requirements"
@@ -44,7 +44,7 @@ cli_definition:
     description: "Run the security tests."
     path: "repo_root"
     commands:
-      - 'bandit -r "${PROJECT_NAME}" -x tests'
+      - 'bandit -r "${PIB_PROJECT_NAME}" -x tests'
       - 'echo "\nPoetry is exporting the lockfile standby..."'
       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin'
     success: "Security Test Passed!"

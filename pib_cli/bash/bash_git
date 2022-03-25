@@ -70,7 +70,7 @@ find_git_branch() {
       branch='detached*'
     fi
 
-    git_branch="[r:${Yellow}${PROJECT_NAME}${NC}/b:${Cyan}${branch}${NC}]\\n"
+    git_branch="[r:${Yellow}${PIB_PROJECT_NAME}${NC}/b:${Cyan}${branch}${NC}]\\n"
   else
     git_branch=""
   fi

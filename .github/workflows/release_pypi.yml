@@ -10,6 +10,10 @@ on:
   release:
     types: [published]
 
+env:
+  PIB_PROJECT_NAME: "pib_cli"
+  USERNAME: "niall-byrne"
+
 jobs:
   release:
 

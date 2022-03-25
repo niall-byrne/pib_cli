@@ -27,7 +27,7 @@ cli_definition:
     path: "documentation_root"
     commands:
       - '[ ! -d build/gettext ] || rm -rf build/gettext'
-      - '[ ! -d "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PROJECT_NAME}/${PROJECT_NAME}/_autosummary"'
+      - '[ ! -d "./source/codebase/${PIB_PROJECT_NAME}/${PIB_PROJECT_NAME}/_autosummary" ] || rm -rf "./source/codebase/${PIB_PROJECT_NAME}/${PIB_PROJECT_NAME}/_autosummary"'
       - |
         env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c "
           make gettext &&
@@ -47,7 +47,7 @@ cli_definition:
     description: "Run code coverage test."
     path: "repo_root"
     commands:
-      - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PROJECT_NAME}" "${PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
+      - env PIB_CONFIG_FILE_LOCATION="$(pwd)/../pib_cli/config/default_cli_config.yml" sh -c 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PIB_PROJECT_NAME}" "${PIB_PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
     success: "Coverage Passed!"
     failure: "Coverage Failed!"
   - name: "fmt"
@@ -58,7 +58,7 @@ cli_definition:
       - './scripts/utilities/aspell_sort.sh'
       - 'tomll pyproject.toml'
       - 'yapf -i --recursive .'
-      - 'isort "${PROJECT_NAME}"'
+      - 'isort "${PIB_PROJECT_NAME}"'
     success: "Formatting Finished!"
     failure: "Formatting Error!"
   - name: "leaks"
@@ -73,14 +73,14 @@ cli_definition:
     description: "Run the code linters."
     path: "repo_root"
     commands:
-      - 'shellcheck ${PROJECT_NAME}/bash/* -x'
-      - 'shellcheck ${PROJECT_NAME}/container_init.sh'
-      - 'darglint "${PROJECT_NAME}"'
-      - 'pydocstyle "${PROJECT_NAME}"'
-      - 'pydocstyle --config=.pydocstyle.tests "${PROJECT_NAME}"'
+      - 'shellcheck ${PIB_PROJECT_NAME}/bash/* -x'
+      - 'shellcheck ${PIB_PROJECT_NAME}/container_init.sh'
+      - 'darglint "${PIB_PROJECT_NAME}"'
+      - 'pydocstyle "${PIB_PROJECT_NAME}"'
+      - 'pydocstyle --config=.pydocstyle.tests "${PIB_PROJECT_NAME}"'
       - 'yamllint .'
-      - 'isort -c "${PROJECT_NAME}"'
-      - 'pytest --pylint --pylint-jobs=2 "${PROJECT_NAME}"'
+      - 'isort -c "${PIB_PROJECT_NAME}"'
+      - 'pytest --pylint --pylint-jobs=2 "${PIB_PROJECT_NAME}"'
     success: "Linter Test Passed!"
     failure: "Linter Test Failed!"
   - name: "reinstall-requirements"
@@ -95,7 +95,7 @@ cli_definition:
     description: "Run the security tests."
     path: "repo_root"
     commands:
-      - 'bandit -r "${PROJECT_NAME}" -c pyproject.toml -x tests'
+      - 'bandit -r "${PIB_PROJECT_NAME}" -c pyproject.toml -x tests'
       - 'echo "\nPoetry is exporting the lockfile standby..."'
       - 'poetry export --without-hashes -f requirements.txt | safety check --stdin -i 41002'
     success: "Security Test Passed!"
@@ -111,6 +111,6 @@ cli_definition:
     description: "Run the type checker."
     path: "repo_root"
     commands:
-      - 'mypy --strict --show-error-codes --implicit-reexport ${PROJECT_NAME}'
+      - 'mypy --strict --show-error-codes --implicit-reexport ${PIB_PROJECT_NAME}'
     success: "Type Check Passed!"
     failure: "Type Check Failed!"
