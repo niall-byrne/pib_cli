@@ -183,9 +183,6 @@ jobs:
           release_name: Release ${{ env.BRANCH_OR_TAG }}
           body: |
             ${{ env.CHANGE_LOG }}
-            ## Deployment Checklist
-            - [ ] Ensure documentation is accurate
-            - [ ] Ensure readthedocs integration is working
           draft: true
           prerelease: false
 
