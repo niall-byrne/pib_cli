@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-25 19:41+0000\n"
+"POT-Creation-Date: 2022-03-26 19:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -774,41 +774,5 @@ msgid "`pib_cli repository <https://github.com/niall-byrne/pib_cli>`_"
 msgstr ""
 
 #~ msgid "Repository README.md"
-#~ msgstr ""
-
-#~ msgid "Core Installed Packages"
-#~ msgstr ""
-
-#~ msgid "Installed and required by ``pib_cli``"
-#~ msgstr ""
-
-#~ msgid "Installing Multiple Extras"
-#~ msgstr ""
-
-#~ msgid "Creating a ``.pib.yml`` File"
-#~ msgstr ""
-
-#~ msgid "**Understanding ``pib_cli`` metadata**"
-#~ msgstr ""
-
-#~ msgid "**Environment Variables and ``pib_cli``**"
-#~ msgstr ""
-
-#~ msgid "**Environment Variables and ``pib_cli`` commands**"
-#~ msgstr ""
-
-#~ msgid "Adding a CLI Definition to a ``.pib.yml`` File"
-#~ msgstr ""
-
-#~ msgid "Validating a ``.pib.yml`` File"
-#~ msgstr ""
-
-#~ msgid "Activating a ``.pib.yml`` File"
-#~ msgstr ""
-
-#~ msgid "‘types’ extras"
-#~ msgstr ""
-
-#~ msgid "‘types’ extras2"
 #~ msgstr ""
 
