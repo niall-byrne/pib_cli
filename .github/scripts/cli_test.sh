@@ -30,15 +30,15 @@ main() {
 
   dev @pib config where | grep "Configuration file: ${PIB_CONFIG_FILE_LOCATION}"
 
-  dev @pib container setup | grep "Setup Succeeded!"
-
-  dev @pib container version | grep -E 'Container version: 1\.[0-9]+\.[0-9]+'
-
   set +e
 
   if [[ -f /etc/container_release ]]; then
+    set -e
+    dev @pib container setup | grep "Setup Succeeded!"
+    dev @pib container version | grep -E 'Container version: 1\.[0-9]+\.[0-9]+'
     dev @pib container validate | grep "This container is valid."
   else
+    set -e
     dev @pib container validate | grep "No PIB container found."
   fi
 
