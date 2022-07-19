@@ -337,7 +337,7 @@ jobs:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
       - name: Security Test -- Run Gitleaks
-        uses: zricethezav/gitleaks-action@v2.0.4
+        uses: zricethezav/gitleaks-action@v2.0.5
 
       - name: Security Test -- Report Success
         if: ${{ env.VERBOSE_NOTIFICATIONS  == '1' }}
