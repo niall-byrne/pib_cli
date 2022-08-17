@@ -77,13 +77,9 @@ RUN apt-get update                      && \
     vim=2:8.*
 
 # Install Git Leaks
-RUN curl --fail -sL                                                                                                                   \
-    "https://github.com/zricethezav/gitleaks/releases/download/v${VERSION_GITLEAKS}/gitleaks_${VERSION_GITLEAKS}_linux_x64.tar.gz"    \
-    -o gitleaks.tar.gz                                                                                                             && \
-    tar -xvzf gitleaks.tar.gz gitleaks                                                                                             && \
-    mv ./gitleaks /usr/bin/gitleaks                                                                                                && \
-    rm gitleaks.tar.gz                                                                                                             && \
-    chmod +x /usr/bin/gitleaks
+COPY ./scripts/utilities/install_gitleaks.sh .
+RUN bash -c 'source install_gitleaks.sh'  && \
+    rm install_gitleaks.sh
 
 # Add user to sudoers, and make the default user
 RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers

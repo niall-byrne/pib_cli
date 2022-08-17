@@ -12,6 +12,7 @@ on:
 
 env:
   VERBOSE_NOTIFICATIONS: 0
+  VERSION_GITLEAKS: "8.3.0"
   PIB_PROJECT_NAME: "pib_cli"
   USERNAME: "niall-byrne"
 
@@ -330,14 +331,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Documentation Test -- Setup Environment
+      - name: Security Test -- Setup Environment
         run: |
           source .github/scripts/setup.sh
         env:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Security Test -- Run Gitleaks
-        uses: zricethezav/gitleaks-action@v2.0.6
+      - name: Security Test -- Install Gitleaks
+        run: |
+          sudo -E bash -c 'source scripts/utilities/install_gitleaks.sh'
+
+      - name: Security Test -- Scan for Leaked Credentials
+        run: |
+          source .github/scripts/gitleaks.sh
+        env:
+          PUSHED_COMMITS: ${{ toJson(github.event.commits) }}
 
       - name: Security Test -- Report Success
         if: ${{ env.VERBOSE_NOTIFICATIONS  == '1' }}
