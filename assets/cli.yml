@@ -56,10 +56,10 @@ cli_definition:
     path: "repo_root"
     container_only: true
     commands:
-      - './scripts/utilities/aspell_sort.sh'
-      - 'tomll pyproject.toml'
-      - 'yapf -i --recursive .'
-      - 'isort "${PIB_PROJECT_NAME}"'
+      - '[ ! -z ${PIB_OVERLOAD_ARGUMENTS} ] || ./scripts/utilities/aspell_sort.sh'
+      - '[ ! -z ${PIB_OVERLOAD_ARGUMENTS} ] || tomll pyproject.toml'
+      - 'yapf -i --recursive ${PIB_OVERLOAD_ARGUMENTS:-.}'
+      - 'isort "${PIB_OVERLOAD_ARGUMENTS:-${PIB_PROJECT_NAME}}"'
     success: "Formatting Finished!"
     failure: "Formatting Error!"
   - name: "leaks"

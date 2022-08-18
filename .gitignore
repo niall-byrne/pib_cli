@@ -132,7 +132,8 @@ dmypy.json
 override.env
 
 # Pycharm
-.idea
+.idea/*
+!.idea/watcherTasks.xml
 
 # Archives
 .archive

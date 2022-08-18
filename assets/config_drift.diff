@@ -46,9 +46,14 @@
 >       - 'pytest --cov-report term-missing --cov-report html --cov-fail-under=100 --cov="${PIB_PROJECT_NAME}" "${PIB_PROJECT_NAME}/" ${PIB_OVERLOAD_ARGUMENTS}'
 57d20
 <     container_only: true
-59,60d21
-<       - './scripts/utilities/aspell_sort.sh'
-<       - 'tomll pyproject.toml'
+59,62c22,23
+<       - '[ ! -z ${PIB_OVERLOAD_ARGUMENTS} ] || ./scripts/utilities/aspell_sort.sh'
+<       - '[ ! -z ${PIB_OVERLOAD_ARGUMENTS} ] || tomll pyproject.toml'
+<       - 'yapf -i --recursive ${PIB_OVERLOAD_ARGUMENTS:-.}'
+<       - 'isort "${PIB_OVERLOAD_ARGUMENTS:-${PIB_PROJECT_NAME}}"'
+---
+>       - 'yapf -i --recursive .'
+>       - 'isort "${PIB_PROJECT_NAME}"'
 65,72d25
 <   - name: "leaks"
 <     description: "Run a scan for leaked credentials in commits."
