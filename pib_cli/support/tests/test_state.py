@@ -1,78 +1,112 @@
 """Tests for the State class."""
 
-from unittest import TestCase
 from unittest.mock import Mock, patch
-
-from pib_cli.support.user_configuration import user_configuration_file
-from pib_cli.support.user_configuration.bases import version_base
 
 from .. import state
 
 
-class TestRunningConfig(TestCase):
-  """Test the RunningConfig monostate."""
+class TestState:
+  """Tests for the State class."""
 
-  def setUp(self) -> None:
-    state.State.clear()
+  class TestInit:
+    """Tests for initialization of the State class."""
 
-  def test_instantiate(self) -> None:
-    instance = state.State()
-    self.assertIsNone(
-        instance.user_config,
-        version_base.UserConfigurationVersionBase,
-    )
-    self.assertIsNone(
-        instance.user_config_file,
-        user_configuration_file.UserConfigurationFile,
-    )
+    def setup_method(self) -> None:
+      state.State.clear()
 
-  def test_mono_state_user_config(self) -> None:
-    instance = state.State()
-    instance.user_config = Mock()
+    def test__has_correct_properties(self) -> None:
+      instance = state.State()
 
-    instance2 = state.State()
-    self.assertEqual(instance.user_config, getattr(instance2, 'user_config'))
+      assert instance.user_config is None
+      assert instance.user_config_file is None
 
-  def test_mono_state_clear(self) -> None:
-    instance = state.State()
-    instance.user_config = Mock()
+    def test__has_shared_state(self) -> None:
+      instance1 = state.State()
+      instance1.user_config = Mock()
+      instance1.user_config_file = Mock()
 
-    state.State.clear()
+      instance2 = state.State()
 
-    instance2 = state.State()
+      assert instance1.user_config == instance2.user_config
+      assert instance1.user_config_file == instance2.user_config_file
 
-    self.assertEqual(instance2.user_config, None)
+  class TestStateClear:
+    """Tests for clear method of the State class."""
 
-  @patch(state.__name__ + ".click.echo")
-  @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
-  def test_load_config(self, m_user_config_file: Mock, m_echo: Mock) -> None:
+    def setup_method(self) -> None:
+      state.State.clear()
 
-    instance = state.State()
-    instance.load()
+    def test__restores_original_state(self) -> None:
+      instance1 = state.State()
+      instance1.user_config = Mock()
+      instance1.user_config_file = Mock()
 
-    m_user_config_file.assert_called_once_with()
-    m_user_config_file.return_value.parse.assert_called_once_with()
-    self.assertEqual(instance.user_config_file, m_user_config_file.return_value)
-    self.assertEqual(
-        instance.user_config, m_user_config_file.return_value.parse.return_value
-    )
-    m_echo.assert_not_called()
+      state.State.clear()
 
-  @patch(state.__name__ + ".click.echo")
-  @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
-  def test_load_config_legacy(
-      self, m_user_config_file: Mock, m_echo: Mock
-  ) -> None:
-    m_user_config_file.return_value.default_config = \
-      m_user_config_file.return_value.get_config_file_name.return_value
+      instance2 = state.State()
+      assert instance2.user_config is None
+      assert instance2.user_config_file is None
 
-    instance = state.State()
-    instance.load()
+  class TestStateLoad:
+    """Tests for load method of the State class."""
 
-    m_user_config_file.assert_called_once_with()
-    m_user_config_file.return_value.parse.assert_called_once_with()
-    self.assertEqual(instance.user_config_file, m_user_config_file.return_value)
-    self.assertEqual(
-        instance.user_config, m_user_config_file.return_value.parse.return_value
-    )
-    m_echo.assert_called_once_with("** PIB DEFAULT CONFIG IN USE **")
+    def setup_method(self) -> None:
+      state.State.clear()
+
+    @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
+    def test__sets_user_config_file(
+        self,
+        m_user_config_file: Mock,
+    ) -> None:
+      instance = state.State()
+
+      instance.load()
+
+      m_user_config_file.assert_called_once_with()
+      assert instance.user_config_file == m_user_config_file.return_value
+
+    @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
+    def test__sets_parsed_user_config(
+        self,
+        m_user_config_file: Mock,
+    ) -> None:
+      m_parse = m_user_config_file.return_value.parse
+      instance = state.State()
+
+      instance.load()
+
+      m_parse.assert_called_once_with()
+      assert instance.user_config == m_parse.return_value
+
+    @patch(state.__name__ + ".click.echo")
+    @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
+    def test__with_non_default_config__does_not_echo_warning(
+        self,
+        m_user_config_file: Mock,
+        m_echo: Mock,
+    ) -> None:
+      instance = state.State()
+
+      instance.load()
+
+      assert m_user_config_file.return_value.get_config_file_name() != \
+             m_user_config_file.default_config
+      m_echo.assert_not_called()
+
+    @patch(state.__name__ + ".click.echo")
+    @patch(state.__name__ + ".user_configuration_file.UserConfigurationFile")
+    def test__with_default_config__echoes_warning(
+        self,
+        m_user_config_file: Mock,
+        m_echo: Mock,
+    ) -> None:
+      m_user_config_file.return_value.default_config = \
+        m_user_config_file.return_value.get_config_file_name.return_value
+      instance = state.State()
+
+      instance.load()
+
+      assert instance.user_config_file.get_config_file_name() == \
+             instance.user_config_file.default_config
+
+      m_echo.assert_called_once_with("** PIB DEFAULT CONFIG IN USE **")

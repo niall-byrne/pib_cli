@@ -50,7 +50,7 @@ class PathMap:
       documentation_absolute_path = (
           self.repo_root_path / documentation_relative_path
       )
-      self._path_does_not_exist(
+      self._validate_path(
           documentation_absolute_path,
           _(
               "ERROR: Documentation not found: {path} "
@@ -73,7 +73,7 @@ class PathMap:
       project_relative_path = state.State().\
         user_config.get_project_name()
       project_absolute_path = self.repo_root_path / project_relative_path
-      self._path_does_not_exist(
+      self._validate_path(
           project_absolute_path,
           _(
               "ERROR: Project not found: {path}"
@@ -88,7 +88,7 @@ class PathMap:
       self._project_root_path = project_absolute_path
     return self._project_root_path
 
-  def _path_does_not_exist(
+  def _validate_path(
       self,
       path: pathlib.Path,
       message: str,
