@@ -12,4 +12,5 @@ class TestMain(TestCase):
   @patch(main.__name__ + ".cli_interface")
   def test_main(self, m_cli: Mock) -> None:
     main.main()
+
     m_cli.assert_called_once_with()
