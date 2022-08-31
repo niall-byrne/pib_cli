@@ -230,6 +230,7 @@
   [tool.pytest]
 
     [tool.pytest.ini_options]
+      filterwarnings = ["ignore::pytest.PytestRemovedIn8Warning"]
       testpaths = ["pib_cli"]
 
   [tool.yapf]
