@@ -72,7 +72,7 @@
       pylint = "^2.8.3"
       pytest = "^7.0.1"
       pytest-cov = "^3.0.0"
-      pytest-pylint = "^0.18.0"
+      pytest-pylint = ">=0.18,<0.20"
       python = ">=3.7.0,<3.11.0"
       safety = "^1.10.3"
       wheel = "^0.37.1"
