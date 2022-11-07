@@ -26,7 +26,7 @@ Supported Python Versions
 
 Tested to work with the following Python versions:
 
--  Python 3.7
+-  Python 3.7 (minimum 3.7.2)
 -  Python 3.8
 -  Python 3.9
 -  Python 3.10
