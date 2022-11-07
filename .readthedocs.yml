@@ -11,5 +11,5 @@ python:
     - method: pip
       path: .
       extra_requirements:
-        - pib_docs
+        - pib-docs
   system_packages: false
