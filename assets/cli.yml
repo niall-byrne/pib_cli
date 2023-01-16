@@ -89,7 +89,7 @@ cli_definition:
     path: "repo_root"
     commands:
       - "poetry lock"
-      - "poetry install -E pib_docs"
+      - "poetry install -E docstrings -E docs -E types -E pib_docs"
     success: "Reinstall Succeeded!"
     failure: "Reinstall Failed!"
   - name: "sectest"

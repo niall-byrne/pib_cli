@@ -74,7 +74,7 @@
 <       - 'pydocstyle "${PIB_PROJECT_NAME}"'
 <       - 'pydocstyle --config=.pydocstyle.tests "${PIB_PROJECT_NAME}"'
 92c40
-<       - "poetry install -E pib_docs"
+<       - "poetry install -E docstrings -E docs -E types -E pib_docs"
 ---
 >       - "poetry install"
 99c47

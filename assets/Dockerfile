@@ -13,7 +13,7 @@ ENV PIB_CONFIG_FILE_LOCATION "/app/assets/cli.yml"
 
 ENV VERSION_ASPELL "aspell-${BUILD_ARG_ASPELL_LANGUAGE}=*"
 ENV VERSION_GITLEAKS "8.3.0"
-ENV VERSION_POETRY "poetry>=1.1.12,<1.2.0"
+ENV VERSION_POETRY "poetry<1.4.0"
 
 # Mark Container
 RUN echo "1.0.0" > /etc/container_pib_version   && \
@@ -105,8 +105,8 @@ RUN chown user /app/.git/hooks/*
 USER user
 
 # Setup The Dev CLI, bootstrapping the current version of pib_cli
-RUN poetry install                              && \
-    poetry run dev @pib container setup         && \
+RUN poetry install -E docstrings -E docs -E types -E pib_docs         && \
+    poetry run dev @pib container setup                               && \
     poetry run pre-commit install
 
 CMD ["./pib_cli/container_init.sh"]
