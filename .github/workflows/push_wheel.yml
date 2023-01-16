@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Acceptance -- Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Acceptance -- Setup Environment
         run: |
@@ -83,7 +83,7 @@ jobs:
 
     steps:
       - name: Build -- Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build -- Setup Environment
         run: |
@@ -153,7 +153,7 @@ jobs:
 
     steps:
       - name: Create Release -- Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -173,19 +173,27 @@ jobs:
         run: |
           source .github/scripts/changelog.sh
 
-      - name: Create Release -- Create Github Release
+      - name: Create Release -- Generate Github Release Draft
         if: contains(github.ref, '/tags/v')
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/github-script@v6
         with:
-          tag_name: ${{ env.BRANCH_OR_TAG }}
-          release_name: Release ${{ env.BRANCH_OR_TAG }}
-          body: |
-            ${{ env.CHANGE_LOG }}
-          draft: true
-          prerelease: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            try {
+              const result = await github.rest.repos.createRelease({
+                body: process.env.CHANGE_LOG_CONTENT,
+                draft: true,
+                name: "Release " + process.env.BRANCH_OR_TAG,
+                owner: context.repo.owner,
+                prerelease: false,
+                repo: context.repo.repo,
+                tag_name: process.env.BRANCH_OR_TAG,
+              });
+              return result.upload_url
+            } catch (error) {
+              core.setFailed(error.message);
+            }
 
       - name: Create Release -- Build Wheel
         if: contains(github.ref, '/tags/v')
@@ -200,15 +208,12 @@ jobs:
 
       - name: Create Release -- Upload Release Asset
         if: contains(github.ref, '/tags/v')
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
+        run: |
+          source ./.github/scripts/upload_asset.sh
         env:
+          FILE_PATH: ./dist/${{ env.WHEEL_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/${{ env.WHEEL_NAME }}
-          asset_name: ${{ env.WHEEL_NAME }}
-          asset_content_type: application/zip
+          RELEASE_CONTEXT: ${{ steps.create_release.outputs.result }}
 
       - name: Create Release -- Report Success
         if: contains(github.ref, '/tags/v')
@@ -230,12 +235,12 @@ jobs:
 
     steps:
       - name: Commitizen Check -- Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Commitizen Check -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 100
 
@@ -266,7 +271,7 @@ jobs:
 
     steps:
       - name: Dockerfile Test -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Dockerfile Test -- Setup Environment
         run: |
@@ -275,7 +280,7 @@ jobs:
           WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
       - name: Dockerfile Test -- Documentation Validation
-        uses: hadolint/hadolint-action@v1.6.0
+        uses: hadolint/hadolint-action@v3.0.0
         with:
           dockerfile: assets/Dockerfile
           failure-threshold: error
@@ -296,7 +301,7 @@ jobs:
 
     steps:
       - name: Documentation Test -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Documentation Test -- Setup Environment
         run: |
@@ -327,7 +332,7 @@ jobs:
     steps:
 
       - name: Security Test -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -363,7 +368,7 @@ jobs:
 
     steps:
       - name: Shellcheck -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Shellcheck -- Setup Environment
         run: |
@@ -390,7 +395,7 @@ jobs:
 
     steps:
       - name: Start -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Start -- Setup Environment
         run: |
@@ -414,7 +419,7 @@ jobs:
 
     steps:
       - name: Success -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Success -- Setup Environment
         run: |
@@ -441,12 +446,12 @@ jobs:
 
     steps:
       - name: Workflow Lint -- Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Workflow Lint -- Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Workflow Lint -- Setup Environment
         run: |
