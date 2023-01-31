@@ -1,7 +1,9 @@
 ARG BUILD_ARG_PYTHON_VERSION=3.7
+
 FROM python:$BUILD_ARG_PYTHON_VERSION-slim AS base
 
 ARG BUILD_ARG_ASPELL_LANGUAGE="en"
+ARG CONTAINER_UID=1000
 
 LABEL maintainer="niall@niallbyrne.ca"
 LABEL project="pib_cli"
@@ -33,11 +35,13 @@ RUN mkdir -p /home/user /app
 WORKDIR /app
 
 # Create the runtime user, and enforce permissions
-RUN useradd user -d /home/user        \
-                 -s /bin/bash         \
-                 -M                   \
- && chown -R user:user /home/user     \
- && chown -R user:user /app
+RUN useradd user -d /home/user         \
+                 -s /bin/bash          \
+                 -u "${CONTAINER_UID}" \
+                 -U                    \
+                 -M                 && \
+ chown -R user:user /home/user      && \
+ chown -R user:user /app
 
 ENV PATH "/home/user/.local/bin/:${PATH}"
 
@@ -99,9 +103,9 @@ COPY . /app
 # Create A Symlink For the Bash Customizations
 RUN ln -sf /app/assets/.bash_customize /home/user/.bash_customize
 
-# Modify the git hooks permissions
+# Enforce sane git permissions
 USER root
-RUN chown user /app/.git/hooks/*
+RUN chown user:user -R /app
 USER user
 
 # Setup The Dev CLI, bootstrapping the current version of pib_cli

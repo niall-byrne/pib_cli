@@ -47,10 +47,6 @@ jobs:
           touch ${HOME}/.gitconfig
           touch ${HOME}/.gitconfig_global
 
-      - name: Acceptance -- Ensure File System is Writable by the Container
-        run: |
-          sudo chmod -R o+w .
-
       - name: Acceptance -- Build Container
         run: |
           source .github/scripts/build_container.sh
@@ -97,10 +93,6 @@ jobs:
           echo | ssh-keygen
           touch ${HOME}/.gitconfig
           touch ${HOME}/.gitconfig_global
-
-      - name: Build -- Ensure File System is Writable by the Container
-        run: |
-          sudo chmod -R o+w .
 
       - name: Build -- Build Container
         run: |
