@@ -1,7 +1,10 @@
 ARG BUILD_ARG_PYTHON_VERSION=3.7
-FROM python:$BUILD_ARG_PYTHON_VERSION-slim AS base
+
+FROM python:${BUILD_ARG_PYTHON_VERSION}-slim AS base
 
 ARG BUILD_ARG_ASPELL_LANGUAGE="en"
+ARG BUILD_ARG_CONTAINER_GID=1000
+ARG BUILD_ARG_CONTAINER_UID=1000
 
 LABEL maintainer="niall@niallbyrne.ca"
 LABEL project="pib_cli"
@@ -28,16 +31,18 @@ RUN apt-get update               && \
     build-essential=12.*         && \
     rm -rf /var/lib/apt/lists/*
 
-# Setup directories
-RUN mkdir -p /home/user /app
-WORKDIR /app
-
 # Create the runtime user, and enforce permissions
-RUN useradd user -d /home/user        \
-                 -s /bin/bash         \
-                 -M                   \
- && chown -R user:user /home/user     \
- && chown -R user:user /app
+RUN groupadd user -g "${BUILD_ARG_CONTAINER_GID}"
+RUN useradd user -d /home/user                    \
+                 -s /bin/bash                     \
+                 -u "${BUILD_ARG_CONTAINER_UID}"  \
+                 -g "${BUILD_ARG_CONTAINER_GID}"  \
+                 -m
+
+# Setup directories
+RUN mkdir -p /app
+RUN chown -R user:user /app
+WORKDIR /app
 
 ENV PATH "/home/user/.local/bin/:${PATH}"
 
@@ -99,9 +104,9 @@ COPY . /app
 # Create A Symlink For the Bash Customizations
 RUN ln -sf /app/assets/.bash_customize /home/user/.bash_customize
 
-# Modify the git hooks permissions
+# Enforce sane git permissions
 USER root
-RUN chown user /app/.git/hooks/*
+RUN chown -R user:user /app
 USER user
 
 # Setup The Dev CLI, bootstrapping the current version of pib_cli
@@ -153,5 +158,10 @@ RUN pip --no-cache-dir install -r requirements.txt
 
 # Copy the codebase
 COPY . /app
+
+# Enforce sane git permissions
+USER root
+RUN chown -R user:user /app
+USER user
 
 CMD ["./{{cookiecutter.project_slug}}/container_init.sh"]
