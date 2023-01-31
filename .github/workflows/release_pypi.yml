@@ -48,10 +48,6 @@ jobs:
           touch ${HOME}/.gitconfig
           touch ${HOME}/.gitconfig_global
 
-      - name: Publish to PyPi -- Ensure File System is Writable by the Container
-        run: |
-          sudo chmod -R o+w .
-
       - name: Publish to PyPi -- Build Container
         run: |
           source .github/scripts/build_container.sh
