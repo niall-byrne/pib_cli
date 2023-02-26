@@ -101,7 +101,7 @@
 
       [tool.poetry.dependencies.sphinx-click]
         optional = true
-        version = "^3.1.0"
+        version = ">=3.1,<5.0"
 
       [tool.poetry.dependencies.sphinx-intl]
         optional = true
