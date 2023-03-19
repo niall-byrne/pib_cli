@@ -75,7 +75,7 @@
       pytest-pylint = "^0.19.0"
       python = ">=3.7.2,<3.11.0"
       safety = "^2.3.1"
-      wheel = "^0.38.2"
+      wheel = ">=0.38.2,<0.41.0"
       yamllint = "^1.28.0"
       yapf = "^0.32.0"
 
