@@ -2,7 +2,7 @@
 
 A batteries included [make](https://www.gnu.org/software/make/) style CLI for [python](https://python.org) projects in [git](https://git-scm.com/) repositories.
 
-[Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
+[Project Documentation](https://pib-cli.readthedocs.io/en/latest/)
 
 ## Development Dependencies
 

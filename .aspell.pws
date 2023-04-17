@@ -1,4 +1,4 @@
-personal_ws-1.1 en 81
+personal_ws-1.1 en 82
 api
 aspell
 autodetect
@@ -74,6 +74,7 @@ unittest
 unittests
 unpatched
 untracked
+url
 validator
 whitespace
 wip

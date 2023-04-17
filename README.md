@@ -2,15 +2,15 @@
 
 A batteries included [make](https://www.gnu.org/software/make/) style CLI for [python](https://python.org) projects in [git](https://git-scm.com/) repositories.
 
-[Project Documentation](https://pib_cli.readthedocs.io/en/latest/)
+[Project Documentation](https://pib-cli.readthedocs.io/en/latest/)
 
 ## Master Branch
 
-[![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
+[![pib_cli-automation-master](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
 
 ## Production Branch
 
-[![pib_cli-automation](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/niall-byrne/pib_cli/actions)
+[![pib_cli-automation-production](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/niall-byrne/pib_cli/actions)
 
 ## Documentation Builds
 

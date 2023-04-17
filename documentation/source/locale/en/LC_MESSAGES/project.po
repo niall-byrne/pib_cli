@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-07 19:46+0000\n"
+"POT-Creation-Date: 2023-04-17 18:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.11.0\n"
+"Generated-By: Babel 2.12.1\n"
 
 #: ../../source/project/introduction.rst:2
 msgid "PIB CLI"
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/project/introduction.rst:7
-msgid "`Project Documentation <https://pib_cli.readthedocs.io/en/latest/>`__"
+msgid "`Project Documentation <https://pib-cli.readthedocs.io/en/latest/>`__"
 msgstr ""
 
 #: ../../source/project/introduction.rst:10
@@ -37,16 +37,23 @@ msgid "Master Branch"
 msgstr ""
 
 #: ../../source/project/introduction.rst:12
-#: ../../source/project/introduction.rst:17
-msgid "|pib_cli-automation|"
+msgid "|pib_cli-automation-master|"
 msgstr ""
 
 #: ../../source/project/introduction.rst
-msgid "pib_cli-automation"
+msgid "pib_cli-automation-master"
 msgstr ""
 
 #: ../../source/project/introduction.rst:15
 msgid "Production Branch"
+msgstr ""
+
+#: ../../source/project/introduction.rst:17
+msgid "|pib_cli-automation-production|"
+msgstr ""
+
+#: ../../source/project/introduction.rst
+msgid "pib_cli-automation-production"
 msgstr ""
 
 #: ../../source/project/introduction.rst:20
@@ -777,5 +784,32 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Python 3.7"
+#~ msgstr ""
+
+#~ msgid "`Project Documentation <https://pib_cli.readthedocs.io/en/latest/>`__"
+#~ msgstr ""
+
+#~ msgid "|pib_cli-automation|"
+#~ msgstr ""
+
+#~ msgid "pib_cli-automation"
+#~ msgstr ""
+
+#~ msgid "|pib-cli-automation|"
+#~ msgstr ""
+
+#~ msgid "pib-cli-automation"
+#~ msgstr ""
+
+#~ msgid "|pib_cli-automation-master|"
+#~ msgstr ""
+
+#~ msgid "pib_cli-automation-master"
+#~ msgstr ""
+
+#~ msgid "|pib_cli-automation-production|"
+#~ msgstr ""
+
+#~ msgid "pib_cli-automation-production"
 #~ msgstr ""
 

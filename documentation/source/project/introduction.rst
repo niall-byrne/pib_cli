@@ -4,17 +4,17 @@ PIB CLI
 A batteries included `make <https://www.gnu.org/software/make/>`__ style CLI for
 `python <https://python.org>`__ projects in `git <https://git-scm.com/>`__ repositories.
 
-`Project Documentation <https://pib_cli.readthedocs.io/en/latest/>`__
+`Project Documentation <https://pib-cli.readthedocs.io/en/latest/>`__
 
 Master Branch
 -------------
 
-|pib_cli-automation|
+|pib_cli-automation-master|
 
 Production Branch
 -----------------
 
-|pib_cli-automation|
+|pib_cli-automation-production|
 
 Documentation Builds
 --------------------
@@ -318,9 +318,9 @@ PIB_OVERLOAD_ARGUMENTS   Reserved to pass arguments to customized CLI commands.
 PIB_PROJECT_NAME         The top level folder in the repository where the codebase is found.
 ======================== =======================================================================
 
-.. |pib_cli-automation| image:: https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master
+.. |pib_cli-automation-master| image:: https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master
    :target: https://github.com/niall-byrne/pib_cli/actions
-.. |pib_cli-automation| image:: https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production
+.. |pib_cli-automation-production| image:: https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production
    :target: https://github.com/niall-byrne/pib_cli/actions
 .. |Documentation Status| image:: https://readthedocs.org/projects/pib-cli/badge/?version=latest
    :target: https://pib-cli.readthedocs.io/en/latest/?badge=latest
