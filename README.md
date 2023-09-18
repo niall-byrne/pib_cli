@@ -6,11 +6,11 @@ A batteries included [make](https://www.gnu.org/software/make/) style CLI for [p
 
 ## Master Branch
 
-[![pib_cli-automation-master](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
+[![pib_cli-push-generic](https://github.com/niall-byrne/pib_cli/actions/workflows/push_wheel.yml/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
 
 ## Production Branch
 
-[![pib_cli-automation-production](https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production)](https://github.com/niall-byrne/pib_cli/actions)
+[![pib_cli-push-generic](https://github.com/niall-byrne/pib_cli/actions/workflows/push_wheel.yml/badge.svg?branch=production)](https://github.com/niall-byrne/pib_cli/actions)
 
 ## Documentation Builds
 
