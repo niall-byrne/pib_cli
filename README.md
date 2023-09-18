@@ -228,9 +228,9 @@ Please see the documentation [here](https://github.com/niall-byrne/pib_cli/blob/
 
 This table summarizes the environment variables that can be used with `pib_cli`:
 
-| Name                      | Purpose                                                                   |
-| ------------------------- | ------------------------------------------------------------------------- |
-| PIB_CONFIG_FILE_LOCATION  | The absolute path to the configuration file that should be used.          | 
-| PIB_DOCUMENTATION_ROOT    | A relative path from the repository root where a Sphinx Makefile lives.   |
-| PIB_OVERLOAD_ARGUMENTS    | Reserved to pass arguments to customized CLI commands.                    |
-| PIB_PROJECT_NAME          | The top level folder in the repository where the codebase is found.       |
+| Name                     | Purpose                                                             |
+|--------------------------|---------------------------------------------------------------------|
+| PIB_CONFIG_FILE_LOCATION | An absolute path to the config file that should be used.            | 
+| PIB_DOCUMENTATION_ROOT   | A relative path from the repo root where a Sphinx Makefile lives.   |
+| PIB_OVERLOAD_ARGUMENTS   | Reserved to pass arguments to customized CLI commands.              |
+| PIB_PROJECT_NAME         | The top level folder in the repository where the codebase is found. |

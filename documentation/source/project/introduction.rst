@@ -9,12 +9,12 @@ A batteries included `make <https://www.gnu.org/software/make/>`__ style CLI for
 Master Branch
 -------------
 
-|pib_cli-automation-master|
+|pib_cli-push-generic|
 
 Production Branch
 -----------------
 
-|pib_cli-automation-production|
+|image1|
 
 Documentation Builds
 --------------------
@@ -309,18 +309,18 @@ Environment Variable Summary
 
 This table summarizes the environment variables that can be used with ``pib_cli``:
 
-======================== =======================================================================
+======================== ===================================================================
 Name                     Purpose
-======================== =======================================================================
-PIB_CONFIG_FILE_LOCATION The absolute path to the configuration file that should be used.
-PIB_DOCUMENTATION_ROOT   A relative path from the repository root where a Sphinx Makefile lives.
+======================== ===================================================================
+PIB_CONFIG_FILE_LOCATION An absolute path to the config file that should be used.
+PIB_DOCUMENTATION_ROOT   A relative path from the repo root where a Sphinx Makefile lives.
 PIB_OVERLOAD_ARGUMENTS   Reserved to pass arguments to customized CLI commands.
 PIB_PROJECT_NAME         The top level folder in the repository where the codebase is found.
-======================== =======================================================================
+======================== ===================================================================
 
-.. |pib_cli-automation-master| image:: https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=master
+.. |pib_cli-push-generic| image:: https://github.com/niall-byrne/pib_cli/actions/workflows/push_wheel.yml/badge.svg?branch=master
    :target: https://github.com/niall-byrne/pib_cli/actions
-.. |pib_cli-automation-production| image:: https://github.com/niall-byrne/pib_cli/workflows/pib_cli%20Automation/badge.svg?branch=production
+.. |image1| image:: https://github.com/niall-byrne/pib_cli/actions/workflows/push_wheel.yml/badge.svg?branch=production
    :target: https://github.com/niall-byrne/pib_cli/actions
 .. |Documentation Status| image:: https://readthedocs.org/projects/pib-cli/badge/?version=latest
    :target: https://pib-cli.readthedocs.io/en/latest/?badge=latest

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pib_cli \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 18:12+0000\n"
+"POT-Creation-Date: 2023-09-18 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,11 +37,11 @@ msgid "Master Branch"
 msgstr ""
 
 #: ../../source/project/introduction.rst:12
-msgid "|pib_cli-automation-master|"
+msgid "|pib_cli-push-generic|"
 msgstr ""
 
 #: ../../source/project/introduction.rst
-msgid "pib_cli-automation-master"
+msgid "pib_cli-push-generic"
 msgstr ""
 
 #: ../../source/project/introduction.rst:15
@@ -49,11 +49,11 @@ msgid "Production Branch"
 msgstr ""
 
 #: ../../source/project/introduction.rst:17
-msgid "|pib_cli-automation-production|"
+msgid "|image1|"
 msgstr ""
 
 #: ../../source/project/introduction.rst
-msgid "pib_cli-automation-production"
+msgid "image1"
 msgstr ""
 
 #: ../../source/project/introduction.rst:20
@@ -745,7 +745,7 @@ msgid "PIB_CONFIG_FILE_LOCATION"
 msgstr ""
 
 #: ../../source/project/introduction.rst:315
-msgid "The absolute path to the configuration file that should be used."
+msgid "An absolute path to the config file that should be used."
 msgstr ""
 
 #: ../../source/project/introduction.rst:316
@@ -753,7 +753,7 @@ msgid "PIB_DOCUMENTATION_ROOT"
 msgstr ""
 
 #: ../../source/project/introduction.rst:316
-msgid "A relative path from the repository root where a Sphinx Makefile lives."
+msgid "A relative path from the repo root where a Sphinx Makefile lives."
 msgstr ""
 
 #: ../../source/project/introduction.rst:317
@@ -811,5 +811,23 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "pib_cli-automation-production"
+#~ msgstr ""
+
+#~ msgid "PIB_CONFIG_FILE_LOCATION"
+#~ msgstr ""
+
+#~ msgid "PI B_CONFIG_FILE_LOCATION"
+#~ msgstr ""
+
+#~ msgid "The absolute path to the configuration file that should be used."
+#~ msgstr ""
+
+#~ msgid "P IB_CONFIG_FILE_LOCATION"
+#~ msgstr ""
+
+#~ msgid "A relative path from the repository root where a Sphinx Makefile lives."
+#~ msgstr ""
+
+#~ msgid "s relative path from the repo root where a Sphinx Makefile lives."
 #~ msgstr ""
 
