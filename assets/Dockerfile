@@ -17,6 +17,7 @@ ENV PIB_CONFIG_FILE_LOCATION "/app/assets/cli.yml"
 ENV VERSION_ASPELL "aspell-${BUILD_ARG_ASPELL_LANGUAGE}=*"
 ENV VERSION_GITLEAKS "8.3.0"
 ENV VERSION_POETRY "poetry<1.4.0"
+ENV VERSION_TOMLL "v1.9.4"
 
 # Mark Container
 RUN echo "1.0.0" > /etc/container_pib_version   && \
@@ -70,16 +71,20 @@ RUN apt-get update                      && \
     apt-get install -y                     \
     --no-install-recommends                \
     "${VERSION_ASPELL}"                    \
-    curl=7.74.*                            \
-    fish=3.1.*                             \
-    golang-github-pelletier-go-toml=1.8.*  \
+    curl=7.88.*                            \
+    fish=3.6.*                             \
     jq=1.6*                                \
-    openssh-client=1:8.*                   \
+    openssh-client=1:9.*                   \
     pandoc=2.*                             \
-    shellcheck=0.7.*                       \
+    shellcheck=0.9.*                       \
     sudo=1.9.*                             \
     tig=2.5.*                              \
-    vim=2:8.*
+    vim=2:9.*
+
+# Install tomll
+COPY ./scripts/utilities/install_tomll.sh .
+RUN bash -c 'source install_tomll.sh'  && \
+    rm install_tomll.sh
 
 # Install Git Leaks
 COPY ./scripts/utilities/install_gitleaks.sh .
