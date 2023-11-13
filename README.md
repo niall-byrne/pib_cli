@@ -4,6 +4,16 @@ A batteries included [make](https://www.gnu.org/software/make/) style CLI for [p
 
 [Project Documentation](https://pib-cli.readthedocs.io/en/latest/)
 
+---
+
+## November 2023:  Project has been Deprecated
+
+At this time, I've made the decision to put this project on hiatus.
+
+Although this approach has proved incredibly useful, I'm now rethinking the entire "Python-in-a-Box" approach to development environments.
+
+---
+
 ## Master Branch
 
 [![pib_cli-push-generic](https://github.com/niall-byrne/pib_cli/actions/workflows/push_wheel.yml/badge.svg?branch=master)](https://github.com/niall-byrne/pib_cli/actions)
